@@ -10,7 +10,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_18_213416) do
+ActiveRecord::Schema.define(version: 2020_01_21_090845) do
+
+  create_table "favorite_places", force: :cascade do |t|
+    t.integer "place_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string "url"
+    t.integer "place_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "places", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.float "ratings"
+    t.integer "capacity"
+    t.integer "number_view"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "content"
+    t.float "rate"
+    t.integer "user_id"
+    t.integer "place_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "service_offereds", force: :cascade do |t|
+    t.string "name"
+    t.string "icon"
+    t.text "description"
+    t.integer "place_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -23,20 +66,3 @@ ActiveRecord::Schema.define(version: 2020_01_18_213416) do
   end
 
 end
-
-# User        
-#  id     |      name                 |  login                        |    email              | password     | profile_pic | address  | client |  evenemential
-
-# Review 
-# id      |   content                 | foreign_key= user_id          | foreign_key = place_id
-
-
-# Place
-# id      |      name                 |     address                   | ratings               | number_people |   Services_offered(stuff like security, tables ) | number_view  | foreign_key = user_id  
-
-
-# Favorite_Place
-# id      |   foreign_key = place_id  |  foreign_key = user_id
-
-# Images 
-# id      |       url                 |        foreign_key = user_id | foreign_key=place_id
