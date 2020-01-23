@@ -45,6 +45,8 @@ import SignUpUser from '../../actions/SignUpUser'
                         <label htmlFor='admin'>Admin?</label>
                         <input type='checkbox' name='admin' id='admin' onChange={this.handleChange}/>
                     </div>
+                    <a href='/login'>Already have an account?</a>
+
                     <button>Sign Up</button>
                 </form>
             </div>

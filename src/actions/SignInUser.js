@@ -1,4 +1,4 @@
-export default function SignUpUser(user){
+export default function SignInUser(user){
     return dispatch =>{
         console.log(user)
           
@@ -10,7 +10,7 @@ export default function SignUpUser(user){
             },
            body: JSON.stringify({user: user})
         }
-        fetch('http://localhost:3000/users',params)
+        fetch('http://localhost:3000/users/login',params)
         .then(resp => resp.json())
         .then(json => {
             if(json.errors){
