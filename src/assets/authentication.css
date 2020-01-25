@@ -9,8 +9,9 @@ html{
     font-family: "Roboto", sans-serif;
 }
 body{
-    background:url("./img/3.jpg");
+    background:url("./img/Backgroun-large1.png");
     background-size: cover;
+    background-repeat: no-repeat;
 }
 #wrapper{
     width: 90%;
@@ -20,7 +21,7 @@ body{
     justify-content: center;
     align-items: center;
 }
-.form-container{
+.ConteneurForm{
     width: 100%;
     max-width: 40rem;
     background: #fff;
@@ -30,7 +31,7 @@ body{
     border-radius: 1rem;
     z-index: 1;
 }
-.form-container::before{
+.ConteneurForm::before{
     content: '';
     position: absolute;
     top: 0;
@@ -42,7 +43,7 @@ body{
     border-bottom-right-radius: 100%;
     z-index: -1;
 }
-.form-heading{
+.TeteConteneur{
     color: #fff;
     font-size: 2.5rem;
     position: absolute;
@@ -56,14 +57,14 @@ form{
     border-radius: 1rem;
     box-shadow: 0 1px 1.5rem rgba(0,0,0,.1);
 }
-.input-group{
+.ChampsGroup{
     width: 90%;
     margin: 0 auto;
     position: relative;
     display: flex;
     align-items: baseline;
 }
-.input-group input{
+.ChampsGroup input{
     position: relative;
     width: 100%;
     padding: 1rem 0;
@@ -73,12 +74,12 @@ form{
     font-size: 1.8rem;
     color: #9400d3;
 }
-.input-group > i{
+.ChampsGroup > i{
     font-size: 1.8rem;
     margin-right: 1rem;
     color: #9400d3;
 }
-.input-group .bar{
+.ChampsGroup .bar{
     position: absolute;
     left: 0;
     bottom: 0;
@@ -86,7 +87,7 @@ form{
     width: 100%;
     height: 1px;
 }
-.input-group .bar::before{
+.ChampsGroup .bar::before{
     content: '';
     position: absolute;
     background-color: #9400d3;
@@ -94,10 +95,10 @@ form{
     height: 2px;
     transition: width 650ms;
 }
-.input-group input:focus + .bar::before{
+.ChampsGroup input:focus + .bar::before{
     width: 100%;
 }
-.input-group button{
+.ChampsGroup button{
     margin: 3rem auto;
     padding: 1rem 5rem;
     background: linear-gradient(to left, #ee82ee, #9400d3);
@@ -107,10 +108,10 @@ form{
     cursor: pointer;
     border-radius: 3rem;
 }
-.input-group button:focus, .input-group button:hover{
+.ChampsGroup button:focus, .ChampsGroup button:hover{
     background: linear-gradient(to left, #ee82ee, #9400d3);
 }
-.input-group input[type="checkbox"]{
+.ChampsGroup input[type="checkbox"]{
     position: relative;
     padding: 1rem 0;
     margin-top: .5rem;
@@ -118,7 +119,7 @@ form{
     outline: none;
     width: 10%;
 }
-.input-group label{
+.ChampsGroup label{
     color: #a1a1a1;
     font-size: 1.5rem;
     padding: 1rem 0;
@@ -126,27 +127,27 @@ form{
     text-align: center;
     margin-left: 37%;
 }
-.switch-login{
+.Changement{
     text-align: center;
 }
-.switch-login a{
+.Changement a{
     text-decoration: none;
     color: #a1a1a1;
     font-size: 1.5rem;
 }
-.switch-login a span{
+.Changement a span{
     color: #9400d3;
 }
-.switch-login a span:hover{
+.Changement a span:hover{
     padding-bottom: 2px;
     border-bottom: 2px solid #9400d3;
 }
 
 @media screen and (max-width: 700px){
-    .form-container::before{
+    .ConteneurForm::before{
         height: 10rem;
     }
-    .form-heading{
+    .TeteConteneur{
         left: 50%;
         transform: translateX(-50%);
     }

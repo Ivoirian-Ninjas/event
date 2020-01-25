@@ -1,0 +1,5 @@
+div.error{
+    background-color: red;
+    opacity: 0;
+    transition: 1s opacity;
+}

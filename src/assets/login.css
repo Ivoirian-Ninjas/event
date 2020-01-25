@@ -1,0 +1,118 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.conteneur{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    /* border: 1px solid slateblue; */
+    /* justify-content: center;
+    align-items: center; */
+    /* margin: 0;
+    margin-left: 0%; */
+}
+.img{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-left: 5%;
+}
+.imgs{
+    width: 640px;
+}
+.conteneurLog{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    margin-left: 15%;
+}
+.FormLog{
+    width: 360px;
+    height: 500px;
+    text-align: center;
+    background: rgba(255,255,255,0.7);
+
+}
+.avatar{
+    width: 150px;
+}
+.FormLog h2{
+    font-size: 2.9rem;
+    text-transform: uppercase;
+    margin: 15px 0;
+    color: #333;
+}
+.ChampsDiv{
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: baseline;
+}
+.ChampsDiv input{
+    position: relative;
+    width: 100%;
+    padding: 1rem 0;
+    margin-top: .5rem;
+    border: none;
+    outline: none;
+    font-size: 1.8rem;
+    color: #9400d3;
+}
+.ChampsDiv > i{
+    font-size: 1.8rem;
+    margin-right: 1rem;
+    color: #9400d3;
+}
+.ChampsDiv .bar{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.1);
+    width: 100%;
+    height: 1px;
+}
+.ChampsDiv .bar::before{
+    content: '';
+    position: absolute;
+    background-color: #9400d3;
+    width: 0;
+    height: 2px;
+    transition: width 650ms;
+}
+.ChampsDiv input:focus + .bar::before{
+    width: 50%;
+}
+.ChampsDiv button{
+    margin: 3rem auto;
+    padding: 1rem 5rem;
+    background: linear-gradient(to left, #ee82ee, #9400d3);
+    border: none;
+    color: #fff;
+    font-size: 2.5rem;
+    cursor: pointer;
+    border-radius: 3rem;
+    outline: none;
+}
+.ChampsDiv button:focus, .ChampsDiv button:hover{
+    background: linear-gradient(to left, #ee82ee, #9400d3);
+}
+.Changement{
+    text-align: center;
+}
+.Changement a{
+    text-decoration: none;
+    color: #a1a1a1;
+    font-size: 1.5rem;
+}
+.Changement a span{
+    color: #9400d3;
+}
+.Changement a span:hover{
+    padding-bottom: 2px;
+    border-bottom: 2px solid #9400d3;
+}
