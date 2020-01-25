@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import '../../assets/authentication.css'
 import { connect } from 'react-redux';
 import SignUpUser from '../../actions/SignUpUser'
+import '../../assets/fontawesome-free-5.11.2-web/css/all.css'
+
+
 
 
  class SignUp extends Component {
@@ -21,36 +24,53 @@ import SignUpUser from '../../actions/SignUpUser'
     }
     render() {
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <div>
-                        <label htmlFor='name'>Name</label>
-                        <input type='text' name='name' id='name' onChange={this.handleChange}/>
-                    </div>
+            <div id="wrapper">
+                <div className="form-container">
+                <span className="form-heading">Sign Up</span>
+                    <form onSubmit={this.handleSubmit}>
+                        <div className="input-group">
+                            <i className="fas fa-user"></i>
+                            <input type='text' placeholder="Username..." name='name' id='name' onChange={this.handleChange}/>
+                            <span className="bar"></span>
+                        </div>
 
-                    <div>
-                        <label htmlFor='email' >Email</label>
-                        <input type='email' name='email' id='email' onChange={this.handleChange}/>
-                    </div>
+                        <div className="input-group">
+                            <i className="fas fa-envelope"></i>
+                            <input type='email' placeholder="Email..." name='email' id='email' onChange={this.handleChange}/>
+                            <span className="bar"></span>
+                        </div>
 
-                    <div>
-                        <label htmlFor='password_digest'>Password</label>
-                        <input type='password' name='password_digest' id='password_digest' onChange={this.handleChange}/>
-                    </div>
-                    <div>
-                        <label htmlFor='password_confirm'>Password Confirmation</label>
-                        <input type='password' name='password_confirm' id='password_confirm' onChange={this.handleChange}/>
-                    </div>
-                    <div>
-                        <label htmlFor='admin'>Admin?</label>
-                        <input type='checkbox' name='admin' id='admin' onChange={this.handleChange}/>
-                    </div>
-                    <a href='/login'>Already have an account?</a>
+                        <div className="input-group">
+                            <i className="fas fa-lock"></i>
+                            <input type='password' placeholder="Password..." name='password_digest' id='password_digest' onChange={this.handleChange}/>
+                            <span className="bar"></span>
+                        </div>
 
-                    <button>Sign Up</button>
-                </form>
+                        <div className="input-group">
+                            <i className="fas fa-lock"></i>
+                            <input type='password' placeholder="Confirm password" name='password_confirm' id='password_confirm' onChange={this.handleChange}/>
+                            <span className="bar"></span>
+                        </div>
+
+                        <div className="input-group">
+                            <label>Admin?</label>
+                            <input type='checkbox' name='admin' id='admin' onChange={this.handleChange}/>
+                        </div>
+
+                        <div className="input-group">
+                            <button>
+                                <i className="fab fa-telegram-plane"></i>
+                            </button>
+                        </div>
+
+                        <div className="switch-login">
+                            <a href="#">Already have an account ? <span>Login</span> </a>
+                        </div>
+                        
+                    </form>
+                </div>
             </div>
-        )
+         )
     }
 }
 const mapDispatchToProps = dispatch =>  ({
