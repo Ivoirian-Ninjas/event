@@ -24,4 +24,8 @@ class UsersController < ApplicationController
         end
     end
     
+    def show 
+        user = User.find(params.permit(:id)[:id] )
+        render json: user if user
+    end
 end

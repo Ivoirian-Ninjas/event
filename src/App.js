@@ -20,12 +20,12 @@ function App() {
   return (
     <Router>
        <div className='ui container'>
-
+        
          {/* If the user is not logged in he/she will be redirected to the login page */}
         { !window.location.href.includes('Signup')  && !localStorage.getItem('user_id') ? <Redirect to={{ pathname: "/login"}} /> : null}
 
         {/* This logic will redirect the user to the home page after the login or signup step */}
-        { (window.location.href.includes('Signup') || window.location.href.includes('login')) && localStorage.getItem('user_id') ? <Redirect to={{pathname: '/home'}} /> : null}
+        { (window.location.href.includes('Signup') || window.location.href.includes('login')) && localStorage.getItem('user_id') ? <Redirect to={{pathname: '/'}} /> : null}
 
           {/*These are the routes for the authentication process*/}
           <Route path='/signup' render={renderProps => <SignUp /> }/>

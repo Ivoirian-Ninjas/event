@@ -18,7 +18,7 @@ export default function SignInUser(user){
                     console.log(e)
                 })
             }else{
-                            dispatch({type:'LOGIN_USER',user:json.user})
+                           dispatch({type:'LOGIN_USER',user:json.user})
 
             }
         })
