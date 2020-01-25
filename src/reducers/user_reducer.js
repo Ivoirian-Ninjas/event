@@ -6,10 +6,7 @@ export default function user_reducer(state={},action){
             // use JSON.parse(localStorage.getItem('user')) to get the user object
             localStorage.setItem('user',JSON.stringify(action.user))
             return action.user
-        case 'LOGOUT_USER': 
-            localStorage.clear()
-            window.location.reload()
-            return {}
+    
         default: return state
 
     }
