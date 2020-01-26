@@ -7,7 +7,7 @@ import {Provider} from 'react-redux'
 import allReducers from './reducers/allReducers'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-
+//added a comment to test git update
 const store = createStore(allReducers,applyMiddleware(thunk))
 
 ReactDOM.render(   <Provider store={store}>
