@@ -6,9 +6,7 @@ export default function Errors() {
         // {/** Create a file in the css for error class */}
         <div className='error'>
             <h1>Errors</h1> 
-            <ul className='errors-content' >
-                <li>Blaa blas</li>
-            </ul>
+            <ul className='errors-content' > </ul>
         </div>
     )
 }

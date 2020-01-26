@@ -3,6 +3,7 @@ class CreatePlaces < ActiveRecord::Migration[5.2]
     create_table :places do |t|
       t.string :name
       t.string :address
+      t.float :price
       t.float :ratings
       t.integer :capacity
       t.integer :number_view
