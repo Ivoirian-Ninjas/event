@@ -33,7 +33,8 @@ export default function add_places(place){
                 })
             }else{
                 console.log(json)
-                           dispatch({type:'ADD_PLACE', places: json.places})
+                window.location.href = 'http://localhost:3001/places'
+                        //    dispatch({type:'ADD_PLACE', places: json.places})
 
             }
         })

@@ -3,7 +3,7 @@ import React from 'react'
 export default function place({place}) {
     const display_images = () => {
         console.log(place.images[0].url)
-        return place.images.map(e => <img key={e.id} src={e.url} height='200' width='100'/>)
+        return place.images.map(e => <img key={e.id} src={e.url} />)
     }
     return (
     

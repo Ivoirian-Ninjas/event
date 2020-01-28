@@ -1,3 +1,5 @@
+require "mini_magick"
+
 class PlacesController < ApplicationController
     def index 
         # binding.pry
@@ -24,7 +26,11 @@ class PlacesController < ApplicationController
                 image = Image.new(file: el,place: place)
                 # binding.pry
                 if image.file.attached? 
-                    image.url = url_for(image.file)
+                #thumbnail will be used to resize the image with miniMagick  '300 x 300'                   
+
+                    image.url = url_for( image.thumbnail)
+                    # binding.pry
+
                     image.save
                     place.images << image
 
