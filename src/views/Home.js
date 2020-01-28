@@ -9,6 +9,9 @@ export default class Home extends Component {
         return (
             <div>
                 <h1>This is the home</h1>
+                <div>
+                    <input type='text'/> <span><a>Locate me</a></span>
+                </div>
             </div>
         )
     }

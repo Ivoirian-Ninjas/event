@@ -19,6 +19,7 @@ import Profile from './views/user/Profile'
 
 import current_user from './helper/current_user'
 import is_logged_in from './helper/is_logged_in'
+import is_admin from './helper/is_admin'
 function App() {
   const logout = () =>{
     localStorage.clear()
@@ -30,6 +31,7 @@ function App() {
 
          {/* This button is to loggout */}
          {is_logged_in() ? <button onClick={logout}>Log out</button> : null }
+         {is_admin() ? <a href = '/new_places'>Add a place</a> : null}
 
         
          {/* If the user is not logged in he/she will be redirected to the login page */}
@@ -41,20 +43,20 @@ function App() {
           {/*These are the routes for the authentication process*/}
           <Route path='/signup' render={renderProps => <SignUp /> }/>
           <Route path='/login' render={renderProps => <Login />} />
+      
 
           {/*Home page */}
           <Route exact path='/' render={renderProps => <Home /> }/>
-          {/*These routes are the routes for the place */}
 
+          {/*These routes are the routes for the place */}
           <Route  exact path='/places' render={renderProps => <Index {...renderProps}/>} />
           <Route   exact path='/new_places' render={renderProps => <Add_Place />} />
           <Route  path='/places/:id' render={renderProps => <Place_Show/>} />
 
-
           {/* user profile */}
           <Route path='/users/:id' render={renderProps => <Profile/>} />
 
-
+          
       </div>
     </Router>
    
