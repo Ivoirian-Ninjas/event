@@ -9,8 +9,6 @@ html{
     font-family: "Roboto", sans-serif;
 }
 body{
-    background:url("./img/Backgroun-large1.png");
-    background-size: cover;
     background-repeat: no-repeat;
 }
 #wrapper{
