@@ -133,6 +133,8 @@ form{
     text-decoration: none;
     color: #a1a1a1;
     font-size: 1.5rem;
+    background: none;
+
 }
 .Changement a span{
     color: #9400d3;

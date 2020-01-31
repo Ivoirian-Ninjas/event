@@ -1,0 +1,177 @@
+/*Rockness*/
+@font-face {
+    font-family: 'Rockness';
+    src: url('./fonts/rockness/Rockness.ttf');
+    src: url('./fonts/rockness/Rockness.otf');
+    font-weight: normal;
+    font-style: normal;
+    }
+/* Thundergood*/
+@font-face {
+    font-family: 'Thundergood';
+    src: url('./fonts/thundergood/Thundergood.ttf');
+    font-weight: normal;
+    font-style: normal;
+    }
+    /*Candara*/
+    @font-face {
+    font-family: 'Candra';
+    src: url('./fonts/candara/Candara.ttf');
+    font-weight: normal;
+    font-style: normal;
+    }
+    /* Signature of the ancient*/
+    @font-face {
+    font-family: 'Signature of the Ancient';
+    src: url('./fonts/signature-of-the-ancient/Signature of the Ancient.ttf');
+    font-weight: normal;
+    font-style: normal;
+    }
+    /* Prestige signature script*/
+    @font-face {
+    font-family: 'Prestige Signature Script';
+    src: url('./fonts/prestige-signature-script--demo/Prestige Signature Script - Demo.ttf');
+    font-weight: normal;
+    font-style: normal;
+    }
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .PageConteneur{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+    .imageHome{
+        width: 50%;
+        float: right;
+    }
+    .imageHome img{
+        width: 100%;
+    }
+    .partieSearch{
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .searchContenu{
+        width: 70%;
+        /* text-align: center;
+        justify-content: center; */
+    }
+    .h1Home{
+        color: rgba(5, 5, 5, 0.781);
+        font-size: 55px;
+        font-family: Monotype Corsiva;
+        text-align: left;
+        font-weight: lighter;
+        margin: 5px;
+    }
+    .h3Home{
+        color: rgba(58, 57, 57, 0.918);
+        font-size: 18px;
+        font-family: "Helvetica", Arial,sans-serif;
+        text-align: left;
+        font-weight: normal;
+        margin: 5px;
+
+    }
+    .TypeEvent{
+        width: 92%;
+        height: 42px;
+        display: block;
+        padding: 6px 12px;
+        font-size: 16px;
+        line-height: 1.8;
+        color: #343840;
+        outline: none;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ced2da;
+        border-radius: 5px;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        margin: 5px;
+    }
+    .TypeEvent:hover, .TypeEvent:focus, .LocateEvent:focus, .LocateEvent:hover,
+    .TimeEvent:focus, .TimeEvent:hover, .NumberEvent:hover {
+        box-shadow: 0 1px 1.5rem rgba(240, 70, 255, 0.253)
+    }
+    .LocateEvent{
+        width: 45%;
+        height: 42px;
+        display: -nline-block;
+        padding: 6px 12px;
+        font-size: 16px;
+        line-height: 1.8;
+        color: #343840;
+        outline: none;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ced2da;
+        border-radius: 5px;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        margin: 5px;
+    }
+    .TimeEvent{
+        width: 45%;
+        height: 42px;
+        display: -nline-block;
+        padding: 6px 12px;
+        font-size: 16px;
+        line-height: 1.8;
+        color: #343840;
+        outline: none;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ced2da;
+        border-radius: 5px;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        margin: 5px;
+    }
+    .NumberEvent{
+        width: 50%;
+        height: 42px;
+        display: inline-block;
+        padding: 6px 12px;
+        font-size: 16px;
+        line-height: 1.8;
+        color: #343840;
+        outline: none;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ced2da;
+        border-radius: 5px;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        margin: 5px;
+    }
+    .searchEvent{
+        width: 40%;
+        font-size: 18px;
+        margin: 5px;
+        height: 42px;
+        line-height: 22px;
+        font-family: "Helvetica";
+        border-radius: 5px;
+        border-width: 1px;
+        display: inline-block;
+        color: #fff;
+        background-color: #d229e8;
+        border-color: #d229e8;
+        margin-bottom: 0;
+        text-align: center;
+        touch-action: manipulation;
+        cursor: pointer;
+        border: 1px solid transparent;
+        transition: ease-in-out 0.3s;
+    }
+    .searchEvent:hover{
+        background-color: #720880;
+    }

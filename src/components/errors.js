@@ -5,8 +5,15 @@ export default function Errors() {
     return (
         // {/** Create a file in the css for error class */}
         <div className='error'>
-            <h1>Errors</h1> 
-            <ul className='errors-content' > </ul>
+            <div className="titre">
+                <h1> <i className="fa fa-exclamation-circle"></i> Errors</h1> 
+            </div>
+            <div className="contenu">
+                <ul className='errors-content' >
+                    <li></li>
+                </ul>
+            </div>
+            
         </div>
     )
 }
