@@ -48,7 +48,7 @@ class Login extends Component {
                         </div>
 
                         <div className="Changement">
-                            <a href="/Signup"> Don't have a account ? <span>Register here</span> </a>
+                            <a href="/signup"> Don't have a account ? <span>Register here</span> </a>
                         </div>
                     </form>
                 </div>
