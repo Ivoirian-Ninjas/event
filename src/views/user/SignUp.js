@@ -28,7 +28,6 @@ import display_errors from '../../helper/display_errors'
     render() {
         return (
             <div id="wrapper">
-                <Errors />
                 <div className="ConteneurForm">
                 <span className="TeteConteneur">Sign Up</span>
                     <form onSubmit={this.handleSubmit}>
@@ -43,7 +42,7 @@ import display_errors from '../../helper/display_errors'
                             <input type='email' placeholder="Email..." name='email' id='email' onChange={this.handleChange}/>
                             <span className="bar"></span>
                         </div>
-
+                        <Errors />
                         <div className="ChampsGroup">
                             <i className="fas fa-lock"></i>
                             <input type='password' placeholder="Password..." name='password_digest' id='password_digest' onChange={this.handleChange}/>
@@ -60,17 +59,17 @@ import display_errors from '../../helper/display_errors'
                             <label>Admin?</label>
                             <input type='checkbox' name='admin' id='admin' onChange={this.handleChange}/>
                         </div>
-
+                               
                         <div className="ChampsGroup">
                             <button>
                                 <i className="fab fa-telegram-plane"></i>
                             </button>
                         </div>
-
+                            
                         <div className="Changement">
                             <a href="/login">Already have an account ? <span>Login</span> </a>
                         </div>
-                        
+                       
                     </form>
                 </div>
             </div>

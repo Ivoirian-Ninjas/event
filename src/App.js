@@ -30,8 +30,34 @@ function App() {
        <div className='ui container'>
 
          {/* This button is to loggout */}
-         {is_logged_in() ? <button onClick={logout}>Log out</button> : null }
-         {is_admin() ? <a href = '/new_places'>Add a place</a> : null}
+         {is_logged_in() ?
+          <div className="EnTetes">
+           <input type="checkbox" id="check" />
+            <label for="check" className="checkbtn">
+              <i class="fas fa-bars"></i>
+            </label>
+          <label className="LogoEvent">Event</label>
+          <ul className="menu-first">
+            <li className="lien-menu-first"><a href="./App.js" className="active">Home</a></li>
+            <li className="lien-menu-first"><a href="#">Activities</a></li>
+            {is_admin() ? <li className="lien-menu-first">
+            <a href = '/new_places' className="addPlaces">Add a place</a></li> : null}
+            <li className="ProfilesLink lien-menu-first"><a href="#">Account</a>
+              <ul className="sous-menu">
+                <li><a href="#"> <i className="fas fa-user-circle"></i>  Profile</a></li>
+                <li>
+                  <a onClick={logout}> 
+                    <button onClick={logout} className="logout"> 
+                      <i className="fa fa-times"></i> 
+                    </button> Log out 
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          </div>
+          
+          : null}
 
         
          {/* If the user is not logged in he/she will be redirected to the login page */}

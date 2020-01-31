@@ -1,0 +1,181 @@
+/*Rockness*/
+@font-face {
+    font-family: 'Rockness';
+    src: url('./fonts/rockness/Rockness.ttf');
+    src: url('./fonts/rockness/Rockness.otf');
+    font-weight: normal;
+    font-style: normal;
+    }
+/* Thundergood*/
+@font-face {
+    font-family: 'Thundergood';
+    src: url('./fonts/thundergood/Thundergood.ttf');
+    font-weight: normal;
+    font-style: normal;
+    }
+    /*Candara*/
+    @font-face {
+    font-family: 'Candra';
+    src: url('./fonts/candara/Candara.ttf');
+    font-weight: normal;
+    font-style: normal;
+    }
+    /* Signature of the ancient*/
+    @font-face {
+    font-family: 'Signature of the Ancient';
+    src: url('./fonts/signature-of-the-ancient/Signature of the Ancient.ttf');
+    font-weight: normal;
+    font-style: normal;
+    }
+    /* Prestige signature script*/
+    @font-face {
+    font-family: 'Prestige Signature Script';
+    src: url('./fonts/prestige-signature-script--demo/Prestige Signature Script - Demo.ttf');
+    font-weight: normal;
+    font-style: normal;
+    }
+.EnTetes{
+    width: 100%;
+    background: rgb(255, 255, 255);
+    height: 80px;
+    box-shadow: 0 1px 1.5rem rgba(0,0,0,.1);
+    position: fixed;
+}
+.LogoEvent{
+    color: #000;
+    font-size: 7rem;
+    line-height: 80px;
+    padding: 0 100px;
+    font-family: Edwardian Script ITC;
+}
+.menu-first{
+    float: right;
+    margin-right: 40px;
+}
+.menu-first .lien-menu-first{
+    display: inline-block;
+    line-height: 80px;
+    margin: 0 10px;
+}
+.menu-first .lien-menu-first a{
+    color: #000;
+    font-size: 17px;
+    text-decoration: none;
+    padding: 7px 13px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.sous-menu{
+    list-style-type:none;
+    position: absolute;
+    top:60px;
+    margin:0;
+    padding:0;
+    line-height:40px;
+    width: 130px;
+    display: none;
+	
+}
+.sous-menu li{
+    display: block;
+    transition:0.4s;
+    margin-top:3px;
+	padding:2px;
+    background: #fff;
+}
+/* .sous-menu li:first-child{
+    border-bottom: 1px solid rgb(117, 113, 113);
+} */
+.sous-menu li a{
+    color: #000;
+    font-size: 17px;
+    text-decoration: none;
+    margin: 0;
+    cursor: pointer;
+
+}
+.sous-menu li a:hover{
+    color:rgba(179, 9, 164, 0.89);
+    background:none;
+}
+
+.ProfilesLink:hover .sous-menu{
+    display: block;
+}
+.active, a:hover{
+    background: rgba(253, 153, 228, 0.836);
+}
+.checkbtn{
+    font-size: 30px;
+    color: #000;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    cursor: pointer;
+    display: none;
+}
+#check{
+    display: none;
+    outline: none;
+}
+.logout{
+    border-radius: 1px;
+    border: none;
+    background-color: #fff;
+    font-weight: bold;
+    color: rgb(247, 76, 76);
+    font-size: 20px;
+}
+@media (max-width:952px){
+    .LogoEvent{
+        font-size: 30px;
+        padding-left: 50px;
+    }
+    .menu-first .lien-menu-first a{
+        font-size: 16px;
+    }
+
+}
+@media (max-width:858px){
+    .checkbtn{
+        display: block;
+    }
+    .menu-first{
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: rgb(250, 245, 248);
+        top:80px;
+        left: -100%;
+        text-align: center;
+        transform: all 5s;
+        font-weight: bolder;
+    }
+    .sous-menu{
+        position: absolute;
+        width: 100%;
+        top:65vh;
+        text-align: center;
+        transform: all 5s;        
+    }
+    .sous-menu li{
+        background: rgb(250, 245, 248);
+        font-weight: lighter;
+    }
+    .menu-first .lien-menu-first{
+        display: block;
+        margin: 30px 0;
+    }
+    .menu-first .lien-menu-first a{
+        font-size: 20px;
+        font-weight: bolder;
+    }
+    a:hover, a.active{
+        background: none;
+        color: rgba(253, 153, 228, 0.836); ;
+    }
+    #check:checked ~ ul{
+        left: 0;
+        outline: none;
+    }
+}

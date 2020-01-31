@@ -1,5 +1,39 @@
-div.error{
-    background-color: red;
-    opacity: 0;
+.error{
+    z-index: 30000;
     transition: 1s opacity;
+    position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0px auto;
+    padding: 2rem 0;
+    background-color: rgba(255, 205, 205, 0.904);
+    border-radius: .5rem;
+    box-shadow: 0 1px 1.5rem rgba(0,0,0,.1);
+    width: 100%;
 }
+.titre{
+    position: absolute;
+    width: 100%;
+    top: 4%;
+}
+.error h1{
+    color: #fd0808;  
+}
+.errors-content{
+    width: 100%;
+    color: #000;
+    position: relative;
+    margin-top: 5%;
+}
+.errors-content li{
+    list-style: none;
+    font-size: 2rem;
+    font-weight: bolder;
+}
+/* .erreur{
+    z-index: 1000;
+    color: #000;
+    background: #ee82ee;
+} */

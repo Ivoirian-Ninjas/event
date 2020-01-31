@@ -10,12 +10,12 @@ export default function display_errors(errors) {
         
     })
 
-    error_div.style.opacity = 1
+    error_div.style.display = "flex"
     
     //fadout effect 
     setTimeout(()=>{
-        error_div.style.opacity = 0
+        error_div.style.display = "none"
         error_ul.innerHTML = '';
-    },10000)
+    },2500)
     
 }
