@@ -68,6 +68,7 @@ import add_place from '../../actions/add_place'
         input.addEventListener ('change',event =>{
             console.log(event.target.files[0])
                 this.setState(state => ({images: [...state.images,event.target.files[0]]}) )
+                this.preview_image(event.target.files[0])
 
         })
         input.accept = "image/x-png,image/gif,image/jpeg"

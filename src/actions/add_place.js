@@ -17,12 +17,8 @@ export default function add_places(place){
         })
           console.log(fd)
         const params = {
-            method: 'POST',
-            headers: {
-                // "Content-Type": "application/json",
-                // "Accept": "application/json"
-            },
-           body:fd //JSON.stringify({user_id: user.id ,place: place})
+            method: 'POST', 
+           body:fd 
         }
         fetch('http://localhost:3000/places/',params)
         .then(resp => resp.json())
