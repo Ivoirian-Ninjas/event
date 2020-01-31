@@ -39,6 +39,7 @@
     background: rgb(255, 255, 255);
     height: 80px;
     box-shadow: 0 1px 1.5rem rgba(0,0,0,.1);
+    position: fixed;
 }
 .LogoEvent{
     color: #000;

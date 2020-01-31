@@ -44,10 +44,12 @@
         align-items: center;
         justify-content: center;
         width: 100%;
+        padding-top: 80px;
     }
     .imageHome{
+        display: flex;
         width: 50%;
-        float: right;
+
     }
     .imageHome img{
         width: 100%;
@@ -66,9 +68,9 @@
     .h1Home{
         color: rgba(5, 5, 5, 0.781);
         font-size: 55px;
-        font-family: Monotype Corsiva;
+        font-family: Gabriola;
         text-align: left;
-        font-weight: lighter;
+        font-weight: bolder;
         margin: 5px;
     }
     .h3Home{
@@ -104,7 +106,7 @@
     .LocateEvent{
         width: 45%;
         height: 42px;
-        display: -nline-block;
+        display: inline-block;
         padding: 6px 12px;
         font-size: 16px;
         line-height: 1.8;
@@ -121,7 +123,7 @@
     .TimeEvent{
         width: 45%;
         height: 42px;
-        display: -nline-block;
+        display: inline-block;
         padding: 6px 12px;
         font-size: 16px;
         line-height: 1.8;
@@ -174,4 +176,67 @@
     }
     .searchEvent:hover{
         background-color: #720880;
+    }
+    .CategorieEvent{
+        width: 100%;
+        /* display: flex;
+        justify-content: center;
+        align-items: center; */
+        text-align: center;
+        padding-top: 4rem;
+        background: rgb(243, 243, 243);
+    }
+    .H1Categorie{
+        font-family: Calibri;
+        font-weight: normal;
+        font-size: 4rem;
+        color: #39393a;
+    }
+    .TypeCategorie{
+        width: 100%;
+
+        text-align: center;
+        /* display: flex; */
+        justify-content: center;
+        padding-top: 4rem;
+    }
+    .Categorie1{
+        width: 25%;
+        margin: 20px;
+        display: inline-block;
+    }
+    .Categorie1 img{
+        width: 100%;
+    }
+    .Categorie1 legend{
+        text-align: center;
+        background: #fff;
+        font-family: Calibri;
+        width: 100%;
+        font-size: 2rem;
+        font-weight: lighter;
+        padding: 4px;
+    }
+    .ButtonCategorie{
+        width: 15%;
+        font-size: 18px;
+        margin: 5px;
+        height: 42px;
+        line-height: 22px;
+        font-family: "Helvetica";
+        border-radius: 5px;
+        border-width: 1px;
+        display: inline-block;
+        color: #fff;
+        background-color: #e02df8;
+        border-color: #e02df8;
+        margin-bottom: 0;
+        text-align: center;
+        touch-action: manipulation;
+        cursor: pointer;
+        border: 1px solid transparent;
+        transition: ease-in-out 0.3s;
+    }
+    .ButtonCategorie:hover {
+        background: #570b5a;
     }
