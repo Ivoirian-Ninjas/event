@@ -29,7 +29,7 @@ function App() {
        <div className='ui container'>
 
          {/* This the navbar */}
-         {!window.location.href.includes('login') && !window.location.href.includes('signup') ? navbar(): null}
+         {navbar()}
          
 
         
