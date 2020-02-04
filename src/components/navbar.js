@@ -1,6 +1,7 @@
 import React from 'react'
 import is_logged_in from '../helper/is_logged_in'
 import is_admin from '../helper/is_admin'
+import current_user from '../helper/current_user'
 
 export default function navbar() {
     const logout = () =>{
@@ -23,7 +24,7 @@ export default function navbar() {
            { is_logged_in() ? 
            <li className="ProfilesLink lien-menu-first"><a href="#">Account</a>
               <ul className="sous-menu">
-                <li><a href="#"> <i className="fas fa-user-circle"></i>  Profile</a></li>
+                <li><a href={`users/${current_user().id}`}> <i className="fas fa-user-circle"></i>  Profile</a></li>
                 <li>
                   <a onClick={logout}> 
                     <button onClick={logout} className="logout"> 
