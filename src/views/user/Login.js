@@ -1,17 +1,23 @@
 import React, { Component } from 'react'
 import '../../assets/login.css'
+import slider from '../../components/slider'
 import { connect } from 'react-redux';
 import SignInUser from '../../actions/SignInUser'
-import festive from '../../assets/svg/festive.svg'
+import img1 from '../../assets/svg/1.svg'
+import img4 from '../../assets/svg/4.svg'
+import img5 from '../../assets/svg/5.svg'
+import img6 from '../../assets/svg/6.svg'
+import img7 from '../../assets/svg/7.svg'
 import profile from '../../assets/svg/profile.svg'
 
 class Login extends Component {
     state = {
         email: '',
-        password_digest: ''
-
+        password_digest: '',
     }
-
+    componentDidMount(){
+        slider()
+    }
     handleChange = event =>{
         this.setState({[event.target.name]: event.target.value })
     }
@@ -21,13 +27,17 @@ class Login extends Component {
     }
     render() {
         return (
-            <div className="conteneur col-12" >
+            <div className="conteneur" >
                 <div className="img">
-                    <img src={festive} className="imgs"/>
+                    <div className="imgs marche"><img src={img1} alt=""/></div>
+                    <div className="imgs"><img src={img4} alt=""/></div>
+                    <div className="imgs"><img src={img5} alt=""/></div>
+                    <div className="imgs"><img src={img6} alt=""/></div>
+                    <div className="imgs"><img src={img7} alt=""/></div>
                 </div>
                 <div className="conteneurLog">
                     <form onSubmit={this.handleSubmit} className="FormLog">
-                        <img className="avatar" src={profile}/>
+                        <img className="avatar" src={profile} alt=""/>
                         <h2>WELCOME</h2>
                         <div className="ChampsDiv">
                             <i className="fas fa-envelope"></i>
@@ -54,7 +64,7 @@ class Login extends Component {
                 </div>
 
             </div>
-        )
+        ) 
     }
 }
 const mapDispatchToProps = dispatch =>  ({
