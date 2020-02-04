@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import current_user from '../helper/current_user'
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
+import Slider from "react-slick"
 import '../assets/Home.css'
-import img1 from '../assets/img/first-img.jpg'
-import img2 from '../assets/img/image1.jpg'
+import img1 from '../assets/img/imagefond2.jpg'
+import img2 from '../assets/img/imagefond1.jpg'
+import img3 from '../assets/img/imagefond3.jpg'
 import card from '../assets/img/card.jpg'
 import card2 from '../assets/img/card2.jpg'
 import card3 from '../assets/img/card3.jpg'
@@ -15,6 +19,18 @@ export default class Home extends Component {
         console.log(user)
     }
     render() {
+        const settings = {
+            dots: true,
+            fade: true,
+            infinite: true,
+            speed: 10000,
+            slidesToShow: 3,
+            arrows: true,
+            slidesToScroll: 3,
+            autoplay:true,
+            autoPlaySpeed:100,
+            className: "SlideControl"
+        }
         return (
             <div>
                 <div className="PageConteneur">
@@ -30,11 +46,18 @@ export default class Home extends Component {
                             <input type='number' placeholder="Numbers of people" className="NumberEvent"/>
                             <button className="searchEvent">Search <i className="fas fa-search"></i></button>
                         </div>
-                        
                     </div>
+                    <Slider {...settings}>
                     <div className="imageHome">
                         <img src={img2}/>
                     </div>
+                    <div className="imageHome">
+                        <img src={img1}/>
+                    </div>
+                    <div className="imageHome">
+                        <img src={img3}/>
+                    </div>
+                     </Slider>
                 </div>
                 <div className="CategorieEvent">
                     <h1 className="H1Categorie">Most Popular </h1>

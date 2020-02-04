@@ -14,7 +14,6 @@ import {
 import Index from './views/places/index'
 import Add_Place from './views/places/new'
 import Place_Show from './views/places/show'
-
 import Profile from './views/user/Profile'
 
 import current_user from './helper/current_user'

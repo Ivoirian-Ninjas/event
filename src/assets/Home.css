@@ -40,7 +40,7 @@
         box-sizing: border-box;
     }
     .PageConteneur{
-        display: flex;
+        display: block;
         align-items: center;
         justify-content: center;
         width: 100%;
@@ -48,20 +48,29 @@
     }
     .imageHome{
         display: flex;
-        width: 50%;
+        width: 100%;
+        height: 600px;
 
     }
     .imageHome img{
         width: 100%;
+        height: 100%;
     }
     .partieSearch{
         width: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
+        position: absolute;
+        z-index: 1999;
     }
     .searchContenu{
         width: 70%;
+        background: #fff;
+        margin-top: 7%;
+        padding: 10px;
+        border-radius: 1rem;
+
         /* text-align: center;
         justify-content: center; */
     }
@@ -239,4 +248,19 @@
     }
     .ButtonCategorie:hover {
         background: #570b5a;
+    }
+    /* .SlideControl{
+        animation: infinite;
+    } */
+    .SlideControl .slick-next{
+        position: absolute;
+        top:50%;
+        z-index: 1;
+        right: 0;
+    }
+    .SlideControl .slick-prev{
+        position: absolute;
+        top: 50%;
+        z-index: 2000;
+        left: 0;
     }
