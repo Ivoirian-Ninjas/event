@@ -34,6 +34,18 @@
     font-weight: normal;
     font-style: normal;
     }
+    @font-face {
+    font-family: 'Edwardian Script ITC';
+    src: url('./fonts/Edwardian Script ITC/EdwardianScriptITC.ttf');
+    font-weight: normal;
+    font-style: normal;
+    }
+    @font-face {
+    font-family: 'Gabriola';
+    src: url('./fonts/gabriola-font/Gabriola.ttf');
+    font-weight: normal;
+    font-style: normal;
+    }
 .EnTetes{
     width: 100%;
     background: rgb(255, 255, 255);
