@@ -1,39 +1,59 @@
-/*Rockness*/
+/* Rockness*/
 @font-face {
     font-family: 'Rockness';
-    src: url('./fonts/rockness/Rockness.ttf');
-    src: url('./fonts/rockness/Rockness.otf');
+    src: url('../assets/fonts/rockness/Rockness.ttf');
+    src: url('../assets/fonts/rockness/Rockness.otf');
     font-weight: normal;
     font-style: normal;
-    }
+}
+
 /* Thundergood*/
 @font-face {
     font-family: 'Thundergood';
-    src: url('./fonts/thundergood/Thundergood.ttf');
+    src: url('../assets/fonts/thundergood/Thundergood.ttf');
     font-weight: normal;
     font-style: normal;
-    }
-    /*Candara*/
-    @font-face {
+}
+
+/*Candara*/
+@font-face {
     font-family: 'Candra';
-    src: url('./fonts/candara/Candara.ttf');
+    src: url('../assets/fonts/candara/Candara.ttf');
     font-weight: normal;
     font-style: normal;
-    }
-    /* Signature of the ancient*/
-    @font-face {
+}
+
+/* Signature of the ancient*/
+@font-face {
     font-family: 'Signature of the Ancient';
-    src: url('./fonts/signature-of-the-ancient/Signature of the Ancient.ttf');
+    src: url('../assets/fonts/signature-of-the-ancient/Signature of the Ancient.ttf');
     font-weight: normal;
     font-style: normal;
-    }
-    /* Prestige signature script*/
-    @font-face {
+}
+
+/* Prestige signature script*/
+@font-face {
     font-family: 'Prestige Signature Script';
-    src: url('./fonts/prestige-signature-script--demo/Prestige Signature Script - Demo.ttf');
+    src: url('../assets/fonts/prestige-signature-script--demo/Prestige Signature Script - Demo.ttf');
     font-weight: normal;
     font-style: normal;
-    }
+}
+
+/* Edwardian Script ITC*/
+@font-face {
+    font-family: 'Edwardian Script ITC';
+    src: url('../assets/fonts/Edwardian Script ITC/EdwardianScriptITC.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Gabriola*/
+@font-face {
+    font-family: 'Gabriola';
+    src: url('../assets/fonts/gabriola-font/Gabriola.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
     *{
         margin: 0;
         padding: 0;
@@ -66,7 +86,7 @@
     }
     .searchContenu{
         width: 70%;
-        background: #fff;
+        background: rgba(255, 255, 255, 0.856);
         margin-top: 7%;
         padding: 10px;
         border-radius: 1rem;

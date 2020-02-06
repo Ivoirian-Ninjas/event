@@ -11,8 +11,21 @@ class PlacesController < ApplicationController
     end
 
     def show 
+        disabled_days = []
         place = Place.find(params.permit(:id)[:id])
-        render json: {place: place}
+        # binding.pry
+        dates = place.bookings.map{|booking| booking.date}
+        dates.each do |date|
+            total = 0
+            place.bookings.select do|e| 
+                if(e.date == date)
+                    total += e.duration
+                end
+            end
+            # this is the format needed for the date picker March 1, 2020
+            disabled_days << date.strftime("%B %d, %Y")  if total >= 20.0
+        end
+        render json: {place: place, disabled_days: disabled_days}
     end
 
     def book
@@ -28,7 +41,7 @@ class PlacesController < ApplicationController
         price = place.price * duration
         process_fee = price * 0.08
         if  place.check_availability(date,start_time,end_time)
-            new_booking = Booking.create({place_id: place_id, user_id: user_id, date: date, start_time: start_time, end_time: end_time, process_fee: process_fee})
+            new_booking = Booking.create({place_id: place_id, user_id: user_id, date: date, start_time: start_time, end_time: end_time, process_fee: process_fee,duration: duration,price: price})
             place.bookings << new_booking if new_booking
             user.bookings << new_booking if new_booking
             message = new_booking ? ['succes' ]: new_booking.errors.full_messages

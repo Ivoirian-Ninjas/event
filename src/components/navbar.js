@@ -17,12 +17,12 @@ export default function navbar() {
             </label>
           <label className="LogoEvent">Event</label>
           <ul className="menu-first">
-            <li className="lien-menu-first"><a href="/" className="active">Home</a></li>
-            <li className="lien-menu-first"><a href="#">Activities</a></li>
+            <li className="lien-menu-first"><a href="/" className={document.location.href === `http://localhost:3001/` ? 'active' : null}>Home</a></li>
+            <li className="lien-menu-first"><a  className={document.location.href.includes('activities')  ? 'active' : null}>Activities</a></li>
             {is_admin() ? <li className="lien-menu-first">
-            <a href = '/new_places' className="addPlaces">Add a place</a></li> : null}
+            <a href = '/new_places' className={document.location.href.includes('new_places')  ? 'active' : null}>Add a place</a></li> : null}
            { is_logged_in() ? 
-           <li className="ProfilesLink lien-menu-first"><a href="#">Account</a>
+           <li className="ProfilesLink lien-menu-first"><a >Account</a>
               <ul className="sous-menu">
                 <li><a href={`users/${current_user().id}`}> <i className="fas fa-user-circle"></i>  Profile</a></li>
                 <li>

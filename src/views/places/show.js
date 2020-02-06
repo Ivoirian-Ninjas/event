@@ -1,15 +1,18 @@
 import React, { Component} from 'react'
 import current_user from '../../helper/current_user';
 import '../../assets/calendar.css'
+import 'react-day-picker/lib/style.css';
 
 
 import place from './place';
+import DayPicker from 'react-day-picker'
 
 
 import Calendar from 'react-calendar'
 import moment from 'moment'
 import '../../assets/Home.css'
 import DatePicker from 'react-date-picker';
+
 import TimePicker from 'react-time-picker'
 import TimeRange from 'react-time-range';
 
@@ -22,10 +25,13 @@ export default class show extends Component {
         const place_id = this.props.match.params.id
         fetch(`http://localhost:3000/places/${place_id}`)
         .then(resp => resp.json() )
-        .then(json => this.setState({place: json.place}) )
+        .then(json => {
+            console.log(json)
+            this.setState({place: json.place, disabled_days: json.disabled_days}) } )     
     }
    
     state = {
+        disabled_days: [],
         place: {},
         date: new Date(),
         start_time: '',
@@ -71,10 +77,27 @@ export default class show extends Component {
            <h1>This is the show page</h1>
             <h1>About {this.state.place ? this.state.place.name : null} </h1>
            <div height='700' width='700'>
-                <DatePicker
+    
+                <DatePicker onClick={() => {
+             
+                    const dates = document.querySelectorAll('button.react-calendar__tile')
+                    dates.forEach(e=>{
+                        this.state.disabled_days.forEach(disabled_day =>{
+                    
+                            if(Date.parse(e.querySelector('abbr').getAttribute('aria-label') ) === Date.parse(`${disabled_day}`) ){
+                                console.log(e)
+                                e.disabled = true
+                                e.style.pointerEvents = "none"
+                            } 
+                        })
+                    
+                             
+                             })
+
+                    }}
                     onChange={this.change} value={this.state.date} 
-                    disabledDate={date => (date === new Date())} 
-                    minDate={new Date()}
+                    dayClassName={date => date.getTime() === new Date('2/25/2020').getTime() ? 'disabled-date' : undefined}
+                    minDate={new Date() }
 
                 />
 
