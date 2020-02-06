@@ -20,6 +20,7 @@ import current_user from './helper/current_user'
 import is_logged_in from './helper/is_logged_in'
 import is_admin from './helper/is_admin'
 import navbar from './components/navbar'
+import Booking_show from './views/places/booking/booking_show';
 function App() {
  
   return (
@@ -49,12 +50,13 @@ function App() {
           {/*These routes are the routes for the place */}
           <Route  exact path='/places' render={renderProps => <Index {...renderProps}/>} />
           <Route   exact path='/new_places' render={renderProps => <Add_Place />} />
-          <Route  path='/places/:id' render={renderProps => <Place_Show/>} />
+          <Route  path='/places/:id' render={renderProps => <Place_Show {...renderProps}/>} />
 
           {/* user profile */}
           <Route path='/users/:id' render={renderProps => <Profile/>} />
 
-          
+          {/*Thes routes are the routes for the booking process */}
+          <Route path='/bookings/:id' render={renderProps => <Booking_show {...renderProps}/>}  />
       </div>
     </Router>
    

@@ -23,7 +23,7 @@ export default class Home extends Component {
             dots: true,
             fade: true,
             infinite: true,
-            speed: 10000,
+            speed: 8000,
             slidesToShow: 3,
             arrows: true,
             slidesToScroll: 3,

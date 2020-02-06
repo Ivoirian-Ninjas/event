@@ -10,6 +10,35 @@ class PlacesController < ApplicationController
         render json:  {places: normilize_array}
     end
 
+    def show 
+        place = Place.find(params.permit(:id)[:id])
+        render json: {place: place}
+    end
+
+    def book
+        # binding.pry 
+        place_id = params.require('place').permit('id')[:id]
+        user_id = params.permit('user_id')[:user_id]
+        date = params.permit('date')[:date]
+        start_time = params.permit('start_time')[:start_time]
+        end_time = params.permit('end_time')[:end_time]
+        place = Place.find(place_id)
+        user = User.find(user_id)
+        duration = (Time.parse(end_time) - Time.parse(start_time) ) / 3600
+        price = place.price * duration
+        process_fee = price * 0.08
+        if  place.check_availability(date,start_time,end_time)
+            new_booking = Booking.create({place_id: place_id, user_id: user_id, date: date, start_time: start_time, end_time: end_time, process_fee: process_fee})
+            place.bookings << new_booking if new_booking
+            user.bookings << new_booking if new_booking
+            message = new_booking ? ['succes' ]: new_booking.errors.full_messages
+        else
+            message = ['The time selected is not available']
+        end
+        render json: {booked: !!new_booking, message: message,booking_id: (new_booking ? new_booking.id : nil)}
+
+    end
+
     def create 
         # binding.pry
        user = User.find( params.permit(:user_id)[:user_id] )
@@ -39,4 +68,4 @@ class PlacesController < ApplicationController
         end
         render json: {places: PlaceSerializer.new(user.places.sort_by(&:created_at)) } 
     end
-end
+end 
