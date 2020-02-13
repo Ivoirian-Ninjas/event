@@ -3,6 +3,7 @@ class CreateRules < ActiveRecord::Migration[5.2]
     create_table :rules do |t|
       t.string :title
       t.text :content
+      t.integer :place_id
 
       t.timestamps
     end
