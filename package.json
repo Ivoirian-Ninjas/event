@@ -17,6 +17,8 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
     "react-slick": "^0.25.2",
+    "react-step-wizard": "^5.3.0",
+    "react-stepzilla": "^6.0.2",
     "react-time-picker": "^3.9.0",
     "react-time-range": "^1.0.4",
     "redux": "^4.0.5",
@@ -32,6 +34,8 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "apiBaseUrl": "http://localhost:3000/",
+  "siteBaseUrl": "http://localhost:3001/",
   "browserslist": {
     "production": [
       ">0.2%",

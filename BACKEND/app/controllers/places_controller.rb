@@ -30,6 +30,8 @@ class PlacesController < ApplicationController
 
     def book
         # binding.pry 
+        ###################################################################################################
+        # THIS IS ALL THE DATA NEEDED FOR THE CREATTION OF A BOOKING REQUEST
         place_id = params.require('place').permit('id')[:id]
         user_id = params.permit('user_id')[:user_id]
         date = params.permit('date')[:date]
@@ -40,6 +42,7 @@ class PlacesController < ApplicationController
         duration = (Time.parse(end_time) - Time.parse(start_time) ) / 3600
         price = place.price * duration
         process_fee = price * 0.08
+        ####################################################################################################
         if  place.check_availability(date,start_time,end_time)
             new_booking = Booking.create({place_id: place_id, user_id: user_id, date: date, start_time: start_time, end_time: end_time, process_fee: process_fee,duration: duration,price: price})
             place.bookings << new_booking if new_booking
@@ -70,7 +73,7 @@ class PlacesController < ApplicationController
                 if image.file.attached? 
                 #thumbnail will be used to resize the image with miniMagick  '300 x 300'                   
 
-                    image.url = url_for( image.thumbnail)
+                    image.url = url_for( image.file)
                     # binding.pry
 
                     image.save

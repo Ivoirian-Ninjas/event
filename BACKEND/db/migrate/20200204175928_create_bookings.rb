@@ -11,7 +11,20 @@ class CreateBookings < ActiveRecord::Migration[5.2]
       t.boolean :accepted, default: false
       t.float :price
       t.float :process_fee
+      t.integer :guestCount
+      t.string :paymentOption
       t.timestamps
     end
   end
 end
+  # state = {
+    #     booking: {},
+    #     images: [],
+    #     host: {},
+    #     guestCount: "",
+    #     activity: "",
+    #     message: "",
+    #     paymentOption: "",
+    #     cardName: "",
+    #     cardNumber: ""
+    # }
