@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import add_place from '../../actions/add_place'
+import StepWizard from 'react-step-wizard';
+import Step1 from './listing/Step1'
+import Step2 from './listing/Step2'
+import Step3 from './listing/Step3'
 
  class New extends Component {
     constructor(){
@@ -10,7 +14,10 @@ import add_place from '../../actions/add_place'
             address: '',
             capacity: '',
             price: '',
-            images: []
+            images: [],
+            amnesty: [],
+            cardName: "",
+            cardNumber: ""
 
         }
         this.div_ref = React.createRef()
@@ -76,41 +83,12 @@ import add_place from '../../actions/add_place'
     }
     render() {
         return (
-            <div>
-                <h1>This is to add a place</h1>
-                <form onSubmit={this.handleSubmit} enctype="multipart/form-data">
-                    <div>
-                        <label>Name</label>
-                        <input type= 'text' name='name' placeholder='name' onChange={this.handleChange}/>
-                    </div>
-
-                    <div>
-                        <label>Address</label>
-                        <input type= 'text' name='address' placeholder='address' onChange={this.handleChange}/>
-                    </div>
-
-                    <div>
-                        <label>Capacity</label>
-                        <input type= 'number' name='capacity' placeholder='500 people...' onChange={this.handleChange}/>
-                    </div>
-
-                    <div>
-                        <label>Price</label>
-                        <input type= 'number' name='price' placeholder='0.00' onChange={this.handleChange} />
-                    </div>
-
-
-                    <div class='images' ref={this.div_ref}>
-                        <label>Images</label>
-                        {/**This button will add another field for file input */}
-                        <span onClick={this.add_input}>Add more images</span>
-                        <input type= 'file'  name='images' onChange={this.handleFileChange} accept="image/x-png,image/gif,image/jpeg" />
-                    </div>
-
-
-                    <button>Add Place </button>
-                </form>
-
+            <div className="PageConteneur">
+                <StepWizard>
+                        <Step1 {...this.state} handleChange={this.handleChange} handleFileChange={this.handleFileChange} add_input={this.add_input}/>
+                        <Step2 {...this.state}  handleChange={this.handleChange}/>
+                        <Step3 {...this.state}  handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>  
+                </StepWizard>
             </div>
         )
     }

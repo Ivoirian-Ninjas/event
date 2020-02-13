@@ -7,6 +7,7 @@ class Place < ApplicationRecord
     has_many :service_offereds
     has_many :bookings
     has_many :bookers, through: :bookings, source: :user
+    has_many :categories
 
     def check_availability(date, start_time, end_time )
         events = self.bookings.select{|event| event.date == Date.parse(date)}

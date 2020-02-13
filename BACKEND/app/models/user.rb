@@ -2,6 +2,7 @@ class User < ApplicationRecord
     validates :email, uniqueness: true
     has_secure_password
     has_many :places
+    has_many :categories, through: :places
     has_many :reviews
     has_many :bookings
     has_many :booked_places, through: :bookings, source: :place
