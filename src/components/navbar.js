@@ -13,6 +13,7 @@ import img7 from '../assets/svg/7.svg'
 import profile from '../assets/svg/profile.svg'
 import '../assets/authentication.css'
 import Errors from './errors'
+import slider from './slider'
 export default class Navbar extends Component {
   logout = () =>{
     localStorage.clear()
@@ -22,6 +23,15 @@ export default class Navbar extends Component {
     isOpen: false,
     isOpen1: false
   }
+  handleClick = () => {
+    slider();
+    this.setState({
+      isOpen: true
+    })
+  }
+    // componentDidMount(){
+    //     slider()
+    // }
   render() {
     return (
      <div className="EnTetes">
@@ -49,7 +59,7 @@ export default class Navbar extends Component {
                 </ul>
               </li> : 
               <li className="ProfilesLink lien-menu-first">
-                  <a href="#" onClick={(e) => this.setState({isOpen : true})}>Login</a>
+                  <a href="#" onClick={this.handleClick} className="PlaySlide">Login</a>
                   <a href="#" onClick={(e) => this.setState({isOpen1 : true})}>Sign up</a>
               </li> 
               }

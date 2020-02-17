@@ -1,16 +1,18 @@
-import $ from "jquery"
 export default function slider() {
     //sliders[compteur].classList.add('active')
-    const slider = $(".imgs")
+    var ImageSlide = document.getElementsByClassName("imgSlide")
     var compteur = 0
-    setInterval(()=>{
-        slider[compteur].classList.toggle('marche')
-        // if(compteur < 7){
-            compteur++
-            compteur = compteur % 5
-            slider[compteur].classList.toggle('marche')
+    var stopButton = document.getElementsByClassName('Arrete')
+    var launchButton = document.getElementsByClassName('PlaySlide')
+    var playing = true
+    var slideInterval = setInterval(nextSlide, 5000)
+    
+        function nextSlide(){
+            ImageSlide[compteur].className = "imgSlide"
+            compteur = (compteur + 1)%ImageSlide.length
+            ImageSlide[compteur].className = "imgSlide marche"
+        }
 
-    },5000)
 }
 
 

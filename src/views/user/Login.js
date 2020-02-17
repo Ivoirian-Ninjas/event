@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import '../../assets/login.css'
-// import slider from '../../components/slider'
 import { connect } from 'react-redux';
 import SignInUser from '../../actions/SignInUser'
 import img1 from '../../assets/svg/1.svg'
@@ -9,7 +8,7 @@ import img5 from '../../assets/svg/5.svg'
 import img6 from '../../assets/svg/6.svg'
 import img7 from '../../assets/svg/7.svg'
 import profile from '../../assets/svg/profile.svg'
-
+import slider from '../../components/slider'
 let dialogStyles = {
     width: "90%",
     maxWidth: "100%",
@@ -48,9 +47,6 @@ class Login extends Component {
         isOpen:false,
         isOpen1:false
     }
-    componentDidMount(){
-        // slider()
-    }
     handleChange = event =>{
         this.setState({[event.target.name]: event.target.value })
     }
@@ -58,10 +54,13 @@ class Login extends Component {
         event.preventDefault()
         this.props.SignInUser(this.state)
     }
+      handleClick = () => {
+          slider();
+      }
     render() {
         let dialog = (
             <div style={dialogStyles}>
-                <button style={dialogCloseButtonStyle} onClick={this.props.onClose}> Close </button>
+                <button style={dialogCloseButtonStyle} onClick={this.handleClick, this.props.onClose} className="Arrete"> Close </button>
                 <div>{this.props.children}</div>
             </div>
         )

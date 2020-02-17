@@ -26,7 +26,6 @@
         top: 50%;
         width: 400px;
     }
-
     .imgSlide {
         position: absolute;
         display: block;
@@ -51,6 +50,7 @@
         align-items: center;
         background: transparent;
         margin-left: 50%;
+
     }
 
     .FormLog {
@@ -58,6 +58,7 @@
         height: 500px;
         text-align: center;
         background: rgba(255, 255, 255, 0.7);
+        box-shadow: 0 1px 1.5rem rgba(88, 44, 77, 0.459)
 
     }
 
