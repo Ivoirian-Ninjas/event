@@ -16,27 +16,24 @@ import Add_Place from './views/places/new'
 import Place_Show from './views/places/show'
 import Profile from './views/user/Profile'
 
-import current_user from './helper/current_user'
-import is_logged_in from './helper/is_logged_in'
-import is_admin from './helper/is_admin'
-import navbar from './components/navbar'
+import Navbar from './components/navbar'
+import Booking_show from './views/places/booking/booking_show';
 function App() {
- 
   return (
 
     <Router>
        <div className='ui container'>
 
          {/* This the navbar */}
-         {!window.location.href.includes('login') && !window.location.href.includes('signup') ? navbar(): null}
+         <Navbar />
          
 
         
          {/* The user will only be allowed to view the home/login/signup page if he/she is not logged in */}
-        { (!window.location.href.includes('login') && !window.location.href.includes('signup')) && !is_logged_in() ? <Redirect to={{ pathname: "/"}} /> : null}
+        {/* { (!window.location.href.includes('login') && !window.location.href.includes('signup')) && !is_logged_in() ? <Redirect to={{ pathname: "/"}} /> : null} */}
 
         {/* This logic will redirect the user to the home page after the login or signup step */}
-        { (window.location.href.includes('signup') || window.location.href.includes('login')) && is_logged_in() ? <Redirect to={{pathname: '/'}} /> : null}
+        {/* { (window.location.href.includes('signup') || window.location.href.includes('login')) && is_logged_in() ? <Redirect to={{pathname: '/'}} /> : null} */}
 
           {/*These are the routes for the authentication process*/}
           <Route path='/signup' render={renderProps => <SignUp /> }/>
@@ -49,12 +46,13 @@ function App() {
           {/*These routes are the routes for the place */}
           <Route  exact path='/places' render={renderProps => <Index {...renderProps}/>} />
           <Route   exact path='/new_places' render={renderProps => <Add_Place />} />
-          <Route  path='/places/:id' render={renderProps => <Place_Show/>} />
+          <Route  path='/places/:id' render={renderProps => <Place_Show {...renderProps}/>} />
 
           {/* user profile */}
           <Route path='/users/:id' render={renderProps => <Profile/>} />
 
-          
+          {/*Thes routes are the routes for the booking process */}
+          <Route path='/bookings/:id' render={renderProps => <Booking_show {...renderProps}/>}  />
       </div>
     </Router>
    

@@ -5,15 +5,6 @@ import "slick-carousel/slick/slick-theme.css"
 import Slider from "react-slick"
 import "jquery"
 import '../assets/Home.css'
-import Login from './user/Login'
-import SignUp from './user/SignUp'
-import { connect } from 'react-redux';
-import imgs1 from '../assets/svg/1.svg'
-import imgs4 from '../assets/svg/4.svg'
-import imgs5 from '../assets/svg/5.svg'
-import imgs6 from '../assets/svg/6.svg'
-import imgs7 from '../assets/svg/7.svg'
-import profile from '../assets/svg/profile.svg'
 import img1 from '../assets/img/Taille 1400 x 600/img/image1.jpg'
 import img2 from '../assets/img/Taille 1400 x 600/img/image2.jpg'
 import img3 from '../assets/img/Taille 1400 x 600/img/image3.jpg'
@@ -92,8 +83,6 @@ class Home extends Component {
                             <button className="searchEvent">Search <i className="fas fa-search"></i></button>
                         </div>
                     </div>
-                    <Login isOpen={this.state.isOpen} onClose={(e) => this.setState({ isOpen: false })}></Login>
-                    <SignUp isOpen1={this.state.isOpen1} onClose1={(e) => this.setState({ isOpen1: false })}></SignUp>
                     <Slider {...settings}>
                     <div className="imageHome">
                         <img src={img1}/>

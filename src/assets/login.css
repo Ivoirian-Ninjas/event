@@ -18,8 +18,8 @@
     margin-left: 0%; */
     }
 
-    .img {
-        position: relative;
+    .img{
+        position: absolute;
         display: flex;
         align-items: center;
         margin-left: 5%;
@@ -50,7 +50,7 @@
         justify-content: center;
         align-items: center;
         background: transparent;
-        margin-left: 5%;
+        margin-left: 50%;
     }
 
     .FormLog {

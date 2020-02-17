@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_26_072954) do
+ActiveRecord::Schema.define(version: 2020_02_13_200832) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -33,6 +33,38 @@ ActiveRecord::Schema.define(version: 2020_01_26_072954) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "amenities", force: :cascade do |t|
+    t.string "title"
+    t.string "icon"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "place_id"
+    t.date "date"
+    t.string "title"
+    t.string "start_time"
+    t.string "end_time"
+    t.float "duration"
+    t.boolean "accepted", default: false
+    t.float "price"
+    t.float "process_fee"
+    t.integer "guestCount"
+    t.string "paymentOption"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cards", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "cardName"
+    t.string "cardNumber"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "favorite_places", force: :cascade do |t|
     t.integer "place_id"
     t.integer "user_id"
@@ -43,6 +75,12 @@ ActiveRecord::Schema.define(version: 2020_01_26_072954) do
   create_table "images", force: :cascade do |t|
     t.string "url"
     t.integer "place_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -64,6 +102,13 @@ ActiveRecord::Schema.define(version: 2020_01_26_072954) do
     t.float "rate"
     t.integer "user_id"
     t.integer "place_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rules", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -21,7 +21,9 @@ let dialogStyles = {
     borderRadius: "8px",
     display: "flex",
     flexDirection: "column",
-    height: "100vh"
+    justifyContent: "center",
+    alignItems: "center",
+    boxShadow: "0 1px 1.5rem rgba(0, 0, 0, 0.5)"
 }
 let dialogCloseButtonStyle = {
     marginBottom: "15px",
@@ -63,50 +65,7 @@ let dialogCloseButtonStyle = {
         let dialog1 = (
             <div style={dialogStyles}>
                 <button style={dialogCloseButtonStyle} onClick={this.props.onClose1}> Close</button>
-                <div className="ConteneurForm">
-                <span className="TeteConteneur">Sign Up</span>
-                    <form onSubmit={this.handleSubmit} className="FormSign">
-                        <div className="ChampsGroup">
-                            <i className="fas fa-user"></i>
-                            <input type='text' placeholder="Username..." name='name' id='name' onChange={this.handleChange}/>
-                            <span className="bar"></span>
-                        </div>
-
-                        <div className="ChampsGroup">
-                            <i className="fas fa-envelope"></i>
-                            <input type='email' placeholder="Email..." name='email' id='email' onChange={this.handleChange}/>
-                            <span className="bar"></span>
-                        </div>
-                        <Errors />
-                        <div className="ChampsGroup">
-                            <i className="fas fa-lock"></i>
-                            <input type='password' placeholder="Password..." name='password_digest' id='password_digest' onChange={this.handleChange}/>
-                            <span className="bar"></span>
-                        </div>
-
-                        <div className="ChampsGroup">
-                            <i className="fas fa-lock"></i>
-                            <input type='password' placeholder="Confirm password" name='password_confirm' id='password_confirm' onChange={this.handleChange}/>
-                            <span className="bar"></span>
-                        </div>
-
-                        <div className="ChampsGroup">
-                            <label>Admin?</label>
-                            <input type='checkbox' name='admin' id='admin' onChange={this.handleChange}/>
-                        </div>
-                               
-                        <div className="ChampsGroup">
-                            <button>
-                                <i className="fab fa-telegram-plane"></i>
-                            </button>
-                        </div>
-                            
-                        <div className="Changement">
-                            <a href="#" onClick={(e) => this.setState({isOpen : true, isOpen1:false})}>Already have an account ? <span>Login</span> </a>
-                        </div>
-                       
-                    </form>
-                </div>
+                {this.props.children}
             </div>
         )
         if (!this.props.isOpen1) {

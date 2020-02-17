@@ -26,7 +26,7 @@ import { connect } from 'react-redux';
         console.log(this.props.places)
         if (this.props.places && Array.isArray(this.props.places)){
             console.log(this.props)
-             console.log(Array.isArray(this.props.places))
+             console.log(this.props.places)
             return this.props.places.map(e => <Place key={e.id}  place={e}/>)
            
         }

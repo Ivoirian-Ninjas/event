@@ -192,3 +192,6 @@
         outline: none;
     }
 }
+.disabled-date {
+    pointer-events: none;
+  }
