@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import add_place from '../../actions/add_place'
+import "../../assets/newplace.css"
 
  class New extends Component {
     constructor(){
@@ -14,6 +15,7 @@ import add_place from '../../actions/add_place'
 
         }
         this.div_ref = React.createRef()
+        this.div_img = React.createRef()
 
     }
 
@@ -40,13 +42,11 @@ import add_place from '../../actions/add_place'
         const  reader = new FileReader();
         //read the file
         reader.readAsDataURL(file);
-
+        img.className="imgPrev"
         reader.addEventListener("load", function() {
             img.src = reader.result;
-            img.height = 100
-            img.width = 100
           }, false);
-          this.div_ref.current.appendChild(img)
+          this.div_img.current.appendChild(img)
 
     }
 
@@ -76,39 +76,42 @@ import add_place from '../../actions/add_place'
     }
     render() {
         return (
-            <div>
-                <h1>This is to add a place</h1>
-                <form onSubmit={this.handleSubmit} enctype="multipart/form-data">
-                    <div>
-                        <label>Name</label>
-                        <input type= 'text' name='name' placeholder='name' onChange={this.handleChange}/>
+            <div className="PlaceNews">
+                <form onSubmit={this.handleSubmit} encType="multipart/form-data" className="FormPlace">
+                    <h1 className="ClassAdd">New Place</h1>
+                    <div className="DivAddPlace">
+                        <label className="labelAdd">Name</label>
+                        <input type= 'text' name='name' className="inputAdd" placeholder='Name...' onChange={this.handleChange}/>
                     </div>
 
-                    <div>
-                        <label>Address</label>
-                        <input type= 'text' name='address' placeholder='address' onChange={this.handleChange}/>
+                    <div className="DivAddPlace">
+                        <label className="labelAdd">Address</label>
+                        <input type= 'text' name='address' className="inputAdd" placeholder='Adress...' onChange={this.handleChange}/>
                     </div>
 
-                    <div>
-                        <label>Capacity</label>
-                        <input type= 'number' name='capacity' placeholder='500 people...' onChange={this.handleChange}/>
+                    <div className="DivAddPlace">
+                        <label className="labelAdd">Capacity</label>
+                        <input type= 'number' name='capacity' className="inputAdd" placeholder='500 people...' onChange={this.handleChange}/>
                     </div>
 
-                    <div>
-                        <label>Price</label>
-                        <input type= 'number' name='price' placeholder='0.00' onChange={this.handleChange} />
+                    <div className="DivAddPlace">
+                        <label className="labelAdd">Price</label>
+                        <input type= 'number' name='price' className="inputAdd" placeholder='0.00' onChange={this.handleChange} />
                     </div>
 
 
-                    <div class='images' ref={this.div_ref}>
-                        <label>Images</label>
+                    <div className='images' ref={this.div_ref}>
                         {/**This button will add another field for file input */}
-                        <span onClick={this.add_input}>Add more images</span>
-                        <input type= 'file'  name='images' onChange={this.handleFileChange} accept="image/x-png,image/gif,image/jpeg" />
+                        <div className="Capteur" ref={this.div_img}></div>
+                       <input type= 'file' name='images' className="inputImg" onChange={this.handleFileChange} accept="image/x-png,image/gif,image/jpeg" />
                     </div>
-
-
-                    <button>Add Place </button>
+                    <div className ="DivAddPlace">
+                        <span onClick={this.add_input} className="AddImage">More image <i className="fas fa-plus modif"></i></span>
+                    </div>
+                        
+                    <div className ="DivAddPlace">
+                        <button className="ButtonPlace">Validate <i className="fas fa-check-circle"></i> </button>
+                    </div>
                 </form>
 
             </div>

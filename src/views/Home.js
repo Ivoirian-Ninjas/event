@@ -3,10 +3,17 @@ import current_user from '../helper/current_user'
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import Slider from "react-slick"
+import "jquery"
 import '../assets/Home.css'
-// import img1 from '../assets/img/Last/imagefond2.jpg'
-// import img2 from '../assets/img/Last/imagefond1.jpg'
-// import img3 from '../assets/img/Last/imagefond3.jpg'
+import Login from './user/Login'
+import SignUp from './user/SignUp'
+import { connect } from 'react-redux';
+import imgs1 from '../assets/svg/1.svg'
+import imgs4 from '../assets/svg/4.svg'
+import imgs5 from '../assets/svg/5.svg'
+import imgs6 from '../assets/svg/6.svg'
+import imgs7 from '../assets/svg/7.svg'
+import profile from '../assets/svg/profile.svg'
 import img1 from '../assets/img/Taille 1400 x 600/img/image1.jpg'
 import img2 from '../assets/img/Taille 1400 x 600/img/image2.jpg'
 import img3 from '../assets/img/Taille 1400 x 600/img/image3.jpg'
@@ -21,9 +28,39 @@ import card3 from '../assets/img/Taille 400 x 300/img/card3.jpg'
 import card4 from '../assets/img/Taille 400 x 300/img/card4.jpg'
 import card5 from '../assets/img/Taille 400 x 300/img/card5.jpg'
 import card6 from '../assets/img/Taille 400 x 300/img/card6.jpg'
-export default class Home extends Component {
+class Home extends Component {
+    constructor(){
+        super()
+        this.state = {
+            isActive:false
+        }
+    }
+     state = {
+         email: '',
+         password_digest: '',
+         isOpen: false,
+         isOpen1: false
+     }
+     handleChange = event => {
+         this.setState({
+             [event.target.name]: event.target.value
+         })
+     }
+     handleSubmit = event => {
+         event.preventDefault()
+         this.props.SignInUser(this.state)
+     }
+    // componentWillMount(){
+    //     Modal.setAppElement("body")
+    // }
+    toggleModal = () =>{
+        this.setState({
+            isActive:!this.state.isActive
+        })
+    }
     componentDidMount(){
-       let user = current_user()
+        // slider()
+        let user = current_user()
         console.log(user)
     }
     render() {
@@ -32,9 +69,9 @@ export default class Home extends Component {
             fade: true,
             infinite: true,
             speed: 10000,
-            slidesToShow: 8,
+            slidesToShow: 1,
             arrows: true,
-            slidesToScroll: 8,
+            slidesToScroll: 1,
             autoplay:true,
             autoPlaySpeed:100,
             className: "SlideControl"
@@ -55,6 +92,8 @@ export default class Home extends Component {
                             <button className="searchEvent">Search <i className="fas fa-search"></i></button>
                         </div>
                     </div>
+                    <Login isOpen={this.state.isOpen} onClose={(e) => this.setState({ isOpen: false })}></Login>
+                    <SignUp isOpen1={this.state.isOpen1} onClose1={(e) => this.setState({ isOpen1: false })}></SignUp>
                     <Slider {...settings}>
                     <div className="imageHome">
                         <img src={img1}/>
@@ -123,3 +162,4 @@ export default class Home extends Component {
         )
     }
 }
+export default Home

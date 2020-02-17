@@ -1,285 +1,337 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-.conteneur{
-    position: absolute;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    background:url("./img/Last/Backgroun-large1.png");
-    background-size: cover;
-    /* border: 1px solid slateblue; */
-    /* justify-content: center;
-    align-items: center; */
-    /* margin: 0;
-    margin-left: 0%; */
-}
-.img{
-    position:relative;
-    display: flex;
-    align-items: center;
-    margin-left: 5%;
-    width: 500px;
-}
-.imgs {
-    position:absolute;
-    display:block;
-    float: left;
-    opacity: 0;
-}
-.imgs img {
-    width:100%;
-    height:100%;
-    position: relative;
-}
-.marche{
-    opacity: 1;
-    transition: 3s;
-}
-.conteneurLog{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: transparent;
-    margin-left: 5%;
-}
-.FormLog{
-    width: 360px;
-    height: 500px;
-    text-align: center;
-    background: rgba(255,255,255,0.7);
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-}
-.avatar{
-    width: 150px;
-}
-.FormLog h2{
-    font-size: 2.9rem;
-    text-transform: uppercase;
-    margin: 15px 0;
-    color: #333;
-}
-.ChampsDiv{
-    width: 90%;
-    margin: 0 auto;
-    position: relative;
-    display: flex;
-    align-items: baseline;
-}
-.ChampsDiv input{
-    position: relative;
-    width: 100%;
-    padding: 1rem 0;
-    margin-top: .5rem;
-    border: none;
-    outline: none;
-    font-size: 1.8rem;
-    color: #9400d3;
-}
-.ChampsDiv > i{
-    font-size: 1.8rem;
-    margin-right: 1rem;
-    color: #9400d3;
-}
-.ChampsDiv .bar{
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,.1);
-    width: 100%;
-    height: 1px;
-}
-.ChampsDiv .bar::before{
-    content: '';
-    position: absolute;
-    background-color: #9400d3;
-    width: 0;
-    height: 2px;
-    transition: width 650ms;
-}
-.ChampsDiv input:focus + .bar::before{
-    width: 50%;
-}
-.ChampsDiv button{
-    margin: 3rem auto;
-    padding: 1rem 5rem;
-    background: linear-gradient(to left, #ee82ee, #9400d3);
-    border: none;
-    color: #fff;
-    font-size: 2.5rem;
-    cursor: pointer;
-    border-radius: 3rem;
-    outline: none;
-}
-.ChampsDiv button:focus, .ChampsDiv button:hover{
-    background: linear-gradient(to left, #ee82ee, #9400d3);
-}
-.Changement{
-    text-align: center;
-}
-.Changement a{
-    text-decoration: none;
-    color: #a1a1a1;
-    font-size: 1.5rem;
-    background: none;
-}
-.Changement a span{
-    color: #9400d3;
-}
-.Changement a span:hover{
-    padding-bottom: 2px;
-    border-bottom: 2px solid #9400d3;
-}
-@media screen and (min-height:1000px) and (max-height:1200px){
-    .conteneurLog{
-        margin: 0 auto;
+    .conteneur {
+        position: absolute;
         width: 100%;
+        height: 100vh;
+        display: flex;
+        background: url("./img/Last/Backgroun-large1.png");
+        background-size: cover;
+        /* border: 1px solid slateblue; */
+        /* justify-content: center;
+    align-items: center; */
+        /* margin: 0;
+    margin-left: 0%; */
     }
-    .FormLog{
-        width: 90%;
-        height: 60%;
-    }
-    .FormLog h2{
-        font-size: 3.5rem;
-        text-transform: uppercase;
-        margin: 15px 0;
-        color: #333;
-    }
-    .ChampsDiv input{
+
+    .img {
         position: relative;
+        display: flex;
+        align-items: center;
+        margin-left: 5%;
+        top: 50%;
+        width: 400px;
+    }
+
+    .imgSlide {
+        position: absolute;
+        display: block;
+        float: left;
+        opacity: 0;
+    }
+
+    .imgSlide img {
         width: 100%;
-        padding: 1rem 0;
-        margin-top: 1.5rem;
-        border: none;
-        outline: none;
-        font-size: 2.5rem;
-        color: #9400d3;
-    }
-    .ChampsDiv button{
-        font-size:5rem;
-    }
-    .Changement a{
-        font-size: 2.5rem;
-    }
-}
-@media screen and (min-height:1200px){
-    .conteneurLog{
-        margin: 0 auto;
-        width: 100%;
-    }
-    .FormLog{
-        width: 90%;
-        height: 60%;
-    }
-    .FormLog h2{
-        font-size: 4.5rem;
-        text-transform: uppercase;
-        margin: 15px 0;
-        color: #333;
-    }
-    .ChampsDiv input{
+        height: 100%;
         position: relative;
-        width: 100%;
-        padding: 1rem 0;
-        margin-top: 2rem;
-        border: none;
-        outline: none;
-        font-size: 3.5rem;
-        color: #9400d3;
     }
-    .ChampsDiv button{
-        font-size:6rem;
+
+    .marche {
+        opacity: 1;
+        transition: 3s;
     }
-    .Changement a{
-        font-size: 3.5rem;
+
+    .conteneurLog {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: transparent;
+        margin-left: 5%;
     }
-}
-@media screen and (min-height:900px) and(max-height:1000px){
-    .conteneurLog{
-        margin: 0 auto;
-        width: 100%;
+
+    .FormLog {
+        width: 360px;
+        height: 500px;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.7);
+
     }
-    .FormLog{
-        width: 90%;
-        height: 60%;
+
+    .avatar {
+        width: 150px;
     }
-    .FormLog h2{
-        font-size: 3.5rem;
+
+    .FormLog h2 {
+        font-size: 2.9rem;
         text-transform: uppercase;
         margin: 15px 0;
         color: #333;
     }
-    .ChampsDiv input{
+
+    .ChampsDiv {
+        width: 90%;
+        margin: 0 auto;
         position: relative;
-        width: 100%;
-        padding: 1rem 0;
-        margin-top: 1.5rem;
-        border: none;
-        outline: none;
-        font-size: 2.5rem;
-        color: #9400d3;
+        display: flex;
+        align-items: baseline;
     }
-    .ChampsDiv button{
-        font-size:5rem;
-    }
-    .Changement a{
-        font-size: 2.5rem;
-    }
-}
-@media screen and (max-width:325px){
-    .conteneurLog{
-        margin: 0 auto;
-        width: 100%;
-    }
-    .FormLog{
-        width: 90%;
-        height: 90%;
-    }
-    .FormLog h2{
-        font-size: 1.5rem;
-        text-transform: uppercase;
-        margin: 15px 0;
-        color: #333;
-    }
-    .ChampsDiv input{
+
+    .ChampsDiv input {
         position: relative;
         width: 100%;
         padding: 1rem 0;
         margin-top: .5rem;
         border: none;
         outline: none;
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         color: #9400d3;
     }
-    .ChampsDiv button{
-        font-size:2rem;
+
+    .ChampsDiv>i {
+        font-size: 1.8rem;
+        margin-right: 1rem;
+        color: #9400d3;
     }
-    .Changement a{
-        font-size: 1.5rem;
-    }
-}
-@media screen and (max-width:450px) and (min-width:360px){
-    .conteneurLog{
-        /* margin-left: 10%; */
+
+    .ChampsDiv .bar {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, .1);
         width: 100%;
+        height: 1px;
     }
-    .FormLog{
-        width: 90%;
-        height: 90%;
+
+    .ChampsDiv .bar::before {
+        content: '';
+        position: absolute;
+        background-color: #9400d3;
+        width: 0;
+        height: 2px;
+        transition: width 650ms;
     }
-}
-@media screen and (max-width: 850px){
-    .img{
-        display: none;
+
+    .ChampsDiv input:focus+.bar::before {
+        width: 50%;
     }
-    .conteneurLog{
-        margin-left: 0;
+
+    .ChampsDiv button {
+        margin: 3rem auto;
+        padding: 1rem 5rem;
+        background: linear-gradient(to left, #ee82ee, #9400d3);
+        border: none;
+        color: #fff;
+        font-size: 2.5rem;
+        cursor: pointer;
+        border-radius: 3rem;
+        outline: none;
     }
-    .FormLog{
-        border-radius: initial;
-        transform: initial;
-        box-shadow: none;
+
+    .ChampsDiv button:focus,
+    .ChampsDiv button:hover {
+        background: linear-gradient(to left, #ee82ee, #9400d3);
     }
-}
+
+    .Changement {
+        text-align: center;
+    }
+
+    .Changement a {
+        text-decoration: none;
+        color: #a1a1a1;
+        font-size: 1.5rem;
+        background: none;
+    }
+
+    .Changement a span {
+        color: #9400d3;
+    }
+
+    .Changement a span:hover {
+        padding-bottom: 2px;
+        border-bottom: 2px solid #9400d3;
+    }
+
+    @media screen and (min-height:1000px) and (max-height:1200px) {
+        .conteneurLog {
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .FormLog {
+            width: 90%;
+            height: 60%;
+        }
+
+        .FormLog h2 {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            margin: 15px 0;
+            color: #333;
+        }
+
+        .ChampsDiv input {
+            position: relative;
+            width: 100%;
+            padding: 1rem 0;
+            margin-top: 1.5rem;
+            border: none;
+            outline: none;
+            font-size: 2.5rem;
+            color: #9400d3;
+        }
+
+        .ChampsDiv button {
+            font-size: 5rem;
+        }
+
+        .Changement a {
+            font-size: 2.5rem;
+        }
+    }
+
+    @media screen and (min-height:1200px) {
+        .conteneurLog {
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .FormLog {
+            width: 90%;
+            height: 60%;
+        }
+
+        .FormLog h2 {
+            font-size: 4.5rem;
+            text-transform: uppercase;
+            margin: 15px 0;
+            color: #333;
+        }
+
+        .ChampsDiv input {
+            position: relative;
+            width: 100%;
+            padding: 1rem 0;
+            margin-top: 2rem;
+            border: none;
+            outline: none;
+            font-size: 3.5rem;
+            color: #9400d3;
+        }
+
+        .ChampsDiv button {
+            font-size: 6rem;
+        }
+
+        .Changement a {
+            font-size: 3.5rem;
+        }
+    }
+
+    @media screen and (min-height:900px) and(max-height:1000px) {
+        .conteneurLog {
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .FormLog {
+            width: 90%;
+            height: 60%;
+        }
+
+        .FormLog h2 {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            margin: 15px 0;
+            color: #333;
+        }
+
+        .ChampsDiv input {
+            position: relative;
+            width: 100%;
+            padding: 1rem 0;
+            margin-top: 1.5rem;
+            border: none;
+            outline: none;
+            font-size: 2.5rem;
+            color: #9400d3;
+        }
+
+        .ChampsDiv button {
+            font-size: 5rem;
+        }
+
+        .Changement a {
+            font-size: 2.5rem;
+        }
+    }
+
+    @media screen and (max-width:325px) {
+        .conteneurLog {
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .FormLog {
+            width: 90%;
+            height: 90%;
+        }
+
+        .FormLog h2 {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            margin: 15px 0;
+            color: #333;
+        }
+
+        .ChampsDiv input {
+            position: relative;
+            width: 100%;
+            padding: 1rem 0;
+            margin-top: .5rem;
+            border: none;
+            outline: none;
+            font-size: 1.5rem;
+            color: #9400d3;
+        }
+
+        .ChampsDiv button {
+            font-size: 2rem;
+        }
+
+        .Changement a {
+            font-size: 1.5rem;
+        }
+    }
+
+    @media screen and (max-width:450px) and (min-width:360px) {
+        .conteneurLog {
+            /* margin-left: 10%; */
+            width: 100%;
+        }
+
+        .FormLog {
+            width: 90%;
+            height: 90%;
+        }
+    }
+
+    @media screen and (max-width: 850px) {
+        .img {
+            display: none;
+        }
+
+        .conteneurLog {
+            margin-left: 0;
+        }
+
+        .FormLog {
+            border-radius: initial;
+            transform: initial;
+            box-shadow: none;
+        }
+    }

@@ -5,13 +5,47 @@ import SignUpUser from '../../actions/SignUpUser'
 import '../../assets/fontawesome-free-5.11.2-web/css/all.css'
 import Errors from '../../components/errors'
 import display_errors from '../../helper/display_errors'
+import Login from './Login'
+
+let dialogStyles = {
+    width: "90%",
+    maxWidth: "100%",
+    margin: "0 auto",
+    position: "fixed",
+    left: "50%",
+    top: "50%",
+    transform: "translate(-50%, -50%)",
+    zIndex: "29999",
+    backgroundColor: "#fff",
+    padding: "10px 20px 40px",
+    borderRadius: "8px",
+    display: "flex",
+    flexDirection: "column",
+    height: "100vh"
+}
+let dialogCloseButtonStyle = {
+    marginBottom: "15px",
+    padding: "3px 8px",
+    cursor: "pointer",
+    borderRadius: "10%",
+    border: "none",
+    width: "50px",
+    height: "30px",
+    fontWeight: "bold",
+    alignSelf: "flex-end",
+    outline: "none",
+    backgroundColor: "#dc143c",
+    color: "#fff"
+}
  class SignUp extends Component {
     state = {
         name: '',
         email: '',
         password_digest: '',
         password_confirm: '',
-        admin: false
+        admin: false,
+        isOpen:false,
+        isOpen1:false
     }
     handleChange = event =>{
         this.setState({[event.target.name]: event.target.value })
@@ -26,11 +60,12 @@ import display_errors from '../../helper/display_errors'
         }
     }
     render() {
-        return (
-            <div id="wrapper">
+        let dialog1 = (
+            <div style={dialogStyles}>
+                <button style={dialogCloseButtonStyle} onClick={this.props.onClose1}> Close</button>
                 <div className="ConteneurForm">
                 <span className="TeteConteneur">Sign Up</span>
-                    <form onSubmit={this.handleSubmit}>
+                    <form onSubmit={this.handleSubmit} className="FormSign">
                         <div className="ChampsGroup">
                             <i className="fas fa-user"></i>
                             <input type='text' placeholder="Username..." name='name' id='name' onChange={this.handleChange}/>
@@ -67,13 +102,17 @@ import display_errors from '../../helper/display_errors'
                         </div>
                             
                         <div className="Changement">
-                            <a href="/login">Already have an account ? <span>Login</span> </a>
+                            <a href="#" onClick={(e) => this.setState({isOpen : true, isOpen1:false})}>Already have an account ? <span>Login</span> </a>
                         </div>
                        
                     </form>
                 </div>
             </div>
-         )
+        )
+        if (!this.props.isOpen1) {
+            dialog1 = null;
+        }
+        return (<div>{dialog1}</div>)
     }
 }
 const mapDispatchToProps = dispatch =>  ({

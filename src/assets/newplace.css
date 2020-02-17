@@ -1,0 +1,147 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.PlaceNews{
+    padding-top:80px;
+    width: 100%;
+    margin: 0 auto;
+    /* border: 1px solid red; */
+    display: flex;
+}
+.FormPlace{
+    /* border: 1px solid green; */
+    width: 50%;
+    height: 100%;
+    margin: 0px auto;
+    margin-top: 20px;
+    border-radius: 1ch;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 1px 1.5rem rgba(17, 1, 19, 0.356);
+}
+.ClassAdd{
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    font-family: Candra;
+    text-align: left;
+    background: rgb(115, 66, 134);
+    border-radius: 0.2ch;
+    width: 50%;
+    margin: 0px auto;
+    margin-top: 5px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.DivAddPlace{
+    margin:5px;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    /* border: 1px solid firebrick; */
+}
+.images{
+    margin:5px;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+}
+.inputAdd{
+    width: 70%;
+    height: 42px;
+    display: block;
+    padding: 6px 12px;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #343840;
+    outline: none;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #e2c3f0;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    transition: border-color ease-in-out .15s,
+    box-shadow ease-in-out .15s;
+    margin: 0px auto;
+    
+}
+.inputAdd:hover,
+.inputAdd:focus{
+    box-shadow: 0 1px 1.5rem rgba(240, 70, 255, 0.253)
+}
+.inputImg{
+     /* border:1px solid gold; */
+   /* background: red; */
+    margin: 15px;
+    display: inline-block;
+    width: 40%;
+
+    /* display: block; */
+}
+.Capteur{
+    /* border:1px solid fuchsia; */
+    display: inline-block;
+    width: 100%;
+}
+.imgPrev{
+    margin: 5px;
+    padding: 5px;
+    width:200px;
+    height: 200px;
+    /* border: 1px solid blue; */
+}
+.AddImage{
+    width: 25%;
+    font-size: 18px;
+    margin: 5px;
+    line-height: 22px;
+    font-family: "Helvetica";
+    border-radius: 5px;
+    display: block;
+    color: #fff;
+    background-color: #c717b0;
+    border:none;
+    margin:0px auto;
+    text-align: center;
+    touch-action: manipulation;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: ease-in-out 0.3s;
+    padding: 1rem 2rem;
+}
+.AddImage:hover{
+    background-color: #850974;
+}
+.modif{
+    font-size: 15px;
+}
+.labelAdd{
+    color: rgb(60, 54, 61);
+    font-size: 20px;
+    font-family: Calibri;
+    text-align: center;
+}
+.ButtonPlace{
+    margin: 1rem auto;
+    padding: 1rem 3rem;
+    background: rgb(6, 201, 110);
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    border-radius: 1rem;
+    outline: none;
+    transition: ease-in-out 0.3s;
+}
+.ButtonPlace:hover{
+    background: rgb(10, 105, 53);
+    transition: ease-in-out 0.3s;
+}
