@@ -16,10 +16,7 @@ import Add_Place from './views/places/new'
 import Place_Show from './views/places/show'
 import Profile from './views/user/Profile'
 
-import current_user from './helper/current_user'
-import is_logged_in from './helper/is_logged_in'
-import is_admin from './helper/is_admin'
-import navbar from './components/navbar'
+import Navbar from './components/Navbar'
 import Booking_show from './views/places/booking/booking_show';
 function App() {
  
@@ -29,7 +26,7 @@ function App() {
        <div className='ui container'>
 
          {/* This the navbar */}
-         {navbar()}
+         <Navbar />
          
 
         
