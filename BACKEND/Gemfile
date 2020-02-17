@@ -9,8 +9,8 @@ gem 'bookable'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.1'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
-gem "mini_magick"
-gem "image_processing"
+# gem "mini_magick"
+# gem "image_processing"
 # Use Puma as the app server
 gem 'puma', '~> 4.3', git: 'https://github.com/puma/puma'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -20,6 +20,7 @@ gem 'puma', '~> 4.3', git: 'https://github.com/puma/puma'
 # Use ActiveModel has_secure_password
 gem 'bcrypt' 
 gem 'fast_jsonapi', '~> 1.1', '>= 1.1.1'
+gem 'nokogiri', '~> 1.10', '>= 1.10.7' #git: 'https://github.com/sparklemotion/nokogiri'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
