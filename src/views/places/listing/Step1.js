@@ -4,37 +4,30 @@ export default class Step1 extends Component {
     render() {
         return (
             <div>
-                <h1>This is to add a place</h1>
+                <h1>Let's get you started.</h1>
+                <h2>STEP 1</h2>
+                <h3>What type of space do you have?</h3>
                 <div >
                     <div>
-                        <label>Name</label>
-                        <input type= 'text' name='name' placeholder='name' onChange={this.props.handleChange}/>
+                        <input type= 'text' name='typeOfSpace' placeholder="Enter a type of space" list="typeOfSpace" onChange={this.props.handleChange}/>
+                        <datalist id="typeOfSpace">
+                            <option value="Cafe"/>
+                            <option value="Photography Gallery"/>
+                            <option value="Bus"/>
+                            <option value="Private Dinning Room"/>
+                            <option value="Private Work office"/>
+                            <option value="Community Space"/>
+                        </datalist>
                     </div>
 
-                    <div>
-                        <label>Address</label>
-                        <input type= 'text' name='address' placeholder='address' onChange={this.props.handleChange}/>
-                    </div>
+ 
 
                     <div>
                         <label>Capacity</label>
-                        <input type= 'number' name='capacity' placeholder='500 people...' onChange={this.props.handleChange}/>
-                    </div>
+                        <input type= 'number' name='capacity' placeholder='for 30 guests' onChange={this.props.handleChange}/>
+                    </div> 
 
-                    <div>
-                        <label>Price</label>
-                        <input type= 'number' name='price' placeholder='0.00' onChange={this.props.handleChange} />
-                    </div>
-
-
-                    <div class='images' ref={this.div_ref}>
-                        <label>Images</label>
-                        {/**This button will add another field for file input */}
-                        <span onClick={this.props.add_input}>Add more images</span>
-                        <input type= 'file'  name='images' onChange={this.props.handleFileChange} accept="image/x-png,image/gif,image/jpeg" />
-                    </div>
-
-
+                   
                 </div>
                 <p><button onClick={this.props.nextStep}>Continue</button></p>
 

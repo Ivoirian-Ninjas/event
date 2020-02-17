@@ -5,6 +5,10 @@ import StepWizard from 'react-step-wizard';
 import Step1 from './listing/Step1'
 import Step2 from './listing/Step2'
 import Step3 from './listing/Step3'
+import Step4 from './listing/Step4'
+import Step5 from './listing/Step5'
+import Step6 from './listing/Step6'
+import Step7 from './listing/Step7'
 
  class New extends Component {
     constructor(){
@@ -17,7 +21,9 @@ import Step3 from './listing/Step3'
             images: [],
             amnesty: [],
             cardName: "",
-            cardNumber: ""
+            cardNumber: "",
+            country: ''
+            
 
         }
         this.div_ref = React.createRef()
@@ -28,11 +34,13 @@ import Step3 from './listing/Step3'
     handleChange = (event) => {
        this.setState({ [event.target.name]: event.target.value }) 
     }
+
     handleFileChange = event => {
         // console.log(event.target.files[0])
         event.persist()
+        
         this.setState(state => ({images: [...state.images,event.target.files[0]]}) )
-
+console.log(event.target.files[0])
       if (event.target.files[0]) {
         // this function will display all the images selected
        this.preview_image(event.target.files[0])
@@ -45,6 +53,10 @@ import Step3 from './listing/Step3'
     preview_image = (file) =>{
         const img = document.createElement('img')
         const  reader = new FileReader();
+        const divImage = document.createElement("div.newImage")
+        const spanX= document.createElement("span")
+        spanX.classList.add("deleteImage")
+        spanX.innerHTML = "X"
         //read the file
         reader.readAsDataURL(file);
 
@@ -53,7 +65,22 @@ import Step3 from './listing/Step3'
             img.height = 100
             img.width = 100
           }, false);
-          this.div_ref.current.appendChild(img)
+
+          divImage.appendChild(img)
+          divImage.appendChild(spanX)
+          spanX.addEventListener("click", () => {
+            divImage.remove() 
+            const inputs = document.querySelectorAll(`input[type="file"]`)
+           inputs.forEach(e => {
+                console.log(e.value)
+                if ( e.value.includes(file.name) ){
+                    console.log(e)
+                    e.value = ""
+                }
+            })
+
+          })
+          document.querySelector("div.imgDisplayer").appendChild(divImage)
 
     }
 
@@ -66,7 +93,7 @@ import Step3 from './listing/Step3'
     }
 
     add_input = () => {
-        const div = this.div_ref.current
+        const div = document.querySelector("div.inputImg")
         const input  =  document.createElement('input')
         console.log(input)
         input.type = 'file'
@@ -88,6 +115,10 @@ import Step3 from './listing/Step3'
                         <Step1 {...this.state} handleChange={this.handleChange} handleFileChange={this.handleFileChange} add_input={this.add_input}/>
                         <Step2 {...this.state}  handleChange={this.handleChange}/>
                         <Step3 {...this.state}  handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>  
+                       < Step4  {...this.state}  handleFileChange={this.handleFileChange} add_input={this.add_input}/>
+                       <Step5  {...this.state}  handleChange={this.handleChange} />
+                        <Step6  {...this.state}  handleChange={this.handleChange} />
+                        <Step7   {...this.state}  handleChange={this.handleChange}/>
                 </StepWizard>
             </div>
         )

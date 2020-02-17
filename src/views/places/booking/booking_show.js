@@ -7,6 +7,11 @@ import Step1 from './steps/Step1'
 import Step2 from './steps/Step2'
 import Step3 from './steps/Step3'
 
+
+
+
+
+
 const apiBaseUrl = require('../../../../package.json').apiBaseUrl
 
 export default class booking_show extends Component {
