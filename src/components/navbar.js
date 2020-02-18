@@ -23,6 +23,7 @@ export default class Navbar extends Component {
     isOpen: false,
     isOpen1: false
   }
+
   handleClick = () => {
     slider();
     this.setState({
