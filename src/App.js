@@ -17,10 +17,9 @@ import Place_Show from './views/places/show'
 import Profile from './views/user/Profile'
 import is_logged_in from './helper/is_logged_in'
 
-import Navbar from './components/Navbar'
+import Navbar from './components/navbar'
 import Booking_show from './views/places/booking/booking_show';
 function App() {
- 
   return (
 
     <Router>

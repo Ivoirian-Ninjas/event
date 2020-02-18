@@ -1,7 +1,7 @@
 import React, { Component} from 'react'
-import current_user from '../../helper/current_user';
+import current_user from '../../helper/current_user'
 import '../../assets/calendar.css'
-import 'react-day-picker/lib/style.css';
+import 'react-day-picker/lib/style.css'
 
 
 import place from './place';
@@ -11,10 +11,10 @@ import DayPicker from 'react-day-picker'
 import Calendar from 'react-calendar'
 import moment from 'moment'
 import '../../assets/Home.css'
-import DatePicker from 'react-date-picker';
+import DatePicker from 'react-date-picker'
 
 import TimePicker from 'react-time-picker'
-import TimeRange from 'react-time-range';
+import TimeRange from 'react-time-range'
 
 
 

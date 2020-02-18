@@ -23,10 +23,10 @@ import Step7 from './listing/Step7'
             cardName: "",
             cardNumber: "",
             country: ''
-            
 
         }
         this.div_ref = React.createRef()
+        this.div_img = React.createRef()
 
     }
 
@@ -88,12 +88,11 @@ console.log(event.target.files[0])
         spanX.innerHTML = "X"
         //read the file
         reader.readAsDataURL(file);
-
+        img.className="imgPrev"
         reader.addEventListener("load", function() {
             img.src = reader.result;
-            img.height = 100
-            img.width = 100
           }, false);
+          this.div_img.current.appendChild(img)
 
           divImage.appendChild(img)
           divImage.appendChild(spanX)
@@ -144,6 +143,44 @@ console.log(event.target.files[0])
     }
     render() {
         return (
+            // <div className="PlaceNews">
+            //     <form onSubmit={this.handleSubmit} encType="multipart/form-data" className="FormPlace">
+            //         <h1 className="ClassAdd">New Place</h1>
+            //         <div className="DivAddPlace">
+            //             <label className="labelAdd">Name</label>
+            //             <input type= 'text' name='name' className="inputAdd" placeholder='Name...' onChange={this.handleChange}/>
+            //         </div>
+
+            //         <div className="DivAddPlace">
+            //             <label className="labelAdd">Address</label>
+            //             <input type= 'text' name='address' className="inputAdd" placeholder='Adress...' onChange={this.handleChange}/>
+            //         </div>
+
+            //         <div className="DivAddPlace">
+            //             <label className="labelAdd">Capacity</label>
+            //             <input type= 'number' name='capacity' className="inputAdd" placeholder='500 people...' onChange={this.handleChange}/>
+            //         </div>
+
+            //         <div className="DivAddPlace">
+            //             <label className="labelAdd">Price</label>
+            //             <input type= 'number' name='price' className="inputAdd" placeholder='0.00' onChange={this.handleChange} />
+            //         </div>
+
+
+            //         <div className='images' ref={this.div_ref}>
+            //             {/**This button will add another field for file input */}
+            //             <div className="Capteur" ref={this.div_img}></div>
+            //            <input type= 'file' name='images' className="inputImg" onChange={this.handleFileChange} accept="image/x-png,image/gif,image/jpeg" />
+            //         </div>
+            //         <div className ="DivAddPlace">
+            //             <span onClick={this.add_input} className="AddImage">More image <i className="fas fa-plus modif"></i></span>
+            //         </div>
+                        
+            //         <div className ="DivAddPlace">
+            //             <button className="ButtonPlace">Validate <i className="fas fa-check-circle"></i> </button>
+            //         </div>
+            //     </form>
+
             <div className="PageConteneur">
                 <StepWizard>
                         <Step1 {...this.state} handleChange={this.handleChange} handleFileChange={this.handleFileChange} add_input={this.add_input}/>
