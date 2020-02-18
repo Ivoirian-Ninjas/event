@@ -6,11 +6,13 @@ export default class Step4 extends Component {
             <div>
                 <h1>Add your place's most beautiful pictures</h1>
                 <div className="imgDisplayer"></div>
-                <div className='inputImg' ref={this.div_ref}>
-                        <label>Images</label>
+                <div className='imgContainer' >
+                    <h1>Images</h1>
                         {/**This button will add another field for file input */}
-                        <input type='file'  name='images' onChange={this.props.handleFileChange} accept="image/x-png,image/gif,image/jpeg" />
-                        <br/>
+                        <div className="imgInput">
+                            <input type='file'  name='images' onChange={this.props.handleFileChange} accept="image/x-png,image/gif,image/jpeg" />
+                        </div>
+
                         <span onClick={this.props.add_input}>Add more images</span>
 
                 </div>

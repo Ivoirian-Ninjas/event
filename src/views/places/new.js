@@ -38,22 +38,51 @@ import Step7 from './listing/Step7'
     handleFileChange = event => {
         // console.log(event.target.files[0])
         event.persist()
+       const images = document.querySelectorAll("img.previewImg")
+       const inputs = document.querySelectorAll("input[type='file']")
+       console.log(images)
+       console.log(inputs)
+       images.forEach(e => {
+           let result = false
+           console.log(e)
+           inputs.forEach(i => {
+               if(e){console.log(`${e.src}`)
+                // if(e.src.include(i.files[0].name)){
+                //     result = true
+                //     return true
+                // }
+
+                // console.log(result)
+                // if(!result){
+                //     e.parent.remove()
+                //     e.remove()
+                // }
+            }
+           })
+        
+       })
         
         this.setState(state => ({images: [...state.images,event.target.files[0]]}) )
 console.log(event.target.files[0])
       if (event.target.files[0]) {
         // this function will display all the images selected
-       this.preview_image(event.target.files[0])
+       this.preview_image(event.target.files[0],event.target.parentNode)
+    console.log(event.target.parentNode)
       } 
 
 
 
     }
 
-    preview_image = (file) =>{
+    preview_image = (file,parent) =>{
+       if( parent.querySelector("img") ){
+           parent.querySelector("img").parentNode.remove()
+       }
         const img = document.createElement('img')
+        img.classList.add("previewImg")
         const  reader = new FileReader();
-        const divImage = document.createElement("div.newImage")
+        const divImage = document.createElement("div")
+        divImage.classList.add("newImage")
         const spanX= document.createElement("span")
         spanX.classList.add("deleteImage")
         spanX.innerHTML = "X"
@@ -80,7 +109,7 @@ console.log(event.target.files[0])
             })
 
           })
-          document.querySelector("div.imgDisplayer").appendChild(divImage)
+          parent.appendChild(divImage)
 
     }
 
@@ -93,8 +122,12 @@ console.log(event.target.files[0])
     }
 
     add_input = () => {
-        const div = document.querySelector("div.inputImg")
+        const div = document.querySelector("div.imgContainer")
+        const direct_div = document.createElement("div")
+        direct_div.classList.add("imgInput")
+        
         const input  =  document.createElement('input')
+    
         console.log(input)
         input.type = 'file'
         input.name = 'images'
@@ -106,7 +139,8 @@ console.log(event.target.files[0])
 
         })
         input.accept = "image/x-png,image/gif,image/jpeg"
-        div.appendChild(input)
+        direct_div.appendChild(input)
+        div.appendChild(direct_div)
     }
     render() {
         return (
