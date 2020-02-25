@@ -40,23 +40,8 @@ let dialogCloseButtonStyle = {
     backgroundColor: "#dc143c",
     color: "#fff",
 }
-class Login extends Component {
-    state = {
-        email: '',
-        password_digest: '',
-        isOpen:false,
-        isOpen1:false
-    }
-    handleChange = event =>{
-        this.setState({[event.target.name]: event.target.value })
-    }
-    handleSubmit = event => {
-        event.preventDefault()
-        this.props.SignInUser(this.state)
-    }
-      handleClick = () => {
-          slider();
-      }
+export default class Login extends Component {
+    
     render() {
         let dialog = (
             <div style={dialogStyles}>
@@ -70,7 +55,7 @@ class Login extends Component {
         return (<div>{dialog}</div>)
     }
 }
-const mapDispatchToProps = dispatch =>  ({
-    SignInUser: (user)=> dispatch(SignInUser(user))
-})
-export default connect(null,mapDispatchToProps)(Login)
+// const mapDispatchToProps = dispatch =>  ({
+//     SignInUser: (user)=> dispatch(SignInUser(user))
+// })
+// export default connect(null,mapDispatchToProps)(Login)

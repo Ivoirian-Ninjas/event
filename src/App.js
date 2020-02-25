@@ -31,10 +31,10 @@ function App() {
 
         
          {/* The user will only be allowed to view the home/login/signup page if he/she is not logged in */}
-        { (!window.location.href.includes('login') && !window.location.href.includes('signup')) && !is_logged_in() ? <Redirect to={{ pathname: "/"}} /> : null}
+        { (!window.location.href.includes('#') && !is_logged_in() ) ? <Redirect to={{ pathname: "/"}} /> : null}
 
         {/* This logic will redirect the user to the home page after the login or signup step */}
-        { (window.location.href.includes('signup') || window.location.href.includes('login')) && is_logged_in() ? <Redirect to={{pathname: '/'}} /> : null}
+        {/* { (window.location.href.includes('signup') || window.location.href.includes('login')) && is_logged_in() ? <Redirect to={{pathname: '/'}} /> : null} */}
 
           {/*These are the routes for the authentication process*/}
           <Route path='/signup' render={renderProps => <SignUp /> }/>

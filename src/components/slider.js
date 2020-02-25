@@ -8,9 +8,12 @@ export default function slider() {
     var slideInterval = setInterval(nextSlide, 5000)
     
         function nextSlide(){
-            ImageSlide[compteur].className = "imgSlide"
-            compteur = (compteur + 1)%ImageSlide.length
-            ImageSlide[compteur].className = "imgSlide marche"
+            if(ImageSlide[compteur]){
+                ImageSlide[compteur].className = "imgSlide"
+                compteur = (compteur + 1)%ImageSlide.length
+                ImageSlide[compteur].className = "imgSlide marche"
+            }
+         
         }
 
 }

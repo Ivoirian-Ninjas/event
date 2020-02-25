@@ -14,14 +14,24 @@ import profile from '../assets/svg/profile.svg'
 import '../assets/authentication.css'
 import Errors from './errors'
 import slider from './slider'
-export default class Navbar extends Component {
+
+import { connect } from 'react-redux';
+import SignInUser from '../actions/SignInUser'
+import SignUpUser from '../actions/SignUpUser'
+
+ class Navbar extends Component {
   logout = () =>{
     localStorage.clear()
     window.location.reload()
   }
   state = {
+    email: '',
+    password_digest: '',
+    password_confirm: '',
     isOpen: false,
-    isOpen1: false
+    isOpen1: false,
+    admin: false
+
   }
 
   handleClick = () => {
@@ -30,9 +40,17 @@ export default class Navbar extends Component {
       isOpen: true
     })
   }
-    // componentDidMount(){
-    //     slider()
-    // }
+  handleSubmit = event => {
+    event.preventDefault()
+    if (this.state.isOpen1 ){
+      this.state.password_digest === this.state.password_confirm ? this.props.SignUpUser(this.state) :console.log("The passwords do not match")
+    }else{
+      this.props.SignInUser(this.state)
+    }
+  }
+handleChange = event => this.setState({[event.target.name]: event.target.value })
+
+   
   render() {
     return (
      <div className="EnTetes">
@@ -151,3 +169,9 @@ export default class Navbar extends Component {
     )
   }
 }
+const mapDispatchToProps = dispatch =>  ({
+  SignInUser: (user)=> dispatch(SignInUser(user)),
+  SignUpUser: (user)=> dispatch(SignUpUser(user))
+})
+
+export default connect(null,mapDispatchToProps)(Navbar)

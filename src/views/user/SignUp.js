@@ -39,28 +39,7 @@ let dialogCloseButtonStyle = {
     backgroundColor: "#dc143c",
     color: "#fff"
 }
- class SignUp extends Component {
-    state = {
-        name: '',
-        email: '',
-        password_digest: '',
-        password_confirm: '',
-        admin: false,
-        isOpen:false,
-        isOpen1:false
-    }
-    handleChange = event =>{
-        this.setState({[event.target.name]: event.target.value })
-    }
-    handleSubmit = event => {
-        event.preventDefault()
-        if(this.state.password_digest === this.state.password_confirm){
-            this.props.SignUpUser(this.state)
-        }else{
-            console.log('The passwords do not match')
-            display_errors(['The passwords do not match'])
-        }
-    }
+ export default class SignUp extends Component {
     render() {
         let dialog1 = (
             <div style={dialogStyles}>
@@ -74,7 +53,3 @@ let dialogCloseButtonStyle = {
         return (<div>{dialog1}</div>)
     }
 }
-const mapDispatchToProps = dispatch =>  ({
-    SignUpUser: (user)=> dispatch(SignUpUser(user))
-})
-export default connect(null,mapDispatchToProps)(SignUp)
