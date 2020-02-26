@@ -28,21 +28,11 @@ function App() {
          {/* This the navbar */}
          <Navbar />
          
-
-        
          {/* The user will only be allowed to view the home/login/signup page if he/she is not logged in */}
         { (!window.location.href.includes('#') && !is_logged_in() ) ? <Redirect to={{ pathname: "/"}} /> : null}
 
-        {/* This logic will redirect the user to the home page after the login or signup step */}
-        {/* { (window.location.href.includes('signup') || window.location.href.includes('login')) && is_logged_in() ? <Redirect to={{pathname: '/'}} /> : null} */}
-
-          {/*These are the routes for the authentication process*/}
-          <Route path='/signup' render={renderProps => <SignUp /> }/>
-          <Route path='/login' render={renderProps => <Login />} />
-      
-
           {/*Home page */}
-          <Route exact path='/' render={renderProps => <Home /> }/>
+          <Route exact path='/' render={renderProps => <Home {...renderProps} /> } />
 
           {/*These routes are the routes for the place */}
           <Route  exact path='/places' render={renderProps => <Index {...renderProps}/>} />
