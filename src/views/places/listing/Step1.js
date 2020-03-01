@@ -27,6 +27,12 @@ export default class Step1 extends Component {
                         <input type= 'number' name='capacity' placeholder='for 30 guests' onChange={this.props.handleChange}/>
                     </div> 
 
+                    <div>
+                        <label>Region</label>
+                        <input name='region' placeholder='Enter the region' onChange={this.props.handleChange}/>
+                    </div> 
+                    {/**Later on let's add info based on the region that the user entered, e.g: how many customer a day a user can get. */}
+
                    
                 </div>
                 <p><button onClick={this.props.nextStep}>Continue</button></p>

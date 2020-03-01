@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function countries_list() {
     return (
-       <select id="country" name="country">
+    <React.Fragment>
    <option value="Afganistan">Afghanistan</option>
    <option value="Albania">Albania</option>
    <option value="Algeria">Algeria</option>
@@ -249,6 +249,6 @@ export default function countries_list() {
    <option value="Zaire">Zaire</option>
    <option value="Zambia">Zambia</option>
    <option value="Zimbabwe">Zimbabwe</option>
-</select>
+</React.Fragment>
     )
 }

@@ -12,29 +12,31 @@ export default class Step2 extends Component {
             <div>
                 <div>
                      <label>Country / Region</label>
-                    <Countries_list onChange={this.props.handleChange}/>
+                     <select name="country"  onChange={this.props.handleChange}>
+                        <Countries_list />
+                    </select>
                 </div>
                 <div>
                     <label>Street address</label>
                     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdKNMjsiDMW07_NEEBlzhRlArElUUFRXQ&libraries=places"></script>
 
-                    <input name="street"/>
+                    <input name="street"  onChange={this.props.handleChange}/>
                 </div>
                 <div>
                     <label>Apt, suite. (optional)</label>
-                    <input name="aptNumber"/>
+                    <input name="aptNumber"  onChange={this.props.handleChange}/>
                 </div>
                 <div>
                     <label>City</label>
-                    <input name="city"/>
+                    <input name="city"  onChange={this.props.handleChange}/>
                 </div>
                 <div>
                     <label>State</label>
-                    <input name="city"/>
+                    <input name="state"  onChange={this.props.handleChange}/>
                 </div>
                 <div>
                     <label>Zip code</label>
-                    <input name="city"/>
+                    <input name="zipCode"  onChange={this.props.handleChange}/>
                 </div>
             </div>
             <h1>Is the pin in the right place?</h1>

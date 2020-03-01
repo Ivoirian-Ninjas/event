@@ -9,24 +9,43 @@ import Step4 from './listing/Step4'
 import Step5 from './listing/Step5'
 import Step6 from './listing/Step6'
 import Step7 from './listing/Step7'
+import Step8 from './listing/Step8'
+import Step9 from './listing/Step9'
+
 
  class New extends Component {
     constructor(){
         super()
         this.state = {
             name: '',
-            address: '',
             capacity: '',
             price: '',
             images: [],
-            amnesty: [],
             cardName: "",
             cardNumber: "",
-            country: ''
+            country: '',
+            region: "",
+            state: "", 
+            zipCode: "",
+            parkDesc: "", 
+            placeDesc: "",
+            street: "",
+            rules: "",
+            aptNumber: "",
+            street: "",
+            typeOfSpace: "",
+            parkDesc: "",
+            placeDesc: "",
+            time: ["08:00", "22:00"],
+            s_day:"",
+            e_day: ""
+            
+    
 
         }
+
+          
         this.div_ref = React.createRef()
-        this.div_img = React.createRef()
 
     }
 
@@ -40,28 +59,7 @@ import Step7 from './listing/Step7'
         event.persist()
        const images = document.querySelectorAll("img.previewImg")
        const inputs = document.querySelectorAll("input[type='file']")
-       console.log(images)
-       console.log(inputs)
-       images.forEach(e => {
-           let result = false
-           console.log(e)
-           inputs.forEach(i => {
-               if(e){console.log(`${e.src}`)
-                // if(e.src.include(i.files[0].name)){
-                //     result = true
-                //     return true
-                // }
 
-                // console.log(result)
-                // if(!result){
-                //     e.parent.remove()
-                //     e.remove()
-                // }
-            }
-           })
-        
-       })
-        
         this.setState(state => ({images: [...state.images,event.target.files[0]]}) )
 console.log(event.target.files[0])
       if (event.target.files[0]) {
@@ -88,11 +86,12 @@ console.log(event.target.files[0])
         spanX.innerHTML = "X"
         //read the file
         reader.readAsDataURL(file);
-        img.className="imgPrev"
+
         reader.addEventListener("load", function() {
             img.src = reader.result;
+            img.height = 100
+            img.width = 100
           }, false);
-          this.div_img.current.appendChild(img)
 
           divImage.appendChild(img)
           divImage.appendChild(spanX)
@@ -114,11 +113,12 @@ console.log(event.target.files[0])
 
     handleSubmit = (event) => {
         console.log(this.state)
-        this.props.send_place_info(this.state)
+        // this.props.send_place_info(this.state)
 
         event.preventDefault()
 
     }
+    onTimeChange = time => this.setState({ time })
 
     add_input = () => {
         const div = document.querySelector("div.imgContainer")
@@ -134,7 +134,7 @@ console.log(event.target.files[0])
         input.addEventListener ('change',event =>{
             console.log(event.target.files[0])
                 this.setState(state => ({images: [...state.images,event.target.files[0]]}) )
-                this.preview_image(event.target.files[0])
+                this.preview_image(event.target.files[0],event.target.parentNode)
 
         })
         input.accept = "image/x-png,image/gif,image/jpeg"
@@ -143,53 +143,17 @@ console.log(event.target.files[0])
     }
     render() {
         return (
-            // <div className="PlaceNews">
-            //     <form onSubmit={this.handleSubmit} encType="multipart/form-data" className="FormPlace">
-            //         <h1 className="ClassAdd">New Place</h1>
-            //         <div className="DivAddPlace">
-            //             <label className="labelAdd">Name</label>
-            //             <input type= 'text' name='name' className="inputAdd" placeholder='Name...' onChange={this.handleChange}/>
-            //         </div>
-
-            //         <div className="DivAddPlace">
-            //             <label className="labelAdd">Address</label>
-            //             <input type= 'text' name='address' className="inputAdd" placeholder='Adress...' onChange={this.handleChange}/>
-            //         </div>
-
-            //         <div className="DivAddPlace">
-            //             <label className="labelAdd">Capacity</label>
-            //             <input type= 'number' name='capacity' className="inputAdd" placeholder='500 people...' onChange={this.handleChange}/>
-            //         </div>
-
-            //         <div className="DivAddPlace">
-            //             <label className="labelAdd">Price</label>
-            //             <input type= 'number' name='price' className="inputAdd" placeholder='0.00' onChange={this.handleChange} />
-            //         </div>
-
-
-            //         <div className='images' ref={this.div_ref}>
-            //             {/**This button will add another field for file input */}
-            //             <div className="Capteur" ref={this.div_img}></div>
-            //            <input type= 'file' name='images' className="inputImg" onChange={this.handleFileChange} accept="image/x-png,image/gif,image/jpeg" />
-            //         </div>
-            //         <div className ="DivAddPlace">
-            //             <span onClick={this.add_input} className="AddImage">More image <i className="fas fa-plus modif"></i></span>
-            //         </div>
-                        
-            //         <div className ="DivAddPlace">
-            //             <button className="ButtonPlace">Validate <i className="fas fa-check-circle"></i> </button>
-            //         </div>
-            //     </form>
-
             <div className="PageConteneur">
                 <StepWizard>
-                        <Step1 {...this.state} handleChange={this.handleChange} handleFileChange={this.handleFileChange} add_input={this.add_input}/>
+                        <Step1 {...this.state} handleChange={this.handleChange} />
                         <Step2 {...this.state}  handleChange={this.handleChange}/>
-                        <Step3 {...this.state}  handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>  
-                       < Step4  {...this.state}  handleFileChange={this.handleFileChange} add_input={this.add_input}/>
-                       <Step5  {...this.state}  handleChange={this.handleChange} />
+                        <Step3 {...this.state}  handleChange={this.handleChange} />  
+                        <Step4  {...this.state} handleChange={this.handleChange} />
+                        <Step5  {...this.state}   handleFileChange={this.handleFileChange} add_input={this.add_input} />
                         <Step6  {...this.state}  handleChange={this.handleChange} />
                         <Step7   {...this.state}  handleChange={this.handleChange}/>
+                        <Step8   {...this.state}  handleChange={this.handleChange}/>
+                        <Step9   {...this.state}  handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
                 </StepWizard>
             </div>
         )
