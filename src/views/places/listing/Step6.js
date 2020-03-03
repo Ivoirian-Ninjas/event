@@ -20,7 +20,7 @@ export default class Step6 extends Component {
                     <div>
                         <label>Availability</label>
                         <small>Please set up your schedule here.</small>   
-                        <input placeholder="Monday" name="s_day"/> - <input placeholder="Sunday" name="e_day"/>
+                        <input placeholder="Monday" name="s_day"  onChange={this.props.handleChange}/> - <input placeholder="Sunday" name="e_day"  onChange={this.props.handleChange}/>
                         <TimeRangePicker
                             onChange={this.props.onTimeChange}
                             value={this.props.time}

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_13_205626) do
+ActiveRecord::Schema.define(version: 2020_03_03_061038) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -33,9 +33,29 @@ ActiveRecord::Schema.define(version: 2020_02_13_205626) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "addresses", force: :cascade do |t|
+    t.string "state"
+    t.string "zipCode"
+    t.string "aptNumber"
+    t.string "city"
+    t.string "street"
+    t.string "country"
+    t.integer "place_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "amenities", force: :cascade do |t|
     t.string "title"
     t.string "icon"
+    t.integer "amenity_place_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "amenity_places", force: :cascade do |t|
+    t.integer "place_id"
+    t.integer "amenity_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -53,6 +73,21 @@ ActiveRecord::Schema.define(version: 2020_02_13_205626) do
     t.float "process_fee"
     t.integer "guestCount"
     t.string "paymentOption"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cancelation_policies", force: :cascade do |t|
+    t.string "type"
+    t.text "policy"
+    t.integer "cancelpolicy_place_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cancelpolicy_places", force: :cascade do |t|
+    t.integer "cancelation_policy_id"
+    t.integer "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -89,6 +124,8 @@ ActiveRecord::Schema.define(version: 2020_02_13_205626) do
 
   create_table "messages", force: :cascade do |t|
     t.string "content"
+    t.integer "sender_id"
+    t.integer "receiver_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -101,6 +138,8 @@ ActiveRecord::Schema.define(version: 2020_02_13_205626) do
     t.integer "capacity"
     t.integer "number_view"
     t.integer "user_id"
+    t.integer "cancelpolicy_place_id"
+    t.integer "amenity_place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -117,14 +156,16 @@ ActiveRecord::Schema.define(version: 2020_02_13_205626) do
   create_table "rules", force: :cascade do |t|
     t.string "title"
     t.text "content"
+    t.integer "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "service_offereds", force: :cascade do |t|
-    t.string "name"
-    t.string "icon"
-    t.text "description"
+  create_table "schedules", force: :cascade do |t|
+    t.time "s_Time"
+    t.time "e_Time"
+    t.string "s_day"
+    t.string "e_day"
     t.integer "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

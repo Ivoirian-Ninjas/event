@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  s_Time: 2020-03-02 23:47:35
+  e_Time: 2020-03-02 23:47:35
+  s_day: MyString
+  e_day: MyString
+
+two:
+  s_Time: 2020-03-02 23:47:35
+  e_Time: 2020-03-02 23:47:35
+  s_day: MyString
+  e_day: MyString

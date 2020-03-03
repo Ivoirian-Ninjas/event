@@ -1,0 +1,2 @@
+class CancelationPolicy < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class CancelpolicyPlace < ApplicationRecord
+end

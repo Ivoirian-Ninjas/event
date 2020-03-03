@@ -96,7 +96,7 @@ console.log(event.target.files[0])
           divImage.appendChild(img)
           divImage.appendChild(spanX)
           spanX.addEventListener("click", () => {
-            divImage.remove() 
+            divImage.parentNode.remove() 
             const inputs = document.querySelectorAll(`input[type="file"]`)
            inputs.forEach(e => {
                 console.log(e.value)
