@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2020_02_13_205626) do
   create_table "amenities", force: :cascade do |t|
     t.string "title"
     t.string "icon"
+    t.integer "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -89,6 +90,8 @@ ActiveRecord::Schema.define(version: 2020_02_13_205626) do
 
   create_table "messages", force: :cascade do |t|
     t.string "content"
+    t.integer "sender_id"
+    t.integer "receiver_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -117,6 +120,7 @@ ActiveRecord::Schema.define(version: 2020_02_13_205626) do
   create_table "rules", force: :cascade do |t|
     t.string "title"
     t.text "content"
+    t.integer "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -6,7 +6,6 @@ export default function slider() {
     var launchButton = document.getElementsByClassName('PlaySlide')
     var playing = true
     var slideInterval = setInterval(nextSlide, 5000)
-    
         function nextSlide(){
             if(ImageSlide[compteur]){
                 ImageSlide[compteur].className = "imgSlide"

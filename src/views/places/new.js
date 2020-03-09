@@ -11,7 +11,7 @@ import Step6 from './listing/Step6'
 import Step7 from './listing/Step7'
 import Step8 from './listing/Step8'
 import Step9 from './listing/Step9'
-
+import "../../assets/newplace.css"
 
  class New extends Component {
     constructor(){
@@ -38,9 +38,19 @@ import Step9 from './listing/Step9'
             placeDesc: "",
             time: ["08:00", "22:00"],
             s_day:"",
-            e_day: ""
+            e_day: "",
             
-    
+            setting : {
+                width: "100%",
+                background: "#fff",
+                height: "10px",
+                border: "1px solid lightgrey",
+            },
+            parameters : {
+                color: "#fff",
+                height: "100%",
+                transition: "ease-in-out 0.3s"
+            }
 
         }
 
@@ -82,8 +92,12 @@ console.log(event.target.files[0])
         const divImage = document.createElement("div")
         divImage.classList.add("newImage")
         const spanX= document.createElement("span")
+        const icon = document.createElement("i")
+        icon.classList.add("fa")
+        icon.classList.add("fa-trash")
         spanX.classList.add("deleteImage")
-        spanX.innerHTML = "X"
+        spanX.append("Delete image ")
+        spanX.appendChild(icon)
         //read the file
         reader.readAsDataURL(file);
 
@@ -121,12 +135,27 @@ console.log(event.target.files[0])
     onTimeChange = time => this.setState({ time })
 
     add_input = () => {
-        const div = document.querySelector("div.imgContainer")
+        const div = document.querySelector("div.images")
+
+        const first_div = document.createElement("div")
+        first_div.classList.add("inputImg")
+
+        const second_div = document.createElement("div")
+        second_div.classList.add("imgContainer")
+
         const direct_div = document.createElement("div")
         direct_div.classList.add("imgInput")
         
         const input  =  document.createElement('input')
-    
+        const btn_upload = document.createElement('button')
+        console.log(btn_upload)
+        btn_upload.classList.add("UploadFile")
+        const icons = document.createElement("i")
+        icons.classList.add("fa")
+        icons.classList.add("fa-image")
+        btn_upload.append("Select image ")
+        btn_upload.appendChild(icons)
+
         console.log(input)
         input.type = 'file'
         input.name = 'images'
@@ -139,17 +168,26 @@ console.log(event.target.files[0])
         })
         input.accept = "image/x-png,image/gif,image/jpeg"
         direct_div.appendChild(input)
-        div.appendChild(direct_div)
+        direct_div.appendChild(btn_upload)
+        second_div.appendChild(direct_div)
+        first_div.appendChild(second_div)
+        div.appendChild(first_div)
     }
+        // increment = () =>
+        //     this.setState((prevState) => ({
+        //         percent: prevState.percent >= 100 ? 0 : prevState.percent + 11,
+        //     }))
+
     render() {
         return (
             <div className="PageConteneur">
+                
                 <StepWizard>
                         <Step1 {...this.state} handleChange={this.handleChange} />
                         <Step2 {...this.state}  handleChange={this.handleChange}/>
                         <Step3 {...this.state}  handleChange={this.handleChange} />  
                         <Step4  {...this.state} handleChange={this.handleChange} />
-                        <Step5  {...this.state}   handleFileChange={this.handleFileChange} add_input={this.add_input} />
+                        <Step5  {...this.state}  handleFileChange={this.handleFileChange} add_input={this.add_input} />
                         <Step6  {...this.state}  handleChange={this.handleChange} />
                         <Step7   {...this.state}  handleChange={this.handleChange}/>
                         <Step8   {...this.state}  handleChange={this.handleChange}/>
