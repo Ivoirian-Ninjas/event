@@ -142,11 +142,8 @@ console.log(event.target.files[0])
 
 
     handleSubmit = (event) => {
-
         console.log(this.state)
         this.props.send_place_info(this.state)
-
-
     }
 
     onTimeChange = time => this.setState({ time })
@@ -167,6 +164,10 @@ console.log(event.target.files[0])
         const btn_upload = document.createElement('button')
         console.log(btn_upload)
         btn_upload.classList.add("UploadFile")
+        // Clicking on this button will click on the input file.
+        btn_upload.addEventListener("click",e => {
+            input.click()
+        })
         const icons = document.createElement("i")
         icons.classList.add("fa")
         icons.classList.add("fa-image")
@@ -190,10 +191,7 @@ console.log(event.target.files[0])
         first_div.appendChild(second_div)
         div.appendChild(first_div)
     }
-        // increment = () =>
-        //     this.setState((prevState) => ({
-        //         percent: prevState.percent >= 100 ? 0 : prevState.percent + 11,
-        //     }))
+   
 
     render() {
         return (
