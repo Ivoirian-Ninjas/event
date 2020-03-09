@@ -25,8 +25,8 @@ export default class Step6 extends Component {
                     <div className="DivStepOne">
                         <label className = "LabelStepOne">Availability</label><br/>
                         <small className="SmallText">Please set up your schedule here.</small>   <br/>
-                        <input placeholder="Monday" className="InputStepSix" name="s_day"/> to &nbsp;
-                        <input placeholder="Sunday" className="InputStepSix" name="e_day"/>
+                        <input placeholder="Monday" className="InputStepSix" name="s_day" onChange={this.props.handleChange}/> to &nbsp;
+                        <input placeholder="Sunday" className="InputStepSix" name="e_day" onChange={this.props.handleChange}/>
                         
                     </div>
                     <div className="DivStepOne">
