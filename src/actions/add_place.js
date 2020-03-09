@@ -6,15 +6,48 @@ export default function add_places(place){
           const fd = new FormData()
         //   f {user_id: user.id ,place: place})
         console.log(place)
+        //place attributes
         fd.append('user_id', user.id  )
         fd.append('place[name]',place.name)
-        fd.append('place[address]', place.address)
         fd.append('place[capacity]', place.capacity)
         fd.append('place[price]',place.price)
-        place.images.forEach(e=>{
-            fd.append('images[]',e)
+        fd.append('place[description]',place.placeDesc)
 
-        })
+        //address
+        fd.append('address[country]',place.country)
+        fd.append('address[state]',place.state)
+        fd.append('address[zipCode]',place.zipCode)
+        fd.append('address[street]',place.street)
+        fd.append('address[aptNumber]',place.aptNumber)
+
+        //schedule
+        fd.append('schedule[s_day]',place.s_day)
+        fd.append('schedule[e_day]',place.e_day)
+        fd.append('schedule[s_Time]',place.time[0])
+        fd.append('schedule[e_Time]',place.time[1])
+
+        //rules 
+        fd.append('rule[rules]', place.rules)
+
+        //parking 
+        fd.append('parking[description]',place.parkDesc)
+
+        //category 
+        fd.append('category[title]', place.typeOfSpace)
+
+        //cancellation 
+        fd.append('policy[genre]', place.policy)
+
+
+        //amenities
+        place.amenities.forEach( e=> fd.append('amenities[]',e) )
+
+        //images
+        place.images.forEach( e=> fd.append('images[]',e) )
+
+       
+
+       
           console.log(fd)
         const params = {
             method: 'POST', 

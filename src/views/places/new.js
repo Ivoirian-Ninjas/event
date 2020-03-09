@@ -38,7 +38,9 @@ import Step9 from './listing/Step9'
             placeDesc: "",
             time: ["08:00", "22:00"],
             s_day:"",
-            e_day: ""
+            e_day: "", 
+            amenities: [],
+            policy: ''
             
     
 
@@ -110,14 +112,30 @@ console.log(event.target.files[0])
           parent.appendChild(divImage)
 
     }
+    handlePolicy = (event) => {
+        
+    }
 
-    handleSubmit = (event) => {
-        console.log(this.state)
-        // this.props.send_place_info(this.state)
+    handleAmen = (event) => {
+        if(!this.state.amenities.includes(event.target.name) && event.target.value === "on" ){
+            this.setState({amenities: [...this.state.amenities,event.target.name]} ,() => console.log(this.state.amenities))
+        }else{
+            this.setState({amenities: [...this.state.amenities].filter(x => x !== event.target.name)},() => console.log(this.state.amenities ))
+        }
 
-        event.preventDefault()
+        console.log(this.state.amenities)
 
     }
+
+
+    handleSubmit = (event) => {
+
+        console.log(this.state)
+        this.props.send_place_info(this.state)
+
+
+    }
+
     onTimeChange = time => this.setState({ time })
 
     add_input = () => {
@@ -148,7 +166,7 @@ console.log(event.target.files[0])
                         <Step1 {...this.state} handleChange={this.handleChange} />
                         <Step2 {...this.state}  handleChange={this.handleChange}/>
                         <Step3 {...this.state}  handleChange={this.handleChange} />  
-                        <Step4  {...this.state} handleChange={this.handleChange} />
+                        <Step4  {...this.state}  handleAmen={this.handleAmen} />
                         <Step5  {...this.state}   handleFileChange={this.handleFileChange} add_input={this.add_input} />
                         <Step6  {...this.state}  handleChange={this.handleChange} />
                         <Step7   {...this.state}  handleChange={this.handleChange}/>

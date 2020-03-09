@@ -2,12 +2,7 @@ import Filter from './Filter'
 import React, { Component } from 'react'
 import Place from './place'
 
-import Place_Show from './show'
-import {
 
-    Route,
-
-  } from "react-router-dom";
 import { connect } from 'react-redux';
 
  class Index extends Component {
@@ -15,7 +10,7 @@ import { connect } from 'react-redux';
          fetch('http://localhost:3000/places')
          .then(resp => resp.json())
          .then(json =>{ 
-             console.log(json.places)
+             console.log(json)
             const places =  json.places.map(e=>e.data.attributes)
 
                           this.props.get_places(places) 

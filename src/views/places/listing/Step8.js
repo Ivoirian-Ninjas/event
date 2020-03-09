@@ -15,11 +15,11 @@ export default class Step8 extends Component {
                     
                 </div>
                 {/** Only show this when the user start typing info for the credit card */}
-                <div>
+                <form>
                     <h4>Choose you cancelation policy</h4>
                     <div className="cancellationPolicy">
                         <div>
-                            <input type="checkbox" name="cancelFlex" onChange={this.props.handleChange}/>
+                            <input type="radio" name="policy"  value="flexible" onChange={this.props.handleChange}/>
                             <h4>Flexible:</h4>
                             <ul>
                                 <li>If the guest has paid in full and the booking is canceled more than five days prior to booking start date, a full refund (minus fees) is issued.</li>
@@ -28,7 +28,7 @@ export default class Step8 extends Component {
 
                         </div>
                         <div>
-                            <input type="checkbox" name="cancelModerate" onChange={this.props.handleChange}/>
+                            <input type="radio" name="policy"  value="moderate" onChange={this.props.handleChange}/>
 
                             <h4>Moderate:</h4>
 
@@ -42,7 +42,7 @@ export default class Step8 extends Component {
                         </div>
 
                         <div>
-                            <input type="checkbox" name="cancelStrict" onChange={this.props.handleChange}/>
+                            <input type="radio" name="policy"  value="strict" onChange={this.props.handleChange}/>
 
                             <h4>Strict:</h4>
 
@@ -53,7 +53,7 @@ export default class Step8 extends Component {
                                     
                         </div>
                     </div>
-                </div>
+                </form>
                 <p><button onClick={this.props.previousStep}>Back</button></p>
                 <p><button onClick={this.props.nextStep}>Next</button></p>
             </div>
