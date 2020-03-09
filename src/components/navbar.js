@@ -14,7 +14,7 @@ import profile from '../assets/svg/profile.svg'
 import '../assets/authentication.css'
 import Errors from './errors'
 import slider from './slider'
-
+import display_errors from '../helper/display_errors'
 import { connect } from 'react-redux';
 import SignInUser from '../actions/SignInUser'
 import SignUpUser from '../actions/SignUpUser'
@@ -28,6 +28,7 @@ import SignUpUser from '../actions/SignUpUser'
     email: '',
     password_digest: '',
     password_confirm: '',
+    name:'',
     isOpen: false,
     isOpen1: false,
     admin: false
@@ -44,8 +45,13 @@ import SignUpUser from '../actions/SignUpUser'
     event.preventDefault()
     if (this.state.isOpen1 ){
       this.state.password_digest === this.state.password_confirm ? this.props.SignUpUser(this.state) :console.log("The passwords do not match")
-    }else{
+    }
+    else if(this.state.isOpen){
       this.props.SignInUser(this.state)
+    }
+    else{
+      console.log('The passwords do not match')
+      display_errors(['The passwords do not match'])
     }
   }
 handleChange = event => this.setState({[event.target.name]: event.target.value })

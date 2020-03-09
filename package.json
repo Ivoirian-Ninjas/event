@@ -6,7 +6,9 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
+    "@wojtekmaj/react-daterange-picker": "^2.5.0",
     "@wojtekmaj/react-timerange-picker": "^2.4.0",
+    "framework7": "^5.4.5",
     "install": "^0.13.0",
     "jquery": "^3.4.1",
     "moment": "^2.24.0",
@@ -28,6 +30,7 @@
     "react-time-range": "^1.0.4",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "semantic-ui-react": "^0.88.2",
     "slick-carousel": "^1.8.1"
   },
   "scripts": {

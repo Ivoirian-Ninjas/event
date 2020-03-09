@@ -24,7 +24,7 @@ let dialogStyles = {
     display: "flex",
     flexDirection: "column",
     boxShadow: "0 1px 1.5rem rgba(0, 0, 0, 0.5)",
-    backgroundImage: "url('../../assets/img/Last/Backgroun-large1.png')"
+    // backgroundImage: "url("+ ../../assets/img/Last/Backgroun-large1.png+")"
 }
 let dialogCloseButtonStyle = {
     marginBottom: "15px",

@@ -3,49 +3,67 @@ import React, { Component } from 'react'
 export default class Step4 extends Component {
     render() {
         return (
-            <div>
-                <h1>What amensties do you offer?</h1>
-                <small>Note that these amnesties are the most common the guests are expecting to see.You can always add your own after this is made public</small>
-                <div>
-                    <label>Wifi</label>
-                    <input type="checkbox" name="wifi" onChange={this.props.handleAmen}/>
+            <div className="ConteneurStepOne">
+            <div style={{...this.props.setting}}>
+                <div style={{...this.props.parameters, width: "44%", background:"#5c047c"}}></div>
+            </div>
+                <h1 className="hOneStepOne">What amensties do you offer?</h1>
+                <h2 className = "hTwoStepOne" > Step 4 </h2>
+                <div className="ContenuStepTwo">
+                <div className="DivStepOne">
+                    <p className = "LabelStepFour">
+                        Note that these amnesties are the most common the guests are expecting to see.
+                        You can always add your own after this is made public.
+                    </p>
                 </div>
-                <div>
-                    <label>Lightning</label>
-                    <input type="checkbox"  name="lightning" onChange={this.props.handleAmen}/>
-                </div>
-                <div>
-                    <label>Dj</label>
-                    <input type="checkbox"  name="dj" onChange={this.props.handleAmen} />
-                </div>
-                <div>
-                    <label>Air conditioning</label>
-                    <input type="checkbox"  name="A/C" onChange={this.props.handleAmen}/>
-                </div>
-                <div>
-                    <label>Heat</label>
-                    <input type="checkbox"  name="heat" onChange={this.props.handleAmen}/>
-                </div>
-                <h4>Safety & Security amenities</h4>
-                <div>
-                    <label>Fire extinguisher</label>
-                    <input type="checkbox"   name="extinguisher" onChange={this.props.handleAmen}/>
-                </div>
-                <div>
-                    <label>Smoke detector</label>
-                    <input type="checkbox"  name="smoke_detector" onChange={this.props.handleAmen}/>
-                </div>
-                <div>
-                    <label>First aid kit</label>
-                    <input type="checkbox"   name="first_aid" onChange={this.props.handleAmen}/>
-                </div>
-                <div>
-                    <label>Security guards</label>
-                    <input type="checkbox"  name="guard" onChange={this.props.handleAmen}/>
-                </div>
-                 <p><button onClick={this.props.previousStep}>Back</button></p>
-                <p><button onClick={this.props.nextStep}>Next</button></p>
+                    
+                    <div className="DivStepOne">
+                        <input type="checkbox" id="cbwifi" name="wifi" onChange={this.props.handleChange}/> 
+                        <label htmlFor="cbwifi" className="InfoStepFour"> Wifi </label>
+                    </div>
+                    <div className="DivStepOne">
+                        <input type="checkbox" id="cblight" name="lightning" onChange={this.props.handleChange}/>
+                        <label htmlFor="cblight" className="InfoStepFour">Lightning</label>
+                    </div>
+                    <div className="DivStepOne">
+                        <input type="checkbox" id="cbdj" name="dj" onChange={this.props.handleChange} />
+                        <label htmFor="cbdj" className="InfoStepFour">Dj</label>
+                    </div>
+                    <div className="DivStepOne">
+                        <input type="checkbox" id="cbcdt" name="A/C" onChange={this.props.handleChange}/>
+                        <label htmFor="cbcdt" className="InfoStepFour">Air conditioning</label>
+                    </div>
+                    <div className="DivStepOne">
+                        <input type="checkbox" id="cbheat" name="heat" onChange={this.props.handleChange}/>
+                        <label htmFor="cbheat" className="InfoStepFour">Heat</label>
+                    </div>
+                    <h2>Safety & Security amenities</h2>
+                    <div className="DivStepOne">
+                        <input type="checkbox" id="cbfire" name="extinguisher" onChange={this.props.handleChange}/>
+                        <label htmFor="cbfire" className="InfoStepFour">Fire extinguisher</label>
+                    </div>
+                    <div className="DivStepOne">
+                        <input type="checkbox" id="cbsmoke" name="smoke_detector" onChange={this.props.handleChange}/>
+                        <label htmFor="cbsmoke" className="InfoStepFour">Smoke detector</label>
+                    </div>
+                    <div className="DivStepOne">
+                        <input type="checkbox" id="cbfak"  name="first_aid" onChange={this.props.handleChange}/>
+                        <label htmFor="cbfak" className="InfoStepFour">First aid kit</label>
+                    </div>
+                    <div className="DivStepOne">
+                        <input type="checkbox" id="cbsec" name="guard" onChange={this.props.handleChange}/>
+                        <label htmFor="cbsec" className="InfoStepFour">Security guards</label>
+                    </div>
+                    <p className="ButtonStepOne">
+                        <button onClick={this.props.previousStep} className="PrevOne"> 
+                            <i className="fa fa-angle-left"></i> Back 
+                        </button>
+                        <button onClick={this.props.nextStep} className="NextOne">
+                            Next <i className="fa fa-angle-right"></i> 
+                        </button>
+                    </p>
 
+                </div>
             </div>
            
         )

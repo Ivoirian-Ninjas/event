@@ -48,6 +48,9 @@ ActiveRecord::Schema.define(version: 2020_03_05_204540) do
   create_table "amenities", force: :cascade do |t|
     t.string "title"
     t.string "icon"
+<<<<<<< HEAD
+    t.integer "place_id"
+=======
     t.integer "amenity_place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -56,6 +59,7 @@ ActiveRecord::Schema.define(version: 2020_03_05_204540) do
   create_table "amenity_places", force: :cascade do |t|
     t.integer "place_id"
     t.integer "amenity_id"
+>>>>>>> d08bc1f12804de80ddf59610b7846875bc953906
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -3,50 +3,68 @@ import React, { Component } from 'react'
 export default class Step3 extends Component {
     render() {
         return (
-            <div>
-            <h1>Tell us more about your space</h1>
-                <div>
-                <div>
-                     <label>Name</label>
-                    <input type= 'text' name='name' placeholder='name' onChange={this.props.handleChange}/>
+            <div className="ConteneurStepOne">
+            <div style={{...this.props.setting}}>
+                <div style={{...this.props.parameters, width: "33%", background:"#650488"}}></div>
+            </div>
+            <h1 className="hOneStepOne">Tell us more about your space.</h1>
+            <h2 className = "hTwoStepOne" > Step 3 </h2> 
+            <div className="ContenuStepTwo">
+                <div className="DivStepOne">
+                     <label className = "LabelStepOne">What's the name of your place ?</label>
+                    <input type= 'text' className="InputStepOne" name='name' placeholder='e.g. GraphicArt' onChange={this.props.handleChange}/>
                 </div>
-                <div>
-                     <label>Description</label>
-                     <p>Include details about your space to attract more guest</p>
-                     <ul>
-                        <h3>Use these questions to guide you</h3>
-                        <li>What activities are better suited for your space?</li>
-                        <li>What features or amenities does your space have?</li>
-                        <li>What makes your space unique?</li>
-                    </ul>
-                    <ul>
-                        <h3> Do not include: </h3>
-                        <li>Please do not include your <strong>contact information</strong> as the description will be publicly displayed on our platform.</li>
-
-                    </ul>
+                <div className="DivStepOne">
+                     <label className = "LabelStepOne">Description of your place</label>
+                     <div className="DescriptionSteps">
+                        <p className="TextHelps">Include details about your space to attract more guest</p>
+                        <ul className="Helps">
+                            <h3 className="hThreeHelps">Use these questions to guide you</h3>
+                            <li className="liHelps">What activities are better suited for your space?</li>
+                            <li className="liHelps">What features or amenities does your space have?</li>
+                            <li className="liHelps">What makes your space unique?</li>
+                        </ul>
+                        <ul className="Helps">
+                            <h3 className="hThreeHelps"> Do not include: </h3>
+                            <li className="liHelps">
+                                Please do not include your  
+                                <strong className="StrongHelps"> contact information </strong> 
+                                as the description will be publicly displayed on our platform.
+                            </li>
+                        </ul>
+                     </div>
                      
-                    <textarea name='placeDesc' placeholder='Show how amazing your place is.' onChange={this.props.handleChange}/>
-                </div>
+                     
+                    <textarea name='placeDesc' className="TextAreaStepOne" placeholder='Show how amazing your place is.' onChange={this.props.handleChange}/>
                 </div>
                 {/**Use js for that */}
-                <h4>Does you place have a parking option?</h4>
-                <button>yes</button> <button>No</button>
+                <div className="DivStepOne">
+                    <label className = "LabelStepOne">Does you place have a parking option ? </label> <br/>
+                    <button className="YesStepThree">Yes</button> <button className="NoStepThree">No</button>
+                </div>
+                
                 {/**Only display this div if there is a parking option */}
-                <div>
-                    <h4>Describe your parking</h4>
-                    <p>
+                <div className="DivStepOne">
+                    <label className="LabelStepOne">Describe your parking</label>
+                    <div className="DescriptionSteps">
+                    <p className="TextHelps">
                         Things to consider: 
-                        <ul>
-                            <li>Is it a free parking</li>
-                            <li>If it is not, please let the guests know its price per hour</li>
-                            <li>What is the parking towing policy if there is any?</li>
+                        <ul className="Helps">
+                            <li className="liHelps">Is it a free parking</li>
+                            <li className="liHelps">If it is not, please let the guests know its price per hour</li>
+                            <li className="liHelps">What is the parking towing policy if there is any?</li>
                         </ul>
                     </p>
-                    <textarea name="parkDesc"  onChange={this.props.handleChange}></textarea>
+                    </div>
+                    <textarea name="parkDesc" className="TextAreaStepOne" placeholder='Describe your parking here !' onChange={this.props.handleChange}></textarea>
                 </div>
 
-                <p><button onClick={this.props.previousStep}>Back</button></p>
-                <p><button onClick={this.props.nextStep}>Next</button></p>
+                <p className="ButtonStepOne">
+                <button onClick={this.props.previousStep} className="PrevOne"> <i className="fa fa-angle-left"></i> Back </button>
+                <button onClick={this.props.nextStep} className="NextOne">Next <i className="fa fa-angle-right"></i> </button>
+                </p>
+                </div>
+                
             </div>
         )
     }

@@ -4,47 +4,60 @@ import Countries_list from '../../../helper/Countries_list';
 export default class Step2 extends Component {
     render() {
         return (
-            <div>
-            <h1>Where are you located?</h1>
-            <p>Guests will only get your exact address once they've booked a reservation.</p>
-            <button>Use current location</button>
-                <small>or enter your address</small>
-            <div>
-                <div>
-                     <label>Country / Region</label>
-                     <select name="country"  onChange={this.props.handleChange}>
+            <div className="ConteneurStepOne">
+            <div style={{...this.props.setting}}>
+                <div style={{...this.props.parameters, width: "22%", background:"#A007D8"}}></div>
+            </div>
+            <h1 className = "hOneStepOne"> Where are you located ? </h1>
+            <h2 className = "hTwoStepOne" > Step 2 </h2> 
+            <div className="ContenuStepTwo">
+                <div className="DivStepOne">
+                    <p className="TextStepOne">
+                        Guests will only get your exact address once they've booked a reservation.
+                    </p>
+                    <button className="ButtonLocal"> <i className="fas fa-map-marked"></i> Current location </button>
+                    <small className="SmallText"> or enter your address.</small>
+                </div>
+            
+                <div className="DivStepOne">
+                     <label className = "LabelStepOne"> Country / Region</label>
+                     <select name="country"  onChange={this.props.handleChange} className="InputStepOne">
                         <Countries_list />
                     </select>
                 </div>
-                <div>
-                    <label>Street address</label>
+                <div className="DivStepOne">
+                    <label className = "LabelStepOne">Street address</label>
                     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdKNMjsiDMW07_NEEBlzhRlArElUUFRXQ&libraries=places"></script>
 
-                    <input name="street"  onChange={this.props.handleChange}/>
+                    <input name="street" className="InputStepOne" placeholder="e.g. 158 Main Street" onChange={this.props.handleChange}/>
                 </div>
-                <div>
-                    <label>Apt, suite. (optional)</label>
-                    <input name="aptNumber"  onChange={this.props.handleChange}/>
+                <div className="DivStepOne">
+                    <label className = "LabelStepOne">Apt, suite. (optional)</label>
+                    <input name="aptNumber" className="InputStepOne" placeholder="e.g. Apt #8" onChange={this.props.handleChange}/>
                 </div>
-                <div>
-                    <label>City</label>
-                    <input name="city"  onChange={this.props.handleChange}/>
+                <div className="DivStepOne">
+                    <label className = "LabelStepOne">City</label>
+                    <input name="city" className="InputStepOne" placeholder="e.g. New York" onChange={this.props.handleChange}/>
                 </div>
-                <div>
-                    <label>State</label>
-                    <input name="state"  onChange={this.props.handleChange}/>
+                <div className="DivStepOne">
+                    <label className = "LabelStepOne">State</label>
+                    <input name="state" className="InputStepOne" placeholder="e.g MI" onChange={this.props.handleChange}/>
                 </div>
-                <div>
-                    <label>Zip code</label>
-                    <input name="zipCode"  onChange={this.props.handleChange}/>
+                <div className="DivStepOne">
+                    <label className = "LabelStepOne">Zip code</label>
+                    <input name="zipCode" placeholder="e.g. 94256" className="InputStepOne" onChange={this.props.handleChange}/>
                 </div>
+                
+                <label className="LabelStepOne">Is the pin in the right place?</label>
+                {/**Add a map here showing the pin */}
+
+
+            <p className="ButtonStepOne">
+                <button onClick={this.props.previousStep} className="PrevOne"> <i className="fa fa-angle-left"></i> Back </button>
+                <button onClick={this.props.nextStep} className="NextOne">Next <i className="fa fa-angle-right"></i> </button>
+            </p>
             </div>
-            <h1>Is the pin in the right place?</h1>
-            {/**Add a map here showing the pin */}
-
-
-            <p><button onClick={this.props.previousStep}>Back</button></p>
-            <p><button onClick={this.props.nextStep}>Next</button></p>
+            
             </div>
         )
     }
