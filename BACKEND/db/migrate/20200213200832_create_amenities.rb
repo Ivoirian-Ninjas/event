@@ -3,8 +3,7 @@ class CreateAmenities < ActiveRecord::Migration[5.2]
     create_table :amenities do |t|
       t.string :title
       t.string :icon
-      t.integer :place_id
-
+      t.integer :amenity_place_id
       t.timestamps
     end
   end

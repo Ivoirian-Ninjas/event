@@ -21,7 +21,6 @@ export default class Step6 extends Component {
                        <label className = "LabelStepOne">Price</label>
                         <input type= 'number' className="InputStepOne" name='price' placeholder='0.00' onChange={this.props.handleChange} />
                     </div>
-
                     <div className="DivStepOne">
                         <label className = "LabelStepOne">Availability</label><br/>
                         <small className="SmallText">Please set up your schedule here.</small>   <br/>

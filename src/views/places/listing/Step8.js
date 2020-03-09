@@ -25,7 +25,7 @@ export default class Step8 extends Component {
                             <div className="">
                                 <div className="">
                                     <input type="checkbox" id="cancelFlex" name="cancelFlex" onChange={this.props.handleChange}/>
-                                    <label htmlFor="cancelFlex" className="InfoStepFour">                                 
+                                    <label htmlFor="cancelFlex" className="InfoStepFour">
                                         <h4 className="TextHelps">Flexible:</h4>
                                         <ul className="Helps">
                                             <li className="liHelps">
