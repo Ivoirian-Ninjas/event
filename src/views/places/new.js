@@ -51,18 +51,25 @@ import "../../assets/newplace.css"
                 color: "#fff",
                 height: "100%",
                 transition: "ease-in-out 0.3s"
-            }
+            },
+            parking_available: "no"
 
         }
 
           
-        this.div_ref = React.createRef()
 
     }
 
 
     handleChange = (event) => {
        this.setState({ [event.target.name]: event.target.value }) 
+
+       if(this.state.parking_available === "yes"){
+           document.querySelector("div#parking").style.display= "block"
+        }else{
+            document.querySelector("div#parking").style.display= "none"
+
+        }
     }
 
     handleFileChange = event => {
@@ -111,7 +118,7 @@ console.log(event.target.files[0])
           divImage.appendChild(img)
           divImage.appendChild(spanX)
           spanX.addEventListener("click", () => {
-            divImage.parentNode.remove() 
+            divImage.parentNode.parentNode.parentNode.remove() 
             const inputs = document.querySelectorAll(`input[type="file"]`)
            inputs.forEach(e => {
                 console.log(e.value)
@@ -126,10 +133,17 @@ console.log(event.target.files[0])
 
     }
     handlePolicy = (event) => {
-        
+        this.setState({ [event.target.name]: event.target.value }) 
+       const policies =  [document.querySelector("#cancelFlex"),document.querySelector("#cancelModerate"),document.querySelector("#cancelStrict")]
+       policies.forEach(e => {
+           if(e && e.name !== event.target.name){
+                e.checked = false
+           }
+       })
     }
 
     handleAmen = (event) => {
+        console.log(event)
         if(!this.state.amenities.includes(event.target.name) && event.target.value === "on" ){
             this.setState({amenities: [...this.state.amenities,event.target.name]} ,() => console.log(this.state.amenities))
         }else{
@@ -205,7 +219,7 @@ console.log(event.target.files[0])
                         <Step5  {...this.state}   handleFileChange={this.handleFileChange} add_input={this.add_input} />
                         <Step6  {...this.state}  handleChange={this.handleChange} />
                         <Step7   {...this.state}  handleChange={this.handleChange}/>
-                        <Step8   {...this.state}  handleChange={this.handleChange}/>
+                        <Step8   {...this.state}  handlePolicy={this.handlePolicy}/>
                         <Step9   {...this.state}  handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
                 </StepWizard>
             </div>
