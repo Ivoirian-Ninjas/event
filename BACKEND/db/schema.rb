@@ -48,10 +48,7 @@ ActiveRecord::Schema.define(version: 2020_03_03_061038) do
   create_table "amenities", force: :cascade do |t|
     t.string "title"
     t.string "icon"
-<<<<<<< HEAD
     t.integer "place_id"
-=======
-    t.integer "amenity_place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -59,7 +56,6 @@ ActiveRecord::Schema.define(version: 2020_03_03_061038) do
   create_table "amenity_places", force: :cascade do |t|
     t.integer "place_id"
     t.integer "amenity_id"
->>>>>>> d08bc1f12804de80ddf59610b7846875bc953906
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -142,8 +138,6 @@ ActiveRecord::Schema.define(version: 2020_03_03_061038) do
     t.integer "capacity"
     t.integer "number_view"
     t.integer "user_id"
-    t.integer "cancelpolicy_place_id"
-    t.integer "amenity_place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -170,6 +164,15 @@ ActiveRecord::Schema.define(version: 2020_03_03_061038) do
     t.time "e_Time"
     t.string "s_day"
     t.string "e_day"
+    t.integer "place_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "service_offereds", force: :cascade do |t|
+    t.string "name"
+    t.string "icon"
+    t.text "description"
     t.integer "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
