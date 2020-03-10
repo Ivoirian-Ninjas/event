@@ -8,8 +8,10 @@ class Place < ApplicationRecord
     has_one :address
     has_many :bookings
     has_many :bookers, through: :bookings, source: :user
-    has_many :categories
-
+    has_one :category
+    has_one :parking
+    has_one :schedule
+    has_one :cancelation_policy
     def check_availability(date, start_time, end_time )
         events = self.bookings.select{|event| event.date == Date.parse(date)}
         # binding.pry
