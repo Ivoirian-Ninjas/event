@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 
 export default class Step5 extends Component {
+    handleClick = (event) => {
+        event.target.parentNode.querySelector("input").click()
+    }
     render() {
         return (
              <div className="ConteneurStepOne">
@@ -16,8 +19,8 @@ export default class Step5 extends Component {
                             <div className='imgContainer'>
                                 {/**This button will add another field for file input */}
                                 <div className="imgInput">
-                                    <button className="UploadFile">Select image <i className="fa fa-image"></i></button>
-                                    <input type='file'  name='images' onChange={this.props.handleFileChange} accept="image/x-png,image/gif,image/jpeg" />
+                                    <button className="UploadFile" onClick={this.handleClick}>Select image <i className="fa fa-image"></i></button>
+                                    <input type='file'  name='images' style={{height:"0px", width:"0px"}} onChange={this.props.handleFileChange} accept="image/x-png,image/gif,image/jpeg" /> 
                                 </div>
                             </div>
                     </div>
