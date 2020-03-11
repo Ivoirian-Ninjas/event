@@ -78,9 +78,9 @@ ActiveRecord::Schema.define(version: 2020_03_05_204540) do
   end
 
   create_table "cancelation_policies", force: :cascade do |t|
-    t.string "genre"
+    t.string "type"
     t.text "policy"
-    t.integer "place_id"
+    t.integer "cancelpolicy_place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -139,17 +139,12 @@ ActiveRecord::Schema.define(version: 2020_03_05_204540) do
 
   create_table "places", force: :cascade do |t|
     t.string "name"
-    t.text "description"
+    t.string "address"
     t.float "price"
     t.float "ratings"
     t.integer "capacity"
     t.integer "number_view"
     t.integer "user_id"
-<<<<<<< HEAD
-=======
-    t.integer "cancelation_policy_id"
-    t.integer "amenity_place_id"
->>>>>>> d956d8dfd6138da053384a9cd7be849fa12324e0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
