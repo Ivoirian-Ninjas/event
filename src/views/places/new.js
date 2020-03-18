@@ -51,18 +51,25 @@ import "../../assets/newplace.css"
                 color: "#fff",
                 height: "100%",
                 transition: "ease-in-out 0.3s"
-            }
+            },
+            parking_available: "no"
 
         }
 
           
-        this.div_ref = React.createRef()
 
     }
 
 
     handleChange = (event) => {
        this.setState({ [event.target.name]: event.target.value }) 
+
+       if(this.state.parking_available === "yes"){
+           document.querySelector("div#parking").style.display= "block"
+        }else{
+            document.querySelector("div#parking").style.display= "none"
+
+        }
     }
 
     handleFileChange = event => {
@@ -110,8 +117,9 @@ console.log(event.target.files[0])
 
           divImage.appendChild(img)
           divImage.appendChild(spanX)
-          spanX.addEventListener("click", () => {
-            divImage.parentNode.parentNode.parentNode.remove() 
+          spanX.addEventListener("click", () => { 
+            //remove the file from the array of images 
+            this.setState( state => state.images = [...state.images].filter(e => e !== file) , () => console.log(this.state.images))
             const inputs = document.querySelectorAll(`input[type="file"]`)
            inputs.forEach(e => {
                 console.log(e.value)
@@ -126,10 +134,17 @@ console.log(event.target.files[0])
 
     }
     handlePolicy = (event) => {
-        
+        this.setState({ [event.target.name]: event.target.value }) 
+       const policies =  [document.querySelector("#cancelFlex"),document.querySelector("#cancelModerate"),document.querySelector("#cancelStrict")]
+       policies.forEach(e => {
+           if(e && e.name !== event.target.name){
+                e.checked = false
+           }
+       })
     }
 
     handleAmen = (event) => {
+        console.log(event)
         if(!this.state.amenities.includes(event.target.name) && event.target.value === "on" ){
             this.setState({amenities: [...this.state.amenities,event.target.name]} ,() => console.log(this.state.amenities))
         }else{
@@ -151,8 +166,8 @@ console.log(event.target.files[0])
     add_input = () => {
         const div = document.querySelector("div.images")
 
-        const first_div = document.createElement("div")
-        first_div.classList.add("inputImg")
+        const first_div = document.querySelector("div.inputImg")
+        // first_div.classList.add("inputImg")
 
         const second_div = document.createElement("div")
         second_div.classList.add("imgContainer")
@@ -161,13 +176,23 @@ console.log(event.target.files[0])
         direct_div.classList.add("imgInput")
         
         const input  =  document.createElement('input')
+        input.type = 'file'
+        input.name = 'images'
+        input.style.height = "0px"
+        input.style.width = "0px"
+        input.addEventListener ('change',event =>{
+            console.log(event.target.files[0])
+                this.setState(state => ({images: [...state.images,event.target.files[0]]}) )
+                this.preview_image(event.target.files[0],event.target.parentNode)
+
+        })
+        input.accept = "image/x-png,image/gif,image/jpeg"
+
         const btn_upload = document.createElement('button')
         console.log(btn_upload)
         btn_upload.classList.add("UploadFile")
         // Clicking on this button will click on the input file.
-        btn_upload.addEventListener("click",e => {
-            input.click()
-        })
+        btn_upload.addEventListener("click",e => input.click())
         const icons = document.createElement("i")
         icons.classList.add("fa")
         icons.classList.add("fa-image")
@@ -191,7 +216,6 @@ console.log(event.target.files[0])
         first_div.appendChild(second_div)
         div.appendChild(first_div)
     }
-   
 
     render() {
         return (
@@ -205,7 +229,7 @@ console.log(event.target.files[0])
                         <Step5  {...this.state}   handleFileChange={this.handleFileChange} add_input={this.add_input} />
                         <Step6  {...this.state}  handleChange={this.handleChange} />
                         <Step7   {...this.state}  handleChange={this.handleChange}/>
-                        <Step8   {...this.state}  handleChange={this.handleChange}/>
+                        <Step8   {...this.state}  handlePolicy={this.handlePolicy}/>
                         <Step9   {...this.state}  handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
                 </StepWizard>
             </div>

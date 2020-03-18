@@ -18,8 +18,8 @@ export default class Step6 extends Component {
                 <div className="ContenuStepOne">
                     <div className="DivStepOne">
                         {/**Based on analitycs and region we should suggest a price for a listing */}
-                       <label className = "LabelStepOne">Price</label>
-                        <input type= 'number' className="InputStepOne" name='price' placeholder='0.00' onChange={this.props.handleChange} />
+                       <label className = "LabelStepOne">Price per hour</label>
+                        <input type= 'number' className="InputStepOne" name='price' placeholder='$0.00' onChange={this.props.handleChange} />
                     </div>
                     <div className="DivStepOne">
                         <label className = "LabelStepOne">Availability</label><br/>

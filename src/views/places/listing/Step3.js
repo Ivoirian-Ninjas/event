@@ -40,21 +40,21 @@ export default class Step3 extends Component {
                 {/**Use js for that */}
                 <div className="DivStepOne">
                     <label className = "LabelStepOne">Does you place have a parking option ? </label> <br/>
-                    <button className="YesStepThree">Yes</button> <button className="NoStepThree">No</button>
+                    <button className="YesStepThree" name="parking_available" value="yes" onClick={this.props.handleChange}>Yes</button> <button className="NoStepThree"  name="parking_available" value="no" onClick={this.props.handleChange}>No</button>
                 </div>
                 
                 {/**Only display this div if there is a parking option */}
-                <div className="DivStepOne">
+                <div className="DivStepOne" id="parking" style={{ display: this.props.parking_available === "no" ? "none" : "block" }} >
                     <label className="LabelStepOne">Describe your parking</label>
                     <div className="DescriptionSteps">
-                    <p className="TextHelps">
+                    <div className="TextHelps">
                         Things to consider: 
                         <ul className="Helps">
                             <li className="liHelps">Is it a free parking</li>
                             <li className="liHelps">If it is not, please let the guests know its price per hour</li>
                             <li className="liHelps">What is the parking towing policy if there is any?</li>
                         </ul>
-                    </p>
+                    </div>
                     </div>
                     <textarea name="parkDesc" className="TextAreaStepOne" placeholder='Describe your parking here !' onChange={this.props.handleChange}></textarea>
                 </div>
