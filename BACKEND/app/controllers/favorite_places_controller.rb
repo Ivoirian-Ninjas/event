@@ -1,2 +1,0 @@
-class FavoritePlacesController < ApplicationController
-end

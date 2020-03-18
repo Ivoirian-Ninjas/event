@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :conversations
   resources :categories
   resources :amenities
   resources :rules
@@ -7,7 +8,6 @@ Rails.application.routes.draw do
   resources :bookings
   resources :service_offereds
   resources :images
-  resources :favorite_places
   resources :places
   resources :reviews
   resources :users

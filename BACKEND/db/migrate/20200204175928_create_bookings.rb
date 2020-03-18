@@ -17,14 +17,4 @@ class CreateBookings < ActiveRecord::Migration[5.2]
     end
   end
 end
-  # state = {
-    #     booking: {},
-    #     images: [],
-    #     host: {},
-    #     guestCount: "",
-    #     activity: "",
-    #     message: "",
-    #     paymentOption: "",
-    #     cardName: "",
-    #     cardNumber: ""
-    # }
+  

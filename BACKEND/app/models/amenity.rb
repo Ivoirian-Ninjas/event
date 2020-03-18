@@ -1,4 +1,3 @@
 class Amenity < ApplicationRecord
-    has_many :amenity_places
-    has_many :places, through: :amenity_places
+    has_and_belongs_to_many :places
 end
