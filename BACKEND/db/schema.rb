@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 2020_03_05_204540) do
     t.string "genre"
     t.text "content"
     t.text "policy"
-    t.integer "place_id"
+    t.integer "cancelpolicy_place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -140,7 +140,7 @@ ActiveRecord::Schema.define(version: 2020_03_05_204540) do
 
   create_table "places", force: :cascade do |t|
     t.string "name"
-    t.text "description"
+    t.string "address"
     t.float "price"
     t.float "ratings"
     t.integer "capacity"
@@ -174,6 +174,15 @@ ActiveRecord::Schema.define(version: 2020_03_05_204540) do
     t.time "e_Time"
     t.string "s_day"
     t.string "e_day"
+    t.integer "place_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "service_offereds", force: :cascade do |t|
+    t.string "name"
+    t.string "icon"
+    t.text "description"
     t.integer "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

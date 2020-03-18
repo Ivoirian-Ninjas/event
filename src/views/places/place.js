@@ -1,26 +1,58 @@
 import React from 'react'
+import Sliders from "react-slick"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
 
 export default function place({place}) {
     const display_images = () => {
         if(place.images[0]){console.log(place.images[0].url)}
         console.log(place)
-        return place.images.map(e => <div style={{height: '100px', width:'100px'}}><img alt="" style={{height: '100%', width:'100%'}} key={e.id} src={e.url} /></div>)
+        return place.images.map(e => <div className="display_img"><img alt=""  key={e.id} src={e.url}  className="img_display"/></div>)
+    } 
+
+    const space_features = () => {
+        let result = ""
+        const amen_titles = place.amenities.map(e => e.title).sort()
+        amen_titles.unshift( `${place.capacity} guests`)
+        amen_titles.map( (e, index) => {
+           result += `${e}`
+        if( (index/4) % 1 === 0 ){
+            result += "\n"
+        }
+           if(index !== amen_titles.length - 1){
+               result += " . "
+           }
+       })
+      
+       return result
+    }
+    const styleImg = {
+        dots: true,
+        fade: false,
+        infinite: true,
+        speed: 1000,
+        slidesToShow: 1,
+        arrows: true,
+        slidesToScroll: 1,
+        autoplay: false,
+        className: "ImgSlides"
     }
 
     return (
-
-    
-        <div>
-            <h4>{place.name}</h4>
-            <h4>{place.address ? place.address.street : null }</h4>
-            <h4>Capacity: {place.capacity}</h4>
-            <h4>Price: ${place.price}</h4>
-            {display_images()}
-            <a href={`/places/` + place.id}>View this place</a>
-            <br />
-            <br />
-
-
+        <div className="display_places">
+            <div className="display_imgs">
+            <div className="likeIcon"> <i className="far fa-heart IconHeart"></i></div>
+                <Sliders {...styleImg}>
+                   {display_images()}
+                </Sliders>
+            </div>
+            <div className="display_info">
+                <p className="p_head_kind">{place.category.title}</p>
+                <p className="p_head_rate"> <i className="fa fa-star starclass"></i> 4.52 (6589)</p>
+                <p className="p_head_title">{place.name}</p>
+                <p className="p_head_info"> {space_features()}</p>
+                <p className="p_head_price"> <b>${place.price}</b> / hour</p>
+            </div>
         </div>
     )
 }

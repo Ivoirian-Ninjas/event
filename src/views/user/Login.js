@@ -9,6 +9,8 @@ import img6 from '../../assets/svg/6.svg'
 import img7 from '../../assets/svg/7.svg'
 import profile from '../../assets/svg/profile.svg'
 import slider from '../../components/slider'
+import bimg from "../../assets/img/Last/Backgroun-large1.png"
+
 let dialogStyles = {
     width: "90%",
     maxWidth: "100%",
@@ -24,7 +26,7 @@ let dialogStyles = {
     display: "flex",
     flexDirection: "column",
     boxShadow: "0 1px 1.5rem rgba(0, 0, 0, 0.5)",
-    // backgroundImage: "url("+ ../../assets/img/Last/Backgroun-large1.png+")"
+    backgroundImage: "url("+bimg+")"
 }
 let dialogCloseButtonStyle = {
     marginBottom: "15px",

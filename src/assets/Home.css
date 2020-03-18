@@ -190,7 +190,6 @@
         height: 42px;
         line-height: 22px;
         font-family: "Helvetica";
-        border-radius: 5px;
         border-width: 1px;
         display: inline-block;
         color: #fff;
@@ -250,10 +249,9 @@
         width: 15%;
         font-size: 18px;
         margin: 5px;
-        height: 42px;
+        padding: 10px 25px;
         line-height: 22px;
         font-family: "Helvetica";
-        border-radius: 5px;
         border-width: 1px;
         display: inline-block;
         color: #fff;
@@ -265,6 +263,7 @@
         cursor: pointer;
         border: 1px solid transparent;
         transition: ease-in-out 0.3s;
+        text-decoration: none;
     }
     .ButtonCategorie:hover {
         background: #570b5a;
