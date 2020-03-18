@@ -25,7 +25,7 @@ export default class Step8 extends Component {
                             <label className="LabelStepOne">Choose you cancelation policy</label>
                             <div className="">
                                 <div className="">
-                                    <input type="checkbox" id="cancelFlex" name="flex" onChange={this.props.handlePolicy}/>
+                                    <input type="checkbox" id="cancelFlex" name="Flexible" onChange={this.props.handlePolicy}/>
                                     <label htmlFor="cancelFlex" className="InfoStepFour">
                                         <h4 className="TextHelps">Flexible:</h4>
                                         <ul className="Helps">
@@ -42,7 +42,7 @@ export default class Step8 extends Component {
                                     </label> 
                                 </div>
                                 <div className="">
-                                    <input type="checkbox" id="cancelModerate" name="moderate" onChange={this.props.handlePolicy}/>
+                                    <input type="checkbox" id="cancelModerate" name="Moderate" onChange={this.props.handlePolicy}/>
                                     <label htmlFor="cancelModerate" className="InfoStepFour"> 
                                         <h4 className="TextHelps">Moderate:</h4>
                                         <ul className="Helps">
@@ -59,7 +59,7 @@ export default class Step8 extends Component {
                                     </label>
                                 </div>
                                 <div>
-                                    <input type="checkbox" id="cancelStrict" name="strict" onChange={this.props.handlePolicy}/>
+                                    <input type="checkbox" id="cancelStrict" name="Strict" onChange={this.props.handlePolicy}/>
                                     <label htmlFor="cancelStrict" className="InfoStepFour"> 
                                         <h4 className="TextHelps">Strict:</h4>
                                         <ul className="Helps">

@@ -26,6 +26,7 @@ import "../../assets/newplace.css"
             country: '',
             region: "",
             state: "", 
+            city: "",
             zipCode: "",
             parkDesc: "", 
             placeDesc: "",
@@ -73,21 +74,12 @@ import "../../assets/newplace.css"
     }
 
     handleFileChange = event => {
-        // console.log(event.target.files[0])
-        event.persist()
-       const images = document.querySelectorAll("img.previewImg")
-       const inputs = document.querySelectorAll("input[type='file']")
-
-        this.setState(state => ({images: [...state.images,event.target.files[0]]}) )
-console.log(event.target.files[0])
-      if (event.target.files[0]) {
-        // this function will display all the images selected
-       this.preview_image(event.target.files[0],event.target.parentNode)
-    console.log(event.target.parentNode)
-      } 
-
-
-
+        event.persist()   
+        if (event.target.files[0]) {
+            this.setState(state => ({images: [...state.images,event.target.files[0]]}) , () => console.log(this.state.images))
+            // this function will display all the images selected
+            this.preview_image(event.target.files[0],event.target.parentNode)
+        } 
     }
 
     preview_image = (file,parent) =>{
@@ -136,7 +128,7 @@ console.log(event.target.files[0])
 
     }
     handlePolicy = (event) => {
-        this.setState({ [event.target.name]: event.target.value }) 
+        this.setState({ policy: event.target.name }) 
        const policies =  [document.querySelector("#cancelFlex"),document.querySelector("#cancelModerate"),document.querySelector("#cancelStrict")]
        policies.forEach(e => {
            if(e && e.name !== event.target.name){
@@ -181,18 +173,18 @@ console.log(event.target.files[0])
         input.type = 'file'
         input.name = 'images'
         input.style.height = "0px" 
-        input.style.width = "0px"
+        input.style.width = "0px"        
+        input.accept = "image/x-png,image/gif,image/jpeg"
         input.addEventListener ('change',event =>{
             console.log(event.target.files[0])
                 this.setState(state => ({images: [...state.images,event.target.files[0]]}) )
                 this.preview_image(event.target.files[0],event.target.parentNode)
 
         })
-        input.accept = "image/x-png,image/gif,image/jpeg"
 
         const btn_upload = document.createElement('button')
         console.log(btn_upload)
-        btn_upload.classList.add("UploadFile")
+        btn_upload.classList.add("UploadFile")   
         // Clicking on this button will click on the input file.
         btn_upload.addEventListener("click",e => input.click() )
         const icons = document.createElement("i")
@@ -201,17 +193,6 @@ console.log(event.target.files[0])
         btn_upload.append("Select image ")
         btn_upload.appendChild(icons)
 
-        console.log(input)
-        input.type = 'file'
-        input.name = 'images'
-
-        input.addEventListener ('change',event =>{
-            console.log(event.target.files[0])
-                this.setState(state => ({images: [...state.images,event.target.files[0]]}) )
-                this.preview_image(event.target.files[0],event.target.parentNode)
-
-        })
-        input.accept = "image/x-png,image/gif,image/jpeg"
         direct_div.appendChild(input)
         direct_div.appendChild(btn_upload)
         second_div.appendChild(direct_div)

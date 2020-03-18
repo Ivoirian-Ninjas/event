@@ -19,6 +19,7 @@ export default function add_places(place){
         fd.append('address[zipCode]',place.zipCode)
         fd.append('address[street]',place.street)
         fd.append('address[aptNumber]',place.aptNumber)
+        fd.append('address[city]',place.city)
 
         //schedule
         fd.append('schedule[s_day]',place.s_day)
@@ -27,7 +28,7 @@ export default function add_places(place){
         fd.append('schedule[e_Time]',place.time[1])
 
         //rules 
-        fd.append('rule[rules]', place.rules)
+        fd.append('rule[content]', place.rules)
 
         //parking 
         fd.append('parking[description]',place.parkDesc)
@@ -38,12 +39,12 @@ export default function add_places(place){
         //cancellation 
         fd.append('policy[genre]', place.policy)
 
-
         //amenities
         place.amenities.forEach( e=> fd.append('amenities[]',e) )
 
         //images
         place.images.forEach( e=> fd.append('images[]',e) )
+
 
        
 

@@ -18,15 +18,15 @@ export default class Step4 extends Component {
                 </div>
                     
                     <div className="DivStepOne">
-                        <input type="checkbox" id="cbwifi" name="wifi" onChange={this.props.handleAmen}/> 
+                        <input type="checkbox" id="cbwifi" name="Wifi" onChange={this.props.handleAmen}/> 
                         <label htmlFor="cbwifi" className="InfoStepFour"> Wifi </label>
                     </div>
                     <div className="DivStepOne">
-                        <input type="checkbox" id="cblight" name="lightning" onChange={this.props.handleAmen}/>
+                        <input type="checkbox" id="cblight" name="Lightning" onChange={this.props.handleAmen}/>
                         <label htmlFor="cblight" className="InfoStepFour">Lightning</label>
                     </div>
                     <div className="DivStepOne">
-                        <input type="checkbox" id="cbdj" name="dj" onChange={this.props.handleAmen} />
+                        <input type="checkbox" id="cbdj" name="Dj" onChange={this.props.handleAmen} />
                         <label  htmlFor="cbdj" className="InfoStepFour">Dj</label>
                     </div>
                     <div className="DivStepOne">
@@ -34,24 +34,24 @@ export default class Step4 extends Component {
                         <label  htmlFor="cbcdt" className="InfoStepFour">Air conditioning</label>
                     </div>
                     <div className="DivStepOne">
-                        <input type="checkbox" id="cbheat" name="heat" onChange={this.props.handleAmen}/>
+                        <input type="checkbox" id="cbheat" name="Heat" onChange={this.props.handleAmen}/>
                         <label  htmlFor="cbheat" className="InfoStepFour">Heat</label>
                     </div>
                     <h2>Safety & Security amenities</h2>
                     <div className="DivStepOne">
-                        <input type="checkbox" id="cbfire" name="extinguisher" onChange={this.props.handleAmen}/>
+                        <input type="checkbox" id="cbfire" name="Extinguisher" onChange={this.props.handleAmen}/>
                         <label  htmlFor="cbfire" className="InfoStepFour">Fire extinguisher</label>
                     </div>
                     <div className="DivStepOne">
-                        <input type="checkbox" id="cbsmoke" name="smoke_detector" onChange={this.props.handleAmen}/>
+                        <input type="checkbox" id="cbsmoke" name="Smoke detector" onChange={this.props.handleAmen}/>
                         <label  htmlFor="cbsmoke" className="InfoStepFour">Smoke detector</label>
                     </div>
                     <div className="DivStepOne">
-                        <input type="checkbox" id="cbfak"  name="first_aid" onChange={this.props.handleAmen}/>
+                        <input type="checkbox" id="cbfak"  name="First aid" onChange={this.props.handleAmen}/>
                         <label  htmlFor="cbfak" className="InfoStepFour">First aid kit</label>
                     </div>
                     <div className="DivStepOne">
-                        <input type="checkbox" id="cbsec" name="guard" onChange={this.props.handleAmen}/>
+                        <input type="checkbox" id="cbsec" name="Guard" onChange={this.props.handleAmen}/>
                         <label  htmlFor="cbsec" className="InfoStepFour">Security guards</label>
                     </div>
                     <p className="ButtonStepOne">

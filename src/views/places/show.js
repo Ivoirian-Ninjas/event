@@ -27,15 +27,25 @@ export default class show extends Component {
         .then(resp => resp.json() )
         .then(json => {
             console.log(json)
-            this.setState({place: json.place, disabled_days: json.disabled_days}) } )     
+            this.setState({place: json.place, disabled_days: json.disabled_days, address:json.address, rule: json.rule, schedule: json.schedule, amenities: json.amenities, parking: json.parking, cancelation: json.cancelation }) } )     
     }
+
+    display_amen =() => this.state.amenities.map(e => <li key={e.title}>{e.title}</li>)
+
    
     state = {
         disabled_days: [],
         place: {},
+        address: {},
         date: new Date(),
         start_time: '',
-        end_time: ''
+        end_time: '',
+        rule: '',
+        schedule: '',
+        amenities: [],
+        parking: {},
+        cancelation: {}
+
       }
       s_change_time = time => this.setState({start_time: time})
       e_change_time = time => this.setState({end_time: time})
@@ -74,8 +84,35 @@ export default class show extends Component {
         return (
         <div className='PageConteneur'>
            
-           <h1>This is the show page</h1>
-            <h1>About {this.state.place ? this.state.place.name : null} </h1>
+           <h1>{this.state.place ? this.state.place.name : null}</h1>
+           <address>
+                    {this.state.address ? this.state.address.country : null} {this.state.address ? this.state.address.state : null}  {this.state.address ? this.state.address.city : null} 
+            </address>
+
+           <div>   
+            <h4>Reviews</h4>
+                4.93  | 330 reviews
+                {/* show the first 5 reviews */}
+            </div>
+
+
+            <div> 
+                <h4>About </h4>
+                <p>{this.state.place.description}</p>
+            </div>
+
+            <div> 
+                <h4>Amenities</h4>
+                <ul>
+                     {this.display_amen()}
+                </ul>
+            </div>
+
+            <div>
+                <h4>Availability</h4>
+                <p>{this.state.schedule.s_day} - {this.state.schedule.e_day}</p>
+                <p>From {this.state.schedule.s_Time} to {this.state.schedule.e_Time} </p>
+            </div>
            <div height='700' width='700'>
     
                 <DatePicker onClick={() => {
@@ -100,16 +137,43 @@ export default class show extends Component {
                     minDate={new Date() }
 
                 />
+                <br />
 
                 <TimePicker  onChange={this.s_change_time} value={this.state.start_time}/> <TimePicker  onChange={this.e_change_time} value={this.state.end_time}/>
                 <button onClick={this.book}>Book this place</button>
                 
            </div>
-            <h1>Location </h1>
-            <h1> Rules </h1>
-              {/**Add pagination for reviews */}  
-           <h1>Reviews</h1>
-              4.93  | 330 reviews
+            <div>
+                <h4>Parking</h4>
+                {this.state.parking ? this.state.parking.description : null}
+            </div>
+           <div>
+                <h4>Host rules </h4>
+                {this.state.rule ? this.state.rule.content : null}          
+            </div>
+
+           <div>
+            <h4>Location </h4>
+                          
+                <p>
+                    {this.state.address ? this.state.address.country : null} {this.state.address ? this.state.address.state : null} 
+                    {this.state.address ? this.state.address.city : null}
+                </p>
+
+                    {/**Add map here */}
+            </div>
+
+            <div> 
+                <h4>Cancellation Policy</h4>
+                {this.state.cancelation ? this.state.cancelation.genre : null}
+                <p>{ this.state.cancelation ? this.state.cancelation.content: null}</p>
+            </div>
+
+          
+            <div>
+                <h4>Similar places</h4>
+                {/* {show similar places} */}
+            </div>
        </div>
         )
     }

@@ -23,11 +23,10 @@ class PlacesController < ApplicationController
             # this is the format needed for the date picker March 1, 2020
             disabled_days << date.strftime("%B %d, %Y")  if total >= 20.0
         end
-        render json: {place: place, disabled_days: disabled_days}
+        render json: {place: place, address: place.address, disabled_days: disabled_days, rule: place.rule, schedule: place.schedule, amenities: place.amenities, parking: place.parking, cancelation: place.cancelation_policy}
     end
 
     def book
-        # binding.pry 
         ###################################################################################################
         # THIS IS ALL THE DATA NEEDED FOR THE CREATTION OF A BOOKING REQUEST
         place_id = params.require('place').permit('id')[:id]
@@ -55,19 +54,13 @@ class PlacesController < ApplicationController
 
     def create 
         user = User.find( params.permit(:user_id)[:user_id] )
-    #    these are the value of the params
-    #    name = params.require(:place).permit(:name)[:name]
-    #    address = params.require(:place).permit(:address)[:address]
-    #    capacity = params.require(:place).permit(:capacity)[:capacity]
-    #    price = params.require(:place).permit(:price)[:price]
        images = params.require(:images)
-
-        place = user.places.create(place_params)
+       place = user.places.create(place_params)
+        binding.pry
         # binding.pry
-
-        category = Category.find_or_create_by(title: category_params[:title], user: user)
-        place.category = category
-        if place 
+        category = Category.find_or_create_by(title: category_params[:title])
+        category.places << place
+        if place
             images.each do |el| 
                 image = Image.new(file: el,place: place)
 
@@ -77,12 +70,13 @@ class PlacesController < ApplicationController
                 end
 
             end
-            place.schedule = Schedule.create(schedule_params);place.cancelation_policy =CancelationPolicy.find_or_create_by(genre: policy_params[:genre]);
-            place.parking = Parking.create(parking_params); place.address = Address.create(address_params)
+            place.schedule = Schedule.create(schedule_params);cancelation_policy =  CancelationPolicy.find_by(genre: policy_params[:genre]); cancelation_policy.places << place;
+            # binding.pry
+            place.parking= Parking.create(description: parking_params[:description], place: place); place.address = Address.create(address_params); place.rule = Rule.create(rules_params)
+
             amenity_params.each do |amenity| 
                 found_amenity =  Amenity.find_or_create_by(title: amenity); 
                 amenity_places = AmenityPlace.create(place: place, amenity: found_amenity)  
-                
             end
         end
         render json: {places: PlaceSerializer.new(user.places.sort_by(&:created_at)) } 

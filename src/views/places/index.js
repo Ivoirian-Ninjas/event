@@ -10,12 +10,11 @@ import { connect } from 'react-redux';
          fetch('http://localhost:3000/places')
          .then(resp => resp.json())
          .then(json =>{ 
-             console.log(json)
-            const places =  json.places.map(e=>e.data.attributes)
-
-                          this.props.get_places(places) 
-                     })
-     } 
+                    console.log(json)
+                    const places =  json.places.map(e=>e.data.attributes)
+                    this.props.get_places(places) 
+            })
+        } 
 
     display_places = () => {
         console.log(this.props.places)

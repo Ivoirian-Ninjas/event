@@ -1,3 +1,3 @@
 class CancelationPolicy < ApplicationRecord
-    has_many :place
+    has_many :places
 end

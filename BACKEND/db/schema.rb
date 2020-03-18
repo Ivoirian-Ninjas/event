@@ -48,9 +48,6 @@ ActiveRecord::Schema.define(version: 2020_03_05_204540) do
   create_table "amenities", force: :cascade do |t|
     t.string "title"
     t.string "icon"
-<<<<<<< HEAD
-    t.integer "place_id"
-=======
     t.integer "amenity_place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -59,7 +56,6 @@ ActiveRecord::Schema.define(version: 2020_03_05_204540) do
   create_table "amenity_places", force: :cascade do |t|
     t.integer "place_id"
     t.integer "amenity_id"
->>>>>>> d08bc1f12804de80ddf59610b7846875bc953906
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -83,6 +79,7 @@ ActiveRecord::Schema.define(version: 2020_03_05_204540) do
 
   create_table "cancelation_policies", force: :cascade do |t|
     t.string "genre"
+    t.text "content"
     t.text "policy"
     t.integer "place_id"
     t.datetime "created_at", null: false
@@ -151,6 +148,7 @@ ActiveRecord::Schema.define(version: 2020_03_05_204540) do
     t.integer "user_id"
     t.integer "cancelation_policy_id"
     t.integer "amenity_place_id"
+    t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -165,7 +163,6 @@ ActiveRecord::Schema.define(version: 2020_03_05_204540) do
   end
 
   create_table "rules", force: :cascade do |t|
-    t.string "title"
     t.text "content"
     t.integer "place_id"
     t.datetime "created_at", null: false

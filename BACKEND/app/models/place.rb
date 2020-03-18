@@ -2,7 +2,7 @@ class Place < ApplicationRecord
     belongs_to :user
     has_many :amenity_places
     has_many :amenities, through: :amenity_places    
-    has_many :rules
+    has_one :rule
     has_many :reviews 
     has_many :images
     has_one :address

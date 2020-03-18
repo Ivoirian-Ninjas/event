@@ -26,7 +26,7 @@ import SignUpUser from '../actions/SignUpUser'
   }
   state = {
     email: '',
-    password_digest: '',
+    password: '',
     password_confirm: '',
     name:'',
     isOpen: false,
@@ -44,7 +44,15 @@ import SignUpUser from '../actions/SignUpUser'
   handleSubmit = event => {
     event.preventDefault()
     if (this.state.isOpen1 ){
-      this.state.password_digest === this.state.password_confirm ? this.props.SignUpUser(this.state) :console.log("The passwords do not match")
+      if(this.state.password === this.state.password_confirm) {
+            const user = { email: this.state.email,
+                          password: this.state.password,
+                          name: this.state.name,
+                          admin: this.state.admin
+
+                        }
+              this.props.SignUpUser(user) 
+            } else{console.log("The passwords do not match") }
     }
     else if(this.state.isOpen){
       this.props.SignInUser(this.state)
@@ -109,7 +117,7 @@ handleChange = event => this.setState({[event.target.name]: event.target.value }
 
                         <div className="ChampsDiv">
                             <i className="fas fa-lock"></i>
-                            <input type='password' placeholder="Password..." name='password_digest' id='password_digest' onChange={this.handleChange}/>
+                            <input type='password' placeholder="Password..." name='password' id='password' onChange={this.handleChange}/>
                             <span className="bar"></span>
                         </div>
                         
@@ -131,7 +139,7 @@ handleChange = event => this.setState({[event.target.name]: event.target.value }
                     <form onSubmit={this.handleSubmit} className="FormSign">
                         <div className="ChampsGroup">
                             <i className="fas fa-user"></i>
-                            <input type='text' placeholder="Username..." name='name' id='name' onChange={this.handleChange}/>
+                            <input type='text' placeholder="John Doe" name='name' id='name' onChange={this.handleChange}/>
                             <span className="bar"></span>
                         </div>
 
@@ -143,7 +151,7 @@ handleChange = event => this.setState({[event.target.name]: event.target.value }
                         <Errors />
                         <div className="ChampsGroup">
                             <i className="fas fa-lock"></i>
-                            <input type='password' placeholder="Password..." name='password_digest' id='password_digest' onChange={this.handleChange}/>
+                            <input type='password' placeholder="Password..." name='password' id='password' onChange={this.handleChange}/>
                             <span className="bar"></span>
                         </div>
 

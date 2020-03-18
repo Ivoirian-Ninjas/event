@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
     def create 
         # binding.pry
-        user = User.create( name: params.require(:user).permit(:name)[:name],email: params.require(:user).permit(:email)[:email],password: params.require(:user).permit(:password_digest)[:password_digest],admin:params.require(:user).permit(:admin)[:admin] )
+        user = User.create( user_params )
         if user.valid?  
             render json:  {user: user}
         else
@@ -27,5 +27,10 @@ class UsersController < ApplicationController
     def show 
         user = User.find(params.permit(:id)[:id] )
         render json: user if user
+    end
+
+    private 
+    def user_params
+        params.require(:user).permit!
     end
 end
