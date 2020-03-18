@@ -292,9 +292,12 @@
     margin: 5px;
     border-radius: 50% !important;
     cursor: pointer;
+    transition:0.3s;
 }
 .likeIcon:hover{
     background: rgb(255, 255, 255);
+    transform: scale(1.1);
+    transition:0.3s;
 }
 .IconHeart{
     color:black;
