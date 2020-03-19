@@ -109,8 +109,10 @@ import "../../assets/newplace.css"
 
           divImage.appendChild(img)
           divImage.appendChild(spanX)
-          spanX.addEventListener("click", () => { 
-            //remove the file from the array of images 
+          spanX.addEventListener("click", () => {
+            parent.parentNode.remove() 
+
+            //remove the file from the array of images
             this.setState( state => state.images = [...state.images].filter(e => e !== file) , () => console.log(this.state.images))
             const inputs = document.querySelectorAll(`input[type="file"]`)
            inputs.forEach(e => {
@@ -159,7 +161,7 @@ import "../../assets/newplace.css"
         const div = document.querySelector("div.images")
 
         const first_div = document.querySelector("div.inputImg")
-        // first_div.classList.add("inputImg")
+        first_div.classList.add("inputImg")
 
         const second_div = document.createElement("div")
         second_div.classList.add("imgContainer")
@@ -170,11 +172,9 @@ import "../../assets/newplace.css"
         const input  =  document.createElement('input')
         input.type = 'file'
         input.name = 'images'
-
         input.style.height = "0px" 
         input.style.width = "0px"        
         input.accept = "image/x-png,image/gif,image/jpeg"
-
         input.addEventListener ('change',event =>{
             console.log(event.target.files[0])
                 this.setState(state => ({images: [...state.images,event.target.files[0]]}) )
@@ -186,7 +186,7 @@ import "../../assets/newplace.css"
         console.log(btn_upload)
         btn_upload.classList.add("UploadFile")   
         // Clicking on this button will click on the input file.
-        btn_upload.addEventListener("click",e => input.click())
+        btn_upload.addEventListener("click",e => input.click() )
         const icons = document.createElement("i")
         icons.classList.add("fa")
         icons.classList.add("fa-image")
@@ -199,6 +199,7 @@ import "../../assets/newplace.css"
         first_div.appendChild(second_div)
         div.appendChild(first_div)
     }
+   
 
     render() {
         return (
