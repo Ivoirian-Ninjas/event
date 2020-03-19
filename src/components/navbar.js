@@ -162,7 +162,7 @@ handleChange = event => this.setState({[event.target.name]: event.target.value }
                         </div>
 
                         <div className="ChampsGroup">
-                            <label>Admin?</label>
+                            <label>Start Hosting?</label>
                             <input type='checkbox' name='admin' id='admin' onChange={this.handleChange}/>
                         </div>
                                

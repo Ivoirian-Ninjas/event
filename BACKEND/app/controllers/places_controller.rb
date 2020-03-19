@@ -70,13 +70,13 @@ class PlacesController < ApplicationController
                 end
 
             end
-            place.schedule = Schedule.create(schedule_params);cancelation_policy =  CancelationPolicy.find_by(genre: policy_params[:genre]); cancelation_policy.places << place;
+            place.schedule = Schedule.create!(schedule_params);cancelation_policy =  CancelationPolicy.find_by(genre: policy_params[:genre]); cancelation_policy.places << place;
             # binding.pry
-            place.parking= Parking.create(description: parking_params[:description], place: place); place.address = Address.create(address_params); place.rule = Rule.create(rules_params)
+            place.parking= Parking.create!(parking_params); place.address = Address.create!(address_params); place.rule = Rule.create!(rules_params)
 
             amenity_params.each do |amenity| 
                 found_amenity =  Amenity.find_or_create_by(title: amenity); 
-                amenity_places = AmenityPlace.create(place: place, amenity: found_amenity)  
+                place.amenities << found_amenity
             end
         end
         render json: {places: PlaceSerializer.new(user.places.sort_by(&:created_at)) } 

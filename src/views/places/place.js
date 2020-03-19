@@ -40,19 +40,22 @@ export default function place({place}) {
 
     return (
         <div className="display_places">
-            <div className="display_imgs">
-            <div className="likeIcon"> <i className="far fa-heart IconHeart"></i></div>
-                <Sliders {...styleImg}>
-                   {display_images()}
-                </Sliders>
-            </div>
-            <div className="display_info">
-                <p className="p_head_kind">{place.category.title}</p>
-                <p className="p_head_rate"> <i className="fa fa-star starclass"></i> 4.52 (6589)</p>
-                <p className="p_head_title">{place.name}</p>
-                <p className="p_head_info"> {space_features()}</p>
-                <p className="p_head_price"> <b>${place.price}</b> / hour</p>
-            </div>
-        </div>
+                <div className="display_imgs">
+                <div className="likeIcon"> <i className="far fa-heart IconHeart"></i></div>
+                    <Sliders {...styleImg}>
+                    {display_images()}
+                    </Sliders>
+                </div>
+                <div className="display_info">
+                    <p className="p_head_kind">{place.category.title}</p>
+                    <p className="p_head_rate"> <i className="fa fa-star starclass"></i> 4.52 (6589)</p>
+                    <p className="p_head_title">{place.name}</p>
+                    <p className="p_head_info"> {space_features()}</p>
+                    <p className="p_head_price"> <b>${place.price}</b> / hour</p>
+                    <p className="p_head_rate"><a href={`/places/${place.id}`}>More info</a></p>
+                </div>            
+        </div>           
+        
+
     )
 }
