@@ -14,15 +14,20 @@
 .inputImg{
      /* border:1px solid gold; */
    /* background: red; */
-    margin: 15px;
-    display: inline-block;
-    width: 40%;
+    margin:5px;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
 
     /* display: block; */
 }
 .imgContainer{
     /* border:1px solid rgba(25, 219, 25, 0.959); */
-    margin: 5px;
+    margin: 15px;
+    display: inline-block;
+    width: 40%;
 }
 .imgInput{
     /* border:1px solid rgba(219, 25, 25, 0.959); */

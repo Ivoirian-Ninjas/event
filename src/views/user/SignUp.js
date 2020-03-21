@@ -6,6 +6,7 @@ import '../../assets/fontawesome-free-5.11.2-web/css/all.css'
 import Errors from '../../components/errors'
 import display_errors from '../../helper/display_errors'
 import Login from './Login'
+import bimg from "../../assets/img/Last/Backgroun-large1.png"
 
 let dialogStyles = {
     width: "90%",
@@ -23,7 +24,8 @@ let dialogStyles = {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    boxShadow: "0 1px 1.5rem rgba(0, 0, 0, 0.5)"
+    boxShadow: "0 1px 1.5rem rgba(0, 0, 0, 0.5)",
+    backgroundImage: "url("+bimg+")"
 }
 let dialogCloseButtonStyle = {
     marginBottom: "15px",

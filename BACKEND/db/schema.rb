@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2020_03_18_222620) do
   create_table "amenities", force: :cascade do |t|
     t.string "title"
     t.string "icon"
+    t.integer "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -57,6 +58,13 @@ ActiveRecord::Schema.define(version: 2020_03_18_222620) do
     t.integer "place_id"
     t.index ["amenity_id"], name: "index_amenities_places_on_amenity_id"
     t.index ["place_id"], name: "index_amenities_places_on_place_id"
+  end
+
+  create_table "amenity_places", force: :cascade do |t|
+    t.integer "place_id"
+    t.integer "amenity_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "bookings", force: :cascade do |t|
@@ -77,9 +85,15 @@ ActiveRecord::Schema.define(version: 2020_03_18_222620) do
   end
 
   create_table "cancelation_policies", force: :cascade do |t|
-    t.string "genre"
-    t.text "content"
+    t.string "type"
     t.text "policy"
+    t.integer "cancelpolicy_place_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cancelpolicy_places", force: :cascade do |t|
+    t.integer "cancelation_policy_id"
     t.integer "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -95,6 +109,8 @@ ActiveRecord::Schema.define(version: 2020_03_18_222620) do
 
   create_table "categories", force: :cascade do |t|
     t.string "title"
+    t.integer "place_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -102,6 +118,13 @@ ActiveRecord::Schema.define(version: 2020_03_18_222620) do
   create_table "conversations", force: :cascade do |t|
     t.integer "receiver_id"
     t.integer "sender_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "favorite_places", force: :cascade do |t|
+    t.integer "place_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -120,7 +143,8 @@ ActiveRecord::Schema.define(version: 2020_03_18_222620) do
 
   create_table "messages", force: :cascade do |t|
     t.string "content"
-    t.string "conversation_id"
+    t.integer "sender_id"
+    t.integer "receiver_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -134,14 +158,12 @@ ActiveRecord::Schema.define(version: 2020_03_18_222620) do
 
   create_table "places", force: :cascade do |t|
     t.string "name"
-    t.text "description"
+    t.string "address"
     t.float "price"
     t.float "ratings"
     t.integer "capacity"
     t.integer "number_view"
     t.integer "user_id"
-    t.integer "cancelation_policy_id"
-    t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -156,6 +178,7 @@ ActiveRecord::Schema.define(version: 2020_03_18_222620) do
   end
 
   create_table "rules", force: :cascade do |t|
+    t.string "title"
     t.text "content"
     t.integer "place_id"
     t.datetime "created_at", null: false
@@ -167,6 +190,15 @@ ActiveRecord::Schema.define(version: 2020_03_18_222620) do
     t.time "e_Time"
     t.string "s_day"
     t.string "e_day"
+    t.integer "place_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "service_offereds", force: :cascade do |t|
+    t.string "name"
+    t.string "icon"
+    t.text "description"
     t.integer "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

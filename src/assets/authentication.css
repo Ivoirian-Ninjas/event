@@ -63,7 +63,9 @@ body{
     display: flex;
     align-items: baseline;
 }
-.ChampsGroup input{
+.ChampsGroup input[type="text"],
+.ChampsGroup input[type="password"],
+.ChampsGroup input[type="email"]{
     position: relative;
     width: 100%;
     padding: 1rem 0;

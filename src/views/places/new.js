@@ -161,7 +161,7 @@ import "../../assets/newplace.css"
         const div = document.querySelector("div.images")
 
         const first_div = document.querySelector("div.inputImg")
-        first_div.classList.add("inputImg")
+        // first_div.classList.add("inputImg")
 
         const second_div = document.createElement("div")
         second_div.classList.add("imgContainer")

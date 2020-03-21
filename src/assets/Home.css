@@ -86,10 +86,9 @@
     }
     .searchContenu{
         width: 70%;
-        background: rgba(255, 255, 255, 0.856);
+        background: rgba(255, 255, 255, 0.952);
         margin-top: 7%;
         padding: 10px;
-        border-radius: 1rem;
 
         /* text-align: center;
         justify-content: center; */
@@ -205,72 +204,343 @@
     .searchEvent:hover{
         background-color: #720880;
     }
-    .CategorieEvent{
+    .premium{
         width: 100%;
-        /* display: flex;
-        justify-content: center;
-        align-items: center; */
-        text-align: center;
         padding-top: 4rem;
-        background: rgb(243, 243, 243);
+        padding-left: 80px;
+        padding-right: 80px;
+        background: rgb(255, 255, 255);
     }
-    .H1Categorie{
-        font-family: Calibri;
-        font-weight: normal;
-        font-size: 4rem;
-        color: #39393a;
+    .text_premium{
+        font-weight: 600;
+        margin-bottom: 0px;
+        font-size: 22px;
+        line-height: 26px;
+        color: rgb(34, 34, 34);
+        font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    }
+    .little_text_premium{
+        font-size: 16px;
+        line-height: 24px;
+        margin-top: 4px;
+        color: rgb(34, 34, 34);
+        font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+        font-weight: 400;
+
+    }
+    .img_premium{
+        width: 100%;
+        height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .premium_img{
+        width: 100%;
+    }
+    .more_premium{
+        position: absolute; 
+        color: rgb(132, 13, 136);
+        background: rgb(255, 255, 255);
+        border-color: transparent !important;
+        cursor: pointer;
+        display: inline-block;
+        text-align: center;
+        text-decoration: none;
+        width: auto;
+        font-size: 12px;
+        line-height: 22px;
+        letter-spacing: normal;
+        font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        font-weight: 800;
+        box-shadow: none;
+        padding-left: 15px;
+        padding-right: 15px;
+        min-width: 48.541px;
+        margin: 0px !important;
+        border-width: 1px !important;
+        border-style: solid !important;
+        transition: 0.3s;
+    }
+    .more_premium:hover{
+        color: #fff;
+        background: rgb(132, 13, 136);
+        font-weight: 800;
+        transition: 0.3s;
+    }
+    .most_search_btn{
+        position: absolute; 
+        color: rgb(255, 255, 255);
+        background: transparent;
+        border:none;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 25px;
+        line-height: 25px;
+        width: 20%;
+        height: 12%;
+        letter-spacing: normal;
+        font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        font-weight: 600;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin: 0px !important;
+        text-align: left;
+        text-shadow: 2px 2px 2px rgb(32, 32, 32);
     }
     .TypeCategorie{
         width: 100%;
-
         text-align: center;
-        /* display: flex; */
         justify-content: center;
-        padding-top: 4rem;
+        padding-top: 8px;
+        display: flex;
     }
     .Categorie1{
-        width: 25%;
-        margin: 20px;
-        display: inline-block;
-    }
-    .Categorie1 img{
-        width: 100%;
-    }
-    .Categorie1 legend{
-        text-align: center;
-        background: #fff;
-        font-family: Calibri;
-        width: 100%;
-        font-size: 2rem;
-        font-weight: lighter;
-        padding: 4px;
-    }
-    .ButtonCategorie{
-        width: 15%;
-        font-size: 18px;
+        width: 32%;
+        height:230px;
         margin: 5px;
-        padding: 10px 25px;
-        line-height: 22px;
-        font-family: "Helvetica";
-        border-width: 1px;
+        display: flex;
+        overflow: hidden;
+    }
+    .img_most {
+        width: 100%;
+        height:100%;
+        transition: 0.5s;
+    }
+    .img_most:hover {
+        transform: scale(1.2);
+        transition: 0.5s;
+    }
+    .subscribe{
+        width: 48.2%;
+        border:1px solid rgb(206, 206, 206);
+        padding-left:15px;
         display: inline-block;
+        margin: 10px;
+        height: 150px;
+    }
+    .subscribe_text{
+        width: 65%;
+        height: 100%;
+        display: inline-block;
+        overflow: hidden;
+        padding: 10px;
+    }
+    .subscribe_img{
+        width: 35%;
+        height: 100%;
+        display: inline-block;
+        overflow: hidden;
+        border-radius: 100% 0 0 0;
+    }
+    .img_subscribe{
+        width: 100%;
+        height:100%;
+    }
+    .text_premium_sub{
+        font-weight: 600;
+        margin-top: 10px;
+        font-size: 22px;
+        line-height: 26px;
+        color: rgb(34, 34, 34);
+        font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    }
+    .subscribe_btn{
+        background: rgb(236, 21, 226);
+        padding: 6px 15px;
+        border:none;
         color: #fff;
-        background-color: #e02df8;
-        border-color: #e02df8;
-        margin-bottom: 0;
-        text-align: center;
-        touch-action: manipulation;
+        margin: 15px 15px 15px 15px;
         cursor: pointer;
-        border: 1px solid transparent;
-        transition: ease-in-out 0.3s;
-        text-decoration: none;
+        font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+        transition: 0.3s;
     }
-    .ButtonCategorie:hover {
-        background: #570b5a;
+    .subscribe_btn:hover{
+        color: rgb(236, 21, 226);
+        background: #fff;
+        border:1.5px solid rgb(236, 21, 226);
+        font-weight: bolder;
+        transition: 0.3s;
     }
-    /* .SlideControl{
-        animation: infinite;
-    } */
+    .some_place{
+        width: 100%;
+        display:inline-block;
+        margin-top: 10px;
+    }
+    .places{
+        width: 24%;
+        display: inline-block;
+        margin-right: 11px;
+        cursor:pointer
+    }
+    .places_img{
+        width: 100%;
+        height: 190px;
+        overflow: hidden;
+        border-radius: 5px;
+    }
+    .country_places{
+        width: 80%;
+        display: inline-block;
+        font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+        line-height: 18px;
+        font-size: 1.5rem;
+        color: rgb(156, 156, 156);
+        margin-top: 10px;
+    }
+    .rate_places{
+        width: 20%;
+        display: inline-block;
+        font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+        line-height: 18px;
+        font-size: 1.4rem;
+        color: rgb(56, 56, 56);
+        margin-top: 10px;
+    }
+    .etoiles{
+        color: rgb(240, 79, 255);
+        font-size: 1.2rem;
+    }
+    .name_places{
+        display: inline-block;
+        font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+        line-height: 20px;
+        font-size: 1.6rem;
+        width: 100%;
+        margin: 5px 0px;
+        font-weight: 400;
+        color:rgb(54, 54, 54);
+    }
+    .price_places{
+        font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;;
+        line-height: 20px;
+        font-size: 1.6rem;
+        width: 100%;
+        font-weight: 400;
+        color: rgb(46, 45, 45);
+    }
+    .img_places{
+        width: 100%;
+        height: 100%;
+        transition: 0.3s;
+    }
+    .img_places:hover{
+        transform: scale(1.2);
+        transition: 0.3s;
+    }
+    .show_more_places{
+        background:white;
+        padding: 7px 16px;
+        border:none;
+        color: rgb(214, 22, 221);
+        margin: 15px 15px 15px 15px;
+        cursor: pointer;
+        font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+        transition: 0.3s;
+        text-decoration: underline;
+        font-weight: 600;
+        font-size: medium;
+    }
+    .show_more_places:hover{
+        background: rgba(255, 45, 238, 0.945);
+        color: rgb(233, 233, 233);
+        transition: 0.3s;
+    }
+    .icon_plus{
+        font-size: smaller;
+    }
+    .first_kind {
+        width: 100%;
+        margin-top: 10px;
+    }
+    .second_kind {
+        width: 100%;
+        margin-top: 15px;
+    }
+    .big_one{
+        width: 68%;
+        display:inline-flex;
+        height: 400px;
+        cursor: pointer;
+        overflow: hidden;
+    }
+    .big_one_picture{
+        width: 100%;
+        height:100%;
+        transition:0.5s;
+    }
+    .big_one_picture:hover{
+        transform: scale(1.2);
+        transition:0.5s;
+    }
+    .big_one_text{
+        position: absolute;
+        z-index: 2;
+        font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;;
+        line-height: 20px;
+        font-size: 3rem;
+        color: #fff;
+        text-shadow: 2px 2px 2px rgb(32, 32, 32);
+        margin: 20px;
+    }
+    .small_one{
+        width: 30%;
+        margin-left: 23px;
+        display:inline-block;
+        cursor: pointer;
+        overflow: hidden;
+    }
+    .top_one{
+        width:100%;
+        height: 189px;
+        margin-bottom: 22px;
+        display: flex;
+        overflow: hidden;
+    }
+    .down_one {
+        width: 100%;
+        height: 189px;
+        display: flex;
+        overflow: hidden;
+    }
+    .big_ones {
+        width: 68%;
+        display: inline-flex;
+        height: 400px;
+        cursor: pointer;
+        overflow: hidden;
+        margin-left: 23px;
+    }
+    .small_ones {
+        width: 30%;
+        display: inline-block;
+        cursor: pointer;
+        overflow: hidden;
+    }
+    .show_more_kind {
+        background: white;
+        padding: 10px 20px;
+        border: none;
+        color: rgb(214, 22, 221);
+        margin: 15px 15px 15px 15px;
+        cursor: pointer;
+        font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+        transition: 0.3s;
+        text-decoration: underline;
+        font-weight: 600;
+        font-size: 1.8rem;
+    }
+
+    .show_more_kind:hover {
+        background: rgba(255, 45, 238, 0.945);
+        color: rgb(233, 233, 233);
+        transition: 0.3s;
+    }
     .SlideControl .slick-next{
         position: absolute;
         top:50%;
@@ -282,4 +552,13 @@
         top: 50%;
         z-index: 2000;
         left: 0;
+    }
+    .SlideControl .slick-dots{
+        bottom:0;
+    }
+    .SlideControl .slick-dots li.slick-active button:before {
+        color:rgba(255, 255, 255, 0.979);
+    }
+    .SlideControl .slick-dots li button:before{
+        color:rgba(255, 255, 255, 0.747);
     }
