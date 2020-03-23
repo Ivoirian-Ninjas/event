@@ -12,6 +12,7 @@ import Step7 from './listing/Step7'
 import Step8 from './listing/Step8'
 import Step9 from './listing/Step9'
 import "../../assets/newplace.css"
+import { isArray } from 'util';
 
  class New extends Component {
     constructor(){
@@ -53,7 +54,10 @@ import "../../assets/newplace.css"
                 height: "100%",
                 transition: "ease-in-out 0.3s"
             },
-            parking_available: "no"
+            parking_available: "no",
+
+            activities: []
+
 
         }
 
@@ -81,6 +85,14 @@ import "../../assets/newplace.css"
             this.preview_image(event.target.files[0],event.target.parentNode)
         } 
     }
+       
+      handleActivities =(newValue, actionMeta) => {
+          if( actionMeta.action !== 'remove-value' ){
+                this.setState(state => ({activities: [...newValue]}) )
+          }else{
+              this.setState(state => ({activities: [...state.activities].filter(e => e !== actionMeta.removedValue)}) )
+          }
+      }
 
     preview_image = (file,parent) =>{
        if( parent.querySelector("img") ){
@@ -208,7 +220,7 @@ import "../../assets/newplace.css"
                 <StepWizard>
                         <Step1 {...this.state} handleChange={this.handleChange} />
                         <Step2 {...this.state}  handleChange={this.handleChange}/>
-                        <Step3 {...this.state}  handleChange={this.handleChange} />  
+                        <Step3 {...this.state}  handleChange={this.handleChange} handleActivities={this.handleActivities}/>  
                         <Step4  {...this.state}  handleAmen={this.handleAmen} />
                         <Step5  {...this.state}   handleFileChange={this.handleFileChange} add_input={this.add_input} />
                         <Step6  {...this.state}  handleChange={this.handleChange} />

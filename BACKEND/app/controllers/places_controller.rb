@@ -53,11 +53,12 @@ class PlacesController < ApplicationController
     end
 
     def create 
+        binding.pry
+
         user = User.find( params.permit(:user_id)[:user_id] )
        images = params.require(:images)
        place = user.places.create(place_params)
-        binding.pry
-        # binding.pry
+
         category = Category.find_or_create_by(title: category_params[:title])
         category.places << place
         if place
@@ -70,6 +71,12 @@ class PlacesController < ApplicationController
                 end
 
             end
+
+            params.require(:activities).each do |e| 
+                activity = Activity.find_or_create_by(title: e) 
+                place.activities << activity
+            end
+
             place.schedule = Schedule.create!(schedule_params);cancelation_policy =  CancelationPolicy.find_by(genre: policy_params[:genre]); cancelation_policy.places << place;
             # binding.pry
             place.parking= Parking.create!(parking_params); place.address = Address.create!(address_params); place.rule = Rule.create!(rules_params)

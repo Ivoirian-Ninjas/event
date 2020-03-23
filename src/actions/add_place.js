@@ -42,14 +42,12 @@ export default function add_places(place){
         //amenities
         place.amenities.forEach( e=> fd.append('amenities[]',e) )
 
+        //activities 
+        place.activities.forEach(e => fd.append('activities[]',e.value))
+
         //images
         place.images.forEach( e=> fd.append('images[]',e) )
 
-
-       
-
-       
-          console.log(fd)
         const params = {
             method: 'POST', 
            body:fd 

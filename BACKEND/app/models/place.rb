@@ -1,6 +1,8 @@
 class Place < ApplicationRecord
     belongs_to :user
     has_and_belongs_to_many :amenities
+    has_and_belongs_to_many :activities
+
     has_one :rule
     has_many :reviews 
     has_many :images
