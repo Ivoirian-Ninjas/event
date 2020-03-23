@@ -1,0 +1,108 @@
+.footer_div{
+    width: 100%;
+    overflow: hidden;
+    background:rgb(12, 1, 17);
+    color: rgb(214, 204, 216);
+    display:block;
+    padding:50px 0px 20px 0px;
+    text-align: center;
+}
+.top_div_footer{
+    width: 100%;
+    display: flex;
+    text-align: left;
+    margin: 0px 40px 0px 80px;
+}
+.down_div_footer {
+    width: 100%;
+    display: inline-block;
+    border-top: 0.5px solid rgb(214, 204, 216);
+    width: 70%;
+    margin: 0px auto;
+    padding-top: 20px;
+}
+.top_div{
+    width: 25%;
+    display:inline-block;
+    cursor: pointer;
+    height: 300px;
+}
+.title_div{
+    cursor: auto;
+    width: 100%;
+    display: inline-block;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    line-height: 20px;
+    font-size: 1.6rem;
+    width: 100%;
+    margin: 5px 0px;
+    font-weight: 600;
+    color:rgb(214, 204, 216);
+    margin-bottom: 15px;
+}
+.link_div{
+    display: inline-block;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    line-height: 20px;
+    font-size: 1.4rem;
+    width: 100%;
+    margin: 5px 0px;
+    font-weight: 400;
+    color:rgb(238, 238, 238);
+    width: 100%;
+    transition:0.3s;
+}
+.link_div:hover{
+    text-decoration: underline;
+    transition:0.3s;
+}
+.link_down{
+    display: inline-block;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    line-height: 20px;
+    font-size: 1.2rem;
+    width: 100%;
+    margin: 5px 0px;
+    font-weight: 400;
+    color:rgba(238, 238, 238, 0.568);
+    transition:0.3s;
+    width: 12%;
+    text-decoration: none;
+}
+.link_down:hover{
+    color:rgb(238, 238, 238);
+    background: none;
+}
+.div_icon{
+    display: inline-block;
+    width: 100%;
+}
+.follow_us{
+    display: inline-block;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    line-height: 20px;
+    font-size: 1.2rem;
+    width: 100%;
+    margin: 5px 0px;
+    font-weight: 400;
+    color:rgba(238, 238, 238, 0.952);
+}
+.icone{
+    margin:10px;
+    color:#fff;
+    font-size:2rem;
+}
+.icone:hover{
+    color:rgb(238, 238, 238);
+    background: none;
+}
+.all_right{
+    display: inline-block;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    line-height: 20px;
+    font-size: 1.1rem;
+    width: 100%;
+    margin: 10px 0px;
+    font-weight: 400;
+    color:rgba(255, 255, 255, 0.952);
+}

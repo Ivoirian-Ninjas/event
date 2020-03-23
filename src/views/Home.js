@@ -3,6 +3,7 @@ import current_user from '../helper/current_user'
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import Slider from "react-slick"
+import Footer from "../components/footer"
 import "jquery"
 import '../assets/Home.css'
 import img1 from '../assets/img/Taille 1400 x 600/img/image1.jpg'
@@ -268,6 +269,9 @@ class Home extends Component {
                     </div>
                     <button className="show_more_kind">Show more kinds <i className="fa fa-plus icon_plus"></i></button>
                 </div>
+                <footer className="footer">
+                    <Footer/>
+                </footer>
             </div>
         )
     }
