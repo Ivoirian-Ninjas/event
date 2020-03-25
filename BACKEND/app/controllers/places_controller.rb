@@ -2,9 +2,17 @@
 
 class PlacesController < ApplicationController
     def index 
-        # binding.pry
+        query = params.except(:controller,:action,:place)
+
+    if query.keys.length == 0
        normilize_array = Place.all.map {|place| PlaceSerializer.new(place) }
+    else
         # binding.pry
+        places = Place.joins(:activities,:address,:schedule,:category)
+        query.each{|key, val| places = places.send("where", "#{key} like ?", "%#{val}%")}
+        # binding.pry
+        normilize_array = places.map{|place| PlaceSerializer.new(place) }
+    end
         render json:  {places: normilize_array}
     end
 

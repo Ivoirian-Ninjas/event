@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :reviews
   resources :users
   post '/users/login' ,to: 'users#login'
+  get '/places/s/:terms', to: 'places#index'
   post '/places/:id/book', to: 'places#book'
   post '/bookings/:id/confirm', to: 'bookings#confirm'
 
