@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(version: 2020_03_23_034624) do
     t.string "street"
     t.string "country"
     t.integer "place_id"
+    t.float "longitude"
+    t.float "latitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

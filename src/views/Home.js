@@ -31,7 +31,7 @@ import img_kind4 from '../assets/img/Better/mo-tj86_D4rK2Q-unsplash.jpg'
 import img_kind5 from '../assets/img/Better/teemu-paananen-bzdhc5b3Bxs-unsplash.jpg'
 import img_kind6 from '../assets/img/Better/chuttersnap-aEnH4hJ_Mrs-unsplash.jpg'
 import { connect } from 'react-redux';
-import { handleRef } from '@stardust-ui/react-component-ref';
+import Autocomplete from 'react-google-autocomplete';
 
 class Home extends Component {
     constructor(){
@@ -121,7 +121,17 @@ class Home extends Component {
                             <h1 className="h1Home">Find your place <br/> anywhere</h1>
                             <h3 className="h3Home">A very easy platform to search some locals to do your <br/> event</h3>
                             <input type='text' placeholder="What are your planing" name="activity" className="TypeEvent" value={this.state.activity} onChange={this.handleChange}/>
-                            <input type='text' placeholder="Where?" className="LocateEvent" name="location" value={this.state.location} onChange={this.handleChange}/>
+                            <Autocomplete
+                                className="LocateEvent"
+                                placeholder="Where?"
+                                name="location"
+                                onPlaceSelected={(place) => {
+                                    this.setState({location: place.address_components[0].long_name })
+                                }}
+                                types={['(regions)']}
+                               
+                            />
+
                             <input type='date' placeholder="When?" className="LocateEvent" name="date" value={this.state.date} onChange={this.handleChange}/>
                             <input type='time' placeholder="Time start" className="TimeEvent" name="s_time" value={this.state.s_time} onChange={this.handleChange}/>
                             <input type='time' placeholder="Time end" className="TimeEvent" name="e_time" value={this.state.e_time} onChange={this.handleChange}/>

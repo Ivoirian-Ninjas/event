@@ -28,13 +28,14 @@ import { isArray } from 'util';
             region: "",
             state: "", 
             city: "",
+            longitude: 0,
+            latitude: 0,
             zipCode: "",
             parkDesc: "", 
             placeDesc: "",
             street: "",
             rules: "",
             aptNumber: "",
-            street: "",
             typeOfSpace: "",
             parkDesc: "",
             placeDesc: "",
@@ -63,6 +64,27 @@ import { isArray } from 'util';
 
           
 
+    }
+
+    handleSelect = (place,name) => {
+        console.log(place)
+        if(name != "street"){
+            this.setState({[name]: place.address_components[0].long_name})
+        }else{
+           
+            this.setState({
+            country: place.address_components[5].long_name,
+            state: place.address_components[4].long_name, 
+            city: place.address_components[2].long_name,
+            longitude: place.geometry.location.lng(),
+            latitude: place.geometry.location.lat(),
+            zipCode: place.address_components[6].long_name,
+            street: `${place.address_components[0].long_name} ${place.address_components[1].long_name} ${place.address_components[2].long_name} ${place.address_components[4].long_name}`
+
+            }, () => {console.log(this.state)})
+            
+
+        }
     }
 
 
@@ -216,10 +238,9 @@ import { isArray } from 'util';
     render() {
         return (
             <div className="PageConteneur">
-                
-                <StepWizard>
-                        <Step1 {...this.state} handleChange={this.handleChange} />
-                        <Step2 {...this.state}  handleChange={this.handleChange}/>
+                <StepWizard state={this.state}>
+                        <Step1 {...this.state} handleChange={this.handleChange} handleSelect={this.handleSelect} />
+                        <Step2 {...this.state}  handleSelect={this.handleSelect}/>
                         <Step3 {...this.state}  handleChange={this.handleChange} handleActivities={this.handleActivities}/>  
                         <Step4  {...this.state}  handleAmen={this.handleAmen} />
                         <Step5  {...this.state}   handleFileChange={this.handleFileChange} add_input={this.add_input} />

@@ -12,6 +12,10 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import Sliders from "react-slick"
 import { Search } from 'semantic-ui-react';
+import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import MyMap from '../../helper/MyMap';
+
+
 
  class Index extends Component {
      //for tomorrow find a way to display the places without fetching everytime
@@ -88,7 +92,17 @@ import { Search } from 'semantic-ui-react';
                     </div>                
 
                     <div className="DivRightB">
-                        <img src={mapcarte} className="imgMap"/>
+                        <MyMap google={this.props.google} zoom={12} initialCenter={{ lat: 32.7763, lng: -96.7969}}>
+                        <Marker  title={'The marker`s title will appear as a tooltip.'}
+                    name={'SOMA'}onClick={this.onMarkerClick}
+                name={'Current location'} />
+ 
+                <InfoWindow onClose={this.onInfoWindowClose}>
+                    <div>
+                    </div>
+                </InfoWindow>
+                        </MyMap>
+                        
                     </div>
                 </div>
                 {/* {emplement a search feature} */}
