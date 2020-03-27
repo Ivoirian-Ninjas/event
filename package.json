@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.2.1",
     "@wojtekmaj/react-daterange-picker": "^2.5.0",
     "@wojtekmaj/react-timerange-picker": "^2.4.0",
+    "creatable": "^3.0.3",
     "framework7": "^5.4.5",
     "google-maps-react": "^2.0.2",
     "install": "^0.13.0",
