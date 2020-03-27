@@ -109,7 +109,7 @@ export default function Profile() {
                     </div>
                     <div className="info">
                         <div className="radio_sub_div">
-                            <label className="label_title">I would like to receive emails about Agoda promotions</label>
+                            <label className="label_title">I would like to receive emails about Event promotions</label>
                             <div className="check_div">
                                 <input type="checkbox" className="check_sub" id="check2" name="check2"/>
                                 <label htmlFor="check2" className="label_check"></label>
