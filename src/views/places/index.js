@@ -14,11 +14,13 @@ import Sliders from "react-slick"
 import { Search } from 'semantic-ui-react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import MyMap from '../../helper/MyMap';
+import Geocode from "react-geocode";
 
 
 
  class Index extends Component {
      //for tomorrow find a way to display the places without fetching everytime
+
 
     componentDidMount(){
         const url = "http://localhost:3000"+ window.location.pathname + window.location.search
@@ -30,13 +32,29 @@ import MyMap from '../../helper/MyMap';
                 "Accept": "application/json"
             },
         }
-
         fetch(url,params)
         .then(resp => resp.json())
         .then(json =>  { 
+            console.log("this is the result")
             console.log(json)
             const places =  json.places.map(e=>e.data.attributes)
+            if(json.city){
+                Geocode.setApiKey("AIzaSyCdKNMjsiDMW07_NEEBlzhRlArElUUFRXQ")
+                Geocode.fromAddress(json.city).then(
+                    response => {
+                      const { lat, lng } = response.results[0].geometry.location;
+                      this.setState({pos:{lat: lat, lng: lng}})
+                    },
+                    error => {
+                      console.error(error);
+                    }
+                  );
+            }else{
+                console.log({pos: { lng: places[0].address.longitude, lat: places[0].address.latitude}})
+              this.setState( {pos: { lng: places[0].address.longitude, lat: places[0].address.latitude}} )
+            }
             console.log(places)
+    
             this.props.filter_places(places) 
 
         })
@@ -53,6 +71,32 @@ import MyMap from '../../helper/MyMap';
       
     }
 
+    displayMarkers = () => {
+        return this.props.places.map(e => {
+            console.log(e.address)
+          return <Marker key={e.id} id={e.id} position={{
+           lat: e.address.latitude,
+           lng: e.address.longitude
+         }}
+         onClick = {(props, marker, e) =>{
+            this.setState({
+            selectedPlace: this.props.places.find(e => e.id === props.id),
+            activeMarker: marker,
+            showingInfoWindow: true }) 
+
+            console.log(this.props.places.find(e => e.id === props.id))
+         }
+            
+       } 
+    />
+        })
+      }
+      state={
+          pos:{lat:0,lat:0},
+            selectedPlace: "",
+            activeMarker: "",
+            showingInfoWindow: false
+      }
     render() {
         const styleImg = {
             dots: true,
@@ -92,16 +136,31 @@ import MyMap from '../../helper/MyMap';
                     </div>                
 
                     <div className="DivRightB">
-                        <MyMap google={this.props.google} zoom={12} initialCenter={{ lat: 32.7763, lng: -96.7969}}>
-                        <Marker  title={'The marker`s title will appear as a tooltip.'}
-                    name={'SOMA'}onClick={this.onMarkerClick}
-                name={'Current location'} />
- 
-                <InfoWindow onClose={this.onInfoWindowClose}>
-                    <div>
-                    </div>
-                </InfoWindow>
-                        </MyMap>
+                        <MyMap google={this.props.google} zoom={10} center={{lng: this.state.pos.lng,lat: this.state.pos.lat}}
+                        onClick={ (props) => {
+                                    if (this.state.showingInfoWindow) {
+                                    this.setState({
+                                        showingInfoWindow: false,
+                                        activeMarker: null
+                                    })
+                                    }
+                                }}>
+                            {this.displayMarkers()}
+        
+                            <InfoWindow  marker={this.state.activeMarker} visible={this.state.showingInfoWindow}>
+                                
+                                <div>
+                                <h1>{this.state.selectedPlace.name}</h1>
+                                <div style={{height: "50%", width: "90%"}}>
+                                 {this.state.selectedPlace ? <img className="img_display" src={this.state.selectedPlace.images[0].url} /> : null}
+                                
+                                </div>
+                                <div className="address"> 
+                                {this.state.selectedPlace ? <p>{this.state.selectedPlace.address.city}, {this.state.selectedPlace.address.state} </p> : null}
+                                </div>
+                                </div>
+                            </InfoWindow>
+                    </MyMap>
                         
                     </div>
                 </div>

@@ -3,7 +3,7 @@
 class PlacesController < ApplicationController
     def index 
         query = params.except(:controller,:action,:place)
-
+        
     if query.keys.length == 0
        normilize_array = Place.all.map {|place| PlaceSerializer.new(place) }
     else
@@ -11,9 +11,12 @@ class PlacesController < ApplicationController
         places = Place.joins(:activities,:address,:schedule,:category)
         query.each{|key, val| places = places.send("where", "#{key} like ?", "%#{val}%")}
         # binding.pry
-        normilize_array = places.map{|place| PlaceSerializer.new(place) }
+        normilize_array = places.map{|place| PlaceSerializer.new(place) } 
+        
     end
-        render json:  {places: normilize_array}
+      city =  query["city"].split("_").join(" ") if query["city"]
+       result =  city ? {places: normilize_array, city: city} :  {places: normilize_array}
+        render json: result
     end
 
     def show 
@@ -61,7 +64,7 @@ class PlacesController < ApplicationController
     end
 
     def create 
-        binding.pry
+        # binding.pry
 
         user = User.find( params.permit(:user_id)[:user_id] )
        images = params.require(:images)

@@ -73,15 +73,15 @@ class Home extends Component {
         let url = 'http://localhost:3001/places?'
         const search = {
             'activities.title': this.state.activity,
-            'address.city': this.state.location,
-            'schedule.date': this.state.date, 
-            'schedule.s_time': this.state.s_time, 
-            'schedule.e_time': this.state.e_time,
+            'city': this.state.location,
+            'date': this.state.date, 
+            's_time': this.state.s_time, 
+            'e_time': this.state.e_time,
             capacity: this.state.capacity
         }
         for(const key in search){
             if(search[key]){
-                url += `${key}=${search[key]}`
+                url += `${key}=${search[key]}&`
             }
         }
         window.location.href = url
@@ -126,7 +126,7 @@ class Home extends Component {
                                 placeholder="Where?"
                                 name="location"
                                 onPlaceSelected={(place) => {
-                                    this.setState({location: place.address_components[0].long_name })
+                                    this.setState({location: place.address_components[0].long_name.split(" ").join("_") })
                                 }}
                                 types={['(regions)']}
                                

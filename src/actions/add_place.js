@@ -20,7 +20,7 @@ export default function add_places(place){
         fd.append('address[street]',place.street)
         fd.append('address[aptNumber]',place.aptNumber)
         fd.append('address[city]',place.city)
-        fd.append('address[longitude]',place.longitud)
+        fd.append('address[longitude]',place.longitude)
         fd.append('address[latitude]', place.latitude)
 
         //schedule
