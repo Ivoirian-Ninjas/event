@@ -1,0 +1,357 @@
+.profile_information{
+    display: inline-block;
+    width: 75%;
+    text-align: center;
+    background: rgb(253, 253, 253);
+}
+.profile_title{
+    display: inline-block;
+    width: 25%;
+    position: fixed;
+    padding: 10px 60px 10px 25px;
+    margin-left: 5px;
+    border-bottom: 2px solid rgb(240, 32, 205);
+    box-shadow: -4px 0px 14px -7px rgba(0, 0, 0, 0.75);
+}
+.profile_link{
+    padding: 15px;
+    color: rgb(14, 1, 17);
+    transition:0.3s;
+}
+.profile_link:hover, .profile_link:hover .link_menu{
+    background: rgb(194, 2, 201);
+    color:rgb(255, 255, 255);
+    transition:0.3s;
+}
+.link_menu {
+    text-decoration: none;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    line-height: 20px;
+    font-size: 2rem;
+    font-weight: 500;
+    color: rgb(14, 1, 17);
+    transition:0.3s;
+}
+.icone_profile{
+    font-size: 2.7rem;
+    margin-right: 15px;
+}
+.title_part{
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    line-height: 20px;
+    font-size: 2.7rem;
+    font-weight: 300;
+    width: 80%;
+    text-align: left;
+    display: block;
+    margin: 15px auto;
+    margin-top: 30px;
+}
+.info{
+    width: 80%;
+    text-align: left;
+    display: flex;
+    margin: 15px auto;
+    margin-top: 30px;
+    padding-bottom: 15px;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, .1);
+    transition: 0.3s;
+    background: white;
+}
+.info:hover{
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.356);
+    transition: 0.3s;
+}
+.name_surname{
+    width: 65%;
+    display: inline-block;
+    padding: 15px 10px 10px 20px;
+}
+.names{
+    width: 80%;
+    display: inline-block;
+    margin: 10px;
+    height: 45px;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    line-height: 20px;
+    font-size: 1.7rem;
+    font-weight:400;
+    border: 1px solid rgb(226, 226, 226);
+    transition: 0.3s;
+    outline: none;
+    color: #5a5b5b;
+    border-radius: 3px;
+}
+.names:hover, .names:focus, .names:active{
+    box-shadow: 0px 0px 3px 0px rgba(226, 30, 226, 0.75);
+    border: 1px solid rgb(226, 30, 226);
+    transition: 0.3s;
+}
+.save_info{
+    width: 80%;
+    display: inline-block;
+    margin: 30px 20px 20px 30px;
+}
+.btn_save{
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    line-height: 20px;
+    font-size: 1.7rem;
+    color: rgb(255, 255, 255);
+    border:1px solid rgb(139, 38, 131);
+    padding: 9px 25px;
+    transition: 0.3s;
+    background:  rgb(139, 38, 131);
+    margin: 7px;
+    cursor: pointer;
+    outline: none;
+}
+.btn_save:hover{
+    background: rgb(228, 8, 209);
+    border:1px solid rgb(228, 8, 209);
+    transition: 0.3s;
+}
+.btn_cancel {
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    line-height: 20px;
+    font-size: 1.7rem;
+    color: rgb(226, 27, 210);
+    border: 1px solid rgb(226, 27, 210);
+    padding: 9px 25px;
+    transition: 0.3s;
+    background: none;
+    margin: 10px;
+    cursor: pointer;
+    outline: none;
+}
+.btn_cancel:hover{
+    color: white;
+    transition: 0.3s;
+    background: rgb(226, 27, 210);
+}
+.pictures{
+    width: 30%;
+    display: inline-block;
+    text-align: center;
+    padding-bottom: 15px;
+    margin: 10px
+}
+.file_comp{
+    width: 80%;
+    margin: 0px auto;
+}
+.files{
+    width: 100%;
+    height: 190px;
+}
+.photo_edit{
+    display: none;
+    position: relative;
+}
+.label_edit{
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    line-height: 20px;
+    font-size: 1.7rem;
+    color: rgb(226, 27, 210);
+    border:1px solid rgb(226, 27, 210);
+    padding: 7px 20px;
+    transition: 0.3s;
+    display: block;
+    cursor: pointer;
+}
+.label_edit:hover{
+    color: #fff;
+    background: rgb(226, 27, 210);
+    transition: 0.3s;
+    
+}
+.more_info{
+    width: 80%;
+    display: inline-block;
+    padding: 15px 10px 10px 20px;
+}
+.input_more{
+    width: 64%;
+    display: inline-block;
+    margin: 10px;
+    height: 45px;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    line-height: 20px;
+    font-size: 1.7rem;
+    font-weight:400;
+    border: 1px solid rgb(226, 226, 226);
+    transition: 0.3s;
+    outline: none;
+    color: #5a5b5b;
+    border-radius: 3px;
+}
+.input_more:hover, .input_more:focus{
+    box-shadow: 0px 0px 3px 0px rgba(226, 30, 226, 0.75);
+    border: 1px solid rgb(226, 30, 226);
+    transition: 0.3s;
+}
+.label_title{
+    display: inline-block;
+    width: 85%;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    line-height: 20px;
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin: 10px;
+    color: #5a5b5b;
+}
+.btn_connection{
+    width: 30%;
+    color: #5a5b5b;
+    border-radius: 3px;
+    padding: 7px 20px;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    line-height: 20px;
+    font-size: 1.7rem;
+    font-weight: 500;
+    background: transparent;
+    border: 1px solid rgb(240, 32, 205);
+    cursor: pointer;
+    outline: none;
+}
+
+.payment {
+    width: 20%;
+    text-align: left;
+    display: flex;
+    margin: 15px;
+    margin-left: 10%;
+    margin-top: 30px;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, .1);
+    transition: 0.3s;
+    background: white;
+}
+.payment:hover {
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.356);
+    transition: 0.3s;
+}
+.payment_icon{
+    width: 100%;
+    display: inline-block;
+    font-size: 4rem;
+    color: #d005e2;
+    margin-top: 7px;
+}
+.btn_payment{
+    width: 100%;
+    height: 160px;
+    background-color: #fff;
+    color: #d005e2;
+    cursor: pointer;
+    border: none;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    line-height: 20px;
+    font-size: 1.6rem;
+    outline: none;
+}
+.radio_div{
+    display: inline-block;
+    width: 22%;
+    margin: 10px;
+}
+.radio_sub_div{
+    width: 100%;
+    display: inline-block;
+}
+.email_sub{
+    width: 80%;
+    text-align: left;
+    display: flex;
+    margin: 15px auto;
+    margin-top: 30px;
+    padding-bottom: 15px;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, .1);
+    transition: 0.3s;
+    background: white;
+}
+.label_radio{
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-size: 1.6rem;
+    margin-right: 15px;
+    line-height: 32px;
+    color:#383838;
+    font-weight: 500;
+    margin-left: 5px;
+}
+.radio_sub{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+
+    border: 2px solid rgb(139, 139, 139);
+    transition: 0.2s all linear;
+    outline: none;
+    position: relative;
+    top:2px;
+}
+
+.radio_sub:checked {
+    border: 6px solid rgb(255, 0, 221);
+    outline: none;
+    transition: 0.2s all linear;
+}
+.check_sub{
+    display:none;
+}
+.label_check{
+    position: relative;
+}
+.label_check::before,
+.label_check::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    padding-top: 5px;
+}
+.label_check:hover {
+    cursor: pointer;
+}
+
+.label_check::before {
+    left: 0px;
+    width: 50px;
+    height: 25px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(19, 0, 13);
+    border-radius: 50px;
+}
+
+.label_check::after {
+    content:"No";
+    left: 3px;
+    width: 25px;
+    height: 21px;
+    border-radius: 50%;
+    background-color: rgb(77, 2, 80);
+    transition: left .25s, background-color .25s;
+    text-align: center;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+    color:white;
+}
+
+.check_sub:checked+.label_check::after {
+    content:"Yes";
+    left: 24px;
+    background-color: rgb(235, 5, 185);
+    text-align: center;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+    color:white;
+}
+.check_div{
+    width: 10%;
+    display: inline-block;
+}
