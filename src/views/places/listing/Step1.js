@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import "../../../assets/newplace.css"
 import {Progress} from "semantic-ui-react";
+import Autocomplete from 'react-google-autocomplete';
+
 export default class Step1 extends Component {
     render() {
         return (
@@ -33,8 +35,18 @@ export default class Step1 extends Component {
                     </div> 
 
                     <div className="DivStepOne" >
-                        <label className="LabelStepOne">Where is your loaclisation ? </label><br/>
-                        <input name='region' className="InputStepOne" placeholder='Enter the region' onChange={this.props.handleChange}/>
+                        <label className="LabelStepOne">Enter your region? </label><br/>
+                        <Autocomplete
+                                className="InputStepOne"
+                                placeholder="Enter the region"
+                                name="region"
+                                onPlaceSelected={(place) => {
+                                    this.props.handleSelect(place,"region")
+                                }}
+                                value={this.props.state.region}
+                                types={['(regions)']}
+                               
+                            />
                     </div> 
                     {/**Later on let's add info based on the region that the user entered, e.g: how many customer a day a user can get. */}
                     <p className="ButtonStepOne"><button onClick={this.props.nextStep} className="NextOne">Next <i className="fa fa-angle-right"></i> </button></p>

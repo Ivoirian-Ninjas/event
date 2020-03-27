@@ -30,19 +30,29 @@ import img_kind3 from '../assets/img/Better/ibrahim-boran-dmOFwtOIhJA-unsplash.j
 import img_kind4 from '../assets/img/Better/mo-tj86_D4rK2Q-unsplash.jpg'
 import img_kind5 from '../assets/img/Better/teemu-paananen-bzdhc5b3Bxs-unsplash.jpg'
 import img_kind6 from '../assets/img/Better/chuttersnap-aEnH4hJ_Mrs-unsplash.jpg'
+import { connect } from 'react-redux';
+import Autocomplete from 'react-google-autocomplete';
+
 class Home extends Component {
     constructor(){
         super()
         this.state = {
-            isActive:false
+            isActive:false,
+            email: '',
+            password_digest: '',
+            isOpen: false,
+            isOpen1: false,
+            activity: '',
+            location: '',
+            date: '', 
+            s_time: '', 
+            e_time: '',
+            capacity: ''
         }
+   
     }
-     state = {
-         email: '',
-         password_digest: '',
-         isOpen: false,
-         isOpen1: false
-     }
+
+    
      handleChange = event => {
          this.setState({
              [event.target.name]: event.target.value
@@ -52,18 +62,43 @@ class Home extends Component {
          event.preventDefault()
          this.props.SignInUser(this.state)
      }
-    // componentWillMount(){
-    //     Modal.setAppElement("body")
-    // }
+    
     toggleModal = () =>{
         this.setState({
             isActive:!this.state.isActive
         })
     }
+
+    handleSearch = () => {
+        let url = 'http://localhost:3001/places?'
+        const search = {
+            'activities.title': this.state.activity,
+            'address.city': this.state.location,
+            'schedule.date': this.state.date, 
+            'schedule.s_time': this.state.s_time, 
+            'schedule.e_time': this.state.e_time,
+            capacity: this.state.capacity
+        }
+        for(const key in search){
+            if(search[key]){
+                url += `${key}=${search[key]}`
+            }
+        }
+        window.location.href = url
+
+
+    }
     componentDidMount(){
         // slider()
         let user = current_user()
         console.log(user)
+        fetch('http://localhost:3000/places')
+        .then(resp => resp.json())
+        .then(json =>{ 
+                   console.log(json)
+                   const places =  json.places.map(e=>e.data.attributes)
+                   this.props.get_places(places) 
+       })
     }
     render() {
         const settings = {
@@ -83,15 +118,25 @@ class Home extends Component {
                 <div className="PageConteneur">
                     <div className="partieSearch">
                         <div className="searchContenu">
-                            <h1 className="h1Home">Find your place <br/>  anywhere</h1>
+                            <h1 className="h1Home">Find your place <br/> anywhere</h1>
                             <h3 className="h3Home">A very easy platform to search some locals to do your <br/> event</h3>
-                            <input type='text' placeholder="What are your planing" className="TypeEvent"/>
-                            <input type='text' placeholder="Where?" className="LocateEvent"/>
-                            <input type='date' placeholder="When?" className="LocateEvent"/>
-                            <input type='time' placeholder="Time start" className="TimeEvent"/>
-                            <input type='time' placeholder="Time end" className="TimeEvent"/>
-                            <input type='number' placeholder="Numbers of people" className="NumberEvent"/>
-                            <button className="searchEvent">Search <i className="fas fa-search"></i></button>
+                            <input type='text' placeholder="What are your planing" name="activity" className="TypeEvent" value={this.state.activity} onChange={this.handleChange}/>
+                            <Autocomplete
+                                className="LocateEvent"
+                                placeholder="Where?"
+                                name="location"
+                                onPlaceSelected={(place) => {
+                                    this.setState({location: place.address_components[0].long_name })
+                                }}
+                                types={['(regions)']}
+                               
+                            />
+
+                            <input type='date' placeholder="When?" className="LocateEvent" name="date" value={this.state.date} onChange={this.handleChange}/>
+                            <input type='time' placeholder="Time start" className="TimeEvent" name="s_time" value={this.state.s_time} onChange={this.handleChange}/>
+                            <input type='time' placeholder="Time end" className="TimeEvent" name="e_time" value={this.state.e_time} onChange={this.handleChange}/>
+                            <input type='number' placeholder="Numbers of people" className="NumberEvent" name="capacity" value={this.state.capacity} onChange={this.handleChange}/>
+                            <button className="searchEvent" onClick={this.handleSearch}>Search <i className="fas fa-search"></i></button>
                         </div>
                     </div>
                     <Slider {...settings}>
@@ -241,11 +286,11 @@ class Home extends Component {
                             <p className="big_one_text">Weeding</p>
                         </div>
                         <div className="small_one">
-                            <div class="top_one">
+                            <div className="top_one">
                             <img src={img_kind2} className="big_one_picture" />
                             <p className="big_one_text">Concert</p>
                             </div>
-                            <div class="down_one">
+                            <div className="down_one">
                             <img src={img_kind3} className="big_one_picture" />
                             <p className="big_one_text">Friend's party</p>
                             </div>
@@ -253,11 +298,11 @@ class Home extends Component {
                     </div>
                     <div className="second_kind">
                         <div className="small_ones">
-                            <div class="top_one">
+                            <div className="top_one">
                             <img src={img_kind4} className="big_one_picture" />
                             <p className="big_one_text">Festival</p>
                             </div>
-                            <div class="down_one">
+                            <div className="down_one">
                             <img src={img_kind5} className="big_one_picture" />
                             <p className="big_one_text">Conference</p>
                             </div>
@@ -276,4 +321,8 @@ class Home extends Component {
         )
     }
 }
-export default Home
+const mapDispatchToProps  = dispatch => ({
+    get_places: places =>  dispatch({type: 'ADD_PLACE', places: places}),
+    filter_places: places => dispatch({type: 'FILTER_PLACE',places: places })
+})
+export default connect(null,mapDispatchToProps)(Home)

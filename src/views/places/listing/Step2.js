@@ -1,7 +1,113 @@
 import React, { Component } from 'react'
-import '../../../helper/Countries_list'
-import Countries_list from '../../../helper/Countries_list';
+import Autocomplete from 'react-google-autocomplete';
+import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import Geocode from "react-geocode";
+
+
+
+import MyMap from '../../../helper/MyMap'
 export default class Step2 extends Component {
+  
+    state = {
+        country: '',
+        region: "",
+        state: "", 
+        city: "",
+        longitude: 0,
+        latitude: 0,
+        zipCode: "",
+        street: "",
+        aptNumber: "", 
+        marker: {
+            name: "Current position",
+            position: { lat: 37.77,lng: -122.42}
+        },
+        zoom: 12
+        
+      
+    }
+    componentDidMount(){
+        this.myRefMap = React.createRef();
+        this.myRefMarker = React.createRef();
+    }
+    
+
+    handleChange = (event) => { 
+        event.persist()
+        this.setState({ [event.target.name]: event.target.value }) 
+    }
+
+    handleSelect = (place,name) => {
+        console.log(place)
+        console.log( place.address_components.length)
+        if(name != "street"){
+            this.setState({[name]: place.address_components[0].long_name})
+        }else if(name === 'street' && place.address_components.length >= 6){
+           
+            this.setState({
+            country: place.address_components[5].long_name,
+            state: place.address_components[4].long_name, 
+            city: place.address_components[2].long_name,
+            longitude: place.geometry.location.lng(),
+            latitude: place.geometry.location.lat(),
+            zipCode: place.address_components[6].long_name,
+            street: `${place.address_components[0].long_name} ${place.address_components[1].long_name} ${place.address_components[2].long_name} ${place.address_components[4].long_name}`,
+            marker: {position: {lng: place.geometry.location.lng(), lat: place.geometry.location.lat()}},
+            zoom: 16
+            })
+            
+
+        }
+
+        
+        this.props.handleSelect(place,name)
+    }
+
+    handleDrag =  (t, map, coord) =>{
+           this.setState( {longitude: t.position.lng, latitude: t.position.lat} )
+            console.log(map)
+            console.log(coord)
+            console.log(t)
+
+        }
+ 
+        getLocation = () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition( position => {
+                  const pos = {
+                     lat: position.coords.latitude,
+                     lng: position.coords.longitude
+                   }
+                   Geocode.setApiKey("AIzaSyCdKNMjsiDMW07_NEEBlzhRlArElUUFRXQ")
+                   Geocode.fromLatLng(pos.lat,pos.lng).then(
+                    response => {
+                        const place = response.results[0]
+                        console.log(response.results)
+                        if( place.address_components.length >= 6){               
+                          this.setState({
+                              country: place.address_components[5].long_name,
+                              state: place.address_components[4].long_name, 
+                              city: place.address_components[2].long_name,
+                              longitude: place.geometry.location.lng,
+                              latitude: place.geometry.location.lat,
+                              zipCode: place.address_components[6].long_name,
+                              street: `${place.address_components[0].long_name} ${place.address_components[1].long_name} ${place.address_components[2].long_name} ${place.address_components[4].long_name}`,
+                              marker: {position: {lng: place.geometry.location.lng, lat: place.geometry.location.lat}},
+                              zoom: 16
+                              })
+                        }
+                    },
+                    error => {
+                      console.error(error);
+                    }
+                  );
+
+                })
+            }
+                
+        }
+   
+
     render() {
         return (
             <div className="ConteneurStepOne">
@@ -15,50 +121,127 @@ export default class Step2 extends Component {
                     <p className="TextStepOne">
                         Guests will only get your exact address once they've booked a reservation.
                     </p>
-                    <button className="ButtonLocal"> <i className="fas fa-map-marked"></i> Current location </button>
+                    <button className="ButtonLocal" onClick={this.getLocation}> <i className="fas fa-map-marked"></i> Current location </button>
                     <small className="SmallText"> or enter your address.</small>
                 </div>
             
                 <div className="DivStepOne">
                      <label className = "LabelStepOne"> Country / Region</label>
-                     <select name="country"  onChange={this.props.handleChange} className="InputStepOne">
-                        <Countries_list />
-                    </select>
+                     <Autocomplete
+                                className="InputStepOne"
+                                name="country"
+                                onPlaceSelected={(place) => {
+                                    this.handleSelect(place,"country")
+
+                                }}
+                                onChange={this.handleChange}
+                                types={['geocode']}
+                               value={this.state.country}
+                            />
+                
                 </div>
                 <div className="DivStepOne">
                     <label className = "LabelStepOne">Street address</label>
-                    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdKNMjsiDMW07_NEEBlzhRlArElUUFRXQ&libraries=places"></script>
+                    <Autocomplete
+                                className="InputStepOne"
+                                name="street"
+                                placeholder="e.g. 158 Main Street"
+                                onPlaceSelected={(place) => {
+                                    this.handleSelect(place,"street")
 
-                    <input name="street" className="InputStepOne" placeholder="e.g. 158 Main Street" onChange={this.props.handleChange}/>
+                                }}
+                                onChange={this.handleChange}
+
+                                types={['address']}
+                                value={this.state.street}
+
+                               
+                            />
                 </div>
                 <div className="DivStepOne">
                     <label className = "LabelStepOne">Apt, suite. (optional)</label>
-                    <input name="aptNumber" className="InputStepOne" placeholder="e.g. Apt #8" onChange={this.props.handleChange}/>
+                    <input name="aptNumber" className="InputStepOne pac-input" placeholder="e.g. Apt #8" onChange={this.props.handleChange}/>
                 </div>
                 <div className="DivStepOne">
                     <label className = "LabelStepOne">City</label>
-                    <input name="city" className="InputStepOne" placeholder="e.g. New York" onChange={this.props.handleChange}/>
+                    <Autocomplete
+                                className="InputStepOne"
+                                name="city"
+                                placeholder="e.g. New York"
+                                onPlaceSelected={(place) => {
+                                    this.handleSelect(place,"city")
+
+                                }}
+                                onChange={this.handleChange}
+
+                                types={['(cities)']}
+                                value={this.state.city}
+
+                            />
+                    
                 </div>
                 <div className="DivStepOne">
                     <label className = "LabelStepOne">State</label>
-                    <input name="state" className="InputStepOne" placeholder="e.g MI" onChange={this.props.handleChange}/>
+                    <Autocomplete
+                                className="InputStepOne"
+                                name="state"
+                                placeholder="e.g. MI"
+                                onPlaceSelected={(place) => {
+                                    this.handleSelect(place,"state")
+
+                                }}
+                                onChange={this.handleChange}
+
+                                types={['(regions)']}
+                                value={this.state.state}
+
+                            />
                 </div>
                 <div className="DivStepOne">
                     <label className = "LabelStepOne">Zip code</label>
-                    <input name="zipCode" placeholder="e.g. 94256" className="InputStepOne" onChange={this.props.handleChange}/>
+                    <Autocomplete
+                                className="InputStepOne"
+                                name="zipCode"
+                                placeholder="e.g. 94256"
+                                onPlaceSelected={(place) => {
+                                    this.handleSelect(place,"zipCode")
+                                }}
+                                onChange={this.handleChange}
+
+                                types={ ['(cities)']}
+                                value={this.state.zipCode}
+
+                            />
                 </div>
-                
-                <label className="LabelStepOne">Is the pin in the right place?</label>
-                {/**Add a map here showing the pin */}
-
-
-            <p className="ButtonStepOne">
+                <p className="ButtonStepOne">
                 <button onClick={this.props.previousStep} className="PrevOne"> <i className="fa fa-angle-left"></i> Back </button>
                 <button onClick={this.props.nextStep} className="NextOne">Next <i className="fa fa-angle-right"></i> </button>
             </p>
+                <label className="LabelStepOne">Is the pin in the right place?</label>
+              {/**Add a map here showing the pin */}
+              
+                        <MyMap google={this.props.google} zoom={this.state.zoom}  ref={this.myRefMap} center={this.state.marker.position}>
+                            <Marker  
+                            position={this.state.marker.position}
+                            name={this.state.marker.name}
+                            onClick={this.onMarkerClick}
+                            name={'Current location'} 
+                            draggable={true}
+                            onDragend={this.handleDrag}
+
+                                ref={this.myRefMarker}
+                        />
+                        
+                    </MyMap>
+
+           
+                   
+           
+            
             </div>
             
             </div>
         )
     }
 }
+

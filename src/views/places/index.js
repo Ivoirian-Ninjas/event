@@ -11,19 +11,36 @@ import imgreturn2 from "../../assets/img/Better/thomas-william-OAVqa8hQvWI-unspl
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import Sliders from "react-slick"
+import { Search } from 'semantic-ui-react';
+import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import MyMap from '../../helper/MyMap';
+
+
 
  class Index extends Component {
+     //for tomorrow find a way to display the places without fetching everytime
 
-     componentDidMount(){
-         fetch('http://localhost:3000/places')
-         .then(resp => resp.json())
-         .then(json =>{ 
-                    console.log(json)
-                    const places =  json.places.map(e=>e.data.attributes)
-                    this.props.get_places(places) 
-            })
-        } 
+    componentDidMount(){
+        const url = "http://localhost:3000"+ window.location.pathname + window.location.search
+        console.log(url)
+        const params = {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+        }
 
+        fetch(url,params)
+        .then(resp => resp.json())
+        .then(json =>  { 
+            console.log(json)
+            const places =  json.places.map(e=>e.data.attributes)
+            console.log(places)
+            this.props.filter_places(places) 
+
+        })
+    }
 
     display_places = () => {
         console.log(this.props.places)
@@ -35,6 +52,7 @@ import Sliders from "react-slick"
         }
       
     }
+
     render() {
         const styleImg = {
             dots: true,
@@ -74,7 +92,17 @@ import Sliders from "react-slick"
                     </div>                
 
                     <div className="DivRightB">
-                        <img src={mapcarte} className="imgMap"/>
+                        <MyMap google={this.props.google} zoom={12} initialCenter={{ lat: 32.7763, lng: -96.7969}}>
+                        <Marker  title={'The marker`s title will appear as a tooltip.'}
+                    name={'SOMA'}onClick={this.onMarkerClick}
+                name={'Current location'} />
+ 
+                <InfoWindow onClose={this.onInfoWindowClose}>
+                    <div>
+                    </div>
+                </InfoWindow>
+                        </MyMap>
+                        
                     </div>
                 </div>
                 {/* {emplement a search feature} */}
@@ -91,6 +119,7 @@ const mapStateToProps = state => {
    return {places: state.places}
 }
 const mapDispatchToProps  = dispatch => ({
-    get_places: places =>  dispatch({type: 'ADD_PLACE', places: places})
+    get_places: places =>  dispatch({type: 'ADD_PLACE', places: places}),
+    filter_places: places => dispatch({type: 'FILTER_PLACE',places: places })
 })
 export default connect(mapStateToProps,mapDispatchToProps)(Index)

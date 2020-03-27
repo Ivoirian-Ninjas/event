@@ -1,7 +1,16 @@
 import React, { Component } from 'react'
+import Creatable from 'react-select/creatable';
+
 
 export default class Step3 extends Component {
+
+
+    options = [
+        { value: 'one', label: 'One' },
+        { value: 'two', label: 'Two' }
+      ]
     render() {
+     
         return (
             <div className="ConteneurStepOne">
             <div style={{...this.props.setting}}>
@@ -33,10 +42,21 @@ export default class Step3 extends Component {
                             </li>
                         </ul>
                      </div>
-                     
-                     
                     <textarea name='placeDesc' className="TextAreaStepOne" placeholder='Show how amazing your place is.' onChange={this.props.handleChange}/>
                 </div>
+
+                <div className="DivStepOne">
+                    <label className = "LabelStepOne">Choose the activities that you would most likely host.</label> <br/>
+                    
+                    {/* https://react-select.com/styles */}
+                      <Creatable
+                        isMulti
+                        name="form-field-name"
+                        options={this.options}
+                        onChange={this.props.handleActivities}
+                        />               
+                </div>
+
                 {/**Use js for that */}
                 <div className="DivStepOne">
                     <label className = "LabelStepOne">Does you place have a parking option ? </label> <br/>

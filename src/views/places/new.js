@@ -12,6 +12,7 @@ import Step7 from './listing/Step7'
 import Step8 from './listing/Step8'
 import Step9 from './listing/Step9'
 import "../../assets/newplace.css"
+import { isArray } from 'util';
 
  class New extends Component {
     constructor(){
@@ -27,13 +28,14 @@ import "../../assets/newplace.css"
             region: "",
             state: "", 
             city: "",
+            longitude: 0,
+            latitude: 0,
             zipCode: "",
             parkDesc: "", 
             placeDesc: "",
             street: "",
             rules: "",
             aptNumber: "",
-            street: "",
             typeOfSpace: "",
             parkDesc: "",
             placeDesc: "",
@@ -53,12 +55,36 @@ import "../../assets/newplace.css"
                 height: "100%",
                 transition: "ease-in-out 0.3s"
             },
-            parking_available: "no"
+            parking_available: "no",
+
+            activities: []
+
 
         }
 
           
 
+    }
+
+    handleSelect = (place,name) => {
+        console.log(place)
+        if(name != "street"){
+            this.setState({[name]: place.address_components[0].long_name})
+        }else{
+           
+            this.setState({
+            country: place.address_components[5].long_name,
+            state: place.address_components[4].long_name, 
+            city: place.address_components[2].long_name,
+            longitude: place.geometry.location.lng(),
+            latitude: place.geometry.location.lat(),
+            zipCode: place.address_components[6].long_name,
+            street: `${place.address_components[0].long_name} ${place.address_components[1].long_name} ${place.address_components[2].long_name} ${place.address_components[4].long_name}`
+
+            }, () => {console.log(this.state)})
+            
+
+        }
     }
 
 
@@ -81,6 +107,14 @@ import "../../assets/newplace.css"
             this.preview_image(event.target.files[0],event.target.parentNode)
         } 
     }
+       
+      handleActivities =(newValue, actionMeta) => {
+          if( actionMeta.action !== 'remove-value' ){
+                this.setState(state => ({activities: [...newValue]}) )
+          }else{
+              this.setState(state => ({activities: [...state.activities].filter(e => e !== actionMeta.removedValue)}) )
+          }
+      }
 
     preview_image = (file,parent) =>{
        if( parent.querySelector("img") ){
@@ -204,11 +238,10 @@ import "../../assets/newplace.css"
     render() {
         return (
             <div className="PageConteneur">
-                
-                <StepWizard>
-                        <Step1 {...this.state} handleChange={this.handleChange} />
-                        <Step2 {...this.state}  handleChange={this.handleChange}/>
-                        <Step3 {...this.state}  handleChange={this.handleChange} />  
+                <StepWizard state={this.state}>
+                        <Step1 {...this.state} handleChange={this.handleChange} handleSelect={this.handleSelect} />
+                        <Step2 {...this.state}  handleSelect={this.handleSelect}/>
+                        <Step3 {...this.state}  handleChange={this.handleChange} handleActivities={this.handleActivities}/>  
                         <Step4  {...this.state}  handleAmen={this.handleAmen} />
                         <Step5  {...this.state}   handleFileChange={this.handleFileChange} add_input={this.add_input} />
                         <Step6  {...this.state}  handleChange={this.handleChange} />

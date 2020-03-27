@@ -19,6 +19,8 @@ import is_logged_in from './helper/is_logged_in'
 
 import Navbar from './components/navbar'
 import Booking_show from './views/places/booking/booking_show';
+import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+
 function App() {
   return (
 
@@ -52,4 +54,6 @@ function App() {
 const mapStateToProp = (state) => ({
   user: state.user
 })
-export default connect(mapStateToProp)(App);
+export default GoogleApiWrapper({
+  apiKey: ("AIzaSyCdKNMjsiDMW07_NEEBlzhRlArElUUFRXQ")
+})(connect(mapStateToProp)(App))

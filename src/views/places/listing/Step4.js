@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 
+
 export default class Step4 extends Component {
+   
+    handleChange = (event) => { this.setState({ [event.target.name]: event.target.value })  }
+
     render() {
         return (
             <div className="ConteneurStepOne">

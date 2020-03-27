@@ -20,6 +20,8 @@ export default function add_places(place){
         fd.append('address[street]',place.street)
         fd.append('address[aptNumber]',place.aptNumber)
         fd.append('address[city]',place.city)
+        fd.append('address[longitude]',place.longitud)
+        fd.append('address[latitude]', place.latitude)
 
         //schedule
         fd.append('schedule[s_day]',place.s_day)
@@ -42,14 +44,12 @@ export default function add_places(place){
         //amenities
         place.amenities.forEach( e=> fd.append('amenities[]',e) )
 
+        //activities 
+        place.activities.forEach(e => fd.append('activities[]',e.value))
+
         //images
         place.images.forEach( e=> fd.append('images[]',e) )
 
-
-       
-
-       
-          console.log(fd)
         const params = {
             method: 'POST', 
            body:fd 
