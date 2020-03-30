@@ -47,7 +47,7 @@ export default class Login extends Component {
     render() {
         let dialog = (
             <div style={dialogStyles}>
-                <button style={dialogCloseButtonStyle} onClick={this.handleClick, this.props.onClose} className="Arrete"> Close </button>
+                <button style={dialogCloseButtonStyle} onClick={() => {this.handleClick(), this.props.onClose()} }className="Arrete"> Close </button>
                 <div>{this.props.children}</div>
             </div>
         )
