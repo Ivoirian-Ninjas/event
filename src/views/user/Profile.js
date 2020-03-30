@@ -1,17 +1,71 @@
-import React from 'react'
+
+import React, { Component } from 'react'
 import "../../assets/profile.css"
 import defaults from '../../assets/img/Last/instagram-profile-photo-png-2.png'
+import current_user from '../../helper/current_user'
 
-export default function Profile() {
-    return (
-        <div className="PageConteneur">
+
+
+export default class Profile extends Component {
+   state = {
+       image: ""
+   }
+    preview_image = (file,parent) =>{
+        const divImage = document.querySelector("div img")
+        const image = document.querySelector("img.files")
+         const  reader = new FileReader();
+         const spanX= document.createElement("span")
+         const icon = document.createElement("i")
+         icon.classList.add("fa", "fa-trash")
+         spanX.classList.add("deleteImage")
+         spanX.append("Delete image ")
+         spanX.appendChild(icon)
+         //read the file
+         reader.readAsDataURL(file);
+ 
+         reader.addEventListener("load", function() {
+             image.src = reader.result;
+             image.height = 100
+             image.width = 100
+           }, false);
+ 
+           divImage.appendChild(spanX)
+           spanX.addEventListener("click", () => {
+             image.src = defaults 
+ 
+             //remove the file from the image
+             this.setState( state => state.image = "" , () => console.log(this.state.images))
+             const inputs = document.querySelectorAll(`input[type="file"]`)
+            inputs.forEach(e => {
+                 console.log(e.value)
+                 if ( e.value.includes(file.name) ){
+                     console.log(e)
+                     e.value = ""
+                 }
+             })
+ 
+           })
+           
+ 
+     }
+     handleFileChange = event => {
+        event.persist()   
+        if (event.target.files[0]) {
+            this.setState( {image: event.target.files[0]} )
+            // this function will display all the images selected
+            this.preview_image(event.target.files[0],event.target.parentNode)
+        } 
+    }
+    render() {
+        return (
+           <div className="PageConteneur">
             <div className="profile_information">
                 <div className="user_details">
                     <p className="title_part">User informations</p>
                     <div className="info">
                         <div className="name_surname">
                             <label className="label_title">Name</label>
-                            <input type="text" className="names" placeholder="e.g. John" name="name"/>
+                            <input type="text" className="names" placeholder="e.g. John" name="name" value={current_user().name}/>
                             <label className="label_title">Surname</label>
                             <input type="text" className="names" placeholder="e.g. McCormith" name="sur_name"/>
                             <div className="save_info">
@@ -25,14 +79,14 @@ export default function Profile() {
                                 <label htmlFor="photo_edit" className="label_edit">
                                     Select file <i className="fa fa-upload"></i>
                                 </label>
-                                <input type="file" id="photo_edit" className="photo_edit" name="file_edit"/>
+                            <input onChange={this.handleFileChange} style={{height: "0px", width:"0px"}} type="file" id="photo_edit" className="photo_edit" name="file_edit" accept="image/x-png,image/gif,image/jpeg"/>
                             </div>
                         </div>
                     </div>
                     <div className="info">
                         <div className="more_info">
                             <label className="label_title">Email</label>
-                            <input type="mail" className="input_more" placeholder="peterXXX@yahoo.xyz" name="mail" />
+                            <input type="mail" className="input_more" placeholder="peterXXX@yahoo.xyz" name="mail" value={current_user().email}/>
                             <div className="save_info">
                                 <button className="btn_save">Save</button>
                                 <button className="btn_cancel">Cancel</button>
@@ -42,7 +96,7 @@ export default function Profile() {
                     <div className="info">
                         <div className="more_info">
                             <label className="label_title">Contact</label>
-                            <input type="text" className="input_more" placeholder="+12 XXX XXX XXX" name="contact" />
+                            <input type="tel" className="input_more" placeholder="+12 XXX XXX XXX" name="contact" />
                             <div className="save_info">
                                 <button className="btn_save">Save</button>
                                 <button className="btn_cancel">Cancel</button>
@@ -157,5 +211,7 @@ export default function Profile() {
 
             </div>
         </div>
-    )
+ 
+        )
+    }
 }
