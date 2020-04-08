@@ -15,6 +15,7 @@
     line-height: 1.375em;
     font-size: 1.7rem;
     transition:0.3s;
+    outline:none;
 }
 .buttonFilter:hover{
     background: rgb(187, 26, 187);

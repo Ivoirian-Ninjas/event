@@ -18,11 +18,15 @@ import display_errors from '../helper/display_errors'
 import { connect } from 'react-redux';
 import SignInUser from '../actions/SignInUser'
 import SignUpUser from '../actions/SignUpUser'
+import img_profil from '../assets/img/Better/ganapathy-kumar-yaiy4mCbzw0-unsplash.jpg'
 
  class Navbar extends Component {
   logout = () =>{
     localStorage.clear()
     window.location.reload()
+  }
+  redirect = () =>{
+    window.location.href = "http://localhost:3001/"
   }
   state = {
     email: '',
@@ -72,14 +76,27 @@ handleChange = event => this.setState({[event.target.name]: event.target.value }
               <label className="checkbtn">
                 <i className="fas fa-bars"></i>
               </label>
-            <label className="LogoEvent">Event</label>
+            <a className="LogoEvent" onClick={this.redirect}>Event</a>
             <ul className="menu-first">
               <li className="lien-menu-first"><a href="/" className={document.location.href === `http://localhost:3001/` ? 'active' : null}>Home</a></li>
-              <li className="lien-menu-first"><a  className={document.location.href.includes('activities')  ? 'active' : null}>Activities</a></li>
-              {is_admin() ? <li className="lien-menu-first">
-              <a href = '/new_places' className={document.location.href.includes('new_places')  ? 'active' : null}>Add a place</a></li> : null}
+              <li className="ProfilesLink lien-menu-first">
+                <a  className={document.location.href.includes('activities')  ? 'active' : null}>
+                  Activities
+                </a>
+                <ul className="sous-menu">
+                  <li><a href="#">Festival</a></li>
+                  <li><a href="#">Party</a></li>
+                </ul>
+              </li>
+              {is_admin() ?
+              <li className="lien-menu-first">
+                <a href = '/new_places' className={document.location.href.includes('new_places')  ? 'active' : null}>
+                  Add a place
+                </a>
+              </li> : null}
              { is_logged_in() ? 
-             <li className="ProfilesLink lien-menu-first"><a >Account</a>
+             <li className="ProfilesLink lien-menu-first"> 
+             <div className="img_profile"> <img src={img_profil} className="profile_file"/> </div>
                 <ul className="sous-menu">
                   <li><a href={`users/${current_user().id}`}> <i className="fas fa-user-circle"></i>  Profile</a></li>
                   <li>

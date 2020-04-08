@@ -54,7 +54,8 @@ export default class Step3 extends Component {
                         name="form-field-name"
                         options={this.options}
                         onChange={this.props.handleActivities}
-                        />               
+                        
+                        />
                 </div>
 
                 {/**Use js for that */}

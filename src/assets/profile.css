@@ -142,6 +142,7 @@
 .files{
     width: 100%;
     height: 190px;
+    border-radius: 50%;
 }
 .photo_edit{
     display: none;
@@ -354,4 +355,100 @@
 .check_div{
     width: 10%;
     display: inline-block;
+}
+.modal_container_prof {
+    display: inline-block;
+    width: 100%;
+    height: 550px;
+    background: rgb(245, 245, 245);
+}
+.close_modal_prof {
+    position: absolute;
+    display: flex;
+    right: 0;
+    z-index: 50000;
+    outline: none;
+    color: #db0aa7;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+}
+.p_add_new{
+    font-family: mallory,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 400;
+    font-size: 2.8rem;
+    margin: 5% 5% 3% 5%;
+    color: #383838;
+}
+.contain_modal{
+    width: 90%;
+    margin: 0px auto;
+    display: flex;
+}
+.div_contain_modal{
+    display: inline-block;
+    width: 50%;
+    height: 400px;
+}
+.div_input_modal{
+    width: 100%;
+    display: inline-block;
+    margin: 15px 0px;
+}
+.label_modal_prof{
+    font-family: Mallory,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.57;
+    color: #949494;
+    font-weight: 600;
+}
+.input_modal_prof{
+    padding: 8px 16px;
+    width: 100%;
+    border: 1px solid #ced0d4;
+    font-size: 16px;
+    height: 50px;
+    line-height: 1.5;
+    transition: border-color ease-in-out .3s;
+    color: rgb(99, 99, 99);
+    outline:none;
+    background-color: #fff;
+}
+.input_modal_prof:hover, .input_modal_prof:focus {
+    border: 1px solid #d800a9;
+    transition: border-color ease-in-out .3s;
+}
+.display_card{
+    margin:9% 0 0 15%;
+    height: 50%;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.example_card{
+    margin:6% 0 0 15%;
+}
+.p_exemple_card{
+    font-family: Mallory,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.57;
+    font-weight: 600;
+    color: rgb(99, 99, 99);
+}
+.div_btn_modal{
+    margin:6% 0 0 15%;
+    text-align: center;
+}
+.some_images{
+    height: 40px;
+    text-align: center;
+}
+.image_card{
+    height: 100%;
+    width: 100%;
+}
+.image_card_small {
+    height: 100%;
+    width: 20%;
+    margin: 0 5px;
 }

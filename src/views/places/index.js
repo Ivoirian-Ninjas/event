@@ -50,8 +50,8 @@ import Geocode from "react-geocode";
                     }
                   );
             }else{
-                console.log({pos: { lng: places[0].address.longitude, lat: places[0].address.latitude}})
-              this.setState( {pos: { lng: places[0].address.longitude, lat: places[0].address.latitude}} )
+            //     console.log({pos: { lng: places[0].address.longitude, lat: places[0].address.latitude}})
+            //   this.setState( {pos: { lng: places[0].address.longitude, lat: places[0].address.latitude}} )
             }
             console.log(places)
     
