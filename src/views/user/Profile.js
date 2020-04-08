@@ -2,13 +2,32 @@
 import React, { Component } from 'react'
 import "../../assets/profile.css"
 import defaults from '../../assets/img/Last/instagram-profile-photo-png-2.png'
+import card_default from '../../assets/img/Last/pngtree-vector-credit-card-icon-png-image_925424.jpg'
+import card_1 from '../../assets/img/Last/6744618_preview.png'
+import card_2 from '../../assets/img/Last/bank-of-america-icon-png-7.png'
+import card_3 from '../../assets/img/Last/mastercard-credit-card-business-debit-card-logo-png-favpng-xAry6ChN7vpf53S2rA2aNP7KA.jpg'
+import card_4 from '../../assets/img/Last/JCB_logo.svg.png'
 import current_user from '../../helper/current_user'
 
-
+let prof_modal_styles = {
+    width: "60%",
+    maxWidth: "100%",
+    margin: "0 auto",
+    position: "fixed",
+    left: "50%",
+    top: "50%",
+    transform: "translate(-50%, -50%)",
+    zIndex: "29999",
+    backgroundColor: "#fff",
+    display: "flex",
+    flexDirection: "column",
+    boxShadow: "0px 0px 0px 400px rgba(0, 0, 0, 0.40)",
+}
 
 export default class Profile extends Component {
    state = {
-       image: ""
+       image: "",
+       ProfOpen:false,
    }
     preview_image = (file,parent) =>{
         const divImage = document.querySelector("div img")
@@ -56,9 +75,71 @@ export default class Profile extends Component {
             this.preview_image(event.target.files[0],event.target.parentNode)
         } 
     }
+    handleClick = () => {
+        this.setState({
+            ProfOpen: true
+        })
+    }
+    close_modal = () => {
+        this.setState({
+            ProfOpen: false
+        })
+    }
     render() {
+        let prof_modal = (
+            <div style={prof_modal_styles} className="div_modal">
+                <button onClick={this.close_modal} className="close_modal_prof">
+                    <i className="far fa-times-circle"></i> 
+                </button>
+                <div ProfOpen={this.state.ProfOpen} className="modal_container_prof">
+                    <p className="p_add_new">Add a new credit card</p>
+                    <div className="contain_modal">
+                        <div className="div_contain_modal">
+                            <div className="div_input_modal">
+                                <label className="label_modal_prof">Credit/debit card number</label>
+                                <input type="text" className="input_modal_prof" name="credit_numb"/>
+                            </div>
+                            <div className="div_input_modal">
+                                <label className="label_modal_prof">Card holder name</label>
+                                <input type="text" className="input_modal_prof" name="card_name"/>
+                            </div>
+                            <div className="div_input_modal">
+                                <label className="label_modal_prof">Expiry date (Example: 04/20)</label>
+                                <input type="text" className="input_modal_prof" name="expiry_card"/>
+                            </div>
+                            <div className="div_input_modal">
+                                <label className="label_modal_prof">Issuing bank</label>
+                                <input type="text" className="input_modal_prof" name="issue_bank"/>
+                            </div>
+                        </div>
+                        <div className="div_contain_modal">
+                            <div className="display_card">
+                                <img src={card_default} className="image_card"/>
+                            </div>
+                            <div className="example_card">
+                                <p className="p_exemple_card">Available payment methods:</p>
+                                <div className="some_images">
+                                <img src={card_1} className="image_card_small"/>
+                                <img src={card_2} className="image_card_small"/>
+                                <img src={card_3} className="image_card_small"/>
+                                <img src={card_4} className="image_card_small"/>
+                                </div>
+                            </div>
+                            <div className="div_btn_modal">
+                                <button className="btn_save">Save</button>
+                                <button className="btn_cancel">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+        if (!this.state.ProfOpen) {
+            prof_modal = null;
+        }
         return (
            <div className="PageConteneur">
+            <div>{prof_modal}</div>
             <div className="profile_information">
                 <div className="user_details">
                     <p className="title_part">User informations</p>
@@ -126,7 +207,7 @@ export default class Profile extends Component {
                     </div>
                     <p className="title_part">Payment method</p>
                     <div className="payment">
-                        <button className="btn_payment">
+                        <button onClick={this.handleClick} className="btn_payment">
                             Add payment method <i className="fa fa-plus-circle payment_icon"></i>
                         </button>
                     </div>
@@ -174,37 +255,37 @@ export default class Profile extends Component {
             </div>
             <div className="profile_title">
                 <p className="profile_link">
-                    <a href="./" className="link_menu">
+                    <a href="#" className="link_menu">
                         <i className="far fa-smile icone_profile"></i> Profiles
                     </a>
                 </p>
                 <p className="profile_link">
-                    <a href="./" className="link_menu">
+                    <a href="#" className="link_menu">
                         <i className="far fa-calendar-check icone_profile"></i> My Bookings
                     </a>
                 </p>
                 <p className="profile_link">
-                    <a href="./" className="link_menu">
+                    <a href="#" className="link_menu">
                         <i className="far fa-paper-plane icone_profile"></i> Inbox
                     </a>
                 </p>
                 <p className="profile_link">
-                    <a href="./" className="link_menu">
+                    <a href="#" className="link_menu">
                         <i className="far fa-star icone_profile"></i> Reviews
                     </a>
                 </p>
                 <p className="profile_link">
-                    <a href="./" className="link_menu">
+                    <a href="#" className="link_menu">
                         <i className="fa fa-medal icone_profile"></i> EventVIP
                     </a>
                 </p>
                 <p className="profile_link">
-                    <a href="./" className="link_menu">
+                    <a href="#" className="link_menu">
                         <i className="far fa-credit-card icone_profile"></i> Cash
                     </a>
                 </p>
                 <p className="profile_link">
-                    <a href="./" className="link_menu">
+                    <a href="#" className="link_menu">
                         <i className="fa fa-gifts icone_profile"></i> Bonus
                     </a> 
                 </p>

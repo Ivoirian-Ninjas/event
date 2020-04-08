@@ -101,6 +101,7 @@ input[type=file] {
     font-size: 17px;
     font-weight: bold;
     transition: ease-in-out 0.3s;
+    outline:none;
 }
 .UploadFile:hover{
     background-color: rgb(255, 255, 255);
@@ -481,4 +482,9 @@ input:checked + .InfoStepFour::after {
     box-shadow ease-in-out .15s;
     margin: 15px auto;
     word-wrap: break-word;
+}
+.modal_container_two{
+    display: inline-block;
+    width: 100%;
+    height:450px;
 }

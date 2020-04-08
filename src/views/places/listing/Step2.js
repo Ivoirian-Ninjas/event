@@ -2,10 +2,22 @@ import React, { Component } from 'react'
 import Autocomplete from 'react-google-autocomplete';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import Geocode from "react-geocode";
-
-
-
 import MyMap from '../../../helper/MyMap'
+
+let register_step_two_styles = {
+    width: "60%",
+    maxWidth: "100%",
+    margin: "0 auto",
+    position: "fixed",
+    left: "50%",
+    top: "50%",
+    transform: "translate(-50%, -50%)",
+    zIndex: "29999",
+    backgroundColor: "#fff",
+    display: "flex",
+    flexDirection: "column",
+    boxShadow: "0px 0px 0px 400px rgba(0, 0, 0, 0.40)",
+}
 export default class Step2 extends Component {
   
     state = {
@@ -22,7 +34,8 @@ export default class Step2 extends Component {
             name: "Current position",
             position: { lat: 37.77,lng: -122.42}
         },
-        zoom: 12
+        zoom: 12,
+        RegOpen:false,
         
       
     }
@@ -106,9 +119,43 @@ export default class Step2 extends Component {
             }
                 
         }
-   
+    handleClick = () => {
+        this.setState({
+            RegOpen: true
+        })
+    }
+    close_modal = () => {
+        this.setState({
+            RegOpen: false
+        })
+    }
 
     render() {
+        let register_step_two = (
+            <div style={register_step_two_styles}>
+                <button onClick={this.close_modal} className="close_modal">
+                    <i className="far fa-times-circle"></i> 
+                </button>
+                <div RegOpen={this.state.RegOpen} className="modal_container_two">
+                    <MyMap google={this.props.google} zoom={this.state.zoom}  ref={this.myRefMap} center={this.state.marker.position}>
+                            <Marker  
+                            position={this.state.marker.position}
+                            name={this.state.marker.name}
+                            onClick={this.onMarkerClick}
+                            name={'Current location'} 
+                            draggable={true}
+                            onDragend={this.handleDrag}
+
+                                ref={this.myRefMarker}
+                        />
+                        
+                    </MyMap>
+                </div>
+            </div>
+        )
+        if (!this.state.RegOpen) {
+            register_step_two = null;
+        }
         return (
             <div className="ConteneurStepOne">
             <div style={{...this.props.setting}}>
@@ -121,7 +168,7 @@ export default class Step2 extends Component {
                     <p className="TextStepOne">
                         Guests will only get your exact address once they've booked a reservation.
                     </p>
-                    <button className="ButtonLocal" onClick={this.getLocation}> <i className="fas fa-map-marked"></i> Current location </button>
+                    <button className="ButtonLocal" onClick={this.getLocation, this.handleClick}> <i className="fas fa-map-marked"></i> Current location </button>
                     <small className="SmallText"> or enter your address.</small>
                 </div>
             
@@ -219,25 +266,7 @@ export default class Step2 extends Component {
             </p>
                 <label className="LabelStepOne">Is the pin in the right place?</label>
               {/**Add a map here showing the pin */}
-              
-                        <MyMap google={this.props.google} zoom={this.state.zoom}  ref={this.myRefMap} center={this.state.marker.position}>
-                            <Marker  
-                            position={this.state.marker.position}
-                            name={this.state.marker.name}
-                            onClick={this.onMarkerClick}
-                            name={'Current location'} 
-                            draggable={true}
-                            onDragend={this.handleDrag}
-
-                                ref={this.myRefMarker}
-                        />
-                        
-                    </MyMap>
-
-           
-                   
-           
-            
+                <div>{register_step_two}</div>
             </div>
             
             </div>

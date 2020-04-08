@@ -30,9 +30,24 @@ import img_kind3 from '../assets/img/Better/ibrahim-boran-dmOFwtOIhJA-unsplash.j
 import img_kind4 from '../assets/img/Better/mo-tj86_D4rK2Q-unsplash.jpg'
 import img_kind5 from '../assets/img/Better/teemu-paananen-bzdhc5b3Bxs-unsplash.jpg'
 import img_kind6 from '../assets/img/Better/chuttersnap-aEnH4hJ_Mrs-unsplash.jpg'
+import img_modal from '../assets/img/Better/maxwell-young-dfvsyAwdzcE-unsplash.jpg'
 import { connect } from 'react-redux';
 import Autocomplete from 'react-google-autocomplete';
 
+let sub_modal_styles = {
+    width: "60%",
+    maxWidth: "100%",
+    margin: "0 auto",
+    position: "fixed",
+    left: "50%",
+    top: "50%",
+    transform: "translate(-50%, -50%)",
+    zIndex: "29999",
+    backgroundColor: "#fff",
+    display: "flex",
+    flexDirection: "column",
+    boxShadow: "0px 0px 0px 400px rgba(0, 0, 0, 0.40)",
+}
 class Home extends Component {
     constructor(){
         super()
@@ -47,12 +62,20 @@ class Home extends Component {
             date: '', 
             s_time: '', 
             e_time: '',
-            capacity: ''
+            capacity: '',
+            SubOpen:false,
         }
    
     }
 
-    
+    handleClick = () => {
+        this.setState({
+            SubOpen: true
+        })
+    }
+    close_modal = () =>{
+        this.setState({ SubOpen: false })
+    }
      handleChange = event => {
          this.setState({
              [event.target.name]: event.target.value
@@ -112,6 +135,44 @@ class Home extends Component {
             autoplay:true,
             autoPlaySpeed:100,
             className: "SlideControl"
+        }
+        let sub_modal = (
+            <div style={sub_modal_styles} className="div_modal">
+                <button onClick={this.close_modal} className="close_modal">
+                    <i className="far fa-times-circle"></i> 
+                </button>
+                <div SubOpen={this.state.SubOpen} className="modal_container">
+                     <div className="div_mod_text">
+                        <p className="text_modal">You will receive the best offers</p>
+                        <p className="text_modal_bold">Subscribe to our exclusive offers</p>
+                        <div className="modal_input_div">
+                            <input type="mail" placeholder="Email" className="input_modal"/>
+                            <button className="btn_modal">Subscribe</button>
+                        </div>
+                        <div className="modal_check_div">
+                            <input type="checkbox" className="check_modal" id="check_mod1" name="check_mod"/>
+                            <label htmlFor="check_mod1" className="label_modal">
+                                By subscribing you are agreeing with our 
+                                <a href="./#" className="link_modal"> Terms and Conditions </a> and our <br/>
+                                <a href="./#" className="link_modal"> Privacy Policy and Cookies</a>
+                            </label>
+                        </div>
+                        <div className="modal_check_div">
+                           <input type="checkbox" className="check_modal" id="check_mod2" name="check_mod"/>
+                           <label htmlFor="check_mod2" className="label_modal">
+                                I accept the use of my mail to receive promotions and commercial information
+                            </label>
+                        </div>
+                     </div>
+                     <div className="div_mod_img">
+                        <img className="img_subscribe" src={img_modal}/>
+                     </div>
+                    
+                </div>
+            </div>
+        )
+        if (!this.state.SubOpen) {
+            sub_modal = null;
         }
         return (
             <div>
@@ -218,13 +279,14 @@ class Home extends Component {
                                 Sign up to access to more gifts.
                             </p>
                             <p className="text_premium_sub">Subscribe to get bonus.</p>
-                            <button className="subscribe_btn">Subscribe now</button>
+                            <button onClick={this.handleClick} className="subscribe_btn">Subscribe now</button>
                         </div>
                         <div className="subscribe_img">
                             <img className="img_subscribe" src={img_subscribe}/>
                         </div>
                     </div>
                 </div>
+                <div>{sub_modal}</div>
                 <div className="premium">
                     <p className="text_premium">Some place where you can go </p>
                     <p className="little_text_premium"> 
