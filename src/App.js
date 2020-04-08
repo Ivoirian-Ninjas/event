@@ -10,7 +10,7 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-
+import Booking_index from './views/places/booking/index'
 import Index from './views/places/index'
 import Add_Place from './views/places/new'
 import Place_Show from './views/places/show'
@@ -19,7 +19,10 @@ import is_logged_in from './helper/is_logged_in'
 
 import Navbar from './components/navbar'
 import Booking_show from './views/places/booking/booking_show';
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import { GoogleApiWrapper} from 'google-maps-react';
+import Inbox from './views/messages/inbox';
+
+
 
 function App() {
   return (
@@ -44,8 +47,14 @@ function App() {
           {/* user profile */}
           <Route path='/users/:id' render={renderProps => <Profile/>} />
 
-          {/*Thes routes are the routes for the booking process */}
+          {/*These routes are the routes for the booking process */}
           <Route path='/bookings/:id' render={renderProps => <Booking_show {...renderProps}/>}  />
+          <Route path='/bookings/' render={renderProps => <Booking_index {...renderProps}/>}  />
+
+          {/*These routes are for messages */}
+          <Route path='/inbox/' render={renderProps => <Inbox {...renderProps}/>}  />
+
+
       </div>
     </Router>
    

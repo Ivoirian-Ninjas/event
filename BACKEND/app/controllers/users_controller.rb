@@ -8,7 +8,25 @@ class UsersController < ApplicationController
            render json: {errors: user.errors.full_messages}
         end      
     end 
+    
+    def update 
+        user = User.find(params[:id])  
+        keys = user_params.keys
+        keys.each do |e|
+            # binding.pry
+             user.send("#{e}=",user_params[:"#{e}"]) if user_params[:"#{e}"] != ""
+            #  binding.pry
 
+             if e == "file" && user.file.attached?
+
+                user.profile_pic = url_for(user.file)
+             end
+        end
+        # user.password = user.password
+       data =  user.save ? {user: user} : {error: "enable to proceed"}
+        render json: data
+    end
+        
     def login 
         # binding.pry
         user = User.find_by(email: params.require(:user).permit(:email)[:email] )

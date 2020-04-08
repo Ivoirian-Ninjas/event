@@ -55,7 +55,7 @@ class PlacesController < ApplicationController
             new_booking = Booking.create({place_id: place_id, user_id: user_id, date: date, start_time: start_time, end_time: end_time, process_fee: process_fee,duration: duration,price: price})
             place.bookings << new_booking if new_booking
             user.bookings << new_booking if new_booking
-            message = new_booking ? ['succes' ]: new_booking.errors.full_messages
+            message = new_booking ? ['succes']: new_booking.errors.full_messages
         else
             message = ['The time selected is not available']
         end

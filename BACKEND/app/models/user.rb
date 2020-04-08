@@ -10,5 +10,6 @@ class User < ApplicationRecord
     has_many :messages
     has_many :cards
     has_many :favorites, class_name: "PLACE"
-    
+    has_one_attached :file
+
 end
