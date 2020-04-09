@@ -96,7 +96,9 @@ handleChange = event => this.setState({[event.target.name]: event.target.value }
               </li> : null}
              { is_logged_in() ? 
              <li className="ProfilesLink lien-menu-first"> 
+
              <div className="img_profile" > <img src={current_user().profile_pic} className="profile_file"/> </div>
+
                 <ul className="sous-menu">
                   <li><a href={`users/${current_user().id}`}> <i className="fas fa-user-circle"></i>  Profile</a></li>
                   <li>

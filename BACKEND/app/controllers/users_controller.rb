@@ -34,7 +34,7 @@ class UsersController < ApplicationController
         if !user 
             render json: {errors: ["We were unable to find the user with this email: '#{params.require(:user).permit(:email)[:email]}'"]}
         else
-            if user.authenticate(params.require(:user).permit(:password_digest)[:password_digest])
+            if user.authenticate(params.require(:user).permit(:password)[:password])
                 render json: {user: user}
             else
                 render json: {errors: ["You Entered the wrong password"]}

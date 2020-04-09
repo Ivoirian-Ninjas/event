@@ -8,7 +8,6 @@ import card_3 from '../../assets/img/Last/mastercard-credit-card-business-debit-
 import card_4 from '../../assets/img/Last/JCB_logo.svg.png'
 import current_user from '../../helper/current_user'
 
-
 export default class Profile extends Component {
    state = {
        file: "",
@@ -16,10 +15,16 @@ export default class Profile extends Component {
        name: current_user().name,
        ProfOpen:false,
 
+
+
    }
 
    handleChange = (event) => this.setState( {[event.target.name]: event.target.value})
    handleSubmit = () => {
+
+   if( document.querySelector("span.deleteImage") ) {
+    document.querySelector("span.deleteImage").remove()
+   }
     const fd = new FormData()
     for(const e in this.state){
         if (e != "ProfOpen"){
@@ -40,6 +45,12 @@ export default class Profile extends Component {
         }else{
             localStorage.removeItem("user")
             localStorage.setItem("user", JSON.stringify(json.user) )
+
+            if( current_user() ){
+                const small_image = document.querySelector("img.profile_file")
+                small_image.src = current_user().profile_pic
+
+            }
 
         }
     })
@@ -104,6 +115,7 @@ export default class Profile extends Component {
             ProfOpen: false
         })
     }
+
     prof_modal_styles = {
         width: "60%",
         maxWidth: "100%",
@@ -124,6 +136,7 @@ export default class Profile extends Component {
             <div style={this.prof_modal_styles} className="div_modal">
                 <button onClick={this.close_modal} className="close_modal_prof">
                     <i className="far fa-times-circle"></i> 
+
                 </button>
                 <div ProfOpen={this.state.ProfOpen} className="modal_container_prof">
                     <p className="p_add_new">Add a new credit card</p>
@@ -174,7 +187,6 @@ export default class Profile extends Component {
         return (
            <div className="PageConteneur">
            <div>{prof_modal}</div>
-
             <div className="profile_information">
                 <div className="user_details">
                     <p className="title_part">Basic information</p>
@@ -238,7 +250,9 @@ export default class Profile extends Component {
                     </div>
                     <p className="title_part">Payment & Payout</p>
                     <div className="payment">
+
                         <button onClick={this.handleClick}className="btn_payment">
+
                             Add payment method <i className="fa fa-plus-circle payment_icon"></i>
                         </button>
                     </div>
@@ -286,37 +300,40 @@ export default class Profile extends Component {
             </div>
             <div className="profile_title">
                 <p className="profile_link">
-                    <a href="./" className="link_menu">
+                    <a href="#" className="link_menu">
                         <i className="far fa-smile icone_profile"></i> Profiles
                     </a>
                 </p>
                 <p className="profile_link">
                     <a href="/bookings" className="link_menu">
+
                         <i className="far fa-calendar-check icone_profile"></i> My Bookings
                     </a>
                 </p>
                 <p className="profile_link">
                     <a href="/inbox" className="link_menu">
+
                         <i className="far fa-paper-plane icone_profile"></i> Inbox
                     </a>
                 </p>
                 <p className="profile_link">
                     <a href="/reviews" className="link_menu">
+
                         <i className="far fa-star icone_profile"></i> Reviews
                     </a>
                 </p>
                 <p className="profile_link">
-                    <a href="./" className="link_menu">
+                    <a href="#" className="link_menu">
                         <i className="fa fa-medal icone_profile"></i> EventVIP
                     </a>
                 </p>
                 <p className="profile_link">
-                    <a href="./" className="link_menu">
+                    <a href="#" className="link_menu">
                         <i className="far fa-credit-card icone_profile"></i> Cash
                     </a>
                 </p>
                 <p className="profile_link">
-                    <a href="./" className="link_menu">
+                    <a href="#" className="link_menu">
                         <i className="fa fa-gifts icone_profile"></i> Bonus
                     </a> 
                 </p>
