@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 export default class Step5 extends Component {
     handleClick = (event) => {
+        event.persist()
         event.target.parentNode.querySelector("input").click()
     }
     render() {

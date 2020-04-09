@@ -44,6 +44,28 @@ export default class Step2 extends Component {
         this.myRefMarker = React.createRef();
     }
     
+    get_location = (pos) => {
+        Geocode.setApiKey("AIzaSyCdKNMjsiDMW07_NEEBlzhRlArElUUFRXQ")
+        console.log(pos)
+        Geocode.fromLatLng(pos.lat,pos.lng).then(
+         response => {
+             const place = response.results[0]
+             console.log(response.results)
+             if( place.address_components.length >= 6){               
+               this.setState({
+                   country: place.address_components[5].long_name,
+                   state: place.address_components[4].long_name, 
+                   city: place.address_components[2].long_name,
+                   longitude: place.geometry.location.lng,
+                   latitude: place.geometry.location.lat,
+                   zipCode: place.address_components[6].long_name,
+                   street: `${place.address_components[0].long_name} ${place.address_components[1].long_name} ${place.address_components[2].long_name} ${place.address_components[4].long_name}`,
+                   marker: {position: {lng: place.geometry.location.lng, lat: place.geometry.location.lat}},
+                   zoom: 16
+                   })
+              }
+          })
+    }
 
     handleChange = (event) => { 
         event.persist()
@@ -56,20 +78,12 @@ export default class Step2 extends Component {
         if(name != "street"){
             this.setState({[name]: place.address_components[0].long_name})
         }else if(name === 'street' && place.address_components.length >= 6){
-           
-            this.setState({
-            country: place.address_components[5].long_name,
-            state: place.address_components[4].long_name, 
-            city: place.address_components[2].long_name,
-            longitude: place.geometry.location.lng(),
-            latitude: place.geometry.location.lat(),
-            zipCode: place.address_components[6].long_name,
-            street: `${place.address_components[0].long_name} ${place.address_components[1].long_name} ${place.address_components[2].long_name} ${place.address_components[4].long_name}`,
-            marker: {position: {lng: place.geometry.location.lng(), lat: place.geometry.location.lat()}},
-            zoom: 16
-            })
-            
-
+            const pos = {
+                lat: place.geometry.location.lat(),
+                lng: place.geometry.location.lng(),
+              }
+              this.get_location(pos)
+    
         }
 
         
@@ -77,48 +91,26 @@ export default class Step2 extends Component {
     }
 
     handleDrag =  (t, map, coord) =>{
-           this.setState( {longitude: t.position.lng, latitude: t.position.lat} )
-            console.log(map)
-            console.log(coord)
-            console.log(t)
-
-        }
+           const pos = {
+            lat: coord.latLng.lat(),
+            lng:  coord.latLng.lng()
+          }
+          
+         this.get_location(pos)
+    }
  
-        getLocation = () => {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition( position => {
-                  const pos = {
-                     lat: position.coords.latitude,
-                     lng: position.coords.longitude
-                   }
-                   Geocode.setApiKey("AIzaSyCdKNMjsiDMW07_NEEBlzhRlArElUUFRXQ")
-                   Geocode.fromLatLng(pos.lat,pos.lng).then(
-                    response => {
-                        const place = response.results[0]
-                        console.log(response.results)
-                        if( place.address_components.length >= 6){               
-                          this.setState({
-                              country: place.address_components[5].long_name,
-                              state: place.address_components[4].long_name, 
-                              city: place.address_components[2].long_name,
-                              longitude: place.geometry.location.lng,
-                              latitude: place.geometry.location.lat,
-                              zipCode: place.address_components[6].long_name,
-                              street: `${place.address_components[0].long_name} ${place.address_components[1].long_name} ${place.address_components[2].long_name} ${place.address_components[4].long_name}`,
-                              marker: {position: {lng: place.geometry.location.lng, lat: place.geometry.location.lat}},
-                              zoom: 16
-                              })
-                        }
-                    },
-                    error => {
-                      console.error(error);
-                    }
-                  );
-
-                })
-            }
-                
-        }
+    getLocation = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition( position => {
+                console.log(position)
+                const pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                }
+                this.get_location(pos)
+            })
+        }         
+    }
     handleClick = () => {
         this.setState({
             RegOpen: true
@@ -168,7 +160,7 @@ export default class Step2 extends Component {
                     <p className="TextStepOne">
                         Guests will only get your exact address once they've booked a reservation.
                     </p>
-                    <button className="ButtonLocal" onClick={this.getLocation, this.handleClick}> <i className="fas fa-map-marked"></i> Current location </button>
+                    <button className="ButtonLocal" onClick={() => {this.getLocation();this.handleClick()} }> <i className="fas fa-map-marked"></i> Current location </button>
                     <small className="SmallText"> or enter your address.</small>
                 </div>
             
@@ -195,6 +187,7 @@ export default class Step2 extends Component {
                                 placeholder="e.g. 158 Main Street"
                                 onPlaceSelected={(place) => {
                                     this.handleSelect(place,"street")
+                                    this.handleClick()
 
                                 }}
                                 onChange={this.handleChange}
@@ -263,9 +256,7 @@ export default class Step2 extends Component {
                 <p className="ButtonStepOne">
                 <button onClick={this.props.previousStep} className="PrevOne"> <i className="fa fa-angle-left"></i> Back </button>
                 <button onClick={this.props.nextStep} className="NextOne">Next <i className="fa fa-angle-right"></i> </button>
-            </p>
-                <label className="LabelStepOne">Is the pin in the right place?</label>
-              {/**Add a map here showing the pin */}
+                </p>  
                 <div>{register_step_two}</div>
             </div>
             

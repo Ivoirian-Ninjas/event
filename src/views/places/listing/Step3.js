@@ -9,6 +9,20 @@ export default class Step3 extends Component {
         { value: 'one', label: 'One' },
         { value: 'two', label: 'Two' }
       ]
+     
+       customStyles = {
+        option: (provided, state) => ({
+          ...provided,
+          width: "100%",
+       
+        }),
+        control: (provided,state) => ({
+            ...provided,
+          width: "100%",
+          height: "50px",
+          border: "1px solid  #343840"
+        })
+    }
     render() {
      
         return (
@@ -51,10 +65,22 @@ export default class Step3 extends Component {
                     {/* https://react-select.com/styles */}
                       <Creatable
                         isMulti
+                        styles={this.customStyles}
                         name="form-field-name"
                         options={this.options}
                         onChange={this.props.handleActivities}
-                        
+                        theme={theme => ({
+                            ...theme,
+                            borderRadius: 0,
+                            colors: {
+                                ...theme.colors,
+                                primary25:  "#9400d3", //the hover color
+                                primary: "#9400d3", //the main color 
+                                neutral10: "#9400d3", //the color of the block when the option has been selected
+                                neutral20: "#9400d3", //the color of the block when the option has been selected
+                                primary50: "#9400d3" //the color when the user click on an option
+                            },
+                            })}
                         />
                 </div>
 
