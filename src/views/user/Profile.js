@@ -11,17 +11,51 @@ import current_user from '../../helper/current_user'
 
 export default class Profile extends Component {
    state = {
-       image: ""
+       file: "",
+       email: current_user().email,
+       name: current_user().name,
+       ProfOpen:false,
+
    }
+
+   handleChange = (event) => this.setState( {[event.target.name]: event.target.value})
+   handleSubmit = () => {
+    const fd = new FormData()
+    for(const e in this.state){
+        if (e != "ProfOpen"){
+            fd.append(`user[${e}]`, this.state[e])
+        }
+    }
+    const params = {
+        method: 'PATCH', 
+       body: fd
+    }
+    fetch(`http://localhost:3000/users/${current_user().id}`,params)
+    .then(resp => resp.json())
+    .then(json => {
+        if(json.errors){
+            json.errors.forEach(e => {
+                console.log(e)
+            })
+        }else{
+            localStorage.removeItem("user")
+            localStorage.setItem("user", JSON.stringify(json.user) )
+
+        }
+    })
+  
+   
+   }
+   
     preview_image = (file,parent) =>{
-        const divImage = document.querySelector("div img")
+        const divImage = document.querySelector("div.pictures")
         const image = document.querySelector("img.files")
          const  reader = new FileReader();
          const spanX= document.createElement("span")
          const icon = document.createElement("i")
          icon.classList.add("fa", "fa-trash")
          spanX.classList.add("deleteImage")
-         spanX.append("Delete image ")
+         spanX.append("Delete image")
          spanX.appendChild(icon)
          //read the file
          reader.readAsDataURL(file);
@@ -35,9 +69,10 @@ export default class Profile extends Component {
            divImage.appendChild(spanX)
            spanX.addEventListener("click", () => {
              image.src = defaults 
+             spanX.remove()
  
              //remove the file from the image
-             this.setState( state => state.image = "" , () => console.log(this.state.images))
+             this.setState( state => state.profile_pic = "" , () => console.log(this.state.images))
              const inputs = document.querySelectorAll(`input[type="file"]`)
             inputs.forEach(e => {
                  console.log(e.value)
@@ -54,58 +89,131 @@ export default class Profile extends Component {
      handleFileChange = event => {
         event.persist()   
         if (event.target.files[0]) {
-            this.setState( {image: event.target.files[0]} )
+            this.setState( {file: event.target.files[0]} )
             // this function will display all the images selected
             this.preview_image(event.target.files[0],event.target.parentNode)
         } 
     }
+    handleClick = () => {
+        this.setState({
+            ProfOpen: true
+        })
+    }
+    close_modal = () => {
+        this.setState({
+            ProfOpen: false
+        })
+    }
+    prof_modal_styles = {
+        width: "60%",
+        maxWidth: "100%",
+        margin: "0 auto",
+        position: "fixed",
+        left: "50%",
+        top: "50%",
+        transform: "translate(-50%, -50%)",
+        zIndex: "29999",
+        backgroundColor: "#fff",
+        display: "flex",
+        flexDirection: "column",
+        boxShadow: "0px 0px 0px 400px rgba(0, 0, 0, 0.40)",
+    }
+    
     render() {
+        let prof_modal = (
+            <div style={this.prof_modal_styles} className="div_modal">
+                <button onClick={this.close_modal} className="close_modal_prof">
+                    <i className="far fa-times-circle"></i> 
+                </button>
+                <div ProfOpen={this.state.ProfOpen} className="modal_container_prof">
+                    <p className="p_add_new">Add a new credit card</p>
+                    <div className="contain_modal">
+                        <div className="div_contain_modal">
+                            <div className="div_input_modal">
+                                <label className="label_modal_prof">Credit/debit card number</label>
+                                <input type="text" className="input_modal_prof" name="credit_numb"/>
+                            </div>
+                            <div className="div_input_modal">
+                                <label className="label_modal_prof">Card holder name</label>
+                                <input type="text" className="input_modal_prof" name="card_name"/>
+                            </div>
+                            <div className="div_input_modal">
+                                <label className="label_modal_prof">Expiry date (Example: 04/20)</label>
+                                <input type="text" className="input_modal_prof" name="expiry_card"/>
+                            </div>
+                            <div className="div_input_modal">
+                                <label className="label_modal_prof">Issuing bank</label>
+                                <input type="text" className="input_modal_prof" name="issue_bank"/>
+                            </div>
+                        </div>
+                        <div className="div_contain_modal">
+                            <div className="display_card">
+                                <img src={card_default} className="image_card"/>
+                            </div>
+                            <div className="example_card">
+                                <p className="p_exemple_card">Available payment methods:</p>
+                                <div className="some_images">
+                                <img src={card_1} className="image_card_small"/>
+                                <img src={card_2} className="image_card_small"/>
+                                <img src={card_3} className="image_card_small"/>
+                                <img src={card_4} className="image_card_small"/>
+                                </div>
+                            </div>
+                            <div className="div_btn_modal">
+                                <button className="btn_save">Save</button>
+                                <button className="btn_cancel">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+        if (!this.state.ProfOpen) {
+            prof_modal = null;
+        }
         return (
            <div className="PageConteneur">
+           <div>{prof_modal}</div>
+
             <div className="profile_information">
                 <div className="user_details">
-                    <p className="title_part">User informations</p>
+                    <p className="title_part">Basic information</p>
                     <div className="info">
                         <div className="name_surname">
                             <label className="label_title">Name</label>
-                            <input type="text" className="names" placeholder="e.g. John" name="name" value={current_user().name}/>
-                            <label className="label_title">Surname</label>
-                            <input type="text" className="names" placeholder="e.g. McCormith" name="sur_name"/>
+                            <input type="text" className="names" placeholder="e.g. John" name="name" onChange={this.handleChange} value={this.state.name}/>
+                            <label className="label_title">Description</label>
+                            <textarea className="names" placeholder="e.g. McCormith" name="sur_name"/>
                             <div className="save_info">
-                                <button className="btn_save">Save</button>
+                                <button className="btn_save" onClick={this.handleSubmit}>Save</button>
                                 <button className="btn_cancel">Cancel</button>
                             </div>
                         </div>
                         <div className="pictures">
-                            <div className="file_comp"> <img src={defaults} className="files"/> </div>
+                            <div className="file_comp"> <img src={current_user().profile_pic} className="files"/> </div>
                             <div className="file_comp">
                                 <label htmlFor="photo_edit" className="label_edit">
                                     Select file <i className="fa fa-upload"></i>
                                 </label>
-                            <input onChange={this.handleFileChange} style={{height: "0px", width:"0px"}} type="file" id="photo_edit" className="photo_edit" name="file_edit" accept="image/x-png,image/gif,image/jpeg"/>
+                            <input onChange={this.handleFileChange} style={{height: "0px", width:"0px"}} type="file" id="photo_edit" className="photo_edit" name="profile_pic" accept="image/x-png,image/gif,image/jpeg"/>
                             </div>
                         </div>
                     </div>
+                    <p className="title_part">Contact</p>
                     <div className="info">
                         <div className="more_info">
                             <label className="label_title">Email</label>
                             <input type="mail" className="input_more" placeholder="peterXXX@yahoo.xyz" name="mail" value={current_user().email}/>
-                            <div className="save_info">
-                                <button className="btn_save">Save</button>
-                                <button className="btn_cancel">Cancel</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="info">
-                        <div className="more_info">
-                            <label className="label_title">Contact</label>
+                            <label className="label_title">Phone number</label>
                             <input type="tel" className="input_more" placeholder="+12 XXX XXX XXX" name="contact" />
                             <div className="save_info">
-                                <button className="btn_save">Save</button>
+                                <button className="btn_save" onClick={this.handleSubmit}>Save</button>
                                 <button className="btn_cancel">Cancel</button>
                             </div>
                         </div>
                     </div>
+
+                    <p className="title_part">Credentials</p>
                     <div className="info">
                         <div className="more_info">
                             <label className="label_title">Current password</label>
@@ -120,6 +228,7 @@ export default class Profile extends Component {
                             </div>
                         </div>
                     </div>
+                   
                     <p className="title_part">Social network</p>
                     <div className="info">
                         <div className="more_info">
@@ -127,9 +236,9 @@ export default class Profile extends Component {
                             <button className="btn_connection">Connected</button>
                         </div>
                     </div>
-                    <p className="title_part">Payment method</p>
+                    <p className="title_part">Payment & Payout</p>
                     <div className="payment">
-                        <button className="btn_payment">
+                        <button onClick={this.handleClick}className="btn_payment">
                             Add payment method <i className="fa fa-plus-circle payment_icon"></i>
                         </button>
                     </div>
@@ -168,7 +277,7 @@ export default class Profile extends Component {
                         <div className="radio_sub_div">
                             <label className="label_title">I would like to receive emails about Event promotions</label>
                             <div className="check_div">
-                                <input type="checkbox" className="check_sub" id="check2" name="check2"/>
+                                <input type="checkbox" className="check_sub" id="check2" name="check2" />
                                 <label htmlFor="check2" className="label_check"></label>
                             </div>
                         </div>
@@ -182,17 +291,17 @@ export default class Profile extends Component {
                     </a>
                 </p>
                 <p className="profile_link">
-                    <a href="./" className="link_menu">
+                    <a href="/bookings" className="link_menu">
                         <i className="far fa-calendar-check icone_profile"></i> My Bookings
                     </a>
                 </p>
                 <p className="profile_link">
-                    <a href="./" className="link_menu">
+                    <a href="/inbox" className="link_menu">
                         <i className="far fa-paper-plane icone_profile"></i> Inbox
                     </a>
                 </p>
                 <p className="profile_link">
-                    <a href="./" className="link_menu">
+                    <a href="/reviews" className="link_menu">
                         <i className="far fa-star icone_profile"></i> Reviews
                     </a>
                 </p>
