@@ -89,7 +89,7 @@ export default class Profile extends Component {
         let prof_modal = (
             <div style={prof_modal_styles} className="div_modal">
                 <button onClick={this.close_modal} className="close_modal_prof">
-                    <i className="far fa-times-circle"></i> 
+                    <i className="fa fa-times-circle"></i> 
                 </button>
                 <div ProfOpen={this.state.ProfOpen} className="modal_container_prof">
                     <p className="p_add_new">Add a new credit card</p>

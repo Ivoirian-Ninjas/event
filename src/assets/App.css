@@ -117,7 +117,7 @@
     background:none;
 }
 
-.ProfilesLink:hover .sous-menu{
+.ProfilesLink:hover .sous-menu, .img_profile:hover .sous-menu{
     display: block;
 }
 .active, a:hover{
@@ -145,10 +145,10 @@
     font-size: 20px;
 }
 .img_profile{
-    width:35px;
-    height:35px;
+    width:40px;
+    height:40px;
     border: 1px solid rgb(226, 1, 215);
-    top:10px;
+    top:15px;
     position: relative;
     border-radius: 50%;
     cursor: pointer;
