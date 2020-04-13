@@ -70,7 +70,7 @@ class PlacesController < ApplicationController
        images = params.require(:images)
        place = user.places.create(place_params)
 
-        category = Category.find_or_create_by(title: category_params[:title])
+        category = Category.find_or_create_by(title: category_params[:title].capitalize)
         category.places << place
         if place
             images.each do |el| 
@@ -84,7 +84,7 @@ class PlacesController < ApplicationController
             end
 
             params.require(:activities).each do |e| 
-                activity = Activity.find_or_create_by(title: e) 
+                activity = Activity.find_or_create_by(title: e.capitalize) 
                 place.activities << activity
             end
 

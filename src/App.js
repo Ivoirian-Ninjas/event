@@ -21,6 +21,8 @@ import Navbar from './components/navbar'
 import Booking_show from './views/places/booking/booking_show';
 import { GoogleApiWrapper} from 'google-maps-react';
 import Inbox from './views/messages/inbox';
+import Footer from "./components/footer"
+
 
 
 
@@ -54,7 +56,9 @@ function App() {
           {/*These routes are for messages */}
           <Route path='/inbox/' render={renderProps => <Inbox {...renderProps}/>}  />
 
-
+          <footer className="footer">
+              <Footer/>
+          </footer>
       </div>
     </Router>
    

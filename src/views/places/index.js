@@ -35,9 +35,7 @@ import Geocode from "react-geocode";
         fetch(url,params)
         .then(resp => resp.json())
         .then(json =>  { 
-            console.log("this is the result")
-            console.log(json)
-            const places =  json.places.map(e=>e.data.attributes)
+            const places =  json.places ? json.places.map(e=>e.data.attributes) : []
             if(json.city){
                 Geocode.setApiKey("AIzaSyCdKNMjsiDMW07_NEEBlzhRlArElUUFRXQ")
                 Geocode.fromAddress(json.city).then(
@@ -50,13 +48,10 @@ import Geocode from "react-geocode";
                     }
                   );
             }else{
-            //     console.log({pos: { lng: places[0].address.longitude, lat: places[0].address.latitude}})
               this.setState( {pos: { lng: places[0].address.longitude, lat: places[0].address.latitude}} )
             }
-            console.log(places)
     
-            this.props.filter_places(places) 
-
+            this.props.get_places(places)
         })
     }
 
@@ -179,6 +174,5 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps  = dispatch => ({
     get_places: places =>  dispatch({type: 'ADD_PLACE', places: places}),
-    filter_places: places => dispatch({type: 'FILTER_PLACE',places: places })
 })
 export default connect(mapStateToProps,mapDispatchToProps)(Index)

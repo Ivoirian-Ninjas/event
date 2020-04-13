@@ -112,17 +112,22 @@ class Home extends Component {
 
     }
     componentDidMount(){
-        // slider()
-        let user = current_user()
-        console.log(user)
-        fetch('http://localhost:3000/places')
+        fetch('http://localhost:3000/activities')
         .then(resp => resp.json())
         .then(json =>{ 
-                   console.log(json)
-                   const places =  json.places.map(e=>e.data.attributes)
-                   this.props.get_places(places) 
-       })
+          this.props.add_activities(json)                  
+        })
     }
+
+
+    display_activities = () => {
+        let result 
+        if(this.props.activities.activities){
+            result = this.props.activities.activities.map(e =><option value={e}/>)
+        }
+        return result
+    }
+
     render() {
         const settings = {
             dots: true,
@@ -181,7 +186,10 @@ class Home extends Component {
                         <div className="searchContenu">
                             <h1 className="h1Home">Find your place <br/> anywhere</h1>
                             <h3 className="h3Home">A very easy platform to search some locals to do your <br/> event</h3>
-                            <input type='text' placeholder="What are your planing" name="activity" className="TypeEvent" value={this.state.activity} onChange={this.handleChange}/>
+                            <input type='text' placeholder="What are your planing" name="activity" list="activities" className="TypeEvent" value={this.state.activity} onChange={this.handleChange}/>
+                                <datalist id="activities">
+                                    {this.display_activities()}
+                                </datalist>
                             <Autocomplete
                                 className="LocateEvent"
                                 placeholder="Where?"
@@ -376,15 +384,19 @@ class Home extends Component {
                     </div>
                     <button className="show_more_kind">Show more kinds <i className="fa fa-plus icon_plus"></i></button>
                 </div>
-                <footer className="footer">
-                    <Footer/>
-                </footer>
+               
             </div>
         )
     }
 }
 const mapDispatchToProps  = dispatch => ({
-    get_places: places =>  dispatch({type: 'ADD_PLACE', places: places}),
-    filter_places: places => dispatch({type: 'FILTER_PLACE',places: places })
+    add_activities: activities =>  dispatch({type: 'ADD_ACTIVITIES', activities: activities}),
+    add_categories: categories =>  dispatch({type: 'ADD_CATEGORIES', categories: categories}),
+
 })
-export default connect(null,mapDispatchToProps)(Home)
+
+const mapStateToProps = state => {
+    console.log(state)
+   return {activities: state.activities}
+  }
+export default connect(mapStateToProps,mapDispatchToProps)(Home)

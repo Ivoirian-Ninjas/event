@@ -2,8 +2,26 @@ import React, { Component } from 'react'
 import "../../../assets/newplace.css"
 import {Progress} from "semantic-ui-react";
 import Autocomplete from 'react-google-autocomplete';
+import { connect } from 'react-redux';
 
-export default class Step1 extends Component {
+class Step1 extends Component {
+
+    display_categories = () => {
+        let result 
+        if(this.props.categories.categories){
+            result = this.props.categories.categories.map(e =><option value={e}/>)
+        }
+        return result
+    }
+
+    componentDidMount(){
+        fetch('http://localhost:3000/categories')
+       .then(resp => resp.json())
+       .then(json =>{ 
+           this.props.add_categories(json)                  
+      })
+    }
+    
     render() {
         return (
             <div className="ConteneurStepOne">
@@ -18,12 +36,7 @@ export default class Step1 extends Component {
                     <label className = "LabelStepOne" > What type of space do you have ? </label>
                         <input type= 'text' name='typeOfSpace' className="InputStepOne" placeholder="Enter a type of space" list="typeOfSpace" onChange={this.props.handleChange}/>
                         <datalist id="typeOfSpace">
-                            <option value="Cafe"/>
-                            <option value="Photography Gallery"/>
-                            <option value="Bus"/>
-                            <option value="Private Dinning Room"/>
-                            <option value="Private Work office"/>
-                            <option value="Community Space"/>
+                            {this.display_categories()}
                         </datalist>
                     </div>
 
@@ -59,3 +72,10 @@ export default class Step1 extends Component {
         )
     }
 }
+const mapDispatchToProps  = dispatch => ({
+    add_categories: categories =>  dispatch({type: 'ADD_CATEGORIES', categories: categories})
+})
+const mapStateToProps = state => {
+   return {categories: state.categories}
+  }
+  export default connect(mapStateToProps,mapDispatchToProps)(Step1)

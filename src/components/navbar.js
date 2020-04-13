@@ -25,9 +25,8 @@ import img_profil from '../assets/img/Better/ganapathy-kumar-yaiy4mCbzw0-unsplas
     localStorage.clear()
     window.location.reload()
   }
-  redirect = () =>{
-    window.location.href = "http://localhost:3001/"
-  }
+  redirect = () => window.location.href = "http://localhost:3001/"
+  
   state = {
     email: '',
     password: '',
@@ -68,7 +67,22 @@ import img_profil from '../assets/img/Better/ganapathy-kumar-yaiy4mCbzw0-unsplas
   }
 handleChange = event => this.setState({[event.target.name]: event.target.value })
 
-   
+  display_activities = () => {
+    let result 
+      if(this.props.activities.activities){
+        result = this.props.activities.activities.map(e =><li><a href={`/places?activities.title=${e}`}>{e}</a></li>)
+      }
+      return result
+    }
+
+   componentDidMount(){
+      fetch('http://localhost:3000/activities')
+      .then(resp => resp.json())
+      .then(json =>{ 
+          this.props.add_activities(json)                  
+    })
+   } 
+
   render() {
     return (
      <div className="EnTetes">
@@ -78,14 +92,12 @@ handleChange = event => this.setState({[event.target.name]: event.target.value }
               </label>
             <a className="LogoEvent" onClick={this.redirect}>Event</a>
             <ul className="menu-first">
-              <li className="lien-menu-first"><a href="/" className={document.location.href === `http://localhost:3001/` ? 'active' : null}>Home</a></li>
               <li className="ProfilesLink lien-menu-first">
                 <a  className={document.location.href.includes('activities')  ? 'active' : null}>
                   Activities
                 </a>
                 <ul className="sous-menu">
-                  <li><a href="#">Festival</a></li>
-                  <li><a href="#">Party</a></li>
+                  {this.display_activities()}
                 </ul>
               </li>
               {is_admin() ?
@@ -202,9 +214,15 @@ handleChange = event => this.setState({[event.target.name]: event.target.value }
     )
   }
 }
-const mapDispatchToProps = dispatch =>  ({
+const mapDispatchToProps = dispatch =>  ({   
+   add_activities: activities =>  dispatch({type: 'ADD_ACTIVITIES', activities: activities}),
   SignInUser: (user)=> dispatch(SignInUser(user)),
   SignUpUser: (user)=> dispatch(SignUpUser(user))
 })
 
-export default connect(null,mapDispatchToProps)(Navbar)
+const mapStateToProps = state => {
+  console.log(state)
+ return {activities: state.activities}
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Navbar)
