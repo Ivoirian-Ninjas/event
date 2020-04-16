@@ -186,6 +186,7 @@
     margin: 20px;
     border-top: 1px solid rgb(214, 214, 214);
     padding-top: 20px;
+    cursor: pointer;
 }
 .display_img {
     display: inline-block;
@@ -302,4 +303,14 @@
 }
 .IconHeart{
     color:black;
+}
+.place_more{
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-size: 1.4rem;
+    color: rgb(114, 114, 114);
+    text-decoration: none;
+}
+.place_more:hover{
+    background: transparent;
+    text-decoration: underline;
 }

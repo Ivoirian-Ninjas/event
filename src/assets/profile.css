@@ -6,8 +6,18 @@
 }
 .profile_title{
     display: inline-block;
+    width: 23%;
+    position: absolute;
+    padding: 10px 60px 10px 25px;
+    margin-left: 5px;
+    border-bottom: 2px solid rgb(240, 32, 205);
+    box-shadow: -4px 0px 14px -7px rgba(0, 0, 0, 0.75);
+    overflow: hidden;
+}
+.profile_title2 {
+    display: inline-block;
     width: 25%;
-    position: fixed;
+    position: relative;
     padding: 10px 60px 10px 25px;
     margin-left: 5px;
     border-bottom: 2px solid rgb(240, 32, 205);

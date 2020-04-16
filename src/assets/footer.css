@@ -3,9 +3,10 @@
     overflow: hidden;
     background:rgb(12, 1, 17);
     color: rgb(214, 204, 216);
-    display:block;
+    display:inline-block;
     padding:50px 0px 20px 0px;
     text-align: center;
+    z-index: 10;
 }
 .top_div_footer{
     width: 100%;

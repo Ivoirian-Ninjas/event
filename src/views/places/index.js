@@ -54,7 +54,7 @@ import Geocode from "react-geocode";
             this.props.get_places(places)
         })
     }
-
+    // openShow = () => window.location.href = `/places/${this.props.place.id}` onClick={window.location.href=`/places/${e.id}`}
     display_places = () => {
         console.log(this.props.places)
         if (this.props.places && Array.isArray(this.props.places)){
