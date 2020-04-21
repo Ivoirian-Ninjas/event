@@ -11,17 +11,19 @@ class PlacesController < ApplicationController
         places = Place.joins(:activities,:address,:schedule,:category)
         query.each{|key, val| places = places.send("where", "#{key} like ?", "%#{val}%")}
         # binding.pry
-        normilize_array = places.map{|place| PlaceSerializer.new(place) } 
-        
+        normilize_array = places.uniq.map{|place| PlaceSerializer.new(place) } 
+        # binding.pry
     end
       city =  query["city"].split("_").join(" ") if query["city"]
-       result =  city ? {places: normilize_array, city: city} :  {places: normilize_array}
+       result =  city ? {places: normilize_array.uniq, city: city} :  {places: normilize_array.uniq}
+    #    binding.pry
         render json: result
     end
 
     def show 
         disabled_days = []
         place = Place.find(params.permit(:id)[:id])
+        host = place.user
         # binding.pry
         dates = place.bookings.map{|booking| booking.date}
         dates.each do |date|
@@ -34,7 +36,7 @@ class PlacesController < ApplicationController
             # this is the format needed for the date picker March 1, 2020
             disabled_days << date.strftime("%B %d, %Y")  if total >= 20.0
         end
-        render json: {place: place, address: place.address, disabled_days: disabled_days, rule: place.rule, schedule: place.schedule, amenities: place.amenities, parking: place.parking, cancelation: place.cancelation_policy}
+        render json: {place: place, address: place.address, disabled_days: disabled_days, rule: place.rule, schedule: place.schedule, amenities: place.amenities, parking: place.parking, cancelation: place.cancelation_policy, host: host}
     end
 
     def book

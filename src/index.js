@@ -7,12 +7,20 @@ import {Provider} from 'react-redux'
 import allReducers from './reducers/allReducers'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { API_WS_ROOT } from './constants';
+import { ActionCableProvider } from 'react-actioncable-provider';
+
 //added a comment to test git update
 const store = createStore(allReducers,applyMiddleware(thunk))
 
-ReactDOM.render(   <Provider store={store}>
-                        <App />
-                    </Provider>
+
+ReactDOM.render(  
+                        <Provider store={store}>
+                            <ActionCableProvider url={API_WS_ROOT}> 
+                                <App />  
+                            </ActionCableProvider>
+                        </Provider>
+                  
 , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

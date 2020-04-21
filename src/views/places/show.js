@@ -15,8 +15,9 @@ import DatePicker from 'react-date-picker'
 
 import TimePicker from 'react-time-picker'
 import TimeRange from 'react-time-range'
+import { TextArea } from 'semantic-ui-react';
 
-
+import {API_ROOT, HEADERS} from '../../constants'
 
 
 export default class show extends Component {
@@ -27,13 +28,27 @@ export default class show extends Component {
         .then(resp => resp.json() )
         .then(json => {
             console.log(json)
-            this.setState({place: json.place, disabled_days: json.disabled_days, address:json.address, rule: json.rule, schedule: json.schedule, amenities: json.amenities, parking: json.parking, cancelation: json.cancelation }) } )     
+            this.setState({place: json.place, disabled_days: json.disabled_days, address:json.address, rule: json.rule, schedule: json.schedule, amenities: json.amenities, parking: json.parking, cancelation: json.cancelation, host: json.host }) } )     
     }
 
     display_amen =() => this.state.amenities.map(e => <li key={e.title}>{e.title}</li>)
 
+    contactHost = () => {
+        if(this.state.current_message != ""){
+            fetch(`${API_ROOT}/messages`, {
+                method: 'POST',
+                headers: HEADERS,
+                body: JSON.stringify( {current_message: this.state.current_message, host_id: this.state.host.id, current_user: current_user().id})
+              })
+              this.setState({current_message: ''})
+
+        }
+    }
+
+    handleChange = (e) =>  this.setState({current_message: e.target.value})
    
     state = {
+        current_message: "",
         disabled_days: [],
         place: {},
         address: {},
@@ -44,8 +59,8 @@ export default class show extends Component {
         schedule: '',
         amenities: [],
         parking: {},
-        cancelation: {}
-
+        cancelation: {},
+        host: {}
       }
       s_change_time = time => this.setState({start_time: time})
       e_change_time = time => this.setState({end_time: time})
@@ -168,8 +183,13 @@ export default class show extends Component {
                 {this.state.cancelation ? this.state.cancelation.genre : null}
                 <p>{ this.state.cancelation ? this.state.cancelation.content: null}</p>
             </div>
-
-          
+            {
+                this.state.host.id != current_user().id ? 
+                (<div><button onClick={this.contactHost}>Contact {this.state.host.name}</button>
+            <TextArea value={this.state.current_message} onChange={this.handleChange}></TextArea></div>)
+            :  null
+            }
+           
             <div>
                 <h4>Similar places</h4>
                 {/* {show similar places} */}

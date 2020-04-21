@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get '/places/s/:terms', to: 'places#index'
   post '/places/:id/book', to: 'places#book'
   post '/bookings/:id/confirm', to: 'bookings#confirm'
+  mount ActionCable.server => '/cable'
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

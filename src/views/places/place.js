@@ -2,6 +2,7 @@ import React from 'react'
 import Sliders from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
+import {ROOT} from '../../constants'
 
 export default function place({place}) {
     const display_images = () => {
@@ -39,20 +40,22 @@ export default function place({place}) {
     }
 
     return (
-        <div className="display_places">
+        <div className="display_places"  >
                 <div className="display_imgs">
                 <div className="likeIcon"> <i className="far fa-heart IconHeart"></i></div>
                     <Sliders {...styleImg}>
                     {display_images()}
                     </Sliders>
                 </div>
-                <div className="display_info">
+                <div className="display_info" onClick={() => {
+                window.location.href = `${ROOT}/places/${place.id}`
+                console.log("clicked")
+                }}>
                     <p className="p_head_kind">{place.category.title}</p>
                     <p className="p_head_rate"> <i className="fa fa-star starclass"></i> 4.52 (6589)</p>
                     <p className="p_head_title">{place.name}</p>
                     <p className="p_head_info"> {space_features()}</p>
                     <p className="p_head_price"> <b>${place.price}</b> / hour</p>
-                    <p className="p_head_rate"><a href={`/places/${place.id}`}>More info</a></p>
                 </div>            
         </div>           
         

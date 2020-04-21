@@ -15,6 +15,7 @@ import { Search } from 'semantic-ui-react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import MyMap from '../../helper/MyMap';
 import Geocode from "react-geocode";
+import {API_ROOT} from '../../constants'
 
 
 
@@ -23,7 +24,7 @@ import Geocode from "react-geocode";
 
 
     componentDidMount(){
-        const url = "http://localhost:3000"+ window.location.pathname + window.location.search
+        const url = API_ROOT + window.location.pathname + window.location.search
         console.log(url)
         const params = {
             method: 'GET',
@@ -48,6 +49,8 @@ import Geocode from "react-geocode";
                     }
                   );
             }else{
+                console.log("this is what you want")
+                console.log(places)
               this.setState( {pos: { lng: places[0].address.longitude, lat: places[0].address.latitude}} )
             }
     
@@ -90,8 +93,13 @@ import Geocode from "react-geocode";
           pos:{lat:0,lat:0},
             selectedPlace: "",
             activeMarker: "",
-            showingInfoWindow: false
+            showingInfoWindow: false,
+            show_map: true
+
+
       }
+
+      show_hide_map = () => this.setState({show_map: !this.state.show_map},()=> console.log(this.state.pos.lng))
     render() {
         const styleImg = {
             dots: true,
@@ -113,7 +121,7 @@ import Geocode from "react-geocode";
                     </div>
                     <div className="DivRight">
                     <label className="labelCheck" htmlFor="checkMap">Show map</label>
-                            <input type="checkbox" className='checkIndex' id="checkMap"/>
+                            <input type="checkbox" onChange={this.show_hide_map} className='checkIndex' id="checkMap"/>
                             <label className="spanCheck" htmlFor="checkMap"></label>
                     </div>
                 </div>
@@ -129,8 +137,7 @@ import Geocode from "react-geocode";
                         <p className="p300">300+ places to stay</p>
                         {this.display_places()}
                     </div>                
-
-                    <div className="DivRightB">
+                {this.state.show_map ? ( <div className="DivRightB">
                         <MyMap google={this.props.google} zoom={10} center={{lng: this.state.pos.lng,lat: this.state.pos.lat}}
                         onClick={ (props) => {
                                     if (this.state.showingInfoWindow) {
@@ -157,9 +164,9 @@ import Geocode from "react-geocode";
                             </InfoWindow>
                     </MyMap>
                         
-                    </div>
+                    </div>) :  null}
+                   
                 </div>
-                {/* {emplement a search feature} */}
                 
 
             
@@ -169,7 +176,7 @@ import Geocode from "react-geocode";
 }
 
 const mapStateToProps = state => {
-    console.log(state)
+    console.log(state.places)
    return {places: state.places}
 }
 const mapDispatchToProps  = dispatch => ({

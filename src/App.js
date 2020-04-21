@@ -56,9 +56,7 @@ function App() {
           {/*These routes are for messages */}
           <Route path='/inbox/' render={renderProps => <Inbox {...renderProps}/>}  />
 
-          <footer className="footer">
-              <Footer/>
-          </footer>
+          
       </div>
     </Router>
    

@@ -92,7 +92,17 @@ handleChange = event => this.setState({[event.target.name]: event.target.value }
               </label>
             <a className="LogoEvent" onClick={this.redirect}>Event</a>
             <ul className="menu-first">
+            {is_logged_in() ?(  <React.Fragment> 
+                                          <li className="lien-menu-first"><a href="/inbox">Inbox </a> </li>
+                                          <li className="lien-menu-first"><a>Bookings</a> </li>
+                                          <li className="lien-menu-first"><a>Listings</a> </li>
+                                          <li className="lien-menu-first"><a>Blog</a> </li>
+
+
+
+                                    </React.Fragment> ): null}
               <li className="ProfilesLink lien-menu-first">
+             
                 <a  className={document.location.href.includes('activities')  ? 'active' : null}>
                   Activities
                 </a>
@@ -101,18 +111,26 @@ handleChange = event => this.setState({[event.target.name]: event.target.value }
                 </ul>
               </li>
               {is_admin() ?
-              <li className="lien-menu-first">
+             ( <React.Fragment>
+               <li className="lien-menu-first">
                 <a href = '/new_places' className={document.location.href.includes('new_places')  ? 'active' : null}>
                   Add a place
                 </a>
-              </li> : null}
+              </li> 
+              <li className="lien-menu-first">
+                <a className={document.location.href.includes('new_places')  ? 'active' : null}>
+                  Analitycs
+                </a>
+              </li> 
+              </React.Fragment>
+              ) : null}
              { is_logged_in() ? 
              <li className="ProfilesLink lien-menu-first"> 
 
              <div className="img_profile" > <img src={current_user().profile_pic} className="profile_file"/> </div>
 
                 <ul className="sous-menu">
-                  <li><a href={`users/${current_user().id}`}> <i className="fas fa-user-circle"></i>  Profile</a></li>
+                  <li><a href={`/users/${current_user().id}`}> <i className="fas fa-user-circle"></i>  Profile</a></li>
                   <li>
                     <a onClick={this.logout}> 
                       <button onClick={this.logout} className="logout"> 
