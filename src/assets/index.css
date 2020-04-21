@@ -304,3 +304,13 @@
 .IconHeart{
     color:black;
 }
+.place_more{
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-size: 1.4rem;
+    color: rgb(114, 114, 114);
+    text-decoration: none;
+}
+.place_more:hover{
+    background: transparent;
+    text-decoration: underline;
+}

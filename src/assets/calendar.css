@@ -1,3 +1,161 @@
 .disabled-date {
     pointer-events: none;
   }
+.show_div_left{
+  display: inline-block;
+  width: 60%;
+}
+.show_div_right{
+  display: inline-block;
+  width: 40%;
+  height: 500px;
+  position: absolute;
+  overflow: hidden;
+  
+}
+.show_title{
+  font-family: Mallory,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 40px;
+  line-height: 1.57;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-left: 20%;
+  color: rgb(80, 75, 75);
+}
+.show_address{
+  margin-left: 20%;
+  font-family: Mallory,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 13px;
+  line-height: 1.57;
+  font-weight: 400;
+  font-style: normal;
+  color: rgb(107, 107, 107);
+}
+.show_div{
+  margin-left: 20%;
+  padding: 15px 0px;
+  border-bottom: 1px solid rgb(238, 238, 238);
+  display: block;
+  width: 70%;
+}
+.show_element_title{
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.375em;
+  color: rgb(72, 72, 72);
+}
+.show_contain{
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.375em;
+  color: rgb(72, 72,72);
+  margin-top: 10px;
+}
+.show_services{
+  list-style-type: none;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.375em;
+  color: rgb(72, 72,72);
+  display: inline-block;
+  width: 50%;
+  margin-top: 10px;
+}
+.show_menu_services{
+  width: 100%;
+  display: inline-block;
+}
+.show_open{
+  color:rgb(1, 221, 148)
+}
+.show_close {
+  color: rgb(168, 0, 93)
+}
+.show_icon_locate {
+  color: rgb(44, 44, 44)
+}
+.show_star {
+  color: rgb(248, 12, 177)
+}
+.show_book{
+  margin : 30px 0;
+  width: 65%;
+  border: 1px solid rgb(177, 177, 177);
+}
+.show_book_date{
+  display: inline-block;
+  width: 90%;
+  margin: 10px 20px;
+}
+.show_book_time{
+  display: inline-block;
+  width: 90%;
+  margin: 10px 20px;
+}
+.show_book_info{
+  display: inline-block;
+  width: 90%;
+  margin: 10px 20px;
+  padding: 10px 0;
+  border-bottom:1px solid rgb(201, 201, 201);
+}
+.show_book_label{
+  display: inline-block;
+  width: 100%;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.375em;
+  color: rgb(97, 97, 97);
+}
+.show_book_date_contain{
+  width: 100%;
+  height: 38px;
+  font-size: 17px;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  line-height: 1.375em;
+}
+.show_book_time_contain {
+  width: 49%;
+  height: 38px;
+  font-size: 17px;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  line-height: 1.375em;
+  margin-right: 1%;
+}
+.show_book_btn{
+  width: 90%;
+  color: #ffffff;
+  padding: 7px 20px;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  line-height: 20px;
+  font-size: 1.7rem;
+  font-weight: 500;
+  background: rgb(247, 13, 157);
+  border: 1px solid rgb(247, 13, 157);
+  cursor: pointer;
+  outline: none;
+  margin: 10px 20px;
+  transition: ease-in-out 0.3s;
+}
+.show_book_btn:hover{
+  color: #5e5e5e;
+  background: rgb(255, 255, 255);
+  transition: ease-in-out 0.3s;
+}
+.show_book_text{
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.375em;
+  color: rgb(72, 72,72);
+  margin-bottom: 5px;
+}
+.show_book_bolder{
+  font-size: 25px;
+}

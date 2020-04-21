@@ -8,6 +8,12 @@ import card_3 from '../../assets/img/Last/mastercard-credit-card-business-debit-
 import card_4 from '../../assets/img/Last/JCB_logo.svg.png'
 import current_user from '../../helper/current_user'
 
+// let scrollHeight = 0;
+// let stylish = {
+//     position: 'fixed',
+//     zIndex:"3"
+// };
+
 export default class Profile extends Component {
    state = {
        file: "",
@@ -130,7 +136,27 @@ export default class Profile extends Component {
         flexDirection: "column",
         boxShadow: "0px 0px 0px 400px rgba(0, 0, 0, 0.40)",
     }
-    
+    // componentDidMount() {
+    //     window.addEventListener('scroll', this.handleScroll, true);
+    // }
+    // // componentWillUnmount() {
+    // //     window.removeEventListener('scroll', this.handleScroll);
+    // // }
+    // handleScroll = () => {
+    //     var pageHeight = this.refs.myContainer
+    //     scrollHeight = window.scrollY;
+
+    //     if(scrollHeight>5){
+    //         console.log(scrollHeight, pageHeight.clientHeight)
+    //         var change = document.getElementsByClassName("profile_title")
+    //         change.className = "profile_title profile_title2"
+    //         // stylish = {
+    //         //     position:"relative",
+    //         //     color:"red"
+    //         // }
+
+    //     }
+    // }
     render() {
         let prof_modal = (
             <div style={this.prof_modal_styles} className="div_modal">
@@ -186,9 +212,9 @@ export default class Profile extends Component {
         }
         return (
            <div className="PageConteneur">
-           <div>{prof_modal}</div>
+           <div ref="myModal">{prof_modal}</div>
             <div className="profile_information">
-                <div className="user_details">
+                <div className="user_details" ref="myContainer">
                     <p className="title_part">Basic information</p>
                     <div className="info">
                         <div className="name_surname">

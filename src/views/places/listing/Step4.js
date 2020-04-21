@@ -29,7 +29,7 @@ export default class Step4 extends Component {
                         <input type="checkbox" id="cblight" name="Lightning" onChange={this.props.handleAmen}/>
                         <label htmlFor="cblight" className="InfoStepFour">Lightning</label>
                     </div>
-                    <div className="DivStepOne">
+                    <div className="DivStepOne">    
                         <input type="checkbox" id="cbdj" name="Dj" onChange={this.props.handleAmen} />
                         <label  htmlFor="cbdj" className="InfoStepFour">Dj</label>
                     </div>

@@ -36,7 +36,7 @@ class PlacesController < ApplicationController
             # this is the format needed for the date picker March 1, 2020
             disabled_days << date.strftime("%B %d, %Y")  if total >= 20.0
         end
-        render json: {place: place, address: place.address, disabled_days: disabled_days, rule: place.rule, schedule: place.schedule, amenities: place.amenities, parking: place.parking, cancelation: place.cancelation_policy, host: host}
+        render json: {place: place, address: place.address, disabled_days: disabled_days, rule: place.rule, schedule: place.schedule, amenities: place.amenities, parking: place.parking, cancelation: place.cancelation_policy, host: host, images: place.images}
     end
 
     def book

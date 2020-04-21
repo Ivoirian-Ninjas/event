@@ -55,6 +55,7 @@ export default function place({place}) {
                     <p className="p_head_rate"> <i className="fa fa-star starclass"></i> 4.52 (6589)</p>
                     <p className="p_head_title">{place.name}</p>
                     <p className="p_head_info"> {space_features()}</p>
+                    <p className="p_head_kind"><a href={`/places/${place.id}`} className="place_more">More info</a></p>
                     <p className="p_head_price"> <b>${place.price}</b> / hour</p>
                 </div>            
         </div>           
