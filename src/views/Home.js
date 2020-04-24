@@ -33,7 +33,6 @@ import img_modal from '../assets/img/Better/maxwell-young-dfvsyAwdzcE-unsplash.j
 import { connect } from 'react-redux';
 import Autocomplete from 'react-google-autocomplete';
 import Footer from '../components/footer'
-
 let sub_modal_styles = {
     width: "60%",
     maxWidth: "100%",

@@ -1,4 +1,4 @@
-import React, { Component} from 'react'
+import React, { Component, useState} from 'react'
 import current_user from '../../helper/current_user'
 import '../../assets/calendar.css'
 import 'react-day-picker/lib/style.css'
@@ -19,7 +19,8 @@ import { TextArea } from 'semantic-ui-react';
 
 
 import {API_ROOT, HEADERS} from '../../constants'
-
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
 
 let timestyle = {
     width:"100%",
@@ -28,7 +29,20 @@ let timestyle = {
     outline:"none",
 
 }
-
+let show_modal_styles = {
+  width: "85%",
+  maxWidth: "100%",
+  margin: "0 auto",
+  position: "fixed",
+  left: "50%",
+  top: "50%",
+  transform: "translate(-50%, -50%)",
+  zIndex: "29999",
+  backgroundColor: "#fff",
+  display: "flex",
+  flexDirection: "column",
+  boxShadow: "0px 0px 0px 400px rgba(0, 0, 0, 0.70)",
+}
 export default class show extends Component {
     componentDidMount(){
         console.log(this.props.match.params.id)
@@ -70,7 +84,8 @@ export default class show extends Component {
         amenities: [],
         parking: {},
         cancelation: {},
-        host: {}
+        host: {},
+        ShowOpen:false,
       }
       s_change_time = time => this.setState({start_time: time})
       e_change_time = time => this.setState({end_time: time})
@@ -108,15 +123,64 @@ export default class show extends Component {
             }
         }
       
-        display_img = () => <React.Fragment>{this.state.images.map(e =><div style={{height:'20px', width:'10px'}}> <img src={e.url}/></div>)}</React.Fragment> 
+        display_img = () =>
+        <React.Fragment>
+            {this.state.images.map(e =>
+                <div className="show_div_top_img"> 
+                    <img src={e.url} className="show_top_img"/>
+                    <p className="legend">Legend 1</p>
+                </div>
+            )}
+        </React.Fragment>
+        display_img2 = () =>
+        <React.Fragment>
+            {this.state.images.map(e =>
+                <div className="show_div_top_img2"> 
+                    <img src={e.url} className="show_top_img_2"/>
+                    <p className="legend">Legend 1</p>
+                </div>
+            )}
+        </React.Fragment>
         
+    handleClick = () => {
+        this.setState({
+            ShowOpen: true
+        })
+    }
+    close_modal = () =>{
+        this.setState({ ShowOpen: false })
+    }
     render() {
+        let show_modal = (
+            <div style={show_modal_styles} className="div_modal">
+                <button onClick={this.close_modal} className="close_modal_show">
+                   Close
+                </button>
+                <div SubOpen={this.state.SubOpen} className="modal_container_show">
+                    <div className="modal_container_img">
+                        <Carousel showArrows={true} infiniteLoop={true} className="show_carousel">
+                            <div className="modal_img">
+                                {this.display_img2()}
+                            </div>
+                        </Carousel>
+                    </div>
+                </div>
+            </div>
+            //onChange={onChange} onClickItem={onClickItem} onClickThumb={onClickThumb}
+        )
+        if (!this.state.ShowOpen) {
+            show_modal = null;
+        }
         return (
         <div className='PageConteneur'>
-           <div className="show_div_left">
-                <div>
-                    {this.display_img()}
+        <div>{show_modal}</div>
+            <div className="show_div_top" onClick={this.handleClick}>
+                {this.display_img()}
+                <div className="show_div_top_btn">
+                    <button className="btn_view_all" onClick={this.handleClick}>View Photos</button>
                 </div>
+            </div>
+           <div className="show_div_left">
                 <h1 className="show_title">{this.state.place ? this.state.place.name : null}</h1>
                 <address className="show_address">
                     {this.state.address ? this.state.address.city : null}, {this.state.address ? this.state.address.country : null}.
@@ -181,6 +245,15 @@ export default class show extends Component {
                     <h4 className = "show_element_title">Similar places</h4>
                     {/* {show similar places} */}
                 </div>
+                <div className="show_div">
+                    {
+                    this.state.host.id != current_user().id ? 
+                    (<div><button onClick={this.contactHost}>Contact {this.state.host.name}</button>
+                    <TextArea value={this.state.current_message} onChange={this.handleChange}></TextArea></div>)
+                    :  null
+                    }
+                </div>
+                
            </div>
            <div className="show_div_right">
                 <div className="show_book">
@@ -236,19 +309,8 @@ export default class show extends Component {
                     <TimePicker className="show_book_time_contain" onChange={this.e_change_time} value={this.state.end_time}/>
                 </div>
                 <button onClick={this.book} className="show_book_btn">Book this place</button>
-                
                 </div>
            </div>
-
-            
-            {
-                this.state.host.id != current_user().id ? 
-                (<div><button onClick={this.contactHost}>Contact {this.state.host.name}</button>
-            <TextArea value={this.state.current_message} onChange={this.handleChange}></TextArea></div>)
-            :  null
-            }
-           
-
        </div>
         )
     }

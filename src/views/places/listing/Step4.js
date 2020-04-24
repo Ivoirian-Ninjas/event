@@ -14,13 +14,12 @@ export default class Step4 extends Component {
                 <h1 className="hOneStepOne">What amensties do you offer?</h1>
                 <h2 className = "hTwoStepOne" > Step 4 </h2>
                 <div className="ContenuStepTwo">
-                <div className="DivStepOne">
-                    <p className = "LabelStepFour">
-                        Note that these amnesties are the most common the guests are expecting to see.
-                        You can always add your own after this is made public.
-                    </p>
-                </div>
-                    
+                    <div className="DivStepOne">
+                        <p className = "LabelStepFour">
+                            Note that these amnesties are the most common the guests are expecting to see.
+                            You can always add your own after this is made public.
+                        </p>
+                    </div>
                     <div className="DivStepOne">
                         <input type="checkbox" id="cbwifi" name="Wifi" onChange={this.props.handleAmen}/> 
                         <label htmlFor="cbwifi" className="InfoStepFour"> Wifi </label>
