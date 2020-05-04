@@ -16,9 +16,7 @@ const store = createStore(allReducers,applyMiddleware(thunk))
 
 ReactDOM.render(  
                         <Provider store={store}>
-                            <ActionCableProvider url={API_WS_ROOT}> 
                                 <App />  
-                            </ActionCableProvider>
                         </Provider>
                   
 , document.getElementById('root'));

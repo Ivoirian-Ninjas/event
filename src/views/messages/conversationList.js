@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { ActionCableConsumer} from 'react-actioncable-provider';
 
 export default class conversationList extends Component {
 
@@ -16,11 +15,7 @@ export default class conversationList extends Component {
     render() {
         return (
             <div>     
-               <ActionCableConsumer
-                channel={{ channel: 'ConversationsChannel', conversation: this.props.activeConversation }}
-                onReceived={this.props.handleReceivedMessage}
-              />
-                    {this.display_list()}
+                {this.display_list()}
             </div>
         )
     }

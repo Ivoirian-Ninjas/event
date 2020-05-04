@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function MessageContainer(props) {
     console.log(props)
-    const display_messages = () => props.convo.data.attributes.messages.map(e => <div key={e.id}>{e.content}</div>)
+    const display_messages = () => props.messages.map(e => <div key={e.id}>{e.content}</div>)
     return (
         <div>
        
