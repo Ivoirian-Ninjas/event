@@ -21,6 +21,7 @@ import { TextArea } from 'semantic-ui-react';
 import {API_ROOT, HEADERS} from '../../constants'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
+import Slider from "react-slick"
 
 let timestyle = {
     width:"100%",
@@ -124,23 +125,22 @@ export default class show extends Component {
         }
       
         display_img = () =>
-        <React.Fragment>
+        <Carousel>
             {this.state.images.map(e =>
-                <div className="show_div_top_img"> 
+                <div className = "show_div_top_img" >
                     <img src={e.url} className="show_top_img"/>
-                    <p className="legend">Legend 1</p>
                 </div>
             )}
-        </React.Fragment>
+        </Carousel>
         display_img2 = () =>
-        <React.Fragment>
+        <Carousel showArrows={true} infiniteLoop={true} autoPlay={true} className="show_carousel">
             {this.state.images.map(e =>
                 <div className="show_div_top_img2"> 
                     <img src={e.url} className="show_top_img_2"/>
                     <p className="legend">Legend 1</p>
                 </div>
             )}
-        </React.Fragment>
+        </Carousel>
         
     handleClick = () => {
         this.setState({
@@ -150,6 +150,7 @@ export default class show extends Component {
     close_modal = () =>{
         this.setState({ ShowOpen: false })
     }
+    
     render() {
         let show_modal = (
             <div style={show_modal_styles} className="div_modal">
@@ -158,11 +159,7 @@ export default class show extends Component {
                 </button>
                 <div SubOpen={this.state.SubOpen} className="modal_container_show">
                     <div className="modal_container_img">
-                        <Carousel showArrows={true} infiniteLoop={true} className="show_carousel">
-                            <div className="modal_img">
-                                {this.display_img2()}
-                            </div>
-                        </Carousel>
+                        {this.display_img2()}
                     </div>
                 </div>
             </div>
@@ -175,9 +172,9 @@ export default class show extends Component {
         <div className='PageConteneur'>
         <div>{show_modal}</div>
             <div className="show_div_top" onClick={this.handleClick}>
-                {this.display_img()}
+                    {this.display_img()}
                 <div className="show_div_top_btn">
-                    <button className="btn_view_all" onClick={this.handleClick}>View Photos</button>
+                    <button className="btn_view_all" onClick={this.handleClick}>View All Photos</button>
                 </div>
             </div>
            <div className="show_div_left">
@@ -245,11 +242,15 @@ export default class show extends Component {
                     <h4 className = "show_element_title">Similar places</h4>
                     {/* {show similar places} */}
                 </div>
-                <div className="show_div">
+                <div>
                     {
                     this.state.host.id != current_user().id ? 
-                    (<div><button onClick={this.contactHost}>Contact {this.state.host.name}</button>
-                    <TextArea value={this.state.current_message} onChange={this.handleChange}></TextArea></div>)
+                    (<div className="show_div">
+                    <h4 className = "show_element_title_big">Hosted by {this.state.host.name}</h4>
+                    <textarea value={this.state.current_message} onChange={this.handleChange} 
+                              className="TextAreaStepOne"></textarea>
+                    <button onClick={this.contactHost} className="show_contact_host">Contact host</button>
+                    </div>)
                     :  null
                     }
                 </div>

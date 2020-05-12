@@ -7,7 +7,7 @@ export default class conversationList extends Component {
         return this.props.conversations.map(conversation => {
           return (
             <React.Fragment>
-              <li onClick={() =>this.props.handleClick(conversation.data.id)}>new_convo </li>
+              <li onClick={() =>this.props.handleClick(conversation.data.id)}>New conversation </li>
           </React.Fragment>
           )
         }) 

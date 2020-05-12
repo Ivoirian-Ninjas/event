@@ -221,7 +221,7 @@ export default class Profile extends Component {
                             <label className="label_title">Name</label>
                             <input type="text" className="names" placeholder="e.g. John" name="name" onChange={this.handleChange} value={this.state.name}/>
                             <label className="label_title">Description</label>
-                            <textarea className="names" placeholder="e.g. McCormith" name="sur_name"/>
+                            <textarea className="textarea_profile" placeholder="Say something about you..." name="sur_name"/>
                             <div className="save_info">
                                 <button className="btn_save" onClick={this.handleSubmit}>Save</button>
                                 <button className="btn_cancel">Cancel</button>

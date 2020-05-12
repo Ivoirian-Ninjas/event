@@ -40,7 +40,7 @@ export default function place({place}) {
     }
 
     return (
-        <div className="display_places"  >
+        <div className="display_places">
                 <div className="display_imgs">
                 <div className="likeIcon"> <i className="far fa-heart IconHeart"></i></div>
                     <Sliders {...styleImg}>

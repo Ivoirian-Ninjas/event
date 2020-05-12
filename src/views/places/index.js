@@ -16,7 +16,7 @@ import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import MyMap from '../../helper/MyMap';
 import Geocode from "react-geocode";
 import {API_ROOT} from '../../constants'
-
+import removefixed from '../../components/removefixed'
 
 
  class Index extends Component {
@@ -95,10 +95,10 @@ import {API_ROOT} from '../../constants'
             activeMarker: "",
             showingInfoWindow: false,
             show_map: true
-
-
       }
-
+    //   handleClick = () => {
+    //       removefixed()
+    //   }
       show_hide_map = () => this.setState({show_map: !this.state.show_map},()=> console.log(this.state.pos.lng))
     render() {
         const styleImg = {

@@ -32,6 +32,7 @@ import img_kind6 from '../assets/img/Better/chuttersnap-aEnH4hJ_Mrs-unsplash.jpg
 import img_modal from '../assets/img/Better/maxwell-young-dfvsyAwdzcE-unsplash.jpg'
 import { connect } from 'react-redux';
 import Autocomplete from 'react-google-autocomplete';
+import { Carousel } from "react-responsive-carousel";
 import Footer from '../components/footer'
 let sub_modal_styles = {
     width: "60%",
