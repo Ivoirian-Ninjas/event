@@ -5,21 +5,20 @@ export default class Step3 extends Component {
         return (
             <div>
             <h1>Review and pay</h1>
-            
             <h2>Booking Details</h2>
              <div className="bookingDetails">
                 <p>Host</p>
-                    {this.props.host ? <div className="hostSection">
-                                            {this.props.host.name}
+                    {this.props.place.attributes ? <div className="hostSection">
+                                            {this.props.place.attributes.user.name}
                                          </div> : null}
                 <h3>Date & Time</h3>
-                {this.props.booking.attributes ? <div>
-                                                       <p> {this.props.booking.attributes.date}</p>
-                                                       <p>{this.props.booking.attributes.start_time} - {this.props.booking.attributes.end_time} </p>
-                                                       <p>{this.props.booking.attributes.duration} </p>
+                {this.props.s_time && <div>
+                                                       <p> date: {this.props.string_date}</p>
+                                                       <p> Time: {this.props.s_time} - {this.props.e_time} </p>
+                                                       <p>Duration: {this.props.duration} hours </p>
 
 
-                                              </div> : null }
+                                              </div> }
                 <div>                        
                     <h3>Attendees</h3>
                     {this.props.guestCount}
@@ -29,24 +28,25 @@ export default class Step3 extends Component {
                     {this.props.activity}
                 </div>
                 <h3>Space</h3>
-                {this.props.booking.attributes ? this.props.booking.attributes.place.name : null }
+                {this.props.place.attributes && this.props.place.attributes.name  }
 
  
              </div>
 
              <div className = "bookingPricing" >
                  <h2>Price</h2>
-                 <p>Space rate {this.props.booking.attributes ? this.props.booking.attributes.place.price: null}/hr</p>
-                 <p>Subtotal: {this.props.booking.attributes ? this.props.booking.attributes.price : null} </p>
-                 <p>Processing <span>?</span> ${this.props.booking.attributes ? this.props.booking.attributes.process_fee : null}</p>
-                 <p>Total ${this.props.booking.attributes ? this.props.booking.attributes.total : null} </p>
+                 <p>Space rate ${this.props.place.attributes && this.props.place.attributes.price } /hr</p>
+                 <p>Subtotal: ${this.props.price && this.props.price} </p>
+                 <p>Processing <span>?</span> ${this.props.process_fee && this.props.process_fee }</p>
+                 <p>Total ${this.props.total && this.props.total}</p>
              </div>
 
              <div className="cancellationPolicy">
                     <h2>Canellation Policy</h2>
-                    <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                    <strong>{this.props.place.attributes && this.props.place.attributes.cancelation_policy.genre}</strong>
 
+                    <p>
+                        {this.props.place.attributes && this.props.place.attributes.cancelation_policy.content}
                     </p>
              </div>
 
@@ -62,7 +62,8 @@ export default class Step3 extends Component {
                        <p>By choosing the cash option you agree to the term&policy concerning this method payment</p>
                    </div>
 
-             </div>
+             </div> 
+           
 
             <p><button onClick={this.props.previousStep}>Previous Step</button> </p>
             <p><button onClick={this.props.handleSubmit}>Confirm</button> </p>
@@ -71,3 +72,6 @@ export default class Step3 extends Component {
         )
     }
 }
+ 
+
+         

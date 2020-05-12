@@ -19,13 +19,14 @@ import { connect } from 'react-redux';
 import SignInUser from '../actions/SignInUser'
 import SignUpUser from '../actions/SignUpUser'
 import img_profil from '../assets/img/Better/ganapathy-kumar-yaiy4mCbzw0-unsplash.jpg'
+import { ROOT } from '../constants';
 
  class Navbar extends Component {
   logout = () =>{
     localStorage.clear()
-    window.location.reload()
+    window.location.href = ROOT
   }
-  redirect = () => window.location.href = "http://localhost:3001/"
+  redirect = () => window.location.href = ROOT
   
   state = {
     email: '',
@@ -94,7 +95,7 @@ handleChange = event => this.setState({[event.target.name]: event.target.value }
             <ul className="menu-first">
             {is_logged_in() ?(  <React.Fragment> 
                                           <li className="lien-menu-first"><a href="/inbox">Inbox </a> </li>
-                                          <li className="lien-menu-first"><a>Bookings</a> </li>
+                                          <li className="lien-menu-first"><a href="/bookings">Bookings</a> </li>
                                           <li className="lien-menu-first"><a>Listings</a> </li>
                                           <li className="lien-menu-first"><a>Blog</a> </li>
 

@@ -17,6 +17,41 @@ class BookingsController < ApplicationController
     #     cardName: "",
     #     cardNumber: ""
     # }
+
+    def index
+        # binding.pry
+        user = User.find(params_creation["current_user"])
+        bookings = Booking.where("host_id = ? OR client_id = ?", user.id, user.id).map{|e| BookingSerializer.new(e)}  
+        render json: {bookings: bookings}
+    end
+    
+    def create 
+        # binding.pry
+        place = Place.find(params_creation[:place][:id])
+        host = place.user
+        client=User.find(params_creation[:client])
+        hash= {date: params_creation[:string_date] ,
+            duration: params_creation[:duration],
+            s_time: params_creation[:s_time],
+            e_time: params_creation[:e_time],
+            process_fee: params_creation[:process_fee],
+            price: params_creation[:price],
+            total: params_creation[:total],
+             guestCount: params_creation[:guestCount],
+             title: params_creation[:activity],
+            paymentOption: params_creation[:paymentOption], 
+            host: host,
+            client: client
+        
+        }
+
+        booking = place.bookings.create!(hash)
+    
+        render json: {place: PlaceSerializer.new(place), booking: booking }
+    end
+
+
+
     def confirm
         booking = Booking.find(params.require("booking").permit("id")[:id])
         booking.accepted = true
@@ -34,4 +69,9 @@ class BookingsController < ApplicationController
     
         binding.pry
     end
+    private 
+    def params_creation 
+        params.permit!
+    end
 end
+

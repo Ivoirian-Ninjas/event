@@ -23,7 +23,6 @@ class PlacesController < ApplicationController
     def show 
         disabled_days = []
         place = Place.find(params.permit(:id)[:id])
-        host = place.user
         # binding.pry
         dates = place.bookings.map{|booking| booking.date}
         dates.each do |date|
@@ -36,7 +35,7 @@ class PlacesController < ApplicationController
             # this is the format needed for the date picker March 1, 2020
             disabled_days << date.strftime("%B %d, %Y")  if total >= 20.0
         end
-        render json: {place: place, address: place.address, disabled_days: disabled_days, rule: place.rule, schedule: place.schedule, amenities: place.amenities, parking: place.parking, cancelation: place.cancelation_policy, host: host, images: place.images}
+            render json: {place: PlaceSerializer.new(place), disabled_days: disabled_days}
     end
 
     def book

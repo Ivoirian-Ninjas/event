@@ -8,7 +8,8 @@ import { connect } from 'react-redux';
 import {
   BrowserRouter as Router,
   Route,
-  Redirect
+  Redirect,
+  Switch
 } from "react-router-dom";
 import Booking_index from './views/places/booking/index'
 import Index from './views/places/index'
@@ -34,9 +35,10 @@ import FsLightbox from 'fslightbox-react'
 function App() {
   AOS.init()
   return (
+    <Router>    
+      <Switch>
 
-    <Router>
-       <div className='ui container'>
+       <div >
 
          {/* This the navbar */}
          <Navbar />
@@ -55,17 +57,18 @@ function App() {
           {/* user profile */}
           <Route path='/users/:id' render={renderProps => <Profile/>} />
 
-          {/*These routes are the routes for the booking process */}
+          {/*These routes are the routes for the booking process */}          
+          <Route exact path='/bookings' render={renderProps => <Booking_index {...renderProps}/>}  />
+
           <Route path='/bookings/:id' render={renderProps => <Booking_show {...renderProps}/>}  />
-          <Route path='/bookings/' render={renderProps => <Booking_index {...renderProps}/>}  />
 
           {/*These routes are for messages */}
           <Route path='/inbox/' render={renderProps => <Inbox {...renderProps}/>}  />
 
           
-      </div>
+      </div>   
+       </Switch>
     </Router>
-   
   );
 }
 const mapStateToProp = (state) => ({
