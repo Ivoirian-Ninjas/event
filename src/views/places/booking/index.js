@@ -122,7 +122,7 @@ console.log(this.state.event)
                     <i className="far fa-times-circle"></i> 
                 </button>
                 <div className="modal_container">
-                    <h1>Type: {this.state.event.calendar.name}</h1>
+                    <h1>Type: Coming Event</h1>
                     <h1>{this.state.event.schedule.title}</h1>
                     <p>start: { this.state.event.schedule && this.state.event.schedule.end._date.toLocaleDateString(undefined, options) } <span>{this.state.event.schedule && s_time}</span></p>
                     <p>end: {this.state.event.schedule && this.state.event.schedule.start._date.toLocaleDateString(undefined, options)} <span>{this.state.event.schedule && e_time}</span></p>
@@ -153,7 +153,7 @@ console.log(this.state.event)
     }
     handleDbClick = (event) => {
         this.setState({event: event})
-        console.log(event.schedule.start._date)
+        console.log(event)
         this.modal_per_case(event)
         this.setState({openModal: true})
     }
@@ -173,7 +173,7 @@ console.log(this.state.event)
                 ref={this.calendarRef}
                 usageStatistics={true}
                 useCreationPopup={true}
-                useDetailPopup={true}
+                useDetailPopup={false}
                 disableClick={true}
                 onClickSchedule={this.handleDbClick}
                 calendars={[

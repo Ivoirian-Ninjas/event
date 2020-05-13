@@ -42,7 +42,7 @@ export default class Step1 extends Component {
                          </div>
 
                          <div className="show_div_right">
-                            {this.props.price && <div> <p> ${this.props.price}  </p> 
+                            {this.props.price && <div> <p> ${parseFloat(this.props.price).toFixed(2)}  </p> 
                                                         <p> ${this.props.process_fee && this.props.process_fee}</p> 
                                                         <p>${this.props.total && this.props.total }</p>  </div>}
                          </div>

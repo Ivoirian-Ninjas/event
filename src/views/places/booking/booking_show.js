@@ -6,7 +6,7 @@ import StepWizard from 'react-step-wizard';
 import Step1 from './steps/Step1'
 import Step2 from './steps/Step2'
 import Step3 from './steps/Step3'
-import { API_ROOT, HEADERS } from '../../../constants';
+import { API_ROOT, HEADERS, ROOT } from '../../../constants';
 import { duration } from '../../../helper/duration';
 import '../../../assets/Home.css'
 import current_user from '../../../helper/current_user';
@@ -54,7 +54,7 @@ export default class booking_show extends Component {
         console.log(params)
         fetch(`${API_ROOT}/bookings`,params)
         .then(resp => resp.json())
-        .then(json => console.log(json))
+        .then(json => window.location.href = `${ROOT}/bookings`)
     }
    
     componentDidMount(){

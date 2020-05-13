@@ -30,6 +30,16 @@ class BookingsController < ApplicationController
         place = Place.find(params_creation[:place][:id])
         host = place.user
         client=User.find(params_creation[:client])
+        conversation = Conversation.where("host_id = ? AND client_id = ?",host.id,client.id)
+
+        if conversation != []
+            convo = conversation.first     
+             message = convo.messages.create!({content: params_creation[:message], user_id: client.id})
+        else
+            convo = Conversation.create({host_id: host.id, client_id: client.id})  
+            message = convo.messages.create!({content: params_creation[:message], user_id: client.id })
+        end
+
         hash= {date: params_creation[:string_date] ,
             duration: params_creation[:duration],
             s_time: params_creation[:s_time],

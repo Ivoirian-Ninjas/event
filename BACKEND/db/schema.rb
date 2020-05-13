@@ -117,8 +117,8 @@ ActiveRecord::Schema.define(version: 2020_04_20_030612) do
   end
 
   create_table "conversations", force: :cascade do |t|
-    t.integer "receiver_id"
-    t.integer "sender_id"
+    t.integer "host_id"
+    t.integer "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

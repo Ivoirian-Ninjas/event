@@ -13,14 +13,7 @@ class MessagesController < ApplicationController
       end
       message = conversation.messages.create!({content: message_params[:message_content], user_id: message_params[:current_user] })
 
-        if message
-          # serialized_data = ActiveModelSerializers::Adapter::Json.new(
-            serialized_data= MessageSerializer.new(message)
-          # ).serializable_hash
-          
-          ConversationsChannel.broadcast_to conversation, serialized_data
-          head :ok
-        end
+     binding.pry
       end
       
       private

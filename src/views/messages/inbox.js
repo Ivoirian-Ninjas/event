@@ -20,7 +20,7 @@ export default class inbox extends Component {
   
 
     componentDidMount = () => {
-        fetch(`${API_ROOT}/conversations`)
+        fetch(`${API_ROOT}/conversations?current_user=${current_user().id}`)
           .then(res => res.json())
           .then(json=> this.setState({conversations: json.conversations }))
           this.cable = actioncable.createConsumer(API_WS_ROOT)
@@ -74,15 +74,6 @@ export default class inbox extends Component {
    
     if(this.state.current_message != "" && this.state.activeConversation){
       this.conversationChannel.send({message_content: this.state.current_message,conversation_id: this.state.activeConversation, current_user: current_user().id})
-
-    //      fetch(`${API_ROOT}/messages`, {
-    //   method: 'POST',
-    //   headers:  {
-    //     'Content-Type': 'application/json',
-    //     Accept: 'application/json',
-    //   },
-    //   body: JSON.stringify({message_content: this.state.current_message,conversation_id: this.state.activeConversation, current_user: current_user().id})
-    // });
     this.setState({ current_message: '', "is_typing?": false});
     }
    
@@ -93,21 +84,26 @@ export default class inbox extends Component {
         return (
             <div className="PageConteneur">
                 <br></br>
-                {this.cable &&  
+                {this.cable &&  this.state.conversations ?
                    <Conversation 
                    conversations={this.state.conversations} 
                    handleClick={this.handleClick} 
-                  />
+                  /> :
+                  <div>
+                      <h3>You have 0  Conversation</h3>
+                      {this.state["is_typing?"] ? <p>typing...</p>: null}
+                  </div>
 
                 }
                 
-              {this.state.messages &&
+              {this.state.activeConversation &&
                   <MessageContainer 
                     messages={this.state.messages} 
                     handleChange={this.handleChange} 
                     activeConversation={this.state.activeConversation} 
                     current_message={this.state.current_message} 
-                    send_message ={this.send_message}/>  }
+                    send_message ={this.send_message}/> 
+                     }
 
                 <div>
                     <a>Message(unread messages)</a>
