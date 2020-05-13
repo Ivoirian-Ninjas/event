@@ -385,8 +385,8 @@ class Home extends Component {
                     <button className="show_more_kind">Show more kinds <i className="fa fa-plus icon_plus"></i></button>
                 </div>
                 <footer className="footer">
-              <Footer/>
-          </footer>
+                    <Footer/>
+                </footer>
                
             </div>
         )

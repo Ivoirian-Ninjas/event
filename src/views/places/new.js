@@ -30,7 +30,7 @@ import { isArray } from 'util';
             city: "",
             longitude: 0,
             latitude: 0,
-            zipCode: "",
+            zipCode: 0,
             parkDesc: "", 
             placeDesc: "",
             street: "",

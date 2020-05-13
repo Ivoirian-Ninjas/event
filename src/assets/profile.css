@@ -7,7 +7,7 @@
 .profile_title{
     display: inline-block;
     width: 23%;
-    position: absolute;
+    /* position: absolute; */
     padding: 10px 60px 10px 25px;
     margin-left: 5px;
     border-bottom: 2px solid rgb(240, 32, 205);

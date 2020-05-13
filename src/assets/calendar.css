@@ -65,11 +65,9 @@
   line-height: 1.57;
   font-weight: 600;
   text-transform: uppercase;
-  margin-left: 20%;
   color: rgb(80, 75, 75);
 }
 .show_address{
-  margin-left: 20%;
   font-family: Mallory,"Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 13px;
   line-height: 1.57;
@@ -294,4 +292,58 @@
   background: #fff;
   color: rgb(107, 1, 134);
   transition: ease 0.3s;
+}
+.img_host{
+  width: 70%;
+  height: 78%;
+  border-radius: 50%;
+}
+.show_div_info{
+  left: 0;
+  display: inline-block;
+  width: 80%;
+  /* border: 1px solid rgb(212, 212, 212); */
+  overflow: hidden;
+  height: 84px;
+}
+.show_div_info_img{
+  right: 0;
+  display: inline-block;
+  width: 17%;
+  height: 84px;
+  text-align: center;
+  /* border: 1px solid firebrick; */
+  overflow: hidden;
+}
+.show_reviews{
+  padding: 15px 0px;
+  border-bottom: 1px solid rgb(238, 238, 238);
+  display: block;
+  width: 100%;
+  margin-top: 3%;
+}
+.reviews_img{
+  display: inline-block;
+  width: 100%;
+  height: 60px;
+}
+.img_reviews{
+  width: 9%;
+  height: 82%;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-block;
+}
+.info_reviews{
+  width: 40%;
+  height: 82%;
+  margin-left: 2%;
+  overflow: hidden;
+  display: inline-block;
+  font-family: Mallory,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.57;
+  font-weight: 500;
+  font-style: normal;
+  color: rgb(107, 107, 107);
 }

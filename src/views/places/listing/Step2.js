@@ -27,7 +27,7 @@ export default class Step2 extends Component {
         city: "",
         longitude: 0,
         latitude: 0,
-        zipCode: "",
+        zipCode: 0,
         street: "",
         aptNumber: "", 
         marker: {

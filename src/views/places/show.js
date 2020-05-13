@@ -22,6 +22,10 @@ import {API_ROOT, HEADERS} from '../../constants'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import Slider from "react-slick"
+import Footer from '../../components/footer'
+import img_host from "./../../assets/img/Better/markus-spiske-UCbMZ0S-w28-unsplash.jpg"
+import img_reviews from "./../../assets/img/Better/k-i-l-i-a-n-Nle65lXSY-I-unsplash.jpg"
+import img_reviews2 from "./../../assets/img/Better/sarah-gotze-ODua_Pc7VQY-unsplash.jpg"
 
 let timestyle = {
     width:"100%",
@@ -46,6 +50,7 @@ let show_modal_styles = {
 }
 export default class show extends Component {
     componentDidMount(){
+        window.addEventListener('scroll', this.handleScroll, true)
         console.log(this.props.match.params.id)
         const place_id = this.props.match.params.id
         fetch(`http://localhost:3000/places/${place_id}`)
@@ -87,6 +92,8 @@ export default class show extends Component {
         cancelation: {},
         host: {},
         ShowOpen:false,
+        Position: "fixed",
+        Top:"90%"
       }
       s_change_time = time => this.setState({start_time: time})
       e_change_time = time => this.setState({end_time: time})
@@ -150,7 +157,29 @@ export default class show extends Component {
     close_modal = () =>{
         this.setState({ ShowOpen: false })
     }
-    
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
+    }
+        handleScroll = () => {
+            var pageHeight = this.refs.myContainer
+            var infoHeight = this.refs.myInfo
+            var scrollHeight = window.scrollY;
+
+            if (scrollHeight > pageHeight.clientHeight && scrollHeight < (infoHeight.clientHeight+100)) {
+                console.log(scrollHeight, pageHeight.clientHeight)
+                this.setState({
+                    Position: "fixed",
+                    Top:"10%"
+                })
+            }
+            else {
+                this.setState({
+                    Position: "absolute",
+                    Top:"90%"
+                })
+
+            }
+        }
     render() {
         let show_modal = (
             <div style={show_modal_styles} className="div_modal">
@@ -171,19 +200,27 @@ export default class show extends Component {
         return (
         <div className='PageConteneur'>
         <div>{show_modal}</div>
-            <div className="show_div_top" onClick={this.handleClick}>
+            <div className="show_div_top" onClick={this.handleClick} ref="myContainer">
                     {this.display_img()}
                 <div className="show_div_top_btn">
                     <button className="btn_view_all" onClick={this.handleClick}>View All Photos</button>
                 </div>
             </div>
-           <div className="show_div_left">
-                <h1 className="show_title">{this.state.place ? this.state.place.name : null}</h1>
-                <address className="show_address">
-                    {this.state.address ? this.state.address.city : null}, {this.state.address ? this.state.address.country : null}.
-                </address>
-
-                
+           <div className="show_div_left" ref="myInfo">
+                <div className="show_div">
+                    <div className="show_div_info">
+                        <h1 className="show_title">{this.state.place ? this.state.place.name : null}</h1>
+                        <address className="show_address">
+                            {this.state.address ? this.state.address.city : null}, 
+                            {this.state.address ? this.state.address.country : null}.
+                        </address>
+                    </div>
+                    <div className="show_div_info_img">
+                        <img src={img_host} className="img_host"/>
+                        <p className="show_address">{this.state.host.name}</p>
+                    </div>
+                    
+                </div>
 
                 <div className="show_div"> 
                     <h4 className="show_element_title">About </h4>
@@ -235,28 +272,68 @@ export default class show extends Component {
                 <div className="show_div">   
                     <h4 className = "show_element_title">Reviews</h4>
                     <p className="show_contain"><i className="fa fa-star show_star"></i> <b>4.93</b>  | <b>330</b> reviews</p>
-                {/* show the first 5 reviews */}
+                    <div className="show_reviews">
+                        <div className="reviews_img">
+                            <img src={img_reviews} className="img_reviews"/>
+                            <p className="info_reviews">
+                                <b>John</b> <br />
+                                June 2020
+                            </p>
+                        </div>
+                        <p className="show_contain">
+                        Sed ut perspiciatis, unde omnis iste natus error sit
+                        voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
+                        quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt.
+                        </p>
+                    </div>
+                    <div className="show_reviews">
+                        <div className="reviews_img">
+                            <img src={img_reviews2} className="img_reviews"/>
+                            <p className="info_reviews">
+                                <b>Mary</b> <br />
+                                July 2020
+                            </p>
+                        </div>
+                        <p className="show_contain">
+                        Sed ut perspiciatis, unde omnis iste natus error sit
+                        voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
+                        quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt.
+                        </p>
+                    </div>
                 </div>
           
-                <div className="show_div">
+               {/*  <div className="show_div">
                     <h4 className = "show_element_title">Similar places</h4>
-                    {/* {show similar places} */}
-                </div>
+                    {show similar places} 
+                </div>*/}
+
                 <div>
                     {
                     this.state.host.id != current_user().id ? 
-                    (<div className="show_div">
-                    <h4 className = "show_element_title_big">Hosted by {this.state.host.name}</h4>
-                    <textarea value={this.state.current_message} onChange={this.handleChange} 
-                              className="TextAreaStepOne"></textarea>
-                    <button onClick={this.contactHost} className="show_contact_host">Contact host</button>
-                    </div>)
+                    (
+                    <div className="show_div">
+                        <div className="show_div_info">
+                            <h4 className = "show_element_title_big">Hosted by {this.state.host.name}</h4>
+                            <address className="show_address">
+                                {this.state.address ? this.state.address.city : null}, 
+                                {this.state.address ? this.state.address.country : null}.
+                            </address>
+                        </div>
+                        <div className="show_div_info_img">
+                            <img src={img_host} className="img_host"/>
+                            <p className="show_address">{this.state.host.name}</p>
+                        </div>
+                        <textarea value={this.state.current_message} onChange={this.handleChange} 
+                                className="TextAreaStepOne"></textarea>
+                        <button onClick={this.contactHost} className="show_contact_host">Contact host</button>
+                    </div>
+                    )
                     :  null
                     }
                 </div>
                 
            </div>
-           <div className="show_div_right">
+           <div className="show_div_right" style={{position: ""+this.state.Position+"", top:""+this.state.Top+""}}>
                 <div className="show_book">
                     <div className="show_book_info">
                         <p className="show_book_text"> <b className="show_book_bolder">${this.state.place.price} </b> / hour</p>
@@ -312,6 +389,9 @@ export default class show extends Component {
                 <button onClick={this.book} className="show_book_btn">Book this place</button>
                 </div>
            </div>
+           <footer className="footer">
+                <Footer/>
+            </footer>
        </div>
         )
     }

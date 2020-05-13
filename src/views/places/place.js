@@ -4,17 +4,18 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import {ROOT} from '../../constants'
 
-export default function place({place}) {
+export default function place(props) {
     const display_images = () => {
-        if(place.images[0]){console.log(place.images[0].url)}
-        console.log(place)
-        return place.images.map(e => <div className="display_img"><img alt=""  key={e.id} src={e.url}  className="img_display"/></div>)
+        if(props.place.images[0]){console.log(props.place.images[0].url)}
+        console.log(props.place)
+        return props.place.images.map(e => <div className={props.ImgB_div2}>
+        <img alt=""  key={e.id} src={e.url}  className={props.img_div}/></div>)
     } 
 
     const space_features = () => {
         let result = ""
-        const amen_titles = place.amenities.map(e => e.title).sort()
-        amen_titles.unshift( `${place.capacity} guests`)
+        const amen_titles = props.place.amenities.map(e => e.title).sort()
+        amen_titles.unshift( `${props.place.capacity} guests`)
         amen_titles.map( (e, index) => {
            result += `${e}`
         if( (index/4) % 1 === 0 ){
@@ -23,7 +24,7 @@ export default function place({place}) {
            if(index !== amen_titles.length - 1){
                result += " . "
            }
-       })
+        })
       
        return result
     }
@@ -40,23 +41,36 @@ export default function place({place}) {
     }
 
     return (
-        <div className="display_places">
-                <div className="display_imgs">
+        <div className={props.Places_div}>
+        {console.log(props)}
+                <div className = {props.ImgB_div} >
                 <div className="likeIcon"> <i className="far fa-heart IconHeart"></i></div>
                     <Sliders {...styleImg}>
                     {display_images()}
                     </Sliders>
                 </div>
-                <div className="display_info" onClick={() => {
-                window.location.href = `${ROOT}/places/${place.id}`
+                <div className={props.Info_div} onClick={() => {
+                window.location.href = `${ROOT}/places/${props.place.id}`
                 console.log("clicked")
                 }}>
-                    <p className="p_head_kind">{place.category.title}</p>
-                    <p className="p_head_rate"> <i className="fa fa-star starclass"></i> 4.52 (6589)</p>
-                    <p className="p_head_title">{place.name}</p>
-                    <p className="p_head_info"> {space_features()}</p>
-                    <p className="p_head_kind"><a href={`/places/${place.id}`} className="place_more">More info</a></p>
-                    <p className="p_head_price"> <b>${place.price}</b> / hour</p>
+                    <p className={props.kind_div}>{props.place.category.title}</p>
+                    <p className={props.rate_div}> <i className="fa fa-star starclass"></i> 4.52</p>
+                    <p className={props.title_div}>{props.place.name}</p>
+                    {/*this.props.Style ? (// ) : null*/}
+                    {props.Style &&  
+                        <div>  
+                            <p className="p_head_info">{space_features()}</p>
+                            <p className="p_head_kind">
+                                <a href={`/places/${props.place.id}`} className="place_more">More info</a>
+                            </p>
+                        </div>
+                    }
+                    {/*<p className="p_head_info">{space_features()}</p>
+                    <p className="p_head_kind">
+                        <a href={`/places/${place.id}`} className="place_more">More info</a>
+                    </p>*/}
+                    
+                    <p className={props.price_div}> <b>${props.place.price}</b> / hour</p>
                 </div>            
         </div>           
         
