@@ -51,8 +51,7 @@ import Footer from '../../components/footer'
             }else{
                 console.log("this is what you want")
                 console.log(places)
-              this.setState( {pos: { lng: this.props.places[0].address.longitude, 
-                              lat: this.props.places[0].address.latitude}} )
+              this.setState( {pos: { lng: places[0].address.longitude, lat: places[0].address.latitude}} )
             }
     
             this.props.get_places(places)
