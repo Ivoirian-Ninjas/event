@@ -9,6 +9,7 @@ export default class conversationList extends Component {
           return (
             <React.Fragment>
               <div onClick={() =>this.props.handleClick(conversation.data.id)}>{current_user().id ===  conversation.data.attributes.host.id ? <div>{conversation.data.attributes.client.name}</div>:<div>{conversation.data.attributes.host.name}</div>}</div>
+
           </React.Fragment>
           )
         }) 

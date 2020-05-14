@@ -13,6 +13,11 @@ import TimePicker from 'react-time-picker'
 import {API_ROOT, HEADERS, ROOT} from '../../constants'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
+import Slider from "react-slick"
+import Footer from '../../components/footer'
+import img_host from "./../../assets/img/Better/markus-spiske-UCbMZ0S-w28-unsplash.jpg"
+import img_reviews from "./../../assets/img/Better/k-i-l-i-a-n-Nle65lXSY-I-unsplash.jpg"
+import img_reviews2 from "./../../assets/img/Better/sarah-gotze-ODua_Pc7VQY-unsplash.jpg"
 
 let timestyle = {
     width:"100%",
@@ -37,6 +42,7 @@ let show_modal_styles = {
 }
 export default class show extends Component {
     componentDidMount(){
+        window.addEventListener('scroll', this.handleScroll, true)
         console.log(this.props.match.params.id)
         const place_id = this.props.match.params.id
         fetch(`${API_ROOT}/places/${place_id}`)
@@ -53,18 +59,7 @@ export default class show extends Component {
         }
     }
 
-    // contactHost = () => {
-    //     if(this.state.current_message != ""){
-    //         fetch(`${API_ROOT}/messages`, {
-    //             method: 'POST',
-    //             headers: HEADERS,
-    //             body: JSON.stringify( {current_message: this.state.current_message, host_id: this.state.host.id, current_user: current_user().id})
-    //           })
-    //           this.setState({current_message: ''})
-
-    //     }
-    // }
-
+ 
     handleChange = (e) =>  this.setState({current_message: e.target.value})
    
     state = {
@@ -75,6 +70,8 @@ export default class show extends Component {
         start_time: '',
         end_time: '',
         ShowOpen:false,
+        Position: "fixed",
+        Top:"90%"
       }
       s_change_time = time => this.setState({start_time: time})
       e_change_time = time => this.setState({end_time: time})
@@ -97,23 +94,26 @@ export default class show extends Component {
         }
       
         display_img = () =>
-        <React.Fragment>
-            { this.state.place.attributes && this.state.place.attributes.images.map(e =>
-                <div className="show_div_top_img" key={e.id}> 
+
+
+        <Carousel>
+            {this.state.place.attributes && this.state.place.attributes.images.map(e =>
+                <div className = "show_div_top_img"   key={e.id}>
                     <img src={e.url} className="show_top_img"/>
-                    <p className="legend">Legend 1</p>
                 </div>
             )}
-        </React.Fragment>
+        </Carousel>
         display_img2 = () =>
-        <React.Fragment>
+
+
+        <Carousel showArrows={true} infiniteLoop={true} autoPlay={true} className="show_carousel">
             {this.state.place.attributes && this.state.place.attributes.images.map(e =>
-                <div className="show_div_top_img2" key={e.id}> 
+                <div className="show_div_top_img2"  key={e.id}> 
                     <img src={e.url} className="show_top_img_2"/>
                     <p className="legend">Legend 1</p>
                 </div>
             )}
-        </React.Fragment>
+        </Carousel>
         
     handleClick = () => {
         this.setState({
@@ -123,6 +123,29 @@ export default class show extends Component {
     close_modal = () =>{
         this.setState({ ShowOpen: false })
     }
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
+    }
+        handleScroll = () => {
+            var pageHeight = this.refs.myContainer
+            var infoHeight = this.refs.myInfo
+            var scrollHeight = window.scrollY;
+
+            if (scrollHeight > pageHeight.clientHeight && scrollHeight < (infoHeight.clientHeight+100)) {
+                console.log(scrollHeight, pageHeight.clientHeight)
+                this.setState({
+                    Position: "fixed",
+                    Top:"10%"
+                })
+            }
+            else {
+                this.setState({
+                    Position: "absolute",
+                    Top:"90%"
+                })
+
+            }
+        }
     render() {
         let show_modal = (
             <div style={show_modal_styles} className="div_modal">
@@ -131,11 +154,7 @@ export default class show extends Component {
                 </button>
                 <div SubOpen={this.state.SubOpen} className="modal_container_show">
                     <div className="modal_container_img">
-                        <Carousel showArrows={true} infiniteLoop={true} className="show_carousel">
-                            <div className="modal_img">
-                                {this.display_img2()}
-                            </div>
-                        </Carousel>
+                        {this.display_img2()}
                     </div>
                 </div>
             </div>
@@ -147,19 +166,28 @@ export default class show extends Component {
         return (
         <div className='PageConteneur'>
         <div>{show_modal}</div>
-            <div className="show_div_top" onClick={this.handleClick}>
-                {this.display_img()}
+            <div className="show_div_top" onClick={this.handleClick} ref="myContainer">
+                    {this.display_img()}
                 <div className="show_div_top_btn">
-                    <button className="btn_view_all" onClick={this.handleClick}>View Photos</button>
+                    <button className="btn_view_all" onClick={this.handleClick}>View All Photos</button>
                 </div>
             </div>
-           <div className="show_div_left">
-                <h1 className="show_title">{this.state.place.attributes && this.state.place.attributes.name }</h1>
-                <address className="show_address">
-                    {this.state.place.attributes && this.state.place.attributes.address.city }, {this.state.place.attributes && this.state.place.attributes.address.country }.
-                </address>
 
-                
+           <div className="show_div_left" ref="myInfo">
+                <div className="show_div">
+                    <div className="show_div_info">
+                        <h1 className="show_title">{this.state.place ? this.state.place.name : null}</h1>
+                        <address className="show_address">
+                            {this.state.address ? this.state.address.city : null}, 
+                            {this.state.address ? this.state.address.country : null}.
+                        </address>
+                    </div>
+                    <div className="show_div_info_img">
+                        <img src={this.state.place.attributes && this.state.place.attributes.user.profile_pic} className="img_host"/>
+                        <p className="show_address">{this.state.place.attributes && this.state.place.attributes.user.name}</p>
+                    </div>
+                    
+                </div>
 
                 <div className="show_div"> 
                     <h4 className="show_element_title">About </h4>
@@ -211,21 +239,63 @@ export default class show extends Component {
                 <div className="show_div">   
                     <h4 className = "show_element_title">Reviews</h4>
                     <p className="show_contain"><i className="fa fa-star show_star"></i> <b>4.93</b>  | <b>330</b> reviews</p>
-                {/* show the first 5 reviews */}
+                    <div className="show_reviews">
+                        <div className="reviews_img">
+                            <img src={img_reviews} className="img_reviews"/>
+                            <p className="info_reviews">
+                                <b>John</b> <br />
+                                June 2020
+                            </p>
+                        </div>
+                        <p className="show_contain">
+                        Sed ut perspiciatis, unde omnis iste natus error sit
+                        voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
+                        quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt.
+                        </p>
+                    </div>
+                    <div className="show_reviews">
+                        <div className="reviews_img">
+                            <img src={img_reviews2} className="img_reviews"/>
+                            <p className="info_reviews">
+                                <b>Mary</b> <br />
+                                July 2020
+                            </p>
+                        </div>
+                        <p className="show_contain">
+                        Sed ut perspiciatis, unde omnis iste natus error sit
+                        voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
+                        quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt.
+                        </p>
+                    </div>
                 </div>
-          
-{/*                 
-                <div className="show_div">
+
+                <div>
                     {
-                    this.state.place.attributes && ( this.state.place.attributes.user.id != current_user().id )? 
-                    (<div><button onClick={this.contactHost}>Contact {this.state.place.attributes.user.name}</button>
-                    <TextArea value={this.state.current_message} onChange={this.handleChange}></TextArea></div>)
+                    this.state.place.attributes && (this.state.place.attributes.user.id != current_user().id)? 
+                    (
+                    <div className="show_div">
+                        <div className="show_div_info">
+                            <h4 className = "show_element_title_big">Hosted by {this.state.place.attributes && this.state.place.attributes.user.name}</h4>
+                            <address className="show_address">
+                                {this.state.place.attributes ? this.state.place.attributes.address.city : null}, 
+                                {this.state.place.attributes ? this.state.place.attributes.address.country : null}.
+                            </address>
+                        </div>
+                        <div className="show_div_info_img">
+                            <img src={this.state.place.attributes && this.state.place.attributes.user.profile_pic} className="img_host"/>
+                            <p className="show_address">{this.state.place.attributes && this.state.place.attributes.user.name}</p>
+                        </div>
+                        <textarea value={this.state.current_message} onChange={this.handleChange} 
+                                className="TextAreaStepOne"></textarea>
+                        <button onClick={this.contactHost} className="show_contact_host">Contact host</button>
+                    </div>
+                    )
                     :  null
                     }
                 </div> */}
                 
            </div>
-           <div className="show_div_right">
+           <div className="show_div_right" style={{position: ""+this.state.Position+"", top:""+this.state.Top+""}}>
                 <div className="show_book">
                     <div className="show_book_info">
                         <p className="show_book_text"> <b className="show_book_bolder">${this.state.place.attributes && this.state.place.attributes.price} </b> / hour</p>
@@ -263,6 +333,9 @@ export default class show extends Component {
                 <button onClick={this.book} className="show_book_btn">Book this place</button>
                 </div>
            </div>
+           <footer className="footer">
+                <Footer/>
+            </footer>
        </div>
         )
     }

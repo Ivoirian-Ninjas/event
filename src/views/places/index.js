@@ -16,14 +16,14 @@ import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import MyMap from '../../helper/MyMap';
 import Geocode from "react-geocode";
 import {API_ROOT} from '../../constants'
-
-
+import Footer from '../../components/footer'
 
  class Index extends Component {
      //for tomorrow find a way to display the places without fetching everytime
 
 
     componentDidMount(){
+        window.addEventListener('scroll', this.handleScroll, true)
         const url = API_ROOT + window.location.pathname + window.location.search
         console.log(url)
         const params = {
@@ -63,10 +63,8 @@ import {API_ROOT} from '../../constants'
         if (this.props.places && Array.isArray(this.props.places)){
             console.log(this.props)
              console.log(this.props.places)
-            return this.props.places.map(e => <Place key={e.id}  place={e}/>)
-           
+            return this.props.places.map(e => <Place {...this.state} key={e.id}  place={e}/>)
         }
-      
     }
 
     displayMarkers = () => {
@@ -90,16 +88,75 @@ import {API_ROOT} from '../../constants'
         })
       }
       state={
-          pos:{lat:0,lat:0},
+          pos:{lng:0,lat:0},
             selectedPlace: "",
             activeMarker: "",
             showingInfoWindow: false,
-            show_map: true
-
-
+            show_map: true,
+            Position:"absolute",
+            Style:true,
+            Places_div : "display_places",
+            ImgB_div : "display_imgs",
+            ImgB_div2 : "display_img",
+            img_div : "img_display",
+            Info_div : "display_info",
+            kind_div : "p_head_kind",
+            rate_div : "p_head_rate",
+            title_div : "p_head_title",
+            price_div : "p_head_price",
       }
-
-      show_hide_map = () => this.setState({show_map: !this.state.show_map},()=> console.log(this.state.pos.lng))
+                componentWillUnmount() {
+                    window.removeEventListener('scroll', this.handleScroll)
+                }
+                handleScroll = () => {
+                    var pageHeight = this.refs.myContainer
+                    var scrollHeight = window.scrollY
+                    console.log(scrollHeight, pageHeight.clientHeight)
+                    if (scrollHeight > (pageHeight.clientHeight-400)) {
+                        console.log(scrollHeight, pageHeight.clientHeight)
+                        this.setState({
+                            Position: "absolute"
+                        })
+                    } else {
+                        this.setState({
+                            Position: "fixed"
+                        })
+                    }
+                }
+    show_hide_map = () =>{
+        if(this.state.Style){
+            this.setState(
+            {show_map: !this.state.show_map, 
+                Style: !this.state.Style,
+                Places_div: "mapHide_place",
+                ImgB_div: "mapHide_placeImg",
+                ImgB_div2: "mapHide_placeImg",
+                img_div : "img_places",
+                Info_div: "mapHide_placeInfo",
+                kind_div : "country_places",
+                rate_div : "rate_places",
+                title_div : "name_places",
+                price_div : "price_places"
+        },() => console.log(this.state.pos.lng)
+        )
+        }
+        else{
+            this.setState({
+                show_map: !this.state.show_map,
+                Style: !this.state.Style,
+                Places_div : "display_places",
+                ImgB_div : "display_imgs",
+                ImgB_div2 : "display_img",
+                img_div : "img_display",
+                Info_div : "display_info",
+                kind_div : "p_head_kind",
+                rate_div : "p_head_rate",
+                title_div : "p_head_title",
+                price_div : "p_head_price",
+            }, () => console.log(this.state.pos.lng))
+        }
+    }
+        
     render() {
         const styleImg = {
             dots: true,
@@ -113,6 +170,13 @@ import {API_ROOT} from '../../constants'
             autoPlaySpeed: 100,
             className: "ImgSlides"
         }
+        let Big_div = "DivLeftB"
+        if (!this.state.Style) {
+            Big_div = "mapHide_contain"
+        }
+        else{
+            Big_div = "DivLeftB"
+        }
         return (
             <div className="PageConteneur">
                 <div className="DivTop">
@@ -125,19 +189,22 @@ import {API_ROOT} from '../../constants'
                             <label className="spanCheck" htmlFor="checkMap"></label>
                     </div>
                 </div>
-                <div className="DivBottom">
-                    <div className="DivLeftB">
-                        <div className="DivHead">
-                            <p className="pImg"><img src={troph} className="tropHead"/></p>
-                            <p className="pHead">
-                                More than 1, 000, 000 guests have stayed in New York.
-                                On average they rated their stays 4.7 out of 5 stars.
-                            </p>
+                <div className="DivBottom" ref="myContainer">
+                    <div className={Big_div}>
+                        <div className="info_top">
+                            <div className="DivHead">
+                                <p className="pImg"><img src={troph} className="tropHead"/></p>
+                                <p className="pHead">
+                                    More than 1, 000, 000 guests have stayed in New York.
+                                    On average they rated their stays 4.7 out of 5 stars.
+                                </p>
+                            </div>
+                            <p className="pHead">300+ places to stay</p>
                         </div>
-                        <p className="p300">300+ places to stay</p>
+                        
                         {this.display_places()}
                     </div>                
-                {this.state.show_map ? ( <div className="DivRightB">
+                {this.state.show_map ? ( <div className="DivRightB" style={{position: ""+this.state.Position+""}}>
                         <MyMap google={this.props.google} zoom={10} center={{lng: this.state.pos.lng,lat: this.state.pos.lat}}
                         onClick={ (props) => {
                                     if (this.state.showingInfoWindow) {
@@ -163,13 +230,11 @@ import {API_ROOT} from '../../constants'
                                 </div>
                             </InfoWindow>
                     </MyMap>
-                        
                     </div>) :  null}
-                   
                 </div>
-                
-
-            
+                <footer className="footer">
+                    <Footer/>
+                </footer>          
             </div>
         )
     }

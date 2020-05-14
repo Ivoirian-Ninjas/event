@@ -28,10 +28,6 @@ import OwlCarousel from 'react-owl-carousel'
 import 'owl.carousel/dist/assets/owl.carousel.css'
 import 'owl.carousel/dist/assets/owl.theme.default.css'
 import AOS from 'aos'
-import ReactFancyBox from "react-fancybox"
-import "react-fancybox/lib/fancybox.css"
-import Gallery from "react-grid-gallery"
-import FsLightbox from 'fslightbox-react'
 function App() {
   AOS.init()
   return (

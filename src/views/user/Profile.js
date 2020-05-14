@@ -6,13 +6,21 @@ import card_1 from '../../assets/img/Last/6744618_preview.png'
 import card_2 from '../../assets/img/Last/bank-of-america-icon-png-7.png'
 import card_3 from '../../assets/img/Last/mastercard-credit-card-business-debit-card-logo-png-favpng-xAry6ChN7vpf53S2rA2aNP7KA.jpg'
 import card_4 from '../../assets/img/Last/JCB_logo.svg.png'
+import Footer from '../../components/footer'
 import current_user from '../../helper/current_user'
 
 // let scrollHeight = 0;
-// let stylish = {
-//     position: 'fixed',
-//     zIndex:"3"
-// };
+let stylish
+if(window.scrollY>100){
+    stylish = {
+        position: 'absolute',
+    }
+}
+else{
+    stylish = {
+        position: 'fixed',
+    }
+}
 
 export default class Profile extends Component {
    state = {
@@ -20,9 +28,7 @@ export default class Profile extends Component {
        email: current_user().email,
        name: current_user().name,
        ProfOpen:false,
-
-
-
+       Position:"fixed"
    }
 
    handleChange = (event) => this.setState( {[event.target.name]: event.target.value})
@@ -136,27 +142,27 @@ export default class Profile extends Component {
         flexDirection: "column",
         boxShadow: "0px 0px 0px 400px rgba(0, 0, 0, 0.40)",
     }
-    // componentDidMount() {
-    //     window.addEventListener('scroll', this.handleScroll, true);
-    // }
-    // // componentWillUnmount() {
-    // //     window.removeEventListener('scroll', this.handleScroll);
-    // // }
-    // handleScroll = () => {
-    //     var pageHeight = this.refs.myContainer
-    //     scrollHeight = window.scrollY;
+    componentDidMount() {
+        window.addEventListener('scroll', this.handleScroll, true);
+    }
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
+    }
+    handleScroll = () => {
+        var pageHeight = this.refs.myContainer
+        var scrollHeight = window.scrollY;
 
-    //     if(scrollHeight>5){
-    //         console.log(scrollHeight, pageHeight.clientHeight)
-    //         var change = document.getElementsByClassName("profile_title")
-    //         change.className = "profile_title profile_title2"
-    //         // stylish = {
-    //         //     position:"relative",
-    //         //     color:"red"
-    //         // }
+        if (scrollHeight > (pageHeight.clientHeight-500)) {
+            console.log(scrollHeight, pageHeight.clientHeight)
+                this.setState({Position: "absolute"});
+        }
+        else{
+                this.setState({
+                    Position: "fixed"
+                });
 
-    //     }
-    // }
+        }
+    }
     render() {
         let prof_modal = (
             <div style={this.prof_modal_styles} className="div_modal">
@@ -221,7 +227,7 @@ export default class Profile extends Component {
                             <label className="label_title">Name</label>
                             <input type="text" className="names" placeholder="e.g. John" name="name" onChange={this.handleChange} value={this.state.name}/>
                             <label className="label_title">Description</label>
-                            <textarea className="names" placeholder="e.g. McCormith" name="sur_name"/>
+                            <textarea className="textarea_profile" placeholder="Say something about you..." name="sur_name"/>
                             <div className="save_info">
                                 <button className="btn_save" onClick={this.handleSubmit}>Save</button>
                                 <button className="btn_cancel">Cancel</button>
@@ -324,7 +330,7 @@ export default class Profile extends Component {
                     </div>
                 </div>
             </div>
-            <div className="profile_title">
+            <div className="profile_title" style={{position: ""+this.state.Position+""}}>
                 <p className="profile_link">
                     <a href="#" className="link_menu">
                         <i className="far fa-smile icone_profile"></i> Profiles
@@ -365,6 +371,9 @@ export default class Profile extends Component {
                 </p>
 
             </div>
+            <footer className="footer">
+                <Footer/>
+            </footer>
         </div>
  
         )
