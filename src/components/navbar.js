@@ -19,7 +19,7 @@ import { connect } from 'react-redux';
 import SignInUser from '../actions/SignInUser'
 import SignUpUser from '../actions/SignUpUser'
 import img_profil from '../assets/img/Better/ganapathy-kumar-yaiy4mCbzw0-unsplash.jpg'
-import { ROOT } from '../constants';
+import { ROOT, API_ROOT } from '../constants';
 
  class Navbar extends Component {
   logout = () =>{
@@ -77,7 +77,7 @@ handleChange = event => this.setState({[event.target.name]: event.target.value }
     }
 
    componentDidMount(){
-      fetch('http://localhost:3000/activities')
+      fetch(`${API_ROOT}/activities`)
       .then(resp => resp.json())
       .then(json =>{ 
           this.props.add_activities(json)                  
@@ -96,7 +96,7 @@ handleChange = event => this.setState({[event.target.name]: event.target.value }
             {is_logged_in() ?(  <React.Fragment> 
                                           <li className="lien-menu-first"><a href="/inbox">Inbox </a> </li>
                                           <li className="lien-menu-first"><a href="/bookings">Bookings</a> </li>
-                                          <li className="lien-menu-first"><a>Listings</a> </li>
+                                          <li className="lien-menu-first"><a href={`/listings`}>Listings</a> </li>
                                           <li className="lien-menu-first"><a>Blog</a> </li>
 
 

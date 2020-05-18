@@ -28,41 +28,40 @@ import OwlCarousel from 'react-owl-carousel'
 import 'owl.carousel/dist/assets/owl.carousel.css'
 import 'owl.carousel/dist/assets/owl.theme.default.css'
 import AOS from 'aos'
+import User_listing from './views/places/listing/user_listing';
 function App() {
   AOS.init()
   return (
     <Router>    
       <Switch>
+        <div>
+            {/* This the navbar */}
+            <Navbar />
+            
+            {/* The user will only be allowed to view the home/login/signup page if he/she is not logged in */}
+            { (!window.location.href.includes('#') && !is_logged_in() ) ? <Redirect to={{ pathname: "/"}} /> : null}
 
-       <div >
+              {/*Home page */}
+              <Route exact path='/' render={renderProps => <Home {...renderProps} /> } />
 
-         {/* This the navbar */}
-         <Navbar />
-         
-         {/* The user will only be allowed to view the home/login/signup page if he/she is not logged in */}
-        { (!window.location.href.includes('#') && !is_logged_in() ) ? <Redirect to={{ pathname: "/"}} /> : null}
+              {/*These routes are the routes for the place */}
+              <Route  exact path='/places' render={renderProps => <Index {...renderProps}/>} />
+              <Route   exact path='/new_places' render={renderProps => <Add_Place {...renderProps} />} />            
+                <Route path = "/listings" render={renderProps => <User_listing {...renderProps}/>} />
 
-          {/*Home page */}
-          <Route exact path='/' render={renderProps => <Home {...renderProps} /> } />
+              <Route  path='/places/:id' render={renderProps => <Place_Show {...renderProps}/>} />
 
-          {/*These routes are the routes for the place */}
-          <Route  exact path='/places' render={renderProps => <Index {...renderProps}/>} />
-          <Route   exact path='/new_places' render={renderProps => <Add_Place />} />
-          <Route  path='/places/:id' render={renderProps => <Place_Show {...renderProps}/>} />
+              {/* user profile */}
+              <Route path='/users/:id' render={renderProps => <Profile/>} />
 
-          {/* user profile */}
-          <Route path='/users/:id' render={renderProps => <Profile/>} />
+              {/*These routes are the routes for the booking process */}          
+              <Route exact path='/bookings' render={renderProps => <Booking_index {...renderProps}/>}  />
 
-          {/*These routes are the routes for the booking process */}          
-          <Route exact path='/bookings' render={renderProps => <Booking_index {...renderProps}/>}  />
+              <Route path='/bookings/:id' render={renderProps => <Booking_show {...renderProps}/>}  />
 
-          <Route path='/bookings/:id' render={renderProps => <Booking_show {...renderProps}/>}  />
-
-          {/*These routes are for messages */}
-          <Route path='/inbox/' render={renderProps => <Inbox {...renderProps}/>}  />
-
-          
-      </div>   
+              {/*These routes are for messages */}
+              <Route path='/inbox/' render={renderProps => <Inbox {...renderProps}/>}  /> 
+          </div>
        </Switch>
     </Router>
   );
