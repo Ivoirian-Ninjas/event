@@ -87,7 +87,8 @@ export default class Step3 extends Component {
                 {/**Use js for that */}
                 <div className="DivStepOne">
                     <label className = "LabelStepOne">Does you place have a parking option ? </label> <br/>
-                    <button className="YesStepThree" name="parking_available" value="yes" onClick={this.props.handleChange}>Yes</button> <button className="NoStepThree"  name="parking_available" value="no" onClick={this.props.handleChange}>No</button>
+                    <button className="YesStepThree" name="parking_available" value="yes" onClick={this.props.handleChange}>Yes</button> 
+                    <button className="NoStepThree"  name="parking_available" value="no" onClick={this.props.handleChange}>No</button>
                 </div>
                 
                 {/**Only display this div if there is a parking option */}

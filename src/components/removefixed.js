@@ -52,3 +52,41 @@ export default function removefixed() {
 //                 thumbnailHeight: 212
 //         }
 // ]
+    // .menu - first {
+    //         position: fixed;
+    //         width: 100 % ;
+    //         height: 100 vh;
+    //         background: rgb(250, 245, 248);
+    //         top: 80 px;
+    //         left: -100 % ;
+    //         text - align: center;
+    //         transform: all 5 s;
+    //         font - weight: bolder;
+    //     }
+    //     .sous - menu {
+    //         margin: "0 5px";
+    //         position: absolute;
+    //         width: 50 % ;
+    //         top: 15 vh;
+    //         text - align: left;
+    //         transform: all 5 s;
+    //         background: rgb(255, 255, 255);
+    //     }
+    //     .menu - first.lien - menu - first {
+    //         display: block;
+    //         margin: 5 px 0;
+    //     }
+
+    //     .menu - first.lien - menu - first a: hover,
+    //     .menu - first.lien - menu - first a.active {
+    //         background: none;
+    //         color: rgba(253, 153, 228, 0.836);
+    //     }
+    //     .img_profile {
+    //         margin: 0 px auto;
+    //     }
+    //     .profile_file {
+    //         position: absolute;
+    //         margin: 0 px auto;
+    //         left: 0
+    //     }

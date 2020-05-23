@@ -5,11 +5,11 @@ export default class Filter extends Component {
         return (
             <div>
                 <button className="buttonFilter">Dates</button>
-                <button className="buttonFilter">Guests</button>
+                <button className="buttonFilter willHide">Guests</button>
                 <button className="buttonFilter">Work trip</button>
-                <button className="buttonFilter">Entire place</button>
-                <button className="buttonFilter">Price</button>
-                <button className="buttonFilter">Security guards</button>
+                <button className="buttonFilter willHide">Entire place</button>
+                <button className="buttonFilter willHide">Price</button>
+                <button className="buttonFilter willHide">Security guards</button>
             </div>
         )
     }

@@ -154,6 +154,7 @@
 .DivHead{
     width: 100%;
     display: flex;
+
 }
 .pHead{
     display: inline-block;
@@ -294,7 +295,7 @@
     align-items: center;
     justify-content: center;
     position: absolute;
-    z-index: 2;
+    z-index: 1;
     background: rgba(255, 255, 255, 0.822);
     margin: 5px;
     border-radius: 50% !important;
@@ -324,6 +325,7 @@
     padding:0 80px;
     display:block;
     margin-top: 47px;
+    /* border: 1px solid red; */
 
 }
 .mapHide_place{
@@ -345,4 +347,174 @@
     width: 100%;
     display: inline-block;
     /* border: 1px solid red; */
+}
+.mapShowMobile{
+    display:none;
+}
+.mapShow {
+    display: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px ;
+    outline: 0px !important;
+    margin: 0px !important;
+    padding: 10px 20px ;
+    border-style: solid ;
+    border-width: 1px ;
+    border-color: rgba(65, 0, 56, 0.078);
+    transition: box-shadow 0.3s ease,
+    -ms-transform 0.3s ease,
+    -webkit-transform 0.3s ease,
+    transform 0.3s ease !important;
+    background: rgb(158, 0, 111) ;
+    font: 12px Arial;
+}
+.mapShow:hover{
+    color: rgb(34, 34, 34);
+    border-color: rgba(24, 24, 24, 0.911);
+    background: rgb(255, 255, 255);
+    transition: 0.3s ease;
+}
+.div_modal_map {
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 29999;
+    background-color: #fff;
+    flex-direction: column;
+    box-shadow: 0px 0px 0px 400px rgba(0, 0, 0, 0.40);
+}
+.modal_container_map {
+    display: inline-block;
+    width: 100%;
+    height: 100vh;
+}
+.close_modal_map {
+    position: absolute;
+    display: flex;
+    right: 0;
+    z-index: 50000;
+    outline: none;
+    color: #313131;
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(255, 255, 255);
+    font-size: 1.9rem;
+    cursor: pointer;
+    line-height: 0.9em;
+    font-family: Mallory, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin-top: 1%;
+    margin-right: 1%;
+    padding: 6px 20px;
+    border-radius: 5px;
+    transition: ease 0.3s;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.829);
+}
+
+.close_modal_map:hover {
+    color: rgb(53, 53, 53);
+    background: rgb(219, 219, 219);
+    border: 1px solid rgb(219, 219, 219);
+    transition: ease 0.3s;
+}
+.close_map {
+    position: fixed;
+    display: flex;
+    right: 0;
+    z-index: 50000;
+    outline: none;
+    color: #313131;
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(255, 255, 255);
+    font-size: 1.3rem;
+    cursor: pointer;
+    line-height: 0.9em;
+    font-family: Mallory, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin-top: 1%;
+    margin-right: 1%;
+    padding: 6px 20px;
+    border-radius: 5px;
+    transition: ease 0.3s;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.829);
+}
+
+.close_map:hover {
+    color: rgb(53, 53, 53);
+    background: rgb(219, 219, 219);
+    border: 1px solid rgb(219, 219, 219);
+    transition: ease 0.3s;
+}
+@media (max-width:858px) {
+    .DivRightB {
+        display: none;
+    }
+    .willHide{
+        display: none;
+    }
+    .DivRight {
+        display:none;
+    }
+    .info_top {
+        width: 100%;
+
+    }
+    .DivLeftB {
+        width: 100%;
+    }
+    .DivHead {
+        width: 100%;
+    }
+    .mapHide_contain {
+        width: 100%;
+        padding: 0 5px;
+    }
+    .mapHide_place {
+        display: inline-block;
+        width: 90%;
+        margin-top: 10px;
+        margin-left: 5%;
+    }
+    .mapHide_placeImg {
+        height: 200px;
+        overflow: hidden;
+        border-radius: 0px;
+    }
+    .mapShowMobile{
+        display:block;
+        position: fixed;
+        z-index: 3;
+        bottom: 30px;
+        left:40%;
+        -webkit-box-pack: center;
+        -webkit-box-align: center;
+        -webkit-appearance: none;
+        color: white;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        box-shadow: none;
+        border-radius: 5px !important;
+        outline: 0px !important;
+        margin: 0px !important;
+        padding: 12px 20px !important;
+        border-style: solid !important;
+        border-width: 1px !important;
+        border-color: rgba(65, 0, 56, 0.078);
+        transition: box-shadow 0.2s ease,
+        -ms-transform 0.25s ease,
+        -webkit-transform 0.25s ease,
+        transform 0.25s ease !important;
+        background: rgb(158, 0, 111) !important;
+        font: 13.3333px Arial;
+    }
+    .searchPlace{
+        display: none;
+    }
+    .close_map{
+        display:none;
+    }
 }

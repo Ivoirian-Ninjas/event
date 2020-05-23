@@ -20,8 +20,9 @@ gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt' 
 gem 'fast_jsonapi', '~> 1.1', '>= 1.1.1'
-gem 'nokogiri', '~> 1.10', '>= 1.10.7' #git: 'https://github.com/sparklemotion/nokogiri'
+gem 'nokogiri', '~> 1.10', '>= 1.10.7'
 
+ #git: 'https://github.com/sparklemotion/nokogiri'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

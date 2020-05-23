@@ -88,23 +88,13 @@ handleChange = event => this.setState({[event.target.name]: event.target.value }
     return (
      <div className="EnTetes">
              <input type="checkbox" id="check" />
-              <label className="checkbtn">
+              <label htmlFor="check" className="checkbtn">
                 <i className="fas fa-bars"></i>
               </label>
             <a className="LogoEvent" onClick={this.redirect}>Event</a>
             <ul className="menu-first">
-            {is_logged_in() ?(  <React.Fragment> 
-                                          <li className="lien-menu-first"><a href="/inbox">Inbox </a> </li>
-                                          <li className="lien-menu-first"><a href="/bookings">Bookings</a> </li>
-                                          <li className="lien-menu-first"><a>Listings</a> </li>
-                                          <li className="lien-menu-first"><a>Blog</a> </li>
-
-
-
-                                    </React.Fragment> ): null}
               <li className="ProfilesLink lien-menu-first">
-             
-                <a  className={document.location.href.includes('activities')  ? 'active' : null}>
+                <a className={document.location.href.includes('activities')  ? 'active' : null}>
                   Activities
                 </a>
                 <ul className="sous-menu">
@@ -117,9 +107,9 @@ handleChange = event => this.setState({[event.target.name]: event.target.value }
                 <a href = '/new_places' className={document.location.href.includes('new_places')  ? 'active' : null}>
                   Add a place
                 </a>
-              </li> 
+              </li>
               <li className="lien-menu-first">
-                <a className={document.location.href.includes('new_places')  ? 'active' : null}>
+                <a>
                   Analitycs
                 </a>
               </li> 
@@ -127,15 +117,17 @@ handleChange = event => this.setState({[event.target.name]: event.target.value }
               ) : null}
              { is_logged_in() ? 
              <li className="ProfilesLink lien-menu-first"> 
-
              <div className="img_profile" > <img src={current_user().profile_pic} className="profile_file"/> </div>
-
                 <ul className="sous-menu">
-                  <li><a href={`/users/${current_user().id}`}> <i className="fas fa-user-circle"></i>  Profile</a></li>
+                  <li><a href={`/users/${current_user().id}`}> <i className="fas fa-user-circle"></i> Profile</a></li>
+                  <li><a href="/inbox"> <i className="far fa-paper-plane"></i> Inbox </a> </li>
+                  <li><a href="/bookings"> <i className="far fa-calendar-check"></i> Bookings</a> </li>
+                  <li><a>Listings</a> </li>
+                  <li><a>Blog</a> </li>
                   <li>
                     <a onClick={this.logout}> 
                       <button onClick={this.logout} className="logout"> 
-                        <i className="fa fa-times"></i> 
+                        <i className="fa fa-minus-circle"></i> 
                       </button> Log out 
                     </a>
                   </li>

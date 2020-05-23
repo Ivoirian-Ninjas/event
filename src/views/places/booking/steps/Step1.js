@@ -4,62 +4,69 @@ export default class Step1 extends Component {
     render() {
         return (
             <div className='PageConteneur' >
-                <div className="show_div_left"  style={{width: "50%"}}>
-
-                    <h1>Acknoledge Rules</h1>
+                <div className="book_div_left">
+                    <h1 className="title_book_step1">Acknowledge Rules</h1>
                     <br />
-                    <h2>{parseInt(this.props.duration)} hours in {this.props.place.attributes && this.props.place.attributes.name}</h2> 
-                    <h3> Date: {this.props.string_date}</h3>
+                    <h3 className="date_time_book">
+                        Time :  {parseInt(this.props.duration)} hours in&nbsp;
+                                {this.props.place.attributes && this.props.place.attributes.name}
+                    </h3> 
+                    <h3 className="date_time_book dates_book"> Date : {this.props.string_date}</h3>
                     {/**Display message based on place activities and analytics */}
                     <div className='dynamicMessage'>
                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                     </div>
                     {/** Display the owner's rules */}
-                    <h2>Things to keep in mind</h2>
-                    <div class="rules" style={{width: "65%"}}>
-                        <h3>Capacity</h3>
-                        { this.props.place.attributes && <p> {this.props.place.attributes.name} has a maximum capacity of {this.props.place.attributes.capacity} people</p> } 
-                        <h3>Rules</h3>
-                        <p>{ this.props.place.attributes && this.props.place.attributes.rule.content}</p>                   
-                        <button>Read more</button>
+                    <h2 className="warning_info_book"> <i className="fa fa-exclamation-triangle iconWarning"></i> Things to keep in mind</h2>
+                    <div class="rules">
+                        <h3 className="info_books">Capacity</h3>
+                        { this.props.place.attributes && 
+                            <p className="text_info_book">
+                                {this.props.place.attributes.name} has a maximum capacity of&nbsp;
+                                {this.props.place.attributes.capacity} people
+                            </p>
+                        } 
+                        <h3 className="info_books">Rules</h3>
+                        <p className="text_info_book">{ this.props.place.attributes && this.props.place.attributes.rule.content}</p>
+                        <button className="read_more_book">Read more</button>
                     </div>
                  </div>
-
-                 <div className="show_div_right" style={{width: "35%"}}>
-                    <div className="show_div_left"  style={{width: "60%"}}>
-                     {this.props.place.attributes && <h3>{this.props.place.attributes.name}</h3>}
-                     <address>
-                         <span>{this.props.place.attributes && <h3>{this.props.place.attributes.address.city}</h3>}</span>
-                         <span>{this.props.place.attributes && <h3>{this.props.place.attributes.address.state}</h3>}</span>
-                     </address>
-                     
-                     <div className="pricing">
-                         <div className="show_div_left">
-                            {this.props.place.attributes && <div> <p> ${this.props.place.attributes.price} x {this.props.duration} hours </p>
-                                                                  <p>Processing</p>  
-                                                                  <p>Total</p> </div>}
-                            
-                         </div>
-
-                         <div className="show_div_right">
-                            {this.props.price && <div> <p> ${parseFloat(this.props.price).toFixed(2)}  </p> 
-                                                        <p> ${this.props.process_fee && this.props.process_fee}</p> 
-                                                        <p>${this.props.total && this.props.total }</p>  </div>}
-                         </div>
-
-                     </div>
-
-
-                    <p><button onClick={this.props.nextStep}>Agree</button></p>
+                 <div className="book_div_right">
+                    <div className="part_left_price">
+                        <div className ="part_left_prices">
+                            <h3 className="book_title">{this.props.place.attributes && this.props.place.attributes.name}</h3>
+                            <address className="show_address">
+                                    {this.props.place.attributes && this.props.place.attributes.address.city}, 
+                                    {this.props.place.attributes && this.props.place.attributes.address.state}
+                            </address>
+                        </div>
+                        <div className ="part_right_prices">
+                            {this.props.place.attributes && 
+                                <img src={this.props.place.attributes.images[0].url} className="img_book_step1" />
+                            }
+                        </div>
+                        <div className="pricing">
+                                <p className="price_title">Price</p> 
+                                {this.props.place.attributes &&
+                                    <div className="price_disposition">
+                                        <p className="left_text_price">Price /hours</p> 
+                                        <p className="right_text_price">${this.props.place.attributes.price}</p>
+                                        <p className="left_text_price">Number of hours</p>
+                                        <p className="right_text_price"> x {this.props.duration} </p> 
+                                        <p className="left_text_price">Extra</p>
+                                        <p className="right_text_price"> ${this.props.process_fee && this.props.process_fee}</p>
+                                    </div>
+                                }
+                                {this.props.price && 
+                                    <div>
+                                        <p className="price_title">Total</p>
+                                        <p className="total_price">${this.props.total && this.props.total }</p>
+                                    </div>
+                                }
+                        </div>
+                        <p><button onClick={this.props.nextStep} className="agree_btn">Agree</button></p>
                     </div> 
-
-                     <div className="show_div_right"  style={{width: "20%", height: "20%"}}>
-                     {this.props.place.attributes && <img src={this.props.place.attributes.images[0].url}/>}
-                     </div> 
-
-                     
-              </div>
-               
+                </div>
             </div>
         )
     }

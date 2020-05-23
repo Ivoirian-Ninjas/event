@@ -34,20 +34,6 @@ import { connect } from 'react-redux';
 import Autocomplete from 'react-google-autocomplete';
 import { Carousel } from "react-responsive-carousel";
 import Footer from '../components/footer'
-let sub_modal_styles = {
-    width: "60%",
-    maxWidth: "100%",
-    margin: "0 auto",
-    position: "fixed",
-    left: "50%",
-    top: "50%",
-    transform: "translate(-50%, -50%)",
-    zIndex: "29999",
-    backgroundColor: "#fff",
-    display: "flex",
-    flexDirection: "column",
-    boxShadow: "0px 0px 0px 400px rgba(0, 0, 0, 0.40)",
-}
 class Home extends Component {
     constructor(){
         super()
@@ -142,7 +128,7 @@ class Home extends Component {
             className: "SlideControl"
         }
         let sub_modal = (
-            <div style={sub_modal_styles} className="div_modal">
+            <div className="div_modal">
                 <button onClick={this.close_modal} className="close_modal">
                     <i className="far fa-times-circle"></i> 
                 </button>
@@ -158,7 +144,7 @@ class Home extends Component {
                             <input type="checkbox" className="check_modal" id="check_mod1" name="check_mod"/>
                             <label htmlFor="check_mod1" className="label_modal">
                                 By subscribing you are agreeing with our 
-                                <a href="./#" className="link_modal"> Terms and Conditions </a> and our <br/>
+                                <a href="./#" className="link_modal"> Terms and Conditions </a> and our
                                 <a href="./#" className="link_modal"> Privacy Policy and Cookies</a>
                             </label>
                         </div>
@@ -180,7 +166,7 @@ class Home extends Component {
             sub_modal = null;
         }
         return (
-            <div>
+            <div className="FirstDiv">
                 <div className="PageConteneur">
                     <div className="partieSearch">
                         <div className="searchContenu">

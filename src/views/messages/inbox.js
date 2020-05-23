@@ -4,7 +4,7 @@ import actioncable from "actioncable"
 import Conversation from './conversationList'
 import MessageContainer from './messageContainer';
 import current_user from '../../helper/current_user';
-
+import "../../assets/inbox.css"
 export default class inbox extends Component {
     state = {
        "is_typing?": false,
@@ -89,8 +89,9 @@ export default class inbox extends Component {
                    conversations={this.state.conversations} 
                    handleClick={this.handleClick} 
                   /> :
-                  <div>
-                      <h3>You have 0  Conversation</h3>
+                  <div className="inbox_conversation">
+                      <p><i className="fas fa-envelope icon_inbox"></i></p>
+                      <p className="no_message_text"><h3 >You have 0 conversation.</h3></p>
                       {this.state["is_typing?"] ? <p>typing...</p>: null}
                   </div>
 
@@ -105,8 +106,8 @@ export default class inbox extends Component {
                     send_message ={this.send_message}/> 
                      }
 
-                <div>
-                    <a>Message(unread messages)</a>
+                <div className="unread_inbox">
+                    <p>Message(unread messages)</p>
                     {this.state["is_typing?"] ? <p>typing...</p>: null}
                 </div>
             </div>

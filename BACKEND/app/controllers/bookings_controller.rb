@@ -19,7 +19,7 @@ class BookingsController < ApplicationController
     # }
 
     def index
-        # binding.pry
+        #binding.pry
         user = User.find(params_creation["current_user"])
         bookings = Booking.where("host_id = ? OR client_id = ?", user.id, user.id).map{|e| BookingSerializer.new(e)}  
         render json: {bookings: bookings}

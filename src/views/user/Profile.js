@@ -10,17 +10,17 @@ import Footer from '../../components/footer'
 import current_user from '../../helper/current_user'
 
 // let scrollHeight = 0;
-let stylish
-if(window.scrollY>100){
-    stylish = {
-        position: 'absolute',
-    }
-}
-else{
-    stylish = {
-        position: 'fixed',
-    }
-}
+// let stylish
+// if(window.scrollY>100){
+//     stylish = {
+//         position: 'absolute',
+//     }
+// }
+// else{
+//     stylish = {
+//         position: 'fixed',
+//     }
+// }
 
 export default class Profile extends Component {
    state = {
@@ -128,20 +128,20 @@ export default class Profile extends Component {
         })
     }
 
-    prof_modal_styles = {
-        width: "60%",
-        maxWidth: "100%",
-        margin: "0 auto",
-        position: "fixed",
-        left: "50%",
-        top: "50%",
-        transform: "translate(-50%, -50%)",
-        zIndex: "29999",
-        backgroundColor: "#fff",
-        display: "flex",
-        flexDirection: "column",
-        boxShadow: "0px 0px 0px 400px rgba(0, 0, 0, 0.40)",
-    }
+    // prof_modal_styles = {
+    //     width: "60%",
+    //     maxWidth: "100%",
+    //     margin: "0 auto",
+    //     position: "fixed",
+    //     left: "50%",
+    //     top: "50%",
+    //     transform: "translate(-50%, -50%)",
+    //     zIndex: "29999",
+    //     backgroundColor: "#fff",
+    //     display: "flex",
+    //     flexDirection: "column",
+    //     boxShadow: "0px 0px 0px 400px rgba(0, 0, 0, 0.40)",
+    // }
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll, true);
     }
@@ -165,10 +165,9 @@ export default class Profile extends Component {
     }
     render() {
         let prof_modal = (
-            <div style={this.prof_modal_styles} className="div_modal">
+            <div className="div_modal_prof">
                 <button onClick={this.close_modal} className="close_modal_prof">
                     <i className="far fa-times-circle"></i> 
-
                 </button>
                 <div ProfOpen={this.state.ProfOpen} className="modal_container_prof">
                     <p className="p_add_new">Add a new credit card</p>
@@ -183,8 +182,8 @@ export default class Profile extends Component {
                                 <input type="text" className="input_modal_prof" name="card_name"/>
                             </div>
                             <div className="div_input_modal">
-                                <label className="label_modal_prof">Expiry date (Example: 04/20)</label>
-                                <input type="text" className="input_modal_prof" name="expiry_card"/>
+                                <label className="label_modal_prof">Expiry date</label>
+                                <input type="text" className="input_modal_prof" name="expiry_card" placeholder="e.g. 04/20"/>
                             </div>
                             <div className="div_input_modal">
                                 <label className="label_modal_prof">Issuing bank</label>
@@ -205,8 +204,8 @@ export default class Profile extends Component {
                                 </div>
                             </div>
                             <div className="div_btn_modal">
-                                <button className="btn_save">Save</button>
-                                <button className="btn_cancel">Cancel</button>
+                                <button className="btn_save modalBtn">Save</button>
+                                <button className="btn_cancel modalBtn">Cancel</button>
                             </div>
                         </div>
                     </div>
@@ -237,7 +236,7 @@ export default class Profile extends Component {
                             <div className="file_comp"> <img src={current_user().profile_pic} className="files"/> </div>
                             <div className="file_comp">
                                 <label htmlFor="photo_edit" className="label_edit">
-                                    Select file <i className="fa fa-upload"></i>
+                                     Upload  <i className="fa fa-upload"></i>
                                 </label>
                             <input onChange={this.handleFileChange} style={{height: "0px", width:"0px"}} type="file" id="photo_edit" className="photo_edit" name="profile_pic" accept="image/x-png,image/gif,image/jpeg"/>
                             </div>
@@ -310,7 +309,7 @@ export default class Profile extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="info">
+                    <div className="info infoMobile">
                         <div className="radio_sub_div">
                             <label className="label_title">I would like to receive booking assist reminders</label>
                             <div className="check_div">
@@ -328,6 +327,8 @@ export default class Profile extends Component {
                             </div>
                         </div>
                     </div>
+                    <div className="footerIllusion">
+                    </div>
                 </div>
             </div>
             <div className="profile_title" style={{position: ""+this.state.Position+""}}>
@@ -338,19 +339,16 @@ export default class Profile extends Component {
                 </p>
                 <p className="profile_link">
                     <a href="/bookings" className="link_menu">
-
-                        <i className="far fa-calendar-check icone_profile"></i> My Bookings
+                        <i className="far fa-calendar-check icone_profile"></i> Bookings
                     </a>
                 </p>
                 <p className="profile_link">
                     <a href="/inbox" className="link_menu">
-
                         <i className="far fa-paper-plane icone_profile"></i> Inbox
                     </a>
                 </p>
                 <p className="profile_link">
                     <a href="/reviews" className="link_menu">
-
                         <i className="far fa-star icone_profile"></i> Reviews
                     </a>
                 </p>
@@ -371,7 +369,21 @@ export default class Profile extends Component {
                 </p>
 
             </div>
-            <footer className="footer">
+            <div className="profileMobile">
+            <a href="#" className="menuMobile">
+                <i className="far fa-smile iconeMobile"></i> <br/>Profiles
+            </a>
+            <a href="/bookings" className="menuMobile">
+                <i className="far fa-calendar-check iconeMobile"></i> <br/> Bookings
+            </a>
+            <a href="/inbox" className="menuMobile">
+                <i className="far fa-paper-plane iconeMobile"></i> <br/> Inbox
+            </a>
+            <a href="#" className="menuMobile">
+                <i className="far fa-credit-card iconeMobile"></i> <br/> Cash
+            </a>
+            </div>
+            <footer className="footer searchPlace">
                 <Footer/>
             </footer>
         </div>
