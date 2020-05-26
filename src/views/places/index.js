@@ -4,14 +4,10 @@ import Place from './place'
 import "../../assets/index.css"
 
 import { connect } from 'react-redux';
-import mapcarte from "../../assets/img/Last/Capture.PNG"
 import troph from "../../assets/img/Last/icon-uc-trophy.9ee78aa1.gif"
-import imgreturn1 from "../../assets/img/Better/ibrahim-boran-m8YjB0noWiY-unsplash.jpg"
-import imgreturn2 from "../../assets/img/Better/thomas-william-OAVqa8hQvWI-unsplash.jpg"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-import Sliders from "react-slick"
-import { Search } from 'semantic-ui-react';
+import Slider from "react-slick"
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import MyMap from '../../helper/MyMap';
 import Geocode from "react-geocode";
@@ -19,8 +15,6 @@ import {API_ROOT} from '../../constants'
 import Footer from '../../components/footer'
 
  class Index extends Component {
-     //for tomorrow find a way to display the places without fetching everytime
-
 
     componentDidMount(){
         window.addEventListener('scroll', this.handleScroll, true)
@@ -40,7 +34,6 @@ import Footer from '../../components/footer'
             }, () => console.log(this.state.pos.lng))
         }
         const url = API_ROOT + window.location.pathname + window.location.search
-        console.log(url)
         const params = {
             method: 'GET',
             headers: {
@@ -81,10 +74,12 @@ import Footer from '../../components/footer'
             return this.props.places.map(e => <Place {...this.state} key={e.id}  place={e}/>)
         }
     }
-
+    display_images = () => {
+        console.log(this.state.selectedPlace.images.length)
+        return <Slider  {...this.styleImg}> {this.state.selectedPlace.images.map(e => <img alt=""  key={e.id} src={e.url}  />) } </Slider>
+    } 
     displayMarkers = () => {
         return this.props.places.map(e => {
-            console.log(e.address)
           return <Marker key={e.id} id={e.id} position={{
            lat: e.address.latitude,
            lng: e.address.longitude
@@ -95,7 +90,6 @@ import Footer from '../../components/footer'
             activeMarker: marker,
             showingInfoWindow: true }) 
 
-            console.log(this.props.places.find(e => e.id === props.id))
          }
             
        } 
@@ -190,20 +184,19 @@ import Footer from '../../components/footer'
             }, () => console.log(this.state.pos.lng))
         }
     }
-        
+    styleImg = {
+        dots: true,
+        fade: false,
+        infinite: true,
+        speed: 1,
+        slidesToShow: 1,
+        arrows: true,
+        slidesToScroll: 1,
+        autoplay: true,
+        className: "ImgSlides"
+    }
     render() {
-        const styleImg = {
-            dots: true,
-            fade: false,
-            infinite: true,
-            speed: 1000,
-            slidesToShow: 1,
-            arrows: true,
-            slidesToScroll: 1,
-            autoplay: true,
-            autoPlaySpeed: 100,
-            className: "ImgSlides"
-        }
+        
         let Big_div = "DivLeftB"
         if (!this.state.Style) {
             Big_div = "mapHide_contain"
@@ -232,11 +225,11 @@ import Footer from '../../components/footer'
                                 
                                 <div>
                                 <h1>{this.state.selectedPlace.name}</h1>
-                                <div style={{height: "50%", width: "90%"}}>
-                                 {this.state.selectedPlace ? <img className="img_display" src={this.state.selectedPlace.images[0].url} /> : null}
+                                <div style={{height: "60%", width: "100%"}}>
+                                    {this.state.selectedPlace &&   this.display_images()}
                                 </div>
                                 <div className="address"> 
-                                {this.state.selectedPlace ? <p>{this.state.selectedPlace.address.city}, {this.state.selectedPlace.address.state} </p> : null}
+                                {this.state.selectedPlace && <React.Fragment><p style={{fontWeight: 'bold'}}>{this.state.selectedPlace.name}</p><p>{this.state.selectedPlace.address.city}, {this.state.selectedPlace.address.state} </p></React.Fragment>}
                                 </div>
                                 </div>
                             </InfoWindow>
@@ -300,12 +293,11 @@ import Footer from '../../components/footer'
                                 
                                 <div>
                                 <h1>{this.state.selectedPlace.name}</h1>
-                                <div style={{height: "50%", width: "90%"}}>
-                                 {this.state.selectedPlace ? <img className="img_display" src={this.state.selectedPlace.images[0].url} /> : null}
-                                
+                                <div style={{height: "60%", width: "100%"}}>
+                                    {this.state.selectedPlace && this.display_images()}
                                 </div>
-                                <div className="address"> 
-                                {this.state.selectedPlace ? <p>{this.state.selectedPlace.address.city}, {this.state.selectedPlace.address.state} </p> : null}
+                                <div className="address" style={{alignSelf: "center"}}> 
+                                {this.state.selectedPlace && <React.Fragment><p style={{fontWeight: 'bold'}}>{this.state.selectedPlace.name}</p><p>{this.state.selectedPlace.address.city}, {this.state.selectedPlace.address.state} </p></React.Fragment>}
                                 </div>
                                 </div>
                             </InfoWindow>

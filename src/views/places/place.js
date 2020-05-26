@@ -60,9 +60,7 @@ export default function place(props) {
                     {props.Style &&  
                         <div>  
                             <p className="p_head_info">{space_features()}</p>
-                            <p className="p_head_kind">
-                                <a href={`/places/${props.place.id}`} className="place_more">More info</a>
-                            </p>
+                         
                         </div>
                     }
                     {/*<p className="p_head_info">{space_features()}</p>

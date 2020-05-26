@@ -34,7 +34,7 @@ export default class Step9 extends Component {
                 <h2 className = "hTwoStepOne" > Step 9 </h2>
                     <div>
                         <h3>Step1</h3>
-                        <p>Name: {this.props.name}</p>
+                        <p>Space Type: { this.props.typeOfSpace}</p>
                         <p>capacity: {this.props.capacity}</p>
                         <button onClick={()=>this.props.goToStep(1)}>Edit</button>
                         
@@ -52,6 +52,7 @@ export default class Step9 extends Component {
 
                     <div>
                         <h3>Step3</h3>
+                        <p>Name: {this.props.name}</p>
                         <p>Description: {this.props.placeDesc}</p>
                         <p>Activities{this.props.activities.map(e => <li key={e.value}>{e.value}</li>)}</p>
                         <p>Parking Info: {this.props.parkDesc}</p>
