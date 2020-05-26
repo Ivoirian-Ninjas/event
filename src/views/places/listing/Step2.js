@@ -4,20 +4,20 @@ import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import Geocode from "react-geocode";
 import MyMap from '../../../helper/MyMap'
 
-let register_step_two_styles = {
-    width: "60%",
-    maxWidth: "100%",
-    margin: "0 auto",
-    position: "fixed",
-    left: "50%",
-    top: "50%",
-    transform: "translate(-50%, -50%)",
-    zIndex: "29999",
-    backgroundColor: "#fff",
-    display: "flex",
-    flexDirection: "column",
-    boxShadow: "0px 0px 0px 400px rgba(0, 0, 0, 0.40)",
-}
+// let register_step_two_styles = {
+//     width: "60%",
+//     maxWidth: "100%",
+//     margin: "0 auto",
+//     position: "fixed",
+//     left: "50%",
+//     top: "50%",
+//     transform: "translate(-50%, -50%)",
+//     zIndex: "29999",
+//     backgroundColor: "#fff",
+//     display: "flex",
+//     flexDirection: "column",
+//     boxShadow: "0px 0px 0px 400px rgba(0, 0, 0, 0.40)",
+// }
 export default class Step2 extends Component {
   
     state = {
@@ -124,7 +124,7 @@ export default class Step2 extends Component {
 
     render() {
         let register_step_two = (
-            <div style={register_step_two_styles}>
+            <div className="div_modal">
                 <button onClick={this.close_modal} className="close_modal">
                     <i className="far fa-times-circle"></i> 
                 </button>

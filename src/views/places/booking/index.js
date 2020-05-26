@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import Calendar from '@toast-ui/react-calendar';
-import 'tui-calendar/dist/tui-calendar.css';
-import { API_ROOT } from '../../../constants';
-import current_user from '../../../helper/current_user';
+import Calendar from '@toast-ui/react-calendar'
+import 'tui-calendar/dist/tui-calendar.css'
+import { API_ROOT } from '../../../constants'
+import current_user from '../../../helper/current_user'
+import '../../../assets/booking.css'
 
 export default class index extends Component {
     calendarRef = React.createRef();
@@ -24,6 +25,7 @@ export default class index extends Component {
         //     end: Date.now()
         // }]
         console.log(json.bookings)
+        if(json.bookings){
            const normalized_array = json.bookings.map(e => ({calendarId: '2', 
                                     attendees: [ e.data.attributes.host, e.data.attributes.client],
                                     id: e.data.attributes.id, 
@@ -36,6 +38,7 @@ export default class index extends Component {
            })  )
            console.log(normalized_array)
            this.setState({schedules: normalized_array})
+        }
 
        })
        
@@ -92,20 +95,20 @@ export default class index extends Component {
       }
      close_modal = () => this.setState({ openModal: false })
 
-      modal_styles = {
-        width: "60%",
-        maxWidth: "100%",
-        margin: "0 auto",
-        position: "fixed",
-        left: "50%",
-        top: "50%",
-        transform: "translate(-50%, -50%)",
-        zIndex: "29999",
-        backgroundColor: "#fff",
-        display: "flex",
-        flexDirection: "column",
-        boxShadow: "0px 0px 0px 400px rgba(0, 0, 0, 0.40)",
-    }
+    //   modal_styles = {
+    //     width: "60%",
+    //     maxWidth: "100%",
+    //     margin: "0 auto",
+    //     position: "fixed",
+    //     left: "50%",
+    //     top: "50%",
+    //     transform: "translate(-50%, -50%)",
+    //     zIndex: "29999",
+    //     backgroundColor: "#fff",
+    //     display: "flex",
+    //     flexDirection: "column",
+    //     boxShadow: "0px 0px 0px 400px rgba(0, 0, 0, 0.40)",
+    // }
 
     modal_per_case = () => {
         let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour12: false, timeZone: 'UTC'  };
@@ -117,15 +120,23 @@ console.log(this.state.event)
             const e_date=this.state.event.schedule.end._date
             const e_time = `${e_date.getHours()}: ${e_date.getMinutes()}`
              modal = (
-            <div style={this.modal_styles} className="div_modal">
+            <div className="div_modal">
                 <button onClick={this.close_modal} className="close_modal">
                     <i className="far fa-times-circle"></i> 
                 </button>
-                <div className="modal_container">
+                <div openModal={this.state.openModal} className="modal_container">
                     <h1>Type: Coming Event</h1>
                     <h1>{this.state.event.schedule.title}</h1>
-                    <p>start: { this.state.event.schedule && this.state.event.schedule.end._date.toLocaleDateString(undefined, options) } <span>{this.state.event.schedule && s_time}</span></p>
-                    <p>end: {this.state.event.schedule && this.state.event.schedule.start._date.toLocaleDateString(undefined, options)} <span>{this.state.event.schedule && e_time}</span></p>
+                    <p>
+                        start: { this.state.event.schedule && 
+                        this.state.event.schedule.end._date.toLocaleDateString(undefined, options) } 
+                        <span>{this.state.event.schedule && s_time}</span>
+                    </p>
+                    <p>
+                        end: {this.state.event.schedule && 
+                        this.state.event.schedule.start._date.toLocaleDateString(undefined, options)} 
+                        <span>{this.state.event.schedule && e_time}</span>
+                    </p>
                     <p>Duration: {this.state.event.schedule && this.state.event.schedule.goingDuration} hours</p>
                     <div>
                         <h3>Attendees</h3>
@@ -147,8 +158,6 @@ console.log(this.state.event)
         )
         return modal
         }
-       
-
         return modal
     }
     handleDbClick = (event) => {
@@ -160,66 +169,64 @@ console.log(this.state.event)
     render() {
 
         return (
+            <div className="FirstDiv">
             <div className="PageConteneur">
-                <h1>bookings</h1>         
-                <button onClick={this.handleClickPrevButton}>Previous month</button>
-                <button onClick={this.handleClickNextButton}>Next month</button>
-                <button onClick={this.scrollTotoday}>Today</button>
-                <span>{this.calendarRef && this.display_date()}</span>
-
+                <h1 className="booking_title">Start booking</h1>
+                <div className="booking_div_btn">
+                    <button onClick={this.handleClickPrevButton} className="booking_btn"> 
+                       <i className="fa fa-chevron-left"></i> Previous month 
+                    </button>
+                    <span className="today_date_booking"> {this.calendarRef && this.display_date()} </span>
+                    <button onClick={this.handleClickNextButton} className="booking_btn"> 
+                        Next month <i className="fa fa-chevron-right"></i>
+                    </button>
+                </div>
+                <button onClick={this.scrollTotoday} className="booking_btn move_class">Today</button>       
                 <div>{this.modal_per_case()}</div>
-                <Calendar
-                visibleWeeksCount={4}
-                ref={this.calendarRef}
-                usageStatistics={true}
-                useCreationPopup={true}
-                useDetailPopup={false}
-                disableClick={true}
-                onClickSchedule={this.handleDbClick}
-                calendars={[
-                        {
-                            id: '0',
-                            name: 'Not available',
-                            bgColor: '#9e5fff',
-                            borderColor: '#9e5fff'
-                        },  
-                        {
-                            id: '1',
-                            name: 'Past Event',
-                            bgColor: '#FF0000',
-                            borderColor: '#FF0000'
-                        },
-                        {
-                            id: '2',
-                            name: 'Event',
-                            bgColor: '#d229e8',
-                            borderColor: '#d229e8'
-                        }
-
-                ]}
-                schedules={this.state.schedules}
-    view="month"
-
-    template={{
-      milestone(schedule) {
-        return `<span style="color:#fff;background-color: ${schedule.bgColor};">${
-          schedule.title
-        }</span>`;
-      },
-      milestoneTitle() {
-        return 'Milestone';
-      },
-      allday(schedule) {
-        return `${schedule.title}<i class="fa fa-refresh"></i>`;
-      },
-      alldayTitle() {
-        return 'All Day';
-      }
-    }}
-
-
+                <Calendar visibleWeeksCount={4} ref={this.calendarRef} usageStatistics={true}
+                          useCreationPopup={true} useDetailPopup={false} disableClick={true}
+                          onClickSchedule={this.handleDbClick}
+                          calendars={[
+                            {
+                                id: '0',
+                                name: 'Not available',
+                                bgColor: '#9e5fff',
+                                borderColor: '#9e5fff'
+                            },  
+                            {
+                                id: '1',
+                                name: 'Past Event',
+                                bgColor: '#FF0000',
+                                borderColor: '#FF0000'
+                            },
+                            {
+                                id: '2',
+                                name: 'Event',
+                                bgColor: '#d229e8',
+                                borderColor: '#d229e8'
+                            }
+                        ]}
+                        schedules={this.state.schedules}
+                        view="month"
+                        template={{
+                            milestone(schedule) {
+                                return `<span style="color:#fff;background-color: ${schedule.bgColor};">${
+                                schedule.title
+                                }</span>`;
+                            },
+                            milestoneTitle() {
+                                return 'Milestone';
+                            },
+                            allday(schedule) {
+                                return `${schedule.title}<i class="fa fa-refresh"></i>`;
+                            },
+                            alldayTitle() {
+                                return 'All Day';
+                            }
+                        }}
                 />
             </div>
+        </div>
         )
     }
 }

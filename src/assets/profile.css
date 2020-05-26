@@ -193,7 +193,6 @@
     color: #fff;
     background: rgb(226, 27, 210);
     transition: 0.3s;
-    
 }
 .more_info{
     width: 80%;
@@ -298,6 +297,10 @@
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, .1);
     transition: 0.3s;
     background: white;
+}
+.email_sub:hover {
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.356);
+    transition: 0.3s;
 }
 .label_radio{
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
@@ -478,8 +481,299 @@
     width: 100%;
 }
 .image_card_small {
-
     height: 70%;
     width: 15%;
     margin: 0 10px;
+}
+.profileMobile{
+    display:none;
+}
+.footerIllusion {
+    display:none;
+}
+.div_modal_prof {
+    display: flex;
+    width: 60%;
+    max-width: 100%;
+    margin: 0 auto;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 29999;
+    background-color: #fff;
+    flex-direction: column;
+    box-shadow: 0px 0px 0px 400px rgba(0, 0, 0, 0.40);
+}
+@media (max-width:858px) {
+    .profile_title{
+        display:none;
+    }
+    .profileMobile{
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background: #fff;
+        box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.418);
+    }
+    .menuMobile{
+        width: 25%;
+        display: inline-block;
+        text-align: center;
+        padding: 7px 0px;
+        font-family: Mallory,"Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 12px;
+        line-height: 1.57;
+        font-weight: 600;
+        color: rgb(24, 24, 24);
+        background: none;
+    }
+    .iconeMobile{
+        font-size: 17px;
+        color: rgb(165, 0, 69);
+    }
+    .profile_information {
+        width: 100%;
+    }
+    .user_details{
+        width: 100%;
+    }
+    .title_part {
+        width: 90%;
+        text-align: left;
+        font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+        line-height: 20px;
+        font-size: 2rem;
+        font-weight: 500;
+    }
+    .info {
+        display: inline-block;
+        width: 90%;
+        margin: 0 auto;
+        margin-top: 0px;
+        padding-bottom: 15px;
+        box-shadow: 0 4px 10px 0 rgba(0, 0, 0, .1);
+        transition: 0.3s;
+        background: white;
+    }
+    .info:focus{
+        box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.356);
+        transition: 0.3s;
+    }
+    .name_surname {
+        width: 70%;
+        display: inline-block;
+        padding: 3px 0px 0px 5px;
+    }
+    .label_title {
+        width: 100%;
+        margin: 5px;
+    }
+    .names {
+        width: 95%;
+        margin: 5px;
+        height: 35px;
+        font-size: 1.4rem;
+        font-weight: 400;
+        border-radius: 2px;
+        transition: 0.2s;
+    }
+    .names:hover,.names:focus,.names:active {
+        box-shadow: 0px 0px 1px 0px rgba(226, 30, 226, 0.377);
+        transition: 0.2s;
+    }
+    .textarea_profile {
+        width: 95%;
+        margin: 5px;
+        height: 120px;
+        font-size: 1.4rem;
+        transition: 0.2s;
+        border-radius: 2px;
+    }
+    .textarea_profile:focus {
+        box-shadow: 0px 0px 1px 0px rgba(226, 30, 226, 0.377);
+        transition: 0.2s;
+    }
+    .save_info {
+        width: 95%;
+        display: inline-block;
+        margin: 10px 0px 0px 5px;
+        text-align: center;
+    }
+    .btn_save {
+        font-size: 1.4rem;
+        padding: 7px 20px;
+        transition: 0.2s;
+        margin: 5px;
+    }
+    .btn_save:focus {
+        background: rgb(228, 8, 209);
+        border: 1px solid rgb(228, 8, 209);
+        transition: 0.2s;
+    }
+    .btn_cancel {
+        font-size: 1.4rem;
+        padding: 7px 20px;
+        transition: 0.2s;
+        margin: 5px;
+    }
+    .btn_cancel:focus {
+        transition: 0.2s;
+    }
+    .pictures {
+        width: 25%;
+        display: inline-block;
+        text-align: center;
+        margin: 5px;
+        position: absolute;
+    }
+    .file_comp {
+        width: 100%;
+    }
+    .files {
+        width: 100%;
+        height: 15vh;
+        border-radius: 50%;
+    }
+    .label_edit {
+        line-height: 15px;
+        font-size: 1.2rem;
+        padding: 7px 0px;
+        transition: 0.2s;
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        margin-top: 3px;
+    }
+    .label_edit:focus {
+        transition: 0.2s;
+    }
+    .more_info {
+        width: 100%;
+        display: inline-block;
+        padding: 10px 0px 0px 5px;
+    }
+    .input_more {
+        width: 95%;
+        margin: 5px;
+        height: 35px;
+        font-size: 1.4rem;
+        transition: 0.2s;
+        border-radius: 2px;
+    }
+    .input_more:hover,.input_more:focus {
+        box-shadow: 0px 0px 1px 0px rgba(226, 30, 226, 0.377);
+        transition: 0.2s;
+    }
+    .btn_connection {
+        width: 50%;
+    }
+    .payment {
+        width: 90%;
+        margin-left: 5%;
+        margin-top: 10px;
+        transition: 0.2s;
+    }
+    .payment:hover {
+        transition: 0.2s;
+    }
+    .email_sub {
+        width: 90%;
+        margin-top: 10px;
+        transition: 0.2s;
+    }
+    .email_sub:hover {
+        transition: 0.2s;
+    }
+    .radio_div {
+        display: inline-flex;
+        width: 23%;
+        margin: 5px 0 0 4px;
+    }
+    .radio_sub {
+        width: 15px;
+        height: 15px;
+    }
+    .radio_sub:checked {
+        border: 3px solid rgb(255, 0, 221);
+    }
+    .label_radio {
+        font-size: 1.1rem;
+        margin-right: 0px;
+        line-height: 20px;
+        margin-left: 2px;
+    }
+    .footerIllusion {
+        display: block;
+        height: 60px;
+    }
+    .check_div {
+        margin-top: 5px;
+    }
+    .infoMobile{
+        margin-bottom: 10px;
+    }
+    .div_modal_prof {
+        width: 100%;
+    }
+    .modal_container_prof {
+        display: inline-block;
+        width: 100%;
+        height: 70vh;
+        background: rgb(245, 245, 245);
+    }
+    .p_add_new {
+        font-weight: 500;
+        font-size: 2rem;
+        margin: 2% 0% 3% 5%;
+    }
+    .div_contain_modal {
+        display: inline-block;
+        width: 100%;
+        height: 60vh;
+    }
+    .div_input_modal {
+        margin: 5px 0px;
+    }
+    .label_modal_prof {
+        font-size: 12px;
+        color: #535353;
+    }
+    .input_modal_prof {
+        padding: 8px 16px;
+        font-size: 12px;
+        height: 30px;
+        transition: border-color ease-in-out .2s;
+        color: rgb(80, 80, 80);
+    }
+
+    .input_modal_prof:hover,
+    .input_modal_prof:focus {
+        border: 1px solid #d800a9;
+        transition: border-color ease-in-out .2s;
+    }
+    .display_card {
+        margin: 9% 0 0 15%;
+        height: 28%;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    .p_exemple_card {
+        font-size: 12px;
+        color: rgb(73, 73, 73);
+    }
+    .image_card_small {
+        height: 60%;
+        width: 16%;
+        margin: 0 5px;
+    }
+    .modalBtn{
+        font-size: 1.2rem;
+        padding: 5px 15px;
+    }
+    .div_btn_modal {
+        margin: 0% 0 0 10%;
+        display: flex;
+    }
 }

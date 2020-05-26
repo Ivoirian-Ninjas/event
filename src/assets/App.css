@@ -5,77 +5,89 @@
     src: url('./fonts/rockness/Rockness.otf');
     font-weight: normal;
     font-style: normal;
-    }
+}
+
 /* Thundergood*/
 @font-face {
     font-family: 'Thundergood';
     src: url('./fonts/thundergood/Thundergood.ttf');
     font-weight: normal;
     font-style: normal;
-    }
-    /*Candara*/
-    @font-face {
+}
+
+/*Candara*/
+@font-face {
     font-family: 'Candara';
     src: url('./fonts/candara/Candara.ttf');
     font-weight: normal;
     font-style: normal;
-    }
-    /* Signature of the ancient*/
-    @font-face {
+}
+
+/* Signature of the ancient*/
+@font-face {
     font-family: 'Signature of the Ancient';
     src: url('./fonts/signature-of-the-ancient/Signature of the Ancient.ttf');
     font-weight: normal;
     font-style: normal;
-    }
-    /* Prestige signature script*/
-    @font-face {
+}
+
+/* Prestige signature script*/
+@font-face {
     font-family: 'Prestige Signature Script';
     src: url('./fonts/prestige-signature-script--demo/Prestige Signature Script - Demo.ttf');
     font-weight: normal;
     font-style: normal;
-    }
-    @font-face {
+}
+
+@font-face {
     font-family: 'Edwardian Script ITC';
     src: url('./fonts/Edwardian Script ITC/EdwardianScriptITC.ttf');
     font-weight: normal;
     font-style: normal;
-    }
-    @font-face {
+}
+
+@font-face {
     font-family: 'Gabriola';
     src: url('./fonts/gabriola-font/Gabriola.ttf');
     font-weight: normal;
     font-style: normal;
-    }
-.EnTetes{
+}
+
+.EnTetes {
     width: 100%;
     background: rgb(255, 255, 255);
     height: 80px;
-    box-shadow: 0 1px 1.5rem rgba(0,0,0,.1);
+    box-shadow: 0 1px 1.5rem rgba(0, 0, 0, .1);
     position: fixed;
     z-index: 3;
 }
-.LogoEvent{
+
+.LogoEvent {
     color: #000;
     font-size: 7rem;
     line-height: 80px;
     padding: 0 20px;
     font-family: Edwardian Script ITC;
-    cursor:pointer;
+    cursor: pointer;
     text-decoration: none;
 }
-.LogoEvent:hover{
+
+.LogoEvent:hover {
     background: none;
 }
-.menu-first{
+
+.menu-first {
     float: right;
     margin-right: 80px;
 }
-.menu-first .lien-menu-first{
+
+.menu-first .lien-menu-first {
     display: inline-block;
     line-height: 80px;
     margin: 0 10px;
 }
-.menu-first .lien-menu-first a{
+
+.menu-first .lien-menu-first a {
     color: #000;
     font-size: 17px;
     text-decoration: none;
@@ -83,28 +95,32 @@
     border-radius: 3px;
     cursor: pointer;
 }
-.sous-menu{
-    list-style-type:none;
+
+.sous-menu {
+    list-style-type: none;
     position: absolute;
-    top:60px;
-    margin:0 0 0 -15px;
-    padding:0;
-    line-height:40px;
+    top: 60px;
+    margin: 0 0 0 -15px;
+    padding: 0;
+    line-height: 40px;
     width: 130px;
     display: none;
-	
-}
-.sous-menu li{
-    display: block;
-    transition:0.4s;
-    margin-top:3px;
-	padding:2px;
+    z-index:5;
     background: #fff;
 }
+
+.sous-menu li {
+    display: block;
+    transition: 0.4s;
+    margin-top: 1px;
+    padding: 2px;
+    background: #fff;
+}
+
 /* .sous-menu li:first-child{
     border-bottom: 1px solid rgb(117, 113, 113);
 } */
-.sous-menu li a{
+.sous-menu li a {
     color: #000;
     font-size: 17px;
     text-decoration: none;
@@ -112,19 +128,23 @@
     cursor: pointer;
 
 }
-.sous-menu li a:hover{
-    color:rgba(179, 9, 164, 0.89);
-    background:none;
+
+.sous-menu li a:hover {
+    color: rgba(179, 9, 164, 0.89);
+    background: none;
 }
 
-.ProfilesLink:hover .sous-menu, .img_profile:hover  .sous-menu{
-
+.ProfilesLink:hover .sous-menu,
+.img_profile:hover .sous-menu {
     display: block;
 }
-.active, a:hover{
+
+.lien-menu-first .active,
+.lien-menu-first a:hover {
     background: rgba(253, 153, 228, 0.836);
 }
-.checkbtn{
+
+.checkbtn {
     font-size: 30px;
     color: #000;
     float: right;
@@ -133,89 +153,117 @@
     cursor: pointer;
     display: none;
 }
-#check{
+
+#check {
     display: none;
     outline: none;
 }
-.logout{
+
+.logout {
     border-radius: 1px;
     border: none;
-    background-color: #fff;
+    background-color: transparent;
     font-weight: bold;
     color: rgb(247, 76, 76);
     font-size: 20px;
 }
-.img_profile{
 
-    width:40px;
-    height:40px;
+.img_profile {
+    width: 40px;
+    height: 40px;
     border: 1px solid rgb(226, 1, 215);
-    top:15px;
-
-position: relative;
+    top: 15px;
+    position: relative;
     border-radius: 50%;
     cursor: pointer;
     overflow: hidden;
 }
-.profile_file{
+
+.profile_file {
     width: 100%;
     height: 100%;
     position: absolute;
 }
-@media (max-width:952px){
-    .LogoEvent{
+
+@media (max-width:952px) {
+    .LogoEvent {
         font-size: 30px;
         padding-left: 50px;
     }
-    .menu-first .lien-menu-first a{
+
+    .menu-first .lien-menu-first a {
         font-size: 16px;
     }
 
 }
-@media (max-width:858px){
-    .checkbtn{
+
+@media (max-width:858px) {
+        .LogoEvent {
+            font-size: 30px;
+            padding-left: 20px;
+        }
+    .checkbtn {
         display: block;
     }
-    .menu-first{
+
+    .menu-first {
         position: fixed;
         width: 100%;
         height: 100vh;
         background: rgb(250, 245, 248);
-        top:80px;
+        top: 80px;
         left: -100%;
         text-align: center;
         transform: all 5s;
         font-weight: bolder;
     }
-    .sous-menu{
-        margin: "0 5px";
+
+    .sous-menu {
+        margin:0px auto;
         position: absolute;
-        width: 100%;
-        top:65vh;
-        text-align: center;
-        transform: all 5s;        
+        width: 50%;
+        top: 15vh;
+        text-align: left;
+        transform: all 5s;
+        background: rgb(255, 255, 255);
     }
-    .sous-menu li{
-        background: rgb(250, 245, 248);
+
+    .sous-menu li {
+        background: transparent;
         font-weight: lighter;
+        margin: 0px auto;
     }
-    .menu-first .lien-menu-first{
+
+    .menu-first .lien-menu-first {
         display: block;
-        margin: 30px 0;
+        margin: 5px 0;
     }
-    .menu-first .lien-menu-first a{
+
+    .menu-first .lien-menu-first a {
         font-size: 20px;
         font-weight: bolder;
     }
-    a:hover, a.active{
+
+    .menu-first .lien-menu-first a:hover,
+    .menu-first .lien-menu-first a.active {
         background: none;
-        color: rgba(253, 153, 228, 0.836); ;
+        color: rgba(253, 153, 228, 0.836);
     }
-    #check:checked ~ ul{
+
+    #check:checked~ul {
         left: 0;
         outline: none;
     }
+    .img_profile {
+        margin: 0px auto;
+    }
+    .profile_file {
+        position: absolute;
+        margin: 0px auto;
+        left:0
+    }
 }
+
 .disabled-date {
     pointer-events: none;
-  }
+}

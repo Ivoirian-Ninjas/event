@@ -240,18 +240,21 @@ import { isArray } from 'util';
 
     render() {
         return (
-            <div className="PageConteneur">
-                <StepWizard state={this.state} isLazyMount>
-                        <Step1 {...this.state} handleChange={this.handleChange} handleSelect={this.handleSelect} />
-                        <Step2 {...this.state}  handleSelect={this.handleSelect}/>
-                        <Step3 {...this.state}  handleChange={this.handleChange} handleActivities={this.handleActivities}/>  
-                        <Step4  {...this.state}  handleAmen={this.handleAmen} />
-                        <Step5  {...this.state}   handleFileChange={this.handleFileChange} add_input={this.add_input} />
-                        <Step6  {...this.state}  handleChange={this.handleChange} />
-                        <Step7   {...this.state}  handleChange={this.handleChange}/>
-                        <Step8   {...this.state}  handlePolicy={this.handlePolicy}/>
-                        <Step9   {...this.state}  handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
-                </StepWizard>
+
+            <div className="FirstDiv">
+                <div className="PageConteneur">
+                    <StepWizard state={this.state}>
+                            <Step1 {...this.state} handleChange={this.handleChange} handleSelect={this.handleSelect} />
+                            <Step2 {...this.state}  handleSelect={this.handleSelect}/>
+                            <Step3 {...this.state}  handleChange={this.handleChange} handleActivities={this.handleActivities}/>  
+                            <Step4  {...this.state}  handleAmen={this.handleAmen} />
+                            <Step5  {...this.state}   handleFileChange={this.handleFileChange} add_input={this.add_input} />
+                            <Step6  {...this.state}  handleChange={this.handleChange} />
+                            <Step7   {...this.state}  handleChange={this.handleChange}/>
+                            <Step8   {...this.state}  handlePolicy={this.handlePolicy}/>
+                            <Step9   {...this.state}  handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
+                    </StepWizard>
+                </div>
             </div>
         )
     }

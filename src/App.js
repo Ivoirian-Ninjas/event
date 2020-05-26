@@ -17,17 +17,17 @@ import Add_Place from './views/places/new'
 import Place_Show from './views/places/show'
 import Profile from './views/user/Profile'
 import is_logged_in from './helper/is_logged_in'
-
 import Navbar from './components/navbar'
 import Booking_show from './views/places/booking/booking_show';
 import { GoogleApiWrapper} from 'google-maps-react';
 import Inbox from './views/messages/inbox';
 import Footer from "./components/footer"
-
 import OwlCarousel from 'react-owl-carousel'
 import 'owl.carousel/dist/assets/owl.carousel.css'
 import 'owl.carousel/dist/assets/owl.theme.default.css'
 import AOS from 'aos'
+import 'aos/dist/aos.css'
+import "./assets/bootstrap-4.3.1-dist/css/bootstrap.min.css"
 import User_listing from './views/places/listing/user_listing';
 function App() {
   AOS.init()

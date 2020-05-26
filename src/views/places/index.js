@@ -24,6 +24,21 @@ import Footer from '../../components/footer'
 
     componentDidMount(){
         window.addEventListener('scroll', this.handleScroll, true)
+        this.setState({Position:"absolute"})
+        if(window.innerWidth<=858){
+            this.setState({
+                Style: !this.state.Style,
+                Places_div: "mapHide_place",
+                ImgB_div: "mapHide_placeImg",
+                ImgB_div2: "mapHide_placeImg",
+                img_div: "img_places",
+                Info_div: "mapHide_placeInfo",
+                kind_div: "country_places",
+                rate_div: "rate_places",
+                title_div: "name_places",
+                price_div: "price_places"
+            }, () => console.log(this.state.pos.lng))
+        }
         const url = API_ROOT + window.location.pathname + window.location.search
         console.log(url)
         const params = {
@@ -104,24 +119,39 @@ import Footer from '../../components/footer'
             rate_div : "p_head_rate",
             title_div : "p_head_title",
             price_div : "p_head_price",
+            MapOpen:false,
+            Display:"flex",
+            Display2:"none"
       }
-                componentWillUnmount() {
-                    window.removeEventListener('scroll', this.handleScroll)
-                }
+         componentWillUnmount() {
+            window.removeEventListener('scroll', this.handleScroll)
+        }
                 handleScroll = () => {
                     var pageHeight = this.refs.myContainer
                     var scrollHeight = window.scrollY
                     console.log(scrollHeight, pageHeight.clientHeight)
-                    if (scrollHeight > (pageHeight.clientHeight-400)) {
+                    if (scrollHeight > (pageHeight.clientHeight-440)) {
                         console.log(scrollHeight, pageHeight.clientHeight)
                         this.setState({
-                            Position: "absolute"
+                            Position: "absolute",
+                            Display:"none"
                         })
                     } else {
                         this.setState({
-                            Position: "fixed"
+                            Position: "fixed",
+                            Display:"flex"
                         })
                     }
+                }
+                handleClick = () => {
+                    this.setState({
+                        MapOpen: true
+                    })
+                }
+                close_modal = () => {
+                    this.setState({
+                        MapOpen: false
+                    })
                 }
     show_hide_map = () =>{
         if(this.state.Style){
@@ -136,7 +166,9 @@ import Footer from '../../components/footer'
                 kind_div : "country_places",
                 rate_div : "rate_places",
                 title_div : "name_places",
-                price_div : "price_places"
+                price_div : "price_places",
+                Display:"none",
+                Display2:"block"
         },() => console.log(this.state.pos.lng)
         )
         }
@@ -153,6 +185,8 @@ import Footer from '../../components/footer'
                 rate_div : "p_head_rate",
                 title_div : "p_head_title",
                 price_div : "p_head_price",
+                Display:"flex",
+                Display2:"none"
             }, () => console.log(this.state.pos.lng))
         }
     }
@@ -177,20 +211,62 @@ import Footer from '../../components/footer'
         else{
             Big_div = "DivLeftB"
         }
+        let map_modal = (
+            <div className="div_modal_map">
+                <button onClick={this.close_modal} className="close_modal_map">
+                   X
+                </button>
+                <div MapOpen={this.state.MapOpen} className="modal_container_map">
+                    <MyMap  google={this.props.google} zoom={10} 
+                            center={{lng: this.state.pos.lng,lat: this.state.pos.lat}}
+                            onClick={ (props) => {
+                                    if (this.state.showingInfoWindow) {
+                                    this.setState({
+                                        showingInfoWindow: false,
+                                        activeMarker: null
+                                    })
+                                    }
+                                }}>
+                            {this.displayMarkers()}
+                            <InfoWindow  marker={this.state.activeMarker} visible={this.state.showingInfoWindow}>
+                                
+                                <div>
+                                <h1>{this.state.selectedPlace.name}</h1>
+                                <div style={{height: "50%", width: "90%"}}>
+                                 {this.state.selectedPlace ? <img className="img_display" src={this.state.selectedPlace.images[0].url} /> : null}
+                                </div>
+                                <div className="address"> 
+                                {this.state.selectedPlace ? <p>{this.state.selectedPlace.address.city}, {this.state.selectedPlace.address.state} </p> : null}
+                                </div>
+                                </div>
+                            </InfoWindow>
+                    </MyMap>
+                </div>
+            </div>
+        )
+        if (!this.state.MapOpen) {
+            map_modal = null;
+        }
         return (
             <div className="PageConteneur">
+            <div>{map_modal}</div>
                 <div className="DivTop">
                     <div className="DivLeft">
                         <Filter/>
                     </div>
                     <div className="DivRight">
-                    <label className="labelCheck" htmlFor="checkMap">Show map</label>
+                    {/*<label className="labelCheck" htmlFor="checkMap">Show map</label>
                             <input type="checkbox" onChange={this.show_hide_map} className='checkIndex' id="checkMap"/>
                             <label className="spanCheck" htmlFor="checkMap"></label>
+                    */}
+                    <button className="mapShow" onClick={this.show_hide_map} style={{display: ""+this.state.Display2+""}}> 
+                        <i className="far fa-map"></i> Show Map 
+                    </button>
                     </div>
                 </div>
                 <div className="DivBottom" ref="myContainer">
                     <div className={Big_div}>
+                        <button className="mapShowMobile" onClick={this.handleClick}> <i className="far fa-map"></i> Map </button>
                         <div className="info_top">
                             <div className="DivHead">
                                 <p className="pImg"><img src={troph} className="tropHead"/></p>
@@ -205,6 +281,10 @@ import Footer from '../../components/footer'
                         {this.display_places()}
                     </div>                
                 {this.state.show_map ? ( <div className="DivRightB" style={{position: ""+this.state.Position+""}}>
+                                <button onClick={this.show_hide_map} className="close_map" 
+                                        style={{display: ""+this.state.Display+""}}>
+                                    Hide map
+                                </button>
                         <MyMap google={this.props.google} zoom={10} center={{lng: this.state.pos.lng,lat: this.state.pos.lat}}
                         onClick={ (props) => {
                                     if (this.state.showingInfoWindow) {
@@ -232,7 +312,7 @@ import Footer from '../../components/footer'
                     </MyMap>
                     </div>) :  null}
                 </div>
-                <footer className="footer">
+                <footer className="footer searchPlace">
                     <Footer/>
                 </footer>          
             </div>
