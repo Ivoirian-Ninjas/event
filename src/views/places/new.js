@@ -110,8 +110,10 @@ import { isArray } from 'util';
        
       handleActivities =(newValue, actionMeta) => {
           if( actionMeta.action !== 'remove-value' ){
-                this.setState(state => ({activities: [...newValue]}) )
+              console.log(newValue)
+                this.setState(state => ({activities: [...this.state.activities,...newValue]}) )
           }else{
+              
               this.setState(state => ({activities: [...state.activities].filter(e => e !== actionMeta.removedValue)}) )
           }
       }
@@ -132,6 +134,7 @@ import { isArray } from 'util';
         spanX.classList.add("deleteImage")
         spanX.append("Delete image ")
         spanX.appendChild(icon)
+        
         //read the file
         reader.readAsDataURL(file);
 
@@ -238,7 +241,7 @@ import { isArray } from 'util';
     render() {
         return (
             <div className="PageConteneur">
-                <StepWizard state={this.state}>
+                <StepWizard state={this.state} isLazyMount>
                         <Step1 {...this.state} handleChange={this.handleChange} handleSelect={this.handleSelect} />
                         <Step2 {...this.state}  handleSelect={this.handleSelect}/>
                         <Step3 {...this.state}  handleChange={this.handleChange} handleActivities={this.handleActivities}/>  

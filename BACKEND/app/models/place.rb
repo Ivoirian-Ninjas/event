@@ -25,4 +25,25 @@ class Place < ApplicationRecord
             result
         end
     end
+
+    def check_status 
+        if(self.name && self.description && self.price && self.cancelation_policy && self.category_id && self.address && self.schedule && self.activities.length != 0 && self.images.length != 0)
+            self.update(status: "complete")
+          return  true
+        else
+            return false
+        end  
+
+    end
 end
+
+# t.string :name
+# t.text :description
+# t.float :price
+# t.float :ratings
+# t.integer :capacity
+# t.integer :number_view
+# t.integer :user_id
+# t.integer :cancelation_policy_id
+# t.integer :category_id
+# t.string :status, default: "incomplete"

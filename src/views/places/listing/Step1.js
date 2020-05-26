@@ -9,7 +9,7 @@ class Step1 extends Component {
     display_categories = () => {
         let result 
         if(this.props.categories.categories){
-            result = this.props.categories.categories.map(e =><option value={e}/>)
+            result = this.props.categories.categories.map(e =><option value={e} key={e}/>)
         }
         return result
     }

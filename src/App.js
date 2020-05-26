@@ -34,7 +34,7 @@ function App() {
   return (
     <Router>    
       <Switch>
-        <div>
+          <React.Fragment>
             {/* This the navbar */}
             <Navbar />
             
@@ -61,7 +61,8 @@ function App() {
 
               {/*These routes are for messages */}
               <Route path='/inbox/' render={renderProps => <Inbox {...renderProps}/>}  /> 
-          </div>
+            </React.Fragment>
+         
        </Switch>
     </Router>
   );

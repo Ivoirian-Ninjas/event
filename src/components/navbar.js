@@ -71,7 +71,7 @@ handleChange = event => this.setState({[event.target.name]: event.target.value }
   display_activities = () => {
     let result 
       if(this.props.activities.activities){
-        result = this.props.activities.activities.map(e =><li><a href={`/places?activities.title=${e}`}>{e}</a></li>)
+        result = this.props.activities.activities.map(e =><li key={e}><a href={`/places?activities.title=${e}`}>{e}</a></li>)
       }
       return result
     }

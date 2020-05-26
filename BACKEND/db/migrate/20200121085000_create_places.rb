@@ -11,8 +11,6 @@ class CreatePlaces < ActiveRecord::Migration[5.2]
       t.integer :cancelation_policy_id
       t.integer :category_id
       t.string :status, default: "incomplete"
-      t.string :progression
-     
       t.timestamps
     end
   end

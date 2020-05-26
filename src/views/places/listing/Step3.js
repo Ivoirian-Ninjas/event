@@ -1,14 +1,22 @@
 import React, { Component } from 'react'
 import Creatable from 'react-select/creatable';
+import { API_ROOT } from '../../../constants';
+import { connect } from 'react-redux';
 
 
 export default class Step3 extends Component {
 
-
-    options = [
-        { value: 'one', label: 'One' },
-        { value: 'two', label: 'Two' }
-      ]
+    componentDidMount(){
+        
+        fetch(`${API_ROOT}/activities`)
+        .then(resp => resp.json())
+        .then(json => this.setState({activities: json.activities.map(e => ({value: e, label: e}) ) }))                  
+      
+     } 
+     state = {
+         activities: []
+     }
+    
      
        customStyles = {
         option: (provided, state) => ({
@@ -67,7 +75,7 @@ export default class Step3 extends Component {
                         isMulti
                         styles={this.customStyles}
                         name="form-field-name"
-                        options={this.options}
+                        options={this.state.activities}
                         onChange={this.props.handleActivities}
                         theme={theme => ({
                             ...theme,

@@ -7,8 +7,8 @@ export default class conversationList extends Component {
         console.log(this.props)
         return this.props.conversations.map(conversation => {
           return (
-            <React.Fragment>
-              <div onClick={() =>this.props.handleClick(conversation.data.id)}>{current_user().id ===  conversation.data.attributes.host.id ? <div>{conversation.data.attributes.client.name}</div>:<div>{conversation.data.attributes.host.name}</div>}</div>
+            <React.Fragment key={conversation.data.id}>
+              <div  onClick={() =>this.props.handleClick(conversation.data.id)}>{current_user().id ===  conversation.data.attributes.host.id ? <div>{conversation.data.attributes.client.name}</div>:<div>{conversation.data.attributes.host.name}</div>}</div>
 
           </React.Fragment>
           )
