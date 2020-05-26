@@ -24,6 +24,7 @@ import Footer from '../../components/footer'
 
     componentDidMount(){
         window.addEventListener('scroll', this.handleScroll, true)
+        this.setState({Position:"absolute"})
         if(window.innerWidth<=858){
             this.setState({
                 Style: !this.state.Style,
@@ -65,7 +66,7 @@ import Footer from '../../components/footer'
             }else{
                 console.log("this is what you want")
                 console.log(places)
-              this.setState( {pos: { lng: places[0].address.longitude, lat: places[0].address.latitude}} )
+                places.length != 0 &&  this.setState( {pos: { lng: places[0].address.longitude, lat: places[0].address.latitude}} )
             }
     
             this.props.get_places(places)

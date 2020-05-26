@@ -65,7 +65,8 @@ export default class show extends Component {
         end_time: '',
         ShowOpen:false,
         Position: "fixed",
-        Top:"90%"
+        Top:"90%",
+        BookOpen : false
       }
       s_change_time = time => this.setState({start_time: time})
       e_change_time = time => this.setState({end_time: time})
@@ -117,6 +118,14 @@ export default class show extends Component {
     close_modal = () =>{
         this.setState({ ShowOpen: false })
     }
+    openBooking = () => {
+        this.setState({
+            BookOpen: true
+        })
+    }
+    closeBooking = () =>{
+        this.setState({ BookOpen: false })
+    }
     componentWillUnmount() {
         window.removeEventListener('scroll', this.handleScroll);
     }
@@ -157,9 +166,58 @@ export default class show extends Component {
         if (!this.state.ShowOpen) {
             show_modal = null;
         }
+        let modal_book = (
+            <div className="div_modal_book">
+                <button onClick={this.closeBooking} className="close_modal_book">
+                   X
+                </button>
+                <div BookOpen={this.state.BookOpen} className="modal_container_book">
+                    <div className="show_book">
+                        <div className="show_book_info">
+                            <p className="show_book_text"> 
+                                <b className="show_book_bolder">
+                                    ${this.state.place.attributes && this.state.place.attributes.price} 
+                                </b> / hour
+                            </p>
+                            <p className="show_book_text"><i className="fa fa-star show_star"></i> 4.93 (330)</p>
+                        </div>
+                        <div className="show_book_date">
+                            <label className="show_book_label">Dates</label>
+                            <DatePicker onClick={() => {
+                                    const dates = document.querySelectorAll('button.react-calendar__tile')
+                                    dates.forEach(e=>{
+                                        this.state.disabled_days.forEach(disabled_day =>{
+                                            if(Date.parse(e.querySelector('abbr').getAttribute('aria-label') ) === Date.parse(`${disabled_day}`) ){
+                                                console.log(e)
+                                                e.disabled = true
+                                                e.style.pointerEvents = "none"
+                                            }
+                                        })
+                                    })
+                            }}
+                                onChange={this.change} value={this.state.date} 
+                                dayClassName={date => date.getTime() === new Date('2/25/2020').getTime() ? 'disabled-date' : undefined}
+                                minDate={new Date() }
+                                style ={timestyle}
+                                className="show_book_date_contain" />
+                        </div>
+                        <div className="show_book_time">
+                            <label className="show_book_label">Times</label>
+                            <TimePicker className="show_book_time_contain" onChange={this.s_change_time} value={this.state.start_time}/> 
+                            <TimePicker className="show_book_time_contain" onChange={this.e_change_time} value={this.state.end_time}/>
+                        </div>
+                        <button onClick={this.book} className="show_book_btn">Book this place</button>
+                    </div>
+                </div>
+            </div>
+        )
+        if(!this.state.BookOpen){
+            modal_book = null;
+        }
         return (
         <div className='PageConteneur'>
         <div>{show_modal}</div>
+        <div>{modal_book}</div>
             <div className="show_div_top" onClick={this.handleClick} ref="myContainer">
                     {this.display_img()}
                 <div className="show_div_top_btn">
@@ -342,7 +400,7 @@ export default class show extends Component {
                     <p className="book_text_mobile"><i className="fa fa-star show_star"></i> 4.93 (330)</p>
                 </div>
                 <div className="bookBtnMobile">
-                    <button className="book_btn_mobile">Book</button>
+                    <button className="book_btn_mobile" onClick={this.openBooking}>Book</button>
                 </div>
            </div>
             <div className="footerIllusion">

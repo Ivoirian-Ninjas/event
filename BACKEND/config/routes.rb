@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   post '/places/:id/book', to: 'places#book'
   post '/bookings/:id/confirm', to: 'bookings#confirm'
   mount ActionCable.server => '/cable'
+  get '/listing/:id', to: 'places#index'
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

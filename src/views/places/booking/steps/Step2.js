@@ -4,7 +4,7 @@ export default class Step2 extends Component {
 
     render() {
         return (
-            <div>
+            <div className="FirstDiv">
                 <div className="div_book_step2">
                     <h1 className='title_book_step'>Who's comming?</h1>
                     <label className="label_book_step2">Activity</label>

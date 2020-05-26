@@ -136,7 +136,7 @@
     right: 0;
     height:81vh;
     width: 40%;
-    /* position: fixed; */
+    position: absolute;
     margin-top: 46px;
 }
 .imgMap{

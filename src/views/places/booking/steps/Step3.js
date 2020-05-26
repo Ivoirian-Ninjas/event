@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class Step3 extends Component {
     render() {
         return (
-            <div>
+            <div className="FirstDiv">
                 <div className="div_book_step3">
                 <h1 className='title_book_step'>Review and pay</h1>
                 <h2 className="booking_details">Booking Details</h2>
@@ -27,10 +27,10 @@ export default class Step3 extends Component {
                 </div>
                 <div className = "bookingDetails" >
                     <h2 className="review_title">Price</h2>
-                    <p className="text_review">Space rate ${this.props.place.attributes && this.props.place.attributes.price } /hr</p>
-                    <p className="text_review">Subtotal: ${this.props.price && this.props.price} </p>
-                    <p className="text_review">Processing <span>?</span> ${this.props.process_fee && this.props.process_fee }</p>
-                    <p className="text_review">Total ${this.props.total && this.props.total}</p>
+                    <p className="text_review">Space rate : ${this.props.place.attributes && this.props.place.attributes.price } /hr</p>
+                    <p className="text_review">Subtotal : ${this.props.price && this.props.price} </p>
+                    <p className="text_review">Processing <span>?</span> : ${this.props.process_fee && this.props.process_fee }</p>
+                    <p className="text_review">Total : ${this.props.total && this.props.total}</p>
                 </div>
                 <div className="bookingDetails">
                     <h2 className="review_title">Cancellation Policy</h2>
