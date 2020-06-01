@@ -109,8 +109,8 @@ handleChange = event => this.setState({[event.target.name]: event.target.value }
                 </a>
               </li>
               <li className="lien-menu-first">
-                <a>
-                  Analitycs
+                <a href='/analytics'>
+                  Analytics
                 </a>
               </li> 
               </React.Fragment>

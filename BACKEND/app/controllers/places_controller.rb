@@ -23,6 +23,9 @@ class PlacesController < ApplicationController
     def show 
         disabled_days = []
         place = Place.find(params.permit(:id)[:id])
+        user = User.find(params.permit!["current_user"])
+        analytics = place.analytics.find_or_create_by({month: (Time.now).month, year: (Time.now).year})
+        analytics.update({number_view: analytics.number_view + 1}) if user != place.user
         # binding.pry
         dates = place.bookings.map{|booking| booking.date}
         dates.each do |date|
@@ -35,6 +38,7 @@ class PlacesController < ApplicationController
             # this is the format needed for the date picker March 1, 2020
             disabled_days << date.strftime("%B %d, %Y")  if total >= 20.0
         end
+
             render json: {place: PlaceSerializer.new(place), disabled_days: disabled_days}
     end
 
@@ -52,10 +56,13 @@ class PlacesController < ApplicationController
         price = place.price * duration
         process_fee = price * 0.08
         ####################################################################################################
+
         if  place.check_availability(date,start_time,end_time)
             new_booking = Booking.create({place_id: place_id, user_id: user_id, date: date, start_time: start_time, end_time: end_time, process_fee: process_fee,duration: duration,price: price})
             place.bookings << new_booking if new_booking
             user.bookings << new_booking if new_booking
+            analytics = place.analytics.find_or_create_by({month: (Time.now).month, year: (Time.now).year})
+            analytics.update({people_booked: analytics.people_booked + 1}) if new_booking
             message = new_booking ? ['succes']: new_booking.errors.full_messages
         else
             message = ['The time selected is not available']
@@ -91,6 +98,7 @@ class PlacesController < ApplicationController
 
             place.schedule = Schedule.create!(schedule_params);cancelation_policy =  CancelationPolicy.find_by(genre: policy_params[:genre]); cancelation_policy.places << place;
             place.parking= Parking.create!(parking_params); place.address = Address.create!(address_params); place.rule = Rule.create!(rules_params)
+            place.analytics << Analytic.new({month: (Time.now).month, year: (Time.now).year} )
 
             amenity_params.each do |amenity| 
                 found_amenity =  Amenity.find_or_create_by(title: amenity); 

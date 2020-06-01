@@ -67,7 +67,7 @@ export default class booking_show extends Component {
         if(s_time && e_time){
        
         const id  = this.props.match.params.id
-        fetch(`${API_ROOT}/places/${id}`)
+        fetch(`${API_ROOT}/places/${id}?current_user=${current_user().id}`)
         .then(resp => resp.json())
         .then(json => {
             console.log(json)

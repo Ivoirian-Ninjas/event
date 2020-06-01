@@ -192,7 +192,7 @@ import Footer from '../../components/footer'
         slidesToShow: 1,
         arrows: true,
         slidesToScroll: 1,
-        autoplay: true,
+        autoplay: false,
         className: "ImgSlides"
     }
     render() {

@@ -1,21 +1,24 @@
 class MessagesController < ApplicationController
     def create
-      conversation= message_params[:conversation_id] ? Conversation.find(message_params[:conversation_id]) : nil
+              
+        client = User.find(message_params[:current_user])
+        host = User.find(message_params[:host_id])
+        conversation = Conversation.where("host_id = ? AND client_id = ?",host.id,client.id)
+        
+        if conversation != []
+            convo = conversation.first     
+            message = convo.messages.create!({content: message_params[:message], user_id: client.id})
+        else
+            convo = Conversation.create({host_id: host.id, client_id: client.id})  
+            message = convo.messages.create!({content: message_params[:message], user_id: client.id })
+        end
+
+        render json: {sent: true}
+
+    end
     
-      if !conversation
-         conversation = Conversation.create()
-          user1 = User.find(message_params[:current_user])
-      user2 = User.find(message_params[:host_id])
-      
-        conversation.users << user1    
-         conversation.users << user2
 
-      end
-      message = conversation.messages.create!({content: message_params[:message_content], user_id: message_params[:current_user] })
 
-     binding.pry
-      end
-      
       private
       
       def message_params

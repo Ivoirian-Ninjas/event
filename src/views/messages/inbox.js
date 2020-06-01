@@ -72,7 +72,7 @@ export default class inbox extends Component {
      
   send_message = () => {
    
-    if(this.state.current_message != "" && this.state.activeConversation){
+    if(this.state.current_message !== "" && this.state.activeConversation){
       this.conversationChannel.send({message_content: this.state.current_message,conversation_id: this.state.activeConversation, current_user: current_user().id})
     this.setState({ current_message: '', "is_typing?": false});
     }

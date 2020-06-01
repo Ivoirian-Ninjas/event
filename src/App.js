@@ -29,6 +29,7 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 import "./assets/bootstrap-4.3.1-dist/css/bootstrap.min.css"
 import User_listing from './views/places/listing/user_listing';
+import Analytics from './views/places/analytics/Analytics';
 function App() {
   AOS.init()
   return (
@@ -61,6 +62,9 @@ function App() {
 
               {/*These routes are for messages */}
               <Route path='/inbox/' render={renderProps => <Inbox {...renderProps}/>}  /> 
+
+              <Route path='/analytics' render={renderProps => <Analytics {...renderProps}/> } />
+              
             </React.Fragment>
          
        </Switch>

@@ -12,6 +12,7 @@
     "actioncable": "^5.2.4-2",
     "aos": "^2.3.4",
     "bootstrap": "^4.4.1",
+    "canvasjs": "^1.8.3",
     "creatable": "^3.0.3",
     "framework7": "^5.4.5",
     "google-maps-react": "^2.0.2",
