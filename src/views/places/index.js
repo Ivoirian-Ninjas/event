@@ -76,7 +76,10 @@ import Footer from '../../components/footer'
     }
     display_images = () => {
         console.log(this.state.selectedPlace.images.length)
-        return <Slider  {...this.styleImg}> {this.state.selectedPlace.images.map(e => <img alt=""  key={e.id} src={e.url}  />) } </Slider>
+        return this.state.selectedPlace.images.map(e =>
+                <div className="display_img">
+                    <img alt="" key={e.id} src={e.url} className="img_display" />
+                </div>)  
     } 
     displayMarkers = () => {
         return this.props.places.map(e => {
@@ -184,19 +187,19 @@ import Footer from '../../components/footer'
             }, () => console.log(this.state.pos.lng))
         }
     }
-    styleImg = {
-        dots: true,
-        fade: false,
-        infinite: true,
-        speed: 1,
-        slidesToShow: 1,
-        arrows: true,
-        slidesToScroll: 1,
-        autoplay: false,
-        className: "ImgSlides"
-    }
+
     render() {
-        
+            const styleImgModal = {
+                dots: true,
+                fade: false,
+                infinite: true,
+                speed: 1,
+                slidesToShow: 1,
+                arrows: true,
+                slidesToScroll: 1,
+                autoplay: false,
+                className: "ImgSlides"
+            }
         let Big_div = "DivLeftB"
         if (!this.state.Style) {
             Big_div = "mapHide_contain"
@@ -224,9 +227,11 @@ import Footer from '../../components/footer'
                             <InfoWindow  marker={this.state.activeMarker} visible={this.state.showingInfoWindow}>
                                 
                                 <div>
-                                <h1>{this.state.selectedPlace.name}</h1>
-                                <div style={{height: "60%", width: "100%"}}>
-                                    {this.state.selectedPlace &&   this.display_images()}
+                                <p className="p_head_title">{this.state.selectedPlace.name}</p>
+                                <div className="map_ImgShow">
+                                    <Slider {...styleImgModal}>
+                                        {this.state.selectedPlace &&   this.display_images()}
+                                    </Slider>
                                 </div>
                                 <div className="address"> 
                                 {this.state.selectedPlace && <React.Fragment><p style={{fontWeight: 'bold'}}>{this.state.selectedPlace.name}</p><p>{this.state.selectedPlace.address.city}, {this.state.selectedPlace.address.state} </p></React.Fragment>}
@@ -292,11 +297,13 @@ import Footer from '../../components/footer'
                             <InfoWindow  marker={this.state.activeMarker} visible={this.state.showingInfoWindow}>
                                 
                                 <div>
-                                <h1>{this.state.selectedPlace.name}</h1>
-                                <div style={{height: "60%", width: "100%"}}>
-                                    {this.state.selectedPlace && this.display_images()}
+                                <p className="p_head_title">{this.state.selectedPlace.name}</p>
+                                <div className="map_ImgShow">
+                                    <Slider {...styleImgModal}>
+                                    {this.state.selectedPlace &&  this.display_images()}
+                                    </Slider>
                                 </div>
-                                <div className="address" style={{alignSelf: "center"}}> 
+                                <div className="address"> 
                                 {this.state.selectedPlace && <React.Fragment><p style={{fontWeight: 'bold'}}>{this.state.selectedPlace.name}</p><p>{this.state.selectedPlace.address.city}, {this.state.selectedPlace.address.state} </p></React.Fragment>}
                                 </div>
                                 </div>

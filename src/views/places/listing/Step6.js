@@ -10,11 +10,11 @@ export default class Step6 extends Component {
     render() {
         return (
             <div className="ConteneurStepOne">
-            <div style={{...this.props.setting}}>
-                <div style={{...this.props.parameters, width: "66%", background:"#340047"}}></div>
-            </div>
+                {/*<div style={{...this.props.setting}}>
+                    <div style={{...this.props.parameters, width: "66%", background:"#340047"}}></div>
+        </div>*/}
               <h1 className = "hOneStepOne" >Pricing & Availability</h1>
-              <h2 className = "hTwoStepOne" > Step 6 </h2>
+              {/*<h2 className = "hTwoStepOne" > Step 6 </h2>*/}
                 <div className="ContenuStepOne">
                     <div className="DivStepOne">
                         {/**Based on analitycs and region we should suggest a price for a listing */}

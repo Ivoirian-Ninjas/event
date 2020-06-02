@@ -32,7 +32,7 @@ export default function place(props) {
         dots: true,
         fade: false,
         infinite: true,
-        speed: 1000,
+        speed: 2000,
         slidesToShow: 1,
         arrows: true,
         slidesToScroll: 1,

@@ -27,88 +27,91 @@ export default class Step9 extends Component {
     render() {
         return (
             <div className="ConteneurStepOne">
-                <div style={{...this.props.setting}}>
+                {/*<div style={{...this.props.setting}}>
                     <div style={{...this.props.parameters, width: "100%", background:"#C41FFF"}}></div>
-                </div>
+        </div>*/}
                 <h1 className="hOneStepOne">Review & Agree</h1>
-                <h2 className = "hTwoStepOne" > Step 9 </h2>
-                    <div>
-                        <h3>Step1</h3>
-                        <p>Space Type: { this.props.typeOfSpace}</p>
-                        <p>capacity: {this.props.capacity}</p>
-                        <button onClick={()=>this.props.goToStep(1)}>Edit</button>
-                        
-                    </div>
-                    <div>
-                        <h3>Step2</h3>
-                        <p>Country: {this.props.country}</p>
-                        <p>State: {this.props.state}</p>
-                        <p>City: {this.props.city}</p>
-                        <p>Street: {this.props.street}</p>
-                        <p>Zip Code: {this.props.zipCode}</p>
-                        <button onClick={()=>this.props.goToStep(2)}>Edit</button>
-
-                    </div>
-
-                    <div>
-                        <h3>Step3</h3>
-                        <p>Name: {this.props.name}</p>
-                        <p>Description: {this.props.placeDesc}</p>
-                        <p>Activities{this.props.activities.map(e => <li key={e.value}>{e.value}</li>)}</p>
-                        <p>Parking Info: {this.props.parkDesc}</p>
-                        <button onClick={()=>this.props.goToStep(3)}>Edit</button>
-
-                    </div>
-                    <div>
-                        <h3>Step4</h3>
-                        <ul>
-                           Amenities: 
-                           {this.props.amenities.map(e => <li key={e}>{e}</li>)}
-                        </ul>
-                        <button onClick={()=>this.props.goToStep(4)}>Edit</button>
-
-                    </div> 
-
-                    <div>
-                        <h3>Step5</h3>
-                        <div className="img_review"> </div>
-                            <button onClick={()=>this.props.goToStep(5)}>Edit</button>
-
-                    </div>
-                    <div>
-                        <h3>Step6</h3>
-                        <p>Price: {this.props.price}</p>
-                        <p>Availability: {this.props.s_day} - {this.props.e_day}</p>
-                        <p>Time: {this.props.time[0]} - {this.props.time[1]}</p>
-                        <button onClick={()=>this.props.goToStep(6)}>Edit</button>
-
-                        
-                    </div>
-                    <div>
-                        <h3>Step7</h3>
-                        
-                        <p>Rules: {this.props.rules}</p>
-                        <button onClick={()=>this.props.goToStep(7)}>Edit</button>
-
-                    </div>
-                    <div>
-                        <h3>Step8</h3>
-                        <p>Policy: {this.props.policy}</p>
-                        <button onClick={()=>this.props.goToStep(8)}>Edit</button>
-
-
-                    </div>
-                 
-                    <div className="ContenuStepOne">
-                        <div className="DivStepOne"></div>
-                <p className="ButtonStepOne">
-                    <button onClick={this.props.previousStep} className="PrevOne"> 
-                        <i className="fa fa-angle-left"></i> Back 
-                    </button>
-                    <button onClick={this.props.handleSubmit} className="SaveOne">
-                        Save <i className="fa fa-save"></i>
-                    </button>
-                </p>
+                {/*<h2 className = "hTwoStepOne" > Step 9 </h2>*/}
+                    <div className="ContenuStepTwo">
+                        <div className="DivStepOne">
+                            <h3  className="h3_review">Step1</h3>
+                            <p className="text_review">Space Type: { this.props.typeOfSpace}</p>
+                            <p className="text_review">capacity: {this.props.capacity}</p>
+                            <button onClick={()=>this.props.goToStep(1)} className="edit_review">
+                                Edit <i className="fa fa-edit"></i>
+                            </button>
+                        </div>
+                        <div className="DivStepOne">
+                            <h3 className="h3_review">Step2</h3>
+                            <p className="text_review">Country: {this.props.country}</p>
+                            <p className="text_review">State: {this.props.state}</p>
+                            <p className="text_review">City: {this.props.city}</p>
+                            <p className="text_review">Street: {this.props.street}</p>
+                            <p className="text_review">Zip Code: {this.props.zipCode}</p>
+                            <button onClick={()=>this.props.goToStep(2)} className="edit_review">
+                                Edit <i className="fa fa-edit"></i>
+                            </button>
+                        </div>
+                        <div className="DivStepOne">
+                            <h3 className="h3_review">Step3</h3>
+                            <p className="text_review">Name: {this.props.name}</p>
+                            <p className="text_review">Description: {this.props.placeDesc}</p>
+                            <p className="text_review">
+                                Activities{this.props.activities.map(e => <li key={e.value}>{e.value}</li>)}
+                            </p>
+                            <p className="text_review">Parking Info: {this.props.parkDesc}</p>
+                            <button onClick={()=>this.props.goToStep(3)} className="edit_review">
+                                Edit <i className="fa fa-edit"></i>
+                            </button>
+                        </div>
+                        <div className="DivStepOne">
+                            <h3 className="h3_review">Step4</h3>
+                            <ul className="Helps">
+                            Amenities:
+                            {this.props.amenities.map(e => <li className="liHelps" key={e}>{e}</li>)}
+                            </ul>
+                            <button onClick={()=>this.props.goToStep(4)} className="edit_review">
+                                Edit <i className="fa fa-edit"></i>
+                            </button>
+                        </div> 
+                        <div className="DivStepOne">
+                            <h3 className="h3_review">Step5</h3>
+                            <div className="img_review"> </div>
+                            <button onClick={()=>this.props.goToStep(5)} className="edit_review">
+                                    Edit <i className="fa fa-edit"></i>
+                            </button>
+                        </div>
+                        <div className="DivStepOne">
+                            <h3 className="h3_review">Step6</h3>
+                            <p className="text_review">Price: {this.props.price}</p>
+                            <p className="text_review">Availability: {this.props.s_day} - {this.props.e_day}</p>
+                            <p className="text_review">Time: {this.props.time[0]} - {this.props.time[1]}</p>
+                            <button onClick={()=>this.props.goToStep(6)} className="edit_review">
+                                Edit <i className="fa fa-edit"></i>
+                            </button>
+                        </div>
+                        <div className="DivStepOne">
+                            <h3 className="h3_review">Step7</h3>
+                            <p className="text_review">Rules: {this.props.rules}</p>
+                            <button onClick={()=>this.props.goToStep(7)} className="edit_review">
+                                Edit <i className="fa fa-edit"></i>
+                            </button>
+                        </div>
+                        <div className="DivStepOne">
+                            <h3 className="h3_review">Step8</h3>
+                            <p className="text_review">Policy: {this.props.policy}</p>
+                            <button onClick={()=>this.props.goToStep(8)} className="edit_review">
+                                Edit <i className="fa fa-edit"></i>
+                            </button>
+                        </div>
+                        <p className="ButtonStepOne">
+                            <button onClick={this.props.previousStep} className="PrevOne">
+                                <i className="fa fa-angle-left"></i> Back
+                            </button>
+                            <button onClick={this.props.handleSubmit} className="SaveOne">
+                                Save <i className="fa fa-save"></i>
+                            </button>
+                        </p>
                 </div>
             </div>
         )

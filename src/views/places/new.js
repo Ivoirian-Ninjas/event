@@ -243,6 +243,17 @@ import { isArray } from 'util';
 
             <div className="FirstDiv">
                 <div className="PageConteneur">
+                    <div className="stepShow">
+                        <p className="stepMenu currentActive">Step 1</p>
+                        <p className="stepMenu">Step 2</p>
+                        <p className="stepMenu">Step 3</p>
+                        <p className="stepMenu">Step 4</p>
+                        <p className="stepMenu">Step 5</p>
+                        <p className="stepMenu">Step 6</p>
+                        <p className="stepMenu">Step 7</p>
+                        <p className="stepMenu">Step 8</p>
+                        <p className="stepMenu">Step 9</p>
+                    </div>
                     <StepWizard state={this.state}>
                             <Step1 {...this.state} handleChange={this.handleChange} handleSelect={this.handleSelect} />
                             <Step2 {...this.state}  handleSelect={this.handleSelect}/>
