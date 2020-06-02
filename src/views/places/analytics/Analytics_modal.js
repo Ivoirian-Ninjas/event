@@ -76,6 +76,9 @@ export default function Analytics_modal(props) {
       }]
     return (
         <div style={{...modal_styles}}>
+        <button onClick={props.close_modal} className="close_modal">
+                    <i className="far fa-times-circle"></i> 
+          </button>
             <div>
                 {analytics && analytics.length !== 0 && <h3>{analytics[analytics.length - 1].number_view} views this month</h3> }
                 <Chart data={data('number_view', 'Views', 'rgb(202, 121, 224)')} x_legend={(new Date).getFullYear()} y_legend='Views' />

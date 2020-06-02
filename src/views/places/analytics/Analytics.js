@@ -29,12 +29,14 @@ export default class Analytics extends Component {
                 )
 
     }
+
+    close_modal = () => this.setState({openModal: false})
     
     render() {
         return (
             <div className='PageConteneur'>
                 <h1>Analytics</h1>
-                <div>{this.state.openModal && this.state.selectedPlace && <Analytics_modal place={this.state.selectedPlace}/>}</div>
+                <div>{this.state.openModal && this.state.selectedPlace && <Analytics_modal close_modal={this.close_modal} place={this.state.selectedPlace}/>}</div>
                 {   this.state.places.length != 0?
                     this.display_places() : <div>
                                             <p>You did not list a place yet. <a href='/new_places'>Would you like to start hosting?</a></p>

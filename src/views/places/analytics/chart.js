@@ -1,5 +1,6 @@
 import React from 'react'
 import { ResponsiveLine } from '@nivo/line'
+// documentation for this is https://nivo.rocks/line/
 
 export default function Chart({data, y_legend, x_legend, color}) {
     return (
