@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_20_030612) do
+ActiveRecord::Schema.define(version: 2020_05_27_021022) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -72,6 +72,17 @@ ActiveRecord::Schema.define(version: 2020_04_20_030612) do
     t.integer "place_id"
     t.index ["amenity_id"], name: "index_amenities_places_on_amenity_id"
     t.index ["place_id"], name: "index_amenities_places_on_place_id"
+  end
+
+  create_table "analytics", force: :cascade do |t|
+    t.date "month"
+    t.date "year"
+    t.integer "place_id"
+    t.integer "number_view", default: 0
+    t.integer "people_booked", default: 0
+    t.integer "num_cancelation", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "bookings", force: :cascade do |t|

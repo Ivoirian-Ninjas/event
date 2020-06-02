@@ -20,26 +20,14 @@ let timestyle = {
     outline:"none",
 
 }
-// let show_modal_styles = {
-//   width: "85%",
-//   maxWidth: "100%",
-//   margin: "0 auto",
-//   position: "fixed",
-//   left: "50%",
-//   top: "50%",
-//   transform: "translate(-50%, -50%)",
-//   zIndex: "29999",
-//   backgroundColor: "#fff",
-//   display: "flex",
-//   flexDirection: "column",
-//   boxShadow: "0px 0px 0px 400px rgba(0, 0, 0, 0.70)",
-// }
+
+
 export default class show extends Component {
     componentDidMount(){
         window.addEventListener('scroll', this.handleScroll, true)
         console.log(this.props.match.params.id)
         const place_id = this.props.match.params.id
-        fetch(`${API_ROOT}/places/${place_id}`)
+        fetch(`${API_ROOT}/places/${place_id}?current_user=${current_user().id}`)
         .then(resp => resp.json() )
         .then(json => {
             console.log(json.place.data)
@@ -55,6 +43,20 @@ export default class show extends Component {
 
  
     handleChange = (e) =>  this.setState({current_message: e.target.value})
+
+    contactHost = () => {
+        if(this.state.place.attributes && this.state.current_message !== ""){
+            const options = {
+                headers: HEADERS,
+                method: 'POST',
+                body: JSON.stringify( {message: this.state.current_message } )
+             }
+             fetch(`${API_ROOT}/messages?current_user=${current_user().id}&host_id=${this.state.place.attributes.user.id}`, options)
+             .then(resp => resp.json())
+             .then(json => json.sent && this.setState({current_message: ""}))
+        }
+       
+    }
    
     state = {
         place: {},
@@ -161,7 +163,6 @@ export default class show extends Component {
                     </div>
                 </div>
             </div>
-            //onChange={onChange} onClickItem={onClickItem} onClickThumb={onClickThumb}
         )
         if (!this.state.ShowOpen) {
             show_modal = null;
@@ -358,38 +359,43 @@ export default class show extends Component {
                         </p>
                         <p className="show_book_text"><i className="fa fa-star show_star"></i> 4.93 (330)</p>
                     </div>
-                    <div className="show_book_date">
-                        <label className="show_book_label">Dates</label>
-                        <DatePicker onClick={() => {
-                    
-                                const dates = document.querySelectorAll('button.react-calendar__tile')
-                                dates.forEach(e=>{
-                                    this.state.disabled_days.forEach(disabled_day =>{
-                            
-                                        if(Date.parse(e.querySelector('abbr').getAttribute('aria-label') ) === Date.parse(`${disabled_day}`) ){
-                                            console.log(e)
-                                            e.disabled = true
-                                            e.style.pointerEvents = "none"
-                                        } 
-                                    })     
-                                })
-                         }}
-                            onChange={this.change} value={this.state.date} 
-                            dayClassName={date => date.getTime() === new Date('2/25/2020').getTime() ? 'disabled-date' : undefined}
-                            minDate={new Date() }
-                            style ={timestyle}
-                            className="show_book_date_contain"
+                    { (this.state.place.attributes && current_user().id != this.state.place.attributes.user.id) && 
+                        (<div>
+                                <div className="show_book_date">
+                                    <label className="show_book_label">Dates</label>
+                                    <DatePicker onClick={() => {
+                                
+                                            const dates = document.querySelectorAll('button.react-calendar__tile')
+                                            dates.forEach(e=>{
+                                                this.state.disabled_days.forEach(disabled_day =>{
+                                        
+                                                    if(Date.parse(e.querySelector('abbr').getAttribute('aria-label') ) === Date.parse(`${disabled_day}`) ){
+                                                        console.log(e)
+                                                        e.disabled = true
+                                                        e.style.pointerEvents = "none"
+                                                    } 
+                                                })     
+                                            })
+                                    }}
+                                        onChange={this.change} value={this.state.date} 
+                                        dayClassName={date => date.getTime() === new Date('2/25/2020').getTime() ? 'disabled-date' : undefined}
+                                        minDate={new Date() }
+                                        style ={timestyle}
+                                        className="show_book_date_contain"
 
-                        />
-                </div>
-                <div className="show_book_time">
-                    <label className="show_book_label">Times</label>
-                    <TimePicker className="show_book_time_contain" onChange={this.s_change_time} value={this.state.start_time}/> 
-                    <TimePicker className="show_book_time_contain" onChange={this.e_change_time} value={this.state.end_time}/>
-                </div>
-                <button onClick={this.book} className="show_book_btn">Book this place</button>
-                </div>
+                                    />
+                            </div>
+                                <div className="show_book_time">
+                                    <label className="show_book_label">Times</label>
+                                    <TimePicker className="show_book_time_contain" onChange={this.s_change_time} value={this.state.start_time}/> 
+                                    <TimePicker className="show_book_time_contain" onChange={this.e_change_time} value={this.state.end_time}/>
+                                </div>
+                                <button onClick={this.book} className="show_book_btn">Book this place</button> 
+                        </div>)}
+                </div>              
+
            </div>
+
            <div className="bookMobile">
                 <div className="bookInfoMobile">
                     <p className="book_text_mobile"> 

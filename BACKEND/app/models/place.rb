@@ -13,6 +13,7 @@ class Place < ApplicationRecord
     has_one :parking
     has_one :schedule
     belongs_to :cancelation_policy, optional: true
+    has_many :analytics
     def check_availability(date, start_time, end_time )
         events = self.bookings.select{|event| event.date == Date.parse(date)}
         # binding.pry

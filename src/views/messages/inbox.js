@@ -6,20 +6,22 @@ import MessageContainer from './messageContainer';
 import current_user from '../../helper/current_user';
 import "../../assets/inbox.css"
 export default class inbox extends Component {
-    state = {
+  constructor(){
+    super()
+    this.state = {
        "is_typing?": false,
        conversations: [],
        current_message: "",
        messages: [],
        activeConversation: null,
-       convo: null
-
+       convo: null,
+       display:"block",
     }
+  }
 
-   
-  
 
     componentDidMount = () => {
+      this.setState({display:"block"})
         fetch(`${API_ROOT}/conversations?current_user=${current_user().id}`)
           .then(res => res.json())
           .then(json=> this.setState({conversations: json.conversations }))
@@ -28,7 +30,7 @@ export default class inbox extends Component {
       }
 
       handleClick = id => {
-    
+      this.setState({display:"none"})
       const conversation = this.state.conversations.find(e => e.data.id === id)
       this.setState({activeConversation: id,messages: conversation.data.attributes.messages})  
     this.conversationChannel =  this.cable.subscriptions.create({
@@ -72,7 +74,7 @@ export default class inbox extends Component {
      
   send_message = () => {
    
-    if(this.state.current_message != "" && this.state.activeConversation){
+    if(this.state.current_message !== "" && this.state.activeConversation){
       this.conversationChannel.send({message_content: this.state.current_message,conversation_id: this.state.activeConversation, current_user: current_user().id})
     this.setState({ current_message: '', "is_typing?": false});
     }
@@ -87,7 +89,8 @@ export default class inbox extends Component {
                 {this.cable &&  this.state.conversations ?
                    <Conversation 
                    conversations={this.state.conversations} 
-                   handleClick={this.handleClick} 
+                   handleClick={this.handleClick}
+                   display={this.state.display}
                   /> :
                   <div className="inbox_conversation">
                       <p><i className="fas fa-envelope icon_inbox"></i></p>
@@ -106,7 +109,7 @@ export default class inbox extends Component {
                     send_message ={this.send_message}/> 
                      }
 
-                <div className="unread_inbox">
+                <div className="unread_inbox" style={{display: ""+this.state.display+""}}>
                     <p>Message(unread messages)</p>
                     {this.state["is_typing?"] ? <p>typing...</p>: null}
                 </div>

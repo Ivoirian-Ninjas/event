@@ -3,9 +3,18 @@
     border: 1px inset rgba(170, 2, 100, 0.87);
     width: 80%;
     display: block;
-    margin-top: 10%;
+    margin-top: 5%;
     height: 200px;
     text-align: center;
+}
+.inbox_conversation_message {
+    margin: 0px auto;
+    border: 1px inset rgba(255, 255, 255, 0.041);
+    width: 80%;
+    display: block;
+    margin-top: 5%;
+    text-align: center;
+    cursor: pointer;
 }
 .no_message_text{
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
@@ -39,4 +48,170 @@
 .unread_inbox:hover{
     border-bottom: 2px solid rgb(146, 3, 110);
     color: rgb(43, 43, 43);
+}
+.conversation_start{
+    display: flex;
+    width: 98%;
+    height: 100px;
+    border: 1px solid rgba(244, 217, 255, 0.856);
+    border-radius:5px;
+    margin: 0px auto;
+}
+.div_cover{
+    width: 15%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+}
+.div_picture {
+    width: 10%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin:0 0 0 1%;
+}
+.cover_inbox{
+    width: 100%;
+    height: 100%;
+}
+.picture_inbox {
+    width: 70%;
+    height: 70%;
+    border-radius: 50%;
+}
+.name_inbox{
+    width: 70%;
+    height: 100%;
+    margin-left: 1%;
+    overflow: hidden;
+    display: inline-block;
+    font-family: Mallory,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 18px;
+    line-height: 1.57;
+    font-weight: 500;
+    font-style: normal;
+    color: rgb(36, 36, 36);
+    text-align: left;
+    align-items: center;
+    padding: 1.5% 0%;
+}
+.time_info_inbox{
+    font-family: Mallory,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    line-height: 1.57;
+    font-weight: 500;
+    font-style: normal;
+    color: rgb(99, 99, 99);
+    text-align: left;
+    align-items: center;
+}
+.message_container{
+    width: 50%;
+    border: 1px solid rgba(238, 151, 255, 0.329);
+    margin: 5% 5%;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 0 5px;
+}
+.book_part {
+    width: 30%;
+    border: 1px solid red;
+    margin: 5% 5%;
+    border-radius: 5px;
+    display: inline-block;
+    position: absolute;
+}
+.message_contain{
+    width: 100%;
+    display: flex;
+    border-bottom: 1px solid rgba(187, 121, 218, 0.26);
+    height: 100px;
+    margin: 15px 0px;
+}
+.div_img_sms{
+    width: 10%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin:0 10% 0 1%;
+    
+}
+.image_sms{
+    width: 100%;
+    height: 70%;
+    border-radius: 50%;
+    border: 2px solid rgb(225, 0, 255);
+}
+.message_content{
+    width: 80%;
+    height: 100%;
+    overflow: hidden;
+    display: inline-block;
+    font-family: Mallory,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 18px;
+    line-height: 1.57;
+    font-weight: 500;
+    font-style: normal;
+    color: rgb(36, 36, 36);
+    text-align: left;
+    align-items: center;
+    /* border: 2px solid rgb(225, 0, 255); */
+    padding: 2% 0px;
+
+}
+.div_input_send {
+    width: 80%;
+    height: 100%;
+    border-radius: 5px;
+}
+.input_message{
+    width: 100%;
+    height: 100%;
+    font-family: Mallory,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 20px;
+    font-size: 1.6rem;
+    font-weight:400;
+    border: 1px solid rgb(247, 164, 255);
+    transition: 0.3s;
+    outline: none;
+    color: #464646;
+    border-radius: 3px;
+}
+.input_message:hover, .input_message:focus{
+    border: 1px solid rgb(225, 0, 255);
+    box-shadow: 0px 0px 3px 0px rgba(226, 30, 226, 0.75);
+    transition: 0.3s;
+}
+.send_part {
+    width: 100%;
+    display: flex;
+    height: 100px;
+    margin: 15px 0px;
+}
+.btn_send_message{
+    padding: 9px 60px;
+    font-family: Mallory,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 15px;
+    line-height: 1.57;
+    font-weight: 600;
+    background: rgb(107, 1, 134);
+    border: 1px solid rgb(107, 1, 134);
+    color: #fff;
+    outline-width: 10px;
+    outline-color: rgb(0, 14, 20);
+    transition: ease 0.3s;
+    cursor: pointer;
+    border-radius: 3px;
+    margin: 0% 0% 2% 0%;
+    float: right;
+}
+.btn_send_message:hover, .btn_send_message:focus, .btn_send_message:active{
+    outline: none;
+    background: #fff;
+    color: rgb(107, 1, 134);
+    transition: ease 0.3s;
 }
