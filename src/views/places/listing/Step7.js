@@ -4,11 +4,11 @@ export default class Step7 extends Component {
     render() {
         return (
             <div className="ConteneurStepOne">
-                <div style={{...this.props.setting}}>
+                {/*<div style={{...this.props.setting}}>
                     <div style={{...this.props.parameters, width: "77%", background:"#260432"}}></div>
-                </div>
+        </div>*/}
                 <h1 className = "hOneStepOne">Rules of the house</h1>
-                <h2 className = "hTwoStepOne" > Step 7 </h2>
+                {/*<h2 className = "hTwoStepOne" > Step 7 </h2>*/}
                 <div className = "ContenuStepOne" >
                     <div className="DivStepOne">
                         

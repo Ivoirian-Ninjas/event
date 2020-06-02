@@ -25,11 +25,11 @@ class Step1 extends Component {
     render() {
         return (
             <div className="ConteneurStepOne">
-                <div style={{...this.props.setting}}>
+                {/*<div style={{...this.props.setting}}>
                     <div style={{...this.props.parameters, width: "11%", background:"#BF54E6"}}></div>
-                </div>
+                </div>*/}
                 <h1 className="hOneStepOne">Let's get you started.</h1>
-                <h2 className = "hTwoStepOne" > Step 1 </h2> 
+                {/*<h2 className = "hTwoStepOne" > Step 1 </h2> */}
                 <div className="ContenuStepOne">                
                 
                     <div className="DivStepOne">

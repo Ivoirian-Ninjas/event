@@ -150,11 +150,11 @@ export default class Step2 extends Component {
         }
         return (
             <div className="ConteneurStepOne">
-            <div style={{...this.props.setting}}>
+            {/*<div style={{...this.props.setting}}>
                 <div style={{...this.props.parameters, width: "22%", background:"#A007D8"}}></div>
-            </div>
+        </div>*/}
             <h1 className = "hOneStepOne"> Where are you located ? </h1>
-            <h2 className = "hTwoStepOne" > Step 2 </h2> 
+           {/*<h2 className = "hTwoStepOne" > Step 2 </h2> */}
             <div className="ContenuStepTwo">
                 <div className="DivStepOne">
                     <p className="TextStepOne">
