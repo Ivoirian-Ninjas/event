@@ -114,45 +114,45 @@ export default class index extends Component {
         let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour12: false, timeZone: 'UTC'  };
 console.log(this.state.event)
                 let modal= null
-        if(this.state.openModal  ){
+        if(this.state.openModal){
             const s_date =this.state.event.schedule.start._date
             const s_time= `${s_date.getHours()}: ${s_date.getMinutes()}`
             const e_date=this.state.event.schedule.end._date
             const e_time = `${e_date.getHours()}: ${e_date.getMinutes()}`
              modal = (
-            <div className="div_modal">
-                <button onClick={this.close_modal} className="close_modal">
-                    <i className="far fa-times-circle"></i> 
+            <div className="div_modal_booking">
+                <button onClick={this.close_modal} className="close_modal_booking">
+                    X
                 </button>
-                <div openModal={this.state.openModal} className="modal_container">
-                    <h1>Type: Coming Event</h1>
-                    <h1>{this.state.event.schedule.title}</h1>
-                    <p>
-                        start: { this.state.event.schedule && 
+                <div openModal={this.state.openModal} className="modal_container_booking">
+                    <p className="book_modal_title">Book' information</p>
+                    {/*<h1>Type: Coming Event</h1>*/}
+                    <h1 className="book_modal_type">Type of event : {this.state.event.schedule.title}</h1>
+                    <p className="book_modal_time">
+                        <i className="far fa-clock clock_start"></i> Start: { this.state.event.schedule && 
                         this.state.event.schedule.end._date.toLocaleDateString(undefined, options) } 
                         <span>{this.state.event.schedule && s_time}</span>
                     </p>
-                    <p>
-                        end: {this.state.event.schedule && 
+                    <p className="book_modal_time">
+                        <i className="far fa-clock clock_end"></i> End: {this.state.event.schedule && 
                         this.state.event.schedule.start._date.toLocaleDateString(undefined, options)} 
                         <span>{this.state.event.schedule && e_time}</span>
                     </p>
-                    <p>Duration: {this.state.event.schedule && this.state.event.schedule.goingDuration} hours</p>
-                    <div>
-                        <h3>Attendees</h3>
+                    <p className="book_modal_time">Duration: {this.state.event.schedule && this.state.event.schedule.goingDuration} hours</p>
+                    <div className="book_modal_attendee">
+                        <h3 className="book_modal_step">Attendees</h3>
                         {this.state.event.schedule && this.state.event.schedule.attendees.map(e =>(
-                            <div>
-                                <p>{e.name} </p>
-                                {/* <div style={{width: "1 px",height: "1 px"}}>                    
-                                    <img src={e.profile_pic} className="profile_file" />
-
-                                </div> */}
+                            <div className="book_modal_userInfo">
+                                <div className="modal_userPicture">                    
+                                    <img src={e.profile_pic} className="userPicture" alt="UserPicture" />
+                                </div>
+                                <p className="userName">{e.name} </p>
                             </div>
                         ))}
-                        <h3>Details</h3>
-                        {this.state.event.schedule && <p>{this.state.event.schedule.body}</p>}
+                        <h3 className="book_modal_step">Details</h3>
+                        {this.state.event.schedule && <p className="book_modal_time">{this.state.event.schedule.body}</p>}
                     </div>
-                   
+                   <button className="cancel_booking">Cancel booking</button>
                 </div>
             </div>
         )

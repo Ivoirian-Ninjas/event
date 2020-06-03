@@ -1,12 +1,13 @@
 import React from 'react'
 import { ResponsiveLine } from '@nivo/line'
+// documentation for this is https://nivo.rocks/line/
 
 export default function Chart({data, y_legend, x_legend, color}) {
     return (
         <div style={{height: 500}}>
         <ResponsiveLine
         data={data}
-        margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+        margin={{ top: 30, right: 110, bottom: 30, left: 60 }}
         xScale={{ type: 'point' }}
         yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
         axisTop={null}
@@ -29,9 +30,12 @@ export default function Chart({data, y_legend, x_legend, color}) {
             legendOffset: -40,
             legendPosition: 'middle'
         }}
-        colors={{ scheme: 'nivo' }}
+        colors={{ scheme: 'pink_yellowGreen' }}
+        curve="natural"
+        enableArea={false}
+        enablePoints={true}
         lineWidth={3}
-        pointSize={10}
+        pointSize={4}
         pointColor={{ theme: 'background' }}
         pointBorderWidth={2}
         pointBorderColor={{ from: 'serieColor' }}
@@ -44,7 +48,7 @@ export default function Chart({data, y_legend, x_legend, color}) {
                 direction: 'column',
                 justify: false,
                 translateX: 100,
-                translateY: 0,
+                translateY: -20,
                 itemsSpacing: 0,
                 itemDirection: 'left-to-right',
                 itemWidth: 80,

@@ -16,6 +16,7 @@ export default class inbox extends Component {
        activeConversation: null,
        convo: null,
        display:"block",
+       show_conversation:"block"
     }
   }
 
@@ -30,7 +31,7 @@ export default class inbox extends Component {
       }
 
       handleClick = id => {
-      this.setState({display:"none"})
+      this.setState({display:"none",show_conversation:"block"})
       const conversation = this.state.conversations.find(e => e.data.id === id)
       this.setState({activeConversation: id,messages: conversation.data.attributes.messages})  
     this.conversationChannel =  this.cable.subscriptions.create({
@@ -65,13 +66,11 @@ export default class inbox extends Component {
         const conversation = conversations.find( conversation => conversation.data.id === message.conversation_id )
         if( !conversation.data.attributes.messages.includes(message)){
             conversation.data.attributes.messages = [...conversation.data.attributes.messages, message]
-
         }
         console.log(conversation.data.attributes.messages)
           this.setState({messages: conversation.data.attributes.messages, conversations: conversations})
       }
 
-     
   send_message = () => {
    
     if(this.state.current_message !== "" && this.state.activeConversation){
@@ -82,6 +81,12 @@ export default class inbox extends Component {
   };
 
     handleChange = (event) => this.setState({current_message: event.target.value, "is_typing?": true})
+    goBack = () =>{
+      this.setState({
+        display:"block",
+        show_conversation:"none"
+      })
+    }
     render() {
         return (
             <div className="PageConteneur">
@@ -106,7 +111,9 @@ export default class inbox extends Component {
                     handleChange={this.handleChange} 
                     activeConversation={this.state.activeConversation} 
                     current_message={this.state.current_message} 
-                    send_message ={this.send_message}/> 
+                    send_message ={this.send_message}
+                    goBack = {this.goBack}
+                    show_conversation={this.state.show_conversation}/> 
                      }
 
                 <div className="unread_inbox" style={{display: ""+this.state.display+""}}>

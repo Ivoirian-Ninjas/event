@@ -2,27 +2,10 @@ import React from 'react'
 import Chart from './chart'
 
 export default function Analytics_modal(props) {
-
-   const  modal_styles = {
-       height: '90%',
-    'overflow-y': 'auto',
-        width: "70%",
-        maxWidth: "100%",
-        margin: "0 auto",
-        position: "fixed",
-        left: "50%",
-        top: "50%",
-        transform: "translate(-50%, -50%)",
-        zIndex: "29999",
-        backgroundColor: "#fff",
-        display: "flex",
-        flexDirection: "column",
-        boxShadow: "0px 0px 0px 400px rgba(0, 0, 0, 0.40)",
-    }
     const analytics = props.place.analytics.filter(e => e.year == (new Date).getFullYear() )
     let data  = (attr, type, color) => [ {
         "id": type,
-        "color": "hsl(187, 70%, 50%)",
+        "color": "rgb(204, 0, 255)",
         "data": [
           {
             "x": "January",
@@ -75,20 +58,24 @@ export default function Analytics_modal(props) {
         ]
       }]
     return (
-        <div style={{...modal_styles}}>
+        <div className="div_modal_analytics">
+          <button onClick={props.close_modal} className="close_modal_analytics">
+             X
+          </button>
+            <p className="title_modal_analytics">Your statistics</p>
             <div>
-                {analytics && analytics.length !== 0 && <h3>{analytics[analytics.length - 1].number_view} views this month</h3> }
-                <Chart data={data('number_view', 'Views', 'rgb(202, 121, 224)')} x_legend={(new Date).getFullYear()} y_legend='Views' />
+                {analytics && analytics.length !== 0 && <h3 className="step_modal_chart">{analytics[analytics.length - 1].number_view} views this month</h3> }
+                <Chart data={data('number_view', 'Views', 'rgb(204, 0, 255)')} x_legend={(new Date).getFullYear()} y_legend='Views' />
             </div>
 
             <div>
-                 {analytics && analytics.length !== 0 && <h3>{analytics[analytics.length - 1].people_booked} people booked {props.place.name} this month</h3> }
-                 <Chart data={data('people_booked', 'Appointments','rgb(176, 252, 131)')} x_legend={(new Date).getFullYear()} y_legend='Number of Booking' />
+                 {analytics && analytics.length !== 0 && <h3 className="step_modal_chart">{analytics[analytics.length - 1].people_booked} people booked {props.place.name} this month</h3> }
+                 <Chart data={data('people_booked', 'Appointments','rgb(204, 0, 255)')} x_legend={(new Date).getFullYear()} y_legend='Number of booking' />
             </div>
 
             <div>
-                {analytics && analytics.length !== 0 && <h3>{analytics[analytics.length - 1].people_booked} people booked {props.place.name} this month</h3> }
-                <Chart data={data('num_cancelation', 'Cancelations','rgb(255, 65, 13)')} x_legend={(new Date).getFullYear()} y_legend='Number of Cancelation' />
+                {analytics && analytics.length !== 0 && <h3 className="step_modal_chart">{analytics[analytics.length - 1].people_booked} people booked {props.place.name} this month</h3> }
+                <Chart data={data('num_cancelation', 'Cancellations','rgb(204, 0, 255)')} x_legend={(new Date).getFullYear()} y_legend='Number of cancellation' />
             </div>
 
         </div>

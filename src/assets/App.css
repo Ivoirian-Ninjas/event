@@ -52,7 +52,12 @@
     font-weight: normal;
     font-style: normal;
 }
-
+@font-face {
+    font-family: 'Swift Neue';
+    src: url('./fonts/Swift Neue LT W01/Swift Neue LT W01.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
 .EnTetes {
     width: 100%;
     background: rgb(255, 255, 255);
@@ -105,7 +110,7 @@
     line-height: 40px;
     width: 130px;
     display: none;
-    z-index:5;
+    z-index:10;
     background: #fff;
 }
 

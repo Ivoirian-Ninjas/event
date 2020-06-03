@@ -107,21 +107,49 @@
     text-align: left;
     align-items: center;
 }
+.back_btn{
+    width: 100%;
+    display: inline-block;
+    border: 1px solid rgba(191, 109, 207, 0);
+    margin: 2% 0% 0% 0%;
+    padding: 0% 5%;
+
+}
+.btn_back{
+    padding: 9px 20px;
+    font-family: Mallory,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 15px;
+    line-height: 1.57;
+    font-weight: 600;
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(255, 255, 255);
+    color: rgb(183, 68, 212);
+    transition: ease 0.3s;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.btn_back:hover, .btn_back:focus, .btn_back:active{
+    outline: none;
+    transition: ease 0.3s;
+    color: rgb(101, 4, 126);
+}
 .message_container{
     width: 50%;
-    border: 1px solid rgba(238, 151, 255, 0.329);
-    margin: 5% 5%;
+    border: 1px solid rgba(238, 151, 255, 0);
+    margin: 1% 5%;
     border-radius: 5px;
     display: inline-block;
     padding: 0 5px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.24);
 }
 .book_part {
     width: 30%;
-    border: 1px solid red;
-    margin: 5% 5%;
+    border: 1px solid rgba(188, 6, 212, 0);
+    margin: 1% 5%;
     border-radius: 5px;
     display: inline-block;
     position: absolute;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.24);
 }
 .message_contain{
     width: 100%;
@@ -214,4 +242,34 @@
     background: #fff;
     color: rgb(107, 1, 134);
     transition: ease 0.3s;
+}
+.date_book_message{
+    width: 100%;
+    height: 40px;
+    font-family: Mallory,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 20px;
+    font-size: 1.6rem;
+    font-weight:400;
+    border: 1px solid rgb(184, 184, 184);
+    transition: 0.3s;
+    outline: none;
+    color: #464646;
+}
+.date_book_message:hover {
+    border: 1px solid rgb(170, 50, 172);
+    transition: 0.3s;
+    outline: none;
+}
+.time_book_message{
+    width: 48%;
+    height: 40px;
+    font-family: Mallory,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 20px;
+    font-size: 1.6rem;
+    font-weight:400;
+    border: 1px solid rgb(184, 184, 184);
+    transition: 0.3s;
+    outline: none;
+    color: #464646;
+    margin: 0 1% 0 1%;
 }

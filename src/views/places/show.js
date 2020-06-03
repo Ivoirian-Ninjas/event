@@ -18,7 +18,6 @@ let timestyle = {
     height:"42px",
     border:"1px solid gray",
     outline:"none",
-
 }
 
 

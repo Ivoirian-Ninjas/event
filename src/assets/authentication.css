@@ -110,8 +110,10 @@ body{
     border-radius: 3rem;
     outline: none;
 }
-.ChampsGroup button:focus, .ChampsGroup button:hover{
+.ChampsGroup button:focus, .ChampsGroup button:hover,.ChampsGroup button:active{
     background: linear-gradient(to left, #ee82ee, #9400d3);
+    outline: none;
+    border: none;
 }
 .ChampsGroup input[type="checkbox"]{
     position: relative;
