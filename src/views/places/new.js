@@ -14,6 +14,7 @@ import Step9 from './listing/Step9'
 import "../../assets/newplace.css"
 import { isArray } from 'util';
 import ProgressBar from './listing/ProgressBar';
+import { enumBooleanBody } from '@babel/types';
 
  class New extends Component {
     constructor(){
@@ -101,11 +102,28 @@ import ProgressBar from './listing/ProgressBar';
     }
 
     handleFileChange = event => {
-        event.persist()   
+        event.dispatchConfig && event.persist()   
+        const parent = event.target.parentNode
+        
         if (event.target.files[0]) {
-            this.setState(state => ({images: [...state.images,event.target.files[0]]}) , () => console.log(this.state.images))
-            // this function will display all the images selected
-            this.preview_image(event.target.files[0],event.target.parentNode)
+         const file = event.target.files[0]
+         if( parent.querySelector('img') ){
+            //this code replaces the file in the state.images
+             const img_to_replace = parent.querySelector('img')
+             const index = this.state.images.findIndex(e => e.name === img_to_replace.name)
+             const copy = [...this.state.images]
+             copy.splice(index,1)
+          this.setState({images: [...copy, file]}, () =>   parent.querySelector('img').parentNode.remove() )
+
+          
+         }else{
+            this.setState( ({images: [...this.state.images,file]}) )
+
+         }           
+          // this function will display all the images selected
+
+         this.preview_image(event.target.files[0],event.target.parentNode)
+
         } 
     }
        
@@ -120,12 +138,6 @@ import ProgressBar from './listing/ProgressBar';
       }
 
     preview_image = (file,parent) =>{
-       if( parent.querySelector("img") ){
-           const img_to_replace = parent.querySelector('img')
-           //the next line will remove the existant image from the state.images
-           this.setState({images: [...this.state.images.filter(e => e.name !== img_to_replace.name),file ]} )
-           parent.querySelector("img").parentNode.remove()
-       }
        
         const img = document.createElement('img')
         img.classList.add("previewImg")
@@ -159,7 +171,6 @@ import ProgressBar from './listing/ProgressBar';
             this.setState( state => state.images = [...state.images].filter(e => e !== file) , () => console.log(this.state.images))
             const inputs = document.querySelectorAll(`input[type="file"]`)
            inputs.forEach(e => {
-                console.log(e.value)
                 if ( e.value.includes(file.name) ){
                     console.log(e)
                     e.value = ""
@@ -218,10 +229,9 @@ import ProgressBar from './listing/ProgressBar';
         input.style.height = "0px" 
         input.style.width = "0px"        
         input.accept = "image/x-png,image/gif,image/jpeg"
+
         input.addEventListener ('change',event =>{
-            console.log(event.target.files[0])
-                this.setState(state => ({images: [...state.images,event.target.files[0]]}) )
-                this.preview_image(event.target.files[0],event.target.parentNode)
+            this.handleFileChange(event)
 
         })
 
