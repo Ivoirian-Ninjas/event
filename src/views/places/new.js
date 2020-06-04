@@ -13,6 +13,7 @@ import Step8 from './listing/Step8'
 import Step9 from './listing/Step9'
 import "../../assets/newplace.css"
 import { isArray } from 'util';
+import ProgressBar from './listing/ProgressBar';
 
  class New extends Component {
     constructor(){
@@ -92,9 +93,9 @@ import { isArray } from 'util';
        this.setState({ [event.target.name]: event.target.value }) 
 
        if(this.state.parking_available === "yes"){
-           document.querySelector("div#parking").style.display= "block"
+        document.querySelector("div#parking") && ( document.querySelector("div#parking").style.display= "block")
         }else{
-            document.querySelector("div#parking").style.display= "none"
+            document.querySelector("div#parking") &&   (document.querySelector("div#parking").style.display= "none")
 
         }
     }
@@ -111,7 +112,7 @@ import { isArray } from 'util';
       handleActivities =(newValue, actionMeta) => {
           if( actionMeta.action !== 'remove-value' ){
               console.log(newValue)
-                this.setState(state => ({activities: [...this.state.activities,...newValue]}) )
+               newValue && this.setState(state => ({activities: [...state.activities,...newValue]}) )
           }else{
               
               this.setState(state => ({activities: [...state.activities].filter(e => e !== actionMeta.removedValue)}) )
@@ -120,10 +121,15 @@ import { isArray } from 'util';
 
     preview_image = (file,parent) =>{
        if( parent.querySelector("img") ){
+           const img_to_replace = parent.querySelector('img')
+           //the next line will remove the existant image from the state.images
+           this.setState({images: [...this.state.images.filter(e => e.name !== img_to_replace.name),file ]} )
            parent.querySelector("img").parentNode.remove()
        }
+       
         const img = document.createElement('img')
         img.classList.add("previewImg")
+        img.name=file.name
         const  reader = new FileReader();
         const divImage = document.createElement("div")
         divImage.classList.add("newImage")
@@ -243,18 +249,8 @@ import { isArray } from 'util';
 
             <div className="FirstDiv">
                 <div className="PageConteneur">
-                    <div className="stepShow">
-                        <p className="stepMenu currentActive">Step 1</p>
-                        <p className="stepMenu">Step 2</p>
-                        <p className="stepMenu">Step 3</p>
-                        <p className="stepMenu">Step 4</p>
-                        <p className="stepMenu">Step 5</p>
-                        <p className="stepMenu">Step 6</p>
-                        <p className="stepMenu">Step 7</p>
-                        <p className="stepMenu">Step 8</p>
-                        <p className="stepMenu">Step 9</p>
-                    </div>
-                    <StepWizard state={this.state}>
+                
+                    <StepWizard nav={<ProgressBar {...this.state} />} state={this.state}>
                             <Step1 {...this.state} handleChange={this.handleChange} handleSelect={this.handleSelect} />
                             <Step2 {...this.state}  handleSelect={this.handleSelect}/>
                             <Step3 {...this.state}  handleChange={this.handleChange} handleActivities={this.handleActivities}/>  

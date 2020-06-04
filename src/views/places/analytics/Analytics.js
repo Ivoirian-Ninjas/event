@@ -41,7 +41,7 @@ export default class Analytics extends Component {
         return (
             <div className='PageConteneur'>
                 <h1 className="analytics_title">ANALYTICS</h1>
-                <div>{this.state.openModal && this.state.selectedPlace && <Analytics_modal close_modal={this.close_modal} place={this.state.selectedPlace}/>}</div>
+                <div>{(this.state.openModal && this.state.selectedPlace) && <Analytics_modal close_modal={this.close_modal} place={this.state.selectedPlace}/>}</div>
                 {   this.state.places.length != 0?
                    <div className="analytics_contain"> {this.display_places()} </div> : 
                     <div className="no_analytics">

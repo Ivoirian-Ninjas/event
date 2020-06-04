@@ -80,7 +80,7 @@ export default class Step8 extends Component {
                     <button onClick={this.props.previousStep} className="PrevOne"> 
                         <i className="fa fa-angle-left"></i> Back 
                     </button>
-                    <button onClick={this.props.nextStep} className="NextOne">
+                    <button onClick={() =>  (this.props.policy != '') && this.props.nextStep()} className="NextOne">
                         Next <i className="fa fa-angle-right"></i> 
                     </button>
                 </p>

@@ -62,7 +62,7 @@ class Step1 extends Component {
                             />
                     </div> 
                     {/**Later on let's add info based on the region that the user entered, e.g: how many customer a day a user can get. */}
-                    <p className="ButtonStepOne"><button onClick={this.props.nextStep} className="NextOne">Next <i className="fa fa-angle-right"></i> </button></p>
+                    <p className="ButtonStepOne"><button onClick={() => (this.props.typeOfSpace != '' && this.props.capacity != '' && this.props.region != '') && this.props.nextStep()} className="NextOne">Next <i className="fa fa-angle-right"></i> </button></p>
                    
                 </div>
                 

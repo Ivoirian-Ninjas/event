@@ -126,7 +126,7 @@ import Footer from '../../components/footer'
                 handleScroll = () => {
                     var pageHeight = this.refs.myContainer
                     var scrollHeight = window.scrollY
-                    console.log(scrollHeight, pageHeight.clientHeight)
+                    // console.log(scrollHeight, pageHeight.clientHeight)
                     if (scrollHeight > (pageHeight.clientHeight-440)) {
                         console.log(scrollHeight, pageHeight.clientHeight)
                         this.setState({

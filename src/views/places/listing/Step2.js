@@ -255,7 +255,7 @@ export default class Step2 extends Component {
                 </div>
                 <p className="ButtonStepOne">
                 <button onClick={this.props.previousStep} className="PrevOne"> <i className="fa fa-angle-left"></i> Back </button>
-                <button onClick={this.props.nextStep} className="NextOne">Next <i className="fa fa-angle-right"></i> </button>
+                <button onClick={() => (this.props.country != '' && this.props.city != '' && this.props.street != '') && this.props.nextStep()} className="NextOne">Next <i className="fa fa-angle-right"></i> </button>
                 </p>  
                 <div>{register_step_two}</div>
             </div>

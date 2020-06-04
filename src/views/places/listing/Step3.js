@@ -94,7 +94,7 @@ export default class Step3 extends Component {
 
                 {/**Use js for that */}
                 <div className="DivStepOne">
-                    <label className = "LabelStepOne">Does you place have a parking option ? </label> <br/>
+                    <label className = "LabelStepOne">Does your place have a parking option ? </label> <br/>
                     <button className="YesStepThree" name="parking_available" value="yes" onClick={this.props.handleChange}>Yes</button> 
                     <button className="NoStepThree"  name="parking_available" value="no" onClick={this.props.handleChange}>No</button>
                 </div>
@@ -117,7 +117,7 @@ export default class Step3 extends Component {
 
                 <p className="ButtonStepOne">
                 <button onClick={this.props.previousStep} className="PrevOne"> <i className="fa fa-angle-left"></i> Back </button>
-                <button onClick={this.props.nextStep} className="NextOne">Next <i className="fa fa-angle-right"></i> </button>
+                <button onClick={() => (this.props.name != '' && this.props.placeDesc != '' && this.props.activities.length != 0) && this.props.nextStep()} className="NextOne">Next <i className="fa fa-angle-right"></i> </button>
                 </p>
                 </div>
                 

@@ -3,30 +3,43 @@ import React, { Component } from 'react'
 export default class Step9 extends Component {
     handleChange = (event) => { this.setState({ [event.target.name]: event.target.value })  }
     image_reader = (file) => {
-        const img = document.createElement('img')
-        img.classList.add("previewImg")
-        const divImage = document.createElement("div")
-        divImage.classList.add("newImage")
-        
+        console.log(file)
+        const image = document.createElement('img')
+        image.classList.add("previewImg")
+
         const  reader = new FileReader()
         reader.readAsDataURL(file);
         reader.addEventListener("load", function() {
-            img.src = reader.result;
-            img.height = 200
-            img.width = 200
+            image.src = reader.result;
+            image.height = 200
+            image.width = 200
             
           }, false);
-          divImage.appendChild(img)
           const div_review = document.querySelector('div.img_review')
-          div_review.appendChild(divImage)
+
+          div_review.appendChild(image)
          
     }
-    componentDidMount(){
-        this.props.images.map(e => this.image_reader(e) )
+    state={
+        images: []
     }
+
     render() {
         return (
             <div className="ConteneurStepOne">
+            {console.log(this.props.isActive)}
+            { this.props.isActive && ( () => {
+                const div = document.querySelector('div.img_review')
+                if(div){
+                    console.log(div)
+                    console.log(this.props.images)    
+                    div.innerHTML = ''
+                    this.props.images.map(e => this.image_reader(e))
+                
+                }
+                 
+                 } )() }
+
                 {/*<div style={{...this.props.setting}}>
                     <div style={{...this.props.parameters, width: "100%", background:"#C41FFF"}}></div>
         </div>*/}

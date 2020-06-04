@@ -41,7 +41,7 @@ export default class Step6 extends Component {
                         <button onClick={this.props.previousStep} className="PrevOne"> 
                             <i className="fa fa-angle-left"></i> Back 
                         </button>
-                        <button onClick={this.props.nextStep} className="NextOne">
+                        <button onClick={() =>  (this.props.price !='' && this.props.s_day != '' && this.props.e_day != '' && this.props.time.length != 0) && this.props.nextStep()} className="NextOne">
                             Next <i className="fa fa-angle-right"></i> 
                         </button>
                     </p>  
