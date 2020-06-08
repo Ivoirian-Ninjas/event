@@ -3,6 +3,7 @@ import image from '../../assets/img/Better/shardayyy-photography-fJzmPe-a0eU-uns
 import 'react-day-picker/lib/style.css'
 import DatePicker from 'react-date-picker'
 import TimePicker from 'react-time-picker'
+import current_user from '../../helper/current_user';
 
 let timeStyle = {
     width: "100%",
@@ -12,18 +13,41 @@ let timeStyle = {
 }
 
 export default function MessageContainer(props) {
-    console.log(props)
-    const display_messages = () => props.messages.map(e => 
-        <div key={e.id} className="message_contain">
+    const display_messages = () => props.messages.map(e => {
+        console.log(props)
+        const user = props.users.find(user => user.id === `${e.user_id}`)
+        const options = {year: 'numeric', month: 'long', day: 'numeric', hour12: false, timeZone: 'UTC'  };
+        const normalizedDate =  new Date( Date.parse(e.created_at) )
+        const date =normalizedDate.toLocaleDateString(undefined, options) 
+        const time = `${normalizedDate.getHours()} : ${normalizedDate.getMinutes()} `
+
+       return (<div key={e.id} className="message_contain">
+            {user.id === `${current_user().id}` ? 
+            <React.Fragment>
             <div className='div_img_sms'>
-                <img src={image} className="image_sms" alt="img" />
+                <img src={user.profile_pic} className="image_sms" alt="img" />
             </div>
             <p className="message_content">
                 <p>{e.content}</p>
-                <p className="time_info_inbox">Tues, May 8, 2020 9:21 AM</p>
+                <p className="time_info_inbox">By {user.name} On {date} At {time}</p>
             </p>
-        </div>
-        )
+            </React.Fragment>
+            :
+            <React.Fragment>
+            <p className="message_content">
+                <p>{e.content}</p>
+                <p className="time_info_inbox">By {user.name} On {date} At {time}</p>
+            </p>
+            <div className='div_img_sms'>
+                <img src={user.profile_pic} className="image_sms" alt="img" />
+            </div>
+            </React.Fragment>
+            
+            }
+         
+          
+        </div>)
+    })
     return (
         <div className='message_part' style={{display: ""+props.show_conversation+""}}>
             <div className="back_btn">
@@ -33,7 +57,7 @@ export default function MessageContainer(props) {
                 {display_messages()}
                 <div className="send_part">
                     <div className='div_img_sms'>
-                        <img src={image} className="image_sms" alt="img" />
+                        <img src={current_user().profile_pic} className="image_sms" alt="img" />
                     </div>
                     <div className="div_input_send">
                         <input  value={props.current_message} name="current_message" onChange={props.handleChange}

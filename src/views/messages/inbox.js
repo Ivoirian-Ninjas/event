@@ -13,6 +13,7 @@ export default class inbox extends Component {
        conversations: [],
        current_message: "",
        messages: [],
+       users: [],
        activeConversation: null,
        convo: null,
        display:"block",
@@ -25,7 +26,7 @@ export default class inbox extends Component {
       this.setState({display:"block"})
         fetch(`${API_ROOT}/conversations?current_user=${current_user().id}`)
           .then(res => res.json())
-          .then(json=> this.setState({conversations: json.conversations }))
+          .then(json=> this.setState({conversations: json.conversations }, () => console.log(this.state.conversations)))
           this.cable = actioncable.createConsumer(API_WS_ROOT)
 
       }
@@ -33,7 +34,8 @@ export default class inbox extends Component {
       handleClick = id => {
       this.setState({display:"none",show_conversation:"block"})
       const conversation = this.state.conversations.find(e => e.data.id === id)
-      this.setState({activeConversation: id,messages: conversation.data.attributes.messages})  
+      const users = conversation.included.map(e=> ({name: e.attributes.name, profile_pic: e.attributes.profile_pic, id: e.id}) )
+      this.setState({activeConversation: id,messages: conversation.data.attributes.messages, users: users})  
     this.conversationChannel =  this.cable.subscriptions.create({
         channel: `ConversationsChannel`, 
         id: id
@@ -43,13 +45,7 @@ export default class inbox extends Component {
         },
         disconnected: () => {},
         received: data => {
-          console.log("=============================")
-          console.log(data)
-          console.log("=============================")
-
-
           this.handleReceivedMessage(data)
-
         }
     })
     console.log(this.conversationChannel)
@@ -59,8 +55,7 @@ export default class inbox extends Component {
   
 
       handleReceivedMessage = response => {
-          console.log("this is the response")
-          console.log(response)
+
           const message =response.data.attributes
         const conversations = [...this.state.conversations];
         const conversation = conversations.find( conversation => conversation.data.id === message.conversation_id )
@@ -107,6 +102,7 @@ export default class inbox extends Component {
                 
               {this.state.activeConversation &&
                   <MessageContainer 
+                    users = {this.state.users}
                     messages={this.state.messages} 
                     handleChange={this.handleChange} 
                     activeConversation={this.state.activeConversation} 

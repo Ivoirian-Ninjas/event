@@ -69,7 +69,7 @@ export default function Analytics_modal(props) {
             </div>
 
             <div>
-                 {analytics && analytics.length !== 0 && <h3 className="step_modal_chart">{analytics[analytics.length - 1].people_booked} people booked {props.place.name} this month</h3> }
+                 {analytics && analytics.length !== 0 && <h3 className="step_modal_chart">{analytics[analytics.length - 1].people_booked} envents booked {props.place.name} this month</h3> }
                  <Chart data={data('people_booked', 'Appointments','rgb(204, 0, 255)')} x_legend={(new Date).getFullYear()} y_legend='Number of booking' />
             </div>
 

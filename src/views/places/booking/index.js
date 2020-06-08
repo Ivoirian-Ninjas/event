@@ -112,9 +112,9 @@ console.log(this.state.event)
                 let modal= null
         if(this.state.openModal){
             const s_date =this.state.event.schedule.start._date
-            const s_time= `${s_date.getHours()}: ${s_date.getMinutes()}`
+            const s_time= `${s_date.getHours()} : ${s_date.getMinutes()}`
             const e_date=this.state.event.schedule.end._date
-            const e_time = `${e_date.getHours()}: ${e_date.getMinutes()}`
+            const e_time = `${e_date.getHours()} : ${e_date.getMinutes()}`
              modal = (
             <div className="div_modal_booking">
                 <button onClick={this.close_modal} className="close_modal_booking">
@@ -127,12 +127,12 @@ console.log(this.state.event)
                     <p className="book_modal_time">
                         <i className="far fa-clock clock_start"></i> Start: { this.state.event.schedule && 
                         this.state.event.schedule.end._date.toLocaleDateString(undefined, options) } 
-                        <span>{this.state.event.schedule && s_time}</span>
+                        <span> {this.state.event.schedule && s_time}</span>
                     </p>
                     <p className="book_modal_time">
                         <i className="far fa-clock clock_end"></i> End: {this.state.event.schedule && 
                         this.state.event.schedule.start._date.toLocaleDateString(undefined, options)} 
-                        <span>{this.state.event.schedule && e_time}</span>
+                        <span> {this.state.event.schedule && e_time}</span>
                     </p>
                     <p className="book_modal_time">Duration: {this.state.event.schedule && this.state.event.schedule.goingDuration} hours</p>
                     <div className="book_modal_attendee">
@@ -158,7 +158,6 @@ console.log(this.state.event)
     }
     handleDbClick = (event) => {
         this.setState({event: event})
-        console.log(event.id)
         this.modal_per_case(event)
         this.setState({openModal: true})
     }
