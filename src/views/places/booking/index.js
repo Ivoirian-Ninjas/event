@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Calendar from '@toast-ui/react-calendar'
 import 'tui-calendar/dist/tui-calendar.css'
-import { API_ROOT } from '../../../constants'
+import { API_ROOT, HEADERS } from '../../../constants'
 import current_user from '../../../helper/current_user'
 import '../../../assets/booking.css'
 
@@ -95,20 +95,16 @@ export default class index extends Component {
       }
      close_modal = () => this.setState({ openModal: false })
 
-    //   modal_styles = {
-    //     width: "60%",
-    //     maxWidth: "100%",
-    //     margin: "0 auto",
-    //     position: "fixed",
-    //     left: "50%",
-    //     top: "50%",
-    //     transform: "translate(-50%, -50%)",
-    //     zIndex: "29999",
-    //     backgroundColor: "#fff",
-    //     display: "flex",
-    //     flexDirection: "column",
-    //     boxShadow: "0px 0px 0px 400px rgba(0, 0, 0, 0.40)",
-    // }
+    cancel_booking = (id) => {
+        const options = {
+            method: 'DELETE',
+            headers: HEADERS    
+        }
+        console.log("======================" + id)
+        fetch(API_ROOT + `/bookings/${id}`,options)
+        .then(resp => resp.json())
+        .then(json => console.log(json))
+    }
 
     modal_per_case = () => {
         let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour12: false, timeZone: 'UTC'  };
@@ -152,7 +148,7 @@ console.log(this.state.event)
                         <h3 className="book_modal_step">Details</h3>
                         {this.state.event.schedule && <p className="book_modal_time">{this.state.event.schedule.body}</p>}
                     </div>
-                   <button className="cancel_booking">Cancel booking</button>
+                   <button className="cancel_booking" onClick={() => this.cancel_booking(this.state.event.schedule.id)}>Cancel booking</button>
                 </div>
             </div>
         )
@@ -162,7 +158,7 @@ console.log(this.state.event)
     }
     handleDbClick = (event) => {
         this.setState({event: event})
-        console.log(event)
+        console.log(event.id)
         this.modal_per_case(event)
         this.setState({openModal: true})
     }

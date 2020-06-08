@@ -40,6 +40,18 @@ class BookingsController < ApplicationController
         render json: {place: PlaceSerializer.new(place), booking: booking }
     end
 
+    def destroy
+        # binding.pry
+       id = params.permit(:id)[:id]
+       booking = Booking.find(id)
+       place = booking.place
+       analytics = place.analytics.find_or_create_by({month: (Time.now).month, year: (Time.now).year})
+       analytics.update({num_cancelation: analytics.num_cancelation + 1})
+       booking.delete()
+       render json: {message: 'The booking was succefully cancelled'}
+
+    end
+
 
 
     private 
