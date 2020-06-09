@@ -5,38 +5,33 @@ import picture from '../../assets/img/Better/maxwell-young-dfvsyAwdzcE-unsplash.
 export default class conversationList extends Component {
 
       display_list = () =>{
-        console.log(this.props)
         return this.props.conversations.map(conversation => {
+        // this user is the correspont of the current user 
+
+        const image  = conversation.included[0].attributes.url // find the first image of the place
+         const user = current_user().id === conversation.data.attributes.client.id ? conversation.data.attributes.host : conversation.data.attributes.client
+         const normalizedDate =  new Date( Date.parse(conversation.data.attributes.created_at) )
+         const options = {year: 'numeric', month: 'long', day: 'numeric', hour12: false, timeZone: 'UTC'  }
+         const date =normalizedDate.toLocaleDateString(undefined, options) 
+         const time = `${normalizedDate.getHours()} : ${normalizedDate.getMinutes()} `
+
           return (
             <React.Fragment key={conversation.data.id}>
               <div onClick={() =>this.props.handleClick(conversation.data.id)} className="inbox_conversation_message" 
                    style={{display: ""+this.props.display+""}}>
-                {current_user().id ===  conversation.data.attributes.host.id ?
                   <div className="conversation_start">
                     <div className="div_cover">
-                      <img src={cover} className="cover_inbox" alt="The_cover"/>
+                      <img src={image} className="cover_inbox" alt="The_cover"/>
                     </div>
                     <div className="div_picture">
-                      <img src={picture} className="picture_inbox" alt="The_picture"/>
+                      <img src={user.profile_pic} className="picture_inbox" alt="The_picture"/>
                     </div>
                       <p className="name_inbox">
-                        <p>{conversation.data.attributes.client.name}</p>
-                        <p className="time_info_inbox">Tues, May 8, 2020 9:21 AM</p>
+                        <p>{user.name}</p>
+                        <p className="time_info_inbox">{date}, {time}</p>
                       </p>
                   </div>
-                  :<div className="conversation_start">
-                    <div className="div_cover">
-                      <img src={cover} className="cover_inbox" alt="The_cover"/>
-                    </div>
-                    <div className="div_picture">
-                      <img src={picture} className="picture_inbox" alt="The_picture"/>
-                    </div>
-                      <p className="name_inbox">
-                        <p>{conversation.data.attributes.host.name}</p>
-                        <p className="time_info_inbox">Tues, May 8, 2020 9:21 AM</p>
-                      </p>
-                  </div>
-                }
+           
               </div>
 
           </React.Fragment>

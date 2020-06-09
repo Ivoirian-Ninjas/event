@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import image from '../../assets/img/Better/shardayyy-photography-fJzmPe-a0eU-unsplash.jpg'
 import 'react-day-picker/lib/style.css'
 import DatePicker from 'react-date-picker'
@@ -13,8 +13,14 @@ let timeStyle = {
 }
 
 export default function MessageContainer(props) {
+
+    useEffect(() => {
+        const div_message = document.querySelector('div.message_container')
+        div_message.scrollTop = div_message.scrollHeight
+    })
+
     const display_messages = () => props.messages.map(e => {
-        console.log(props)
+     
         const user = props.users.find(user => user.id === `${e.user_id}`)
         const options = {year: 'numeric', month: 'long', day: 'numeric', hour12: false, timeZone: 'UTC'  };
         const normalizedDate =  new Date( Date.parse(e.created_at) )
@@ -49,11 +55,12 @@ export default function MessageContainer(props) {
         </div>)
     })
     return (
-        <div className='message_part' style={{display: ""+props.show_conversation+""}}>
+        <div className='message_part' style={{display: `${props.show_conversation}`}}>
+           
             <div className="back_btn">
                 <button className="btn_back" onClick={() =>props.goBack()}> <i className="fa fa-chevron-left"></i> Back</button>
             </div>
-            <div className="message_container">
+            <div className="message_container" style={{overflowY: 'scroll', height: 500 }}>
                 {display_messages()}
                 <div className="send_part">
                     <div className='div_img_sms'>
@@ -72,7 +79,7 @@ export default function MessageContainer(props) {
                 <div className="show_book_info">
                     <p className="show_book_text"> 
                         <b className="show_book_bolder">
-                            Price
+                            ${props.place && props.place.price}
                         </b> / hour
                     </p>
                     <p className="show_book_text"><i className="fa fa-star show_star"></i> 4.93 (330)</p>

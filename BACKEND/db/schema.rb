@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(version: 2020_05_27_021022) do
   end
 
   create_table "conversations", force: :cascade do |t|
+    t.integer "place_id"
     t.integer "host_id"
     t.integer "client_id"
     t.datetime "created_at", null: false

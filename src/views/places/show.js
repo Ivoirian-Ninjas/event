@@ -50,7 +50,7 @@ export default class show extends Component {
                 method: 'POST',
                 body: JSON.stringify( {message: this.state.current_message } )
              }
-             fetch(`${API_ROOT}/messages?current_user=${current_user().id}&host_id=${this.state.place.attributes.user.id}`, options)
+             fetch(`${API_ROOT}/messages?current_user=${current_user().id}&host_id=${this.state.place.attributes.user.id}&conversation_id=${this.state.place.id}`, options)
              .then(resp => resp.json())
              .then(json => json.sent && this.setState({current_message: ""}))
         }

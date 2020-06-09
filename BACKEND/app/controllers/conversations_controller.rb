@@ -4,7 +4,7 @@ class ConversationsController < ApplicationController
         user = User.find(params[:current_user])
         conversations = Conversation.where("host_id = ? OR client_id = ?", user.id,user.id)
         options = {
-          include: [:users]
+          include: [:images, :users]
         }
         normalized_convo = conversations.map{|e| ConversationSerializer.new(e,options)}
         render json: {conversations:  normalized_convo}

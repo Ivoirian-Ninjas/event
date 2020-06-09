@@ -17,7 +17,8 @@ export default class inbox extends Component {
        activeConversation: null,
        convo: null,
        display:"block",
-       show_conversation:"block"
+       show_conversation:"block",
+       current_place: {}
     }
   }
 
@@ -34,8 +35,8 @@ export default class inbox extends Component {
       handleClick = id => {
       this.setState({display:"none",show_conversation:"block"})
       const conversation = this.state.conversations.find(e => e.data.id === id)
-      const users = conversation.included.map(e=> ({name: e.attributes.name, profile_pic: e.attributes.profile_pic, id: e.id}) )
-      this.setState({activeConversation: id,messages: conversation.data.attributes.messages, users: users})  
+      const users = conversation.included.map(e=> e.type === 'user' && ({name: e.attributes.name, profile_pic: e.attributes.profile_pic, id: e.id}) )
+      this.setState({activeConversation: id,messages: conversation.data.attributes.messages, users: users, current_place: conversation.data.attributes.place})  
     this.conversationChannel =  this.cable.subscriptions.create({
         channel: `ConversationsChannel`, 
         id: id
@@ -102,6 +103,7 @@ export default class inbox extends Component {
                 
               {this.state.activeConversation &&
                   <MessageContainer 
+                    place = {this.state.current_place}
                     users = {this.state.users}
                     messages={this.state.messages} 
                     handleChange={this.handleChange} 

@@ -193,13 +193,13 @@ handleChange = event => this.setState({[event.target.name]: event.target.value }
                         <Errors />
                         <div className="ChampsGroup">
                             <i className="fas fa-lock"></i>
-                            <input type='password' placeholder="Password..." name='password' id='password' onChange={this.handleChange}/>
+                            <input type='password' placeholder="Password..." name='password' id='password' onChange={this.handleChange} value={this.state.password}/>
                             <span className="bar"></span>
                         </div>
 
                         <div className="ChampsGroup">
                             <i className="fas fa-lock"></i>
-                            <input type='password' placeholder="Confirm password" name='password_confirm' id='password_confirm' onChange={this.handleChange}/>
+                            <input type='password' placeholder="Confirm password" name='password_confirm' value={this.state.password_confirm} id='password_confirm' onChange={this.handleChange}/>
                             <span className="bar"></span>
                         </div>
 
