@@ -128,7 +128,6 @@ ActiveRecord::Schema.define(version: 2020_05_27_021022) do
   end
 
   create_table "conversations", force: :cascade do |t|
-    t.integer "place_id"
     t.integer "host_id"
     t.integer "client_id"
     t.datetime "created_at", null: false
@@ -175,6 +174,7 @@ ActiveRecord::Schema.define(version: 2020_05_27_021022) do
     t.float "price"
     t.float "ratings"
     t.integer "capacity"
+    t.integer "number_view"
     t.integer "user_id"
     t.integer "cancelation_policy_id"
     t.integer "category_id"
