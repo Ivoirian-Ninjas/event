@@ -1,26 +1,13 @@
 import React, { Component } from 'react'
 import "../../assets/profile.css"
 import defaults from '../../assets/img/Last/instagram-profile-photo-png-2.png'
-import card_default from '../../assets/img/Last/pngtree-vector-credit-card-icon-png-image_925424.jpg'
-import card_1 from '../../assets/img/Last/6744618_preview.png'
-import card_2 from '../../assets/img/Last/bank-of-america-icon-png-7.png'
-import card_3 from '../../assets/img/Last/mastercard-credit-card-business-debit-card-logo-png-favpng-xAry6ChN7vpf53S2rA2aNP7KA.jpg'
-import card_4 from '../../assets/img/Last/JCB_logo.svg.png'
 import Footer from '../../components/footer'
 import current_user from '../../helper/current_user'
+import {API_ROOT} from '../../constants.js'
+import PayoutModal from './PayoutModal'
+import {Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
 
-// let scrollHeight = 0;
-// let stylish
-// if(window.scrollY>100){
-//     stylish = {
-//         position: 'absolute',
-//     }
-// }
-// else{
-//     stylish = {
-//         position: 'fixed',
-//     }
-// }
 
 export default class Profile extends Component {
    state = {
@@ -33,7 +20,7 @@ export default class Profile extends Component {
 
    handleChange = (event) => this.setState( {[event.target.name]: event.target.value})
    handleSubmit = () => {
-
+    
    if( document.querySelector("span.deleteImage") ) {
     document.querySelector("span.deleteImage").remove()
    }
@@ -47,7 +34,7 @@ export default class Profile extends Component {
         method: 'PATCH', 
        body: fd
     }
-    fetch(`http://localhost:3000/users/${current_user().id}`,params)
+    fetch(`${API_ROOT}/users/${current_user().id}`,params)
     .then(resp => resp.json())
     .then(json => {
         if(json.errors){
@@ -55,10 +42,9 @@ export default class Profile extends Component {
                 console.log(e)
             })
         }else{
-            localStorage.removeItem("user")
-            localStorage.setItem("user", JSON.stringify(json.user) )
-
-            if( current_user() ){
+        
+             JSON.stringify(json.user)  && localStorage.setItem("user", JSON.stringify(json.user) )
+             if( current_user() ){
                 const small_image = document.querySelector("img.profile_file")
                 small_image.src = current_user().profile_pic
 
@@ -95,7 +81,7 @@ export default class Profile extends Component {
              spanX.remove()
  
              //remove the file from the image
-             this.setState( state => state.profile_pic = "" , () => console.log(this.state.images))
+             this.setState({file:  "" } )
              const inputs = document.querySelectorAll(`input[type="file"]`)
             inputs.forEach(e => {
                  console.log(e.value)
@@ -164,58 +150,14 @@ export default class Profile extends Component {
         }
     }
     render() {
-        let prof_modal = (
-            <div className="div_modal_prof">
-                <button onClick={this.close_modal} className="close_modal_prof">
-                    <i className="far fa-times-circle"></i> 
-                </button>
-                <div ProfOpen={this.state.ProfOpen} className="modal_container_prof">
-                    <p className="p_add_new">Add a new credit card</p>
-                    <div className="contain_modal">
-                        <div className="div_contain_modal">
-                            <div className="div_input_modal">
-                                <label className="label_modal_prof">Credit/debit card number</label>
-                                <input type="text" className="input_modal_prof" name="credit_numb"/>
-                            </div>
-                            <div className="div_input_modal">
-                                <label className="label_modal_prof">Card holder name</label>
-                                <input type="text" className="input_modal_prof" name="card_name"/>
-                            </div>
-                            <div className="div_input_modal">
-                                <label className="label_modal_prof">Expiry date</label>
-                                <input type="text" className="input_modal_prof" name="expiry_card" placeholder="e.g. 04/20"/>
-                            </div>
-                            <div className="div_input_modal">
-                                <label className="label_modal_prof">Issuing bank</label>
-                                <input type="text" className="input_modal_prof" name="issue_bank"/>
-                            </div>
-                        </div>
-                        <div className="div_contain_modal">
-                            <div className="display_card">
-                                <img src={card_default} className="image_card"/>
-                            </div>
-                            <div className="example_card">
-                                <p className="p_exemple_card">Available payment methods:</p>
-                                <div className="some_images">
-                                <img src={card_1} className="image_card_small"/>
-                                <img src={card_2} className="image_card_small"/>
-                                <img src={card_3} className="image_card_small"/>
-                                <img src={card_4} className="image_card_small"/>
-                                </div>
-                            </div>
-                            <div className="div_btn_modal">
-                                <button className="btn_save modalBtn">Save</button>
-                                <button className="btn_cancel modalBtn">Cancel</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        )
+        let prof_modal = <PayoutModal close_modal={this.close_modal}/>
         if (!this.state.ProfOpen) {
             prof_modal = null;
         }
+        const stripePromise = loadStripe('pk_test_JJ1eMdKN0Hp4UFJ6kWXWO4ix00jtXzq5XG');
+
         return (
+            <Elements stripe={stripePromise}>
            <div className="PageConteneur">
            <div ref="myModal">{prof_modal}</div>
             <div className="profile_information">
@@ -387,7 +329,7 @@ export default class Profile extends Component {
                 <Footer/>
             </footer>
         </div>
- 
+ </Elements>
         )
     }
 }

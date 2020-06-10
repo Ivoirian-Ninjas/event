@@ -33,6 +33,8 @@ class BookingsController < ApplicationController
 
         # Here we update the number of people who booked the place (this is actually how the number of booking for a place)
         if booking 
+            
+            BookingMailer.with(host: host,client: client, place: place, booking: booking).booking_notification.deliver_later #send an email for booking notification
             analytics = place.analytics.find_or_create_by({month: (Time.now).month, year: (Time.now).year})
             analytics.update({people_booked: analytics.people_booked + 1})
         end
