@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+ 
+   <h1>Good news <%= @client.name %></h1>
+   <div height=400 width=400>
+    <img height = "100%" width="100%" src="<%=@place.images.first.url%>">
+   </div>
+    <p>
+        You have successfully booked <%=@place.name%> for <%=@booking.duration%> hours.
+        The cost of this event will be <b>$ <%=@booking.total%></b>.<br/>
+        Note that the host will only have 48 hours to cancel this event without any consequences.
+        After those 48 hours, you will be the only one able to cancel the event.<br/>
+        Enjoy your time at <%=@place.name%>.
+      <br>
+    
+    </p>
+    <p>
+        
+        <b>Just a reminder:</b> <%=@place.name%> has <%=@place.cancelation_policy.genre%> policy, with the following rules
+        <%=@place.cancelation_policy.content%>
+    <p>
+    <p>
+      For more information, please <a href='http://localhost:3001'>log in</a> into your account.
+    </p>
+    <p>Thanks for using our services!</p>
+  </body>
+</html>

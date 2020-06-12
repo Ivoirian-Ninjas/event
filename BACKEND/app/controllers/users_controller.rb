@@ -10,11 +10,12 @@ class UsersController < ApplicationController
     end 
     
     def update 
+        # binding.pry
         user = User.find(params[:id])  
         keys = user_params.keys
         keys.each do |e|
             # binding.pry
-             user.send("#{e}=",user_params[:"#{e}"]) if user_params[:"#{e}"] != ""
+             user.send("#{e}=",user_params[:"#{e}"]) if user_params[:"#{e}"] != "" && e != "Position"
             #  binding.pry
 
              if e == "file" && user.file.attached?
@@ -23,7 +24,7 @@ class UsersController < ApplicationController
              end
         end
         # user.password = user.password
-       data =  user.save ? {user: user} : {error: "enable to proceed"}
+       data =  user.save ? {user: user} : {errors: ["enable to proceed"]}
         render json: data
     end
         
