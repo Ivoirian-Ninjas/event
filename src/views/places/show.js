@@ -234,7 +234,8 @@ export default class show extends Component {
                             {this.state.place.attributes ? this.state.place.attributes.address.country : null}.
                         </address>
                     </div>
-                    <div className="show_div_info_img">
+                    <div className="show_div_info_img" onClick={() => {
+                        window.location.href = `/profile_show`}}>
                         <img src={this.state.place.attributes && this.state.place.attributes.user.profile_pic} className="img_host"/>
                         <p className="show_address">{this.state.place.attributes && this.state.place.attributes.user.name}</p>
                     </div>

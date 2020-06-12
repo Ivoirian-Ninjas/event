@@ -18,7 +18,7 @@ import Footer from '../../components/footer'
 
     componentDidMount(){
         window.addEventListener('scroll', this.handleScroll, true)
-        this.setState({Position:"absolute"})
+        this.setState({Position:"relative"})
         if(window.innerWidth<=858){
             this.setState({
                 Style: !this.state.Style,
@@ -105,7 +105,7 @@ import Footer from '../../components/footer'
             activeMarker: "",
             showingInfoWindow: false,
             show_map: true,
-            Position:"absolute",
+            Position:"relative",
             Style:true,
             Places_div : "display_places",
             ImgB_div : "display_imgs",

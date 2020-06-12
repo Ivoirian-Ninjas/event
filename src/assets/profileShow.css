@@ -1,0 +1,321 @@
+.contain_profile{
+    width: 80%;
+    display: flex;
+    margin: 2% auto;
+    /* border: 1px solid red; */
+}
+.left_profile{
+    display: block;
+    width: 55%;
+    margin: 0% 5%;
+    /* border: 1px solid pink; */
+}
+.inside_left{
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid rgb(165, 165, 165);
+}
+.text_insideL{
+    display: block;
+    width: 100%;
+    margin: 1% 0 5% 0;
+}
+.title_insideL{
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-size: 3.3rem;
+    line-height: 1.57;
+    font-weight: 500;
+    font-style: normal;
+    color: rgb(51, 51, 51);
+    display: block;
+}
+.smallT_insideL {
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-size: 1.7rem;
+    line-height: 1.57;
+    font-weight: 500;
+    font-style: normal;
+    color: rgb(87, 87, 87);
+    display: block;
+}
+.icon_home_insideL{
+    font-size: 1.7rem;
+    color: rgb(51, 51, 51);
+    margin-right: 3%;
+}
+.text_insideLI {
+    display: flex;
+    width: 100%;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-size: 1.7rem;
+    line-height: 1;
+    font-weight: 500;
+    font-style: normal;
+    color: rgb(51, 51, 51);
+    margin: 1% 0 5% 0;
+}
+.h2_insideL{
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-size: 2.5rem;
+    line-height: 1.57;
+    font-weight: 600;
+    font-style: normal;
+    color: rgb(51, 51, 51);
+    display: block;
+    margin: 4% 0;
+}
+.placesP{
+    width: 100%;
+    display: inline-block;
+    margin-right: 11px;
+    cursor:pointer
+}
+.name_placesP {
+    display: inline-block;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    line-height: 20px;
+    font-size: 1.6rem;
+    width: 100%;
+    margin: 0px 0px;
+    font-weight: 400;
+    color: rgb(54, 54, 54);
+}
+.show_places_created{
+    margin: 3% 0;
+}
+.btn_insideL{
+    background:transparent;
+    padding: 7px 16px;
+    border:none;
+    color: rgb(150, 56, 153);
+    margin: 1% 0 3% 0;
+    cursor: pointer;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue",
+    sans-serif;
+    transition: 0.3s;
+    font-weight: 600;
+    font-size: medium;
+    outline: none;
+}
+.btn_insideL:hover {
+    color: rgb(112, 0, 116);
+    transition: 0.3s;
+    text-decoration: underline;
+}
+.places_stayed{
+    display: flex;
+    width: 100%;
+}
+.reviews_part{
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid rgb(165, 165, 165);
+    margin: 3% 0 5% 0;
+}
+.space_stayed{
+    display: block;
+    width: 78%;
+    margin-right: 2%;
+    /* border: 1px solid rgb(182, 15, 43); */
+}
+.div_img_stayed {
+    display: flex;
+    width: 20%;
+    height: 70px;
+    padding: 10px;
+    /* position: absolute; */
+    /* border: 1px solid pink; */
+}
+.img_stayed{
+    width: 100%;
+    /* position: absolute; */
+    background-size: cover;
+    height: 100%;
+}
+.name_space{
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-size: 1.3rem;
+    line-height: 1.57;
+    font-weight: 500;
+    font-style: normal;
+    color: rgb(51, 51, 51);
+    display: block;
+    cursor: pointer;
+}
+.name_space:hover{
+    text-decoration: underline;
+}
+.date_space {
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-size: 1.7rem;
+    line-height: 1.57;
+    font-weight: 600;
+    font-style: normal;
+    color: rgb(51, 51, 51);
+    display: block;
+}
+.review_message{
+    width: 100%;
+    /* border: 1px solid red; */
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-size: 1.5rem;
+    line-height: 1.57;
+    font-weight: 500;
+    font-style: normal;
+    color: rgb(51, 51, 51);
+    margin: 0 0 2% 0;
+}
+.reviews_imgP {
+    display: flex;
+    width: 100%;
+    height: 60px;
+    margin: 3% 0 2% 0;
+}
+.info_reviewsP {
+    width: 40%;
+    height: 82%;
+    margin-left: 4%;
+    overflow: hidden;
+    display: inline-block;
+    font-family: Mallory, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.57;
+    font-weight: 500;
+    font-style: normal;
+    color: rgb(43, 43, 43);
+}
+.img_reviewsP {
+    width: 8%;
+    height: 75%;
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-block;
+}
+.response_host{
+    width: 100%;
+    background: rgb(233, 233, 233);
+    border-radius: 3px;
+    display: inline-block;
+    padding: 5% 5%;
+    margin: 0 0 5% 0;
+}
+.response_title{
+    display: inline-block;
+    font-family: Mallory, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.57;
+    font-weight: 500;
+    font-style: normal;
+    color: rgb(43, 43, 43);
+    width: 100%;
+}
+.response_contain {
+    display: inline-block;
+    font-family: Mallory, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.5rem;
+    line-height: 1.57;
+    font-weight: 500;
+    font-style: normal;
+    color: rgb(43, 43, 43);
+    width: 100%;
+}
+.right_profile {
+    display: block;
+    width: 30%;
+    margin: 0 0 0 7%;
+    border: 1px solid rgb(91, 0, 114);
+    border-radius: 3px;
+    height: 500px;
+}
+.inside_right_img{
+    display: flex;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    margin: 3% auto;
+    border-bottom: 1px solid rgba(91, 0, 114, 0.534);
+}
+.img_insideR{
+    width: 35%;
+    height: 65%;
+    border-radius: 50%;
+    background-size: cover;
+}
+.inside_right_RI{
+    display: block;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    margin: 3% auto;
+    border-bottom: 1px solid rgba(91, 0, 114, 0.534);
+}
+.p_IR_Wi{
+    font-family: Mallory, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.5rem;
+    line-height: 1.57;
+    font-weight: 500;
+    font-style: normal;
+    color: rgb(43, 43, 43);
+    margin: 5% 0;
+}
+.icon_reviews{
+    font-size: 1.7rem;
+    color: gold;
+    margin-right: 3%;
+}
+.icon_check{
+    font-size: 1.7rem;
+    color: rgb(214, 8, 214);
+    margin-right: 3%;
+}
+.check_icon {
+    font-size: 1.7rem;
+    color: rgb(196, 3, 154);
+    margin-right: 3%;
+    font-weight: 300;
+}
+.inside_right_info{
+    display: block;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    margin: 3% auto;
+}
+.h2_insideR{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    font-family: Mallory, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.7rem;
+    line-height: 1.57;
+    font-weight: 600;
+    font-style: normal;
+    color: rgb(43, 43, 43);
+}
+.p_IR_WOI{
+    font-family: Mallory, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.4rem;
+    line-height: 1.57;
+    font-weight: 500;
+    font-style: normal;
+    color: rgb(43, 43, 43);
+    margin: 5% 0;
+}
+.learn_more{
+    color:rgb(196, 3, 154);
+}
+.learn_more:focus, .learn_more:hover{
+    color:rgb(196, 3, 154);
+}
+.BrainhubCarousel__arrows {
+
+    background-color: #880081 !important;
+}
+.BrainhubCarousel__arrows:disabled {
+    background-color: #ccc;
+    display: none !important;
+}
+button:active, button:focus, button:hover{
+    outline: none !important;
+}

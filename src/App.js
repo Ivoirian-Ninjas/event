@@ -30,6 +30,7 @@ import 'aos/dist/aos.css'
 import "./assets/bootstrap-4.3.1-dist/css/bootstrap.min.css"
 import User_listing from './views/places/listing/user_listing';
 import Analytics from './views/places/analytics/Analytics';
+import ProfileShow from './views/user/ProfileShow';
 function App() {
   AOS.init()
   return (
@@ -54,6 +55,7 @@ function App() {
 
               {/* user profile */}
               <Route path='/users/:id' render={renderProps => <Profile/>} />
+              <Route path='/profile_show/' render={renderProps => <ProfileShow {...renderProps}/> } />
 
               {/*These routes are the routes for the booking process */}          
               <Route exact path='/bookings' render={renderProps => <Booking_index {...renderProps}/>}  />
@@ -64,7 +66,6 @@ function App() {
               <Route path='/inbox/' render={renderProps => <Inbox {...renderProps}/>}  /> 
 
               <Route path='/analytics' render={renderProps => <Analytics {...renderProps}/> } />
-              
             </React.Fragment>
          
        </Switch>
