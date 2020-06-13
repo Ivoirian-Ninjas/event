@@ -65,8 +65,8 @@ export default class show extends Component {
         start_time: '',
         end_time: '',
         ShowOpen:false,
-        Position: "fixed",
-        Top:"90%",
+        Position: "absolute",
+        Top:"95%",
         BookOpen : false
       }
       s_change_time = time => this.setState({start_time: time})
@@ -92,7 +92,7 @@ export default class show extends Component {
         display_img = () =>
 
 
-        <Carousel>
+        <Carousel showArrows={false} showIndicators={false} showThumbs={false} showStatus={false}>
             {this.state.place.attributes && this.state.place.attributes.images.map(e =>
                 <div className = "show_div_top_img" key={e.id}>
                     <img src={e.url} className="show_top_img"/>
@@ -102,11 +102,10 @@ export default class show extends Component {
         display_img2 = () =>
 
 
-        <Carousel showArrows={true} infiniteLoop={true} autoPlay={true} className="show_carousel">
+        <Carousel showArrows={true} infiniteLoop={true} autoPlay={true} useKeyboardArrows className="show_carousel">
             {this.state.place.attributes && this.state.place.attributes.images.map(e =>
                 <div className="show_div_top_img2"  key={e.id}> 
                     <img src={e.url} className="show_top_img_2"/>
-                    <p className="legend">Legend 1</p>
                 </div>
             )}
         </Carousel>
@@ -145,7 +144,7 @@ export default class show extends Component {
             else {
                 this.setState({
                     Position: "absolute",
-                    Top:"90%"
+                    Top:"95%"
                 })
 
             }

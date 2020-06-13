@@ -5,7 +5,7 @@
   display: flex;
   width: 100%;
   overflow: hidden;
-  height: 500px;
+  height: 600px;
   cursor: pointer;
 }
 .show_div_top_btn{
@@ -38,15 +38,19 @@
 }
 .show_div_top_img{
   width: 85%;
-  height: 500px;
+  height: 600px;
   overflow: hidden;
   margin: 0px auto;
 }
 .show_top_img{
   width: 100%;
-  height: 500px;
+  height: 600px;
   object-fit: cover;
   background-size: cover;
+}
+.conteneurShow{
+  width: 100%;
+  display: flex;
 }
 .show_div_left{
   display: inline-block;
